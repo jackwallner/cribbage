@@ -1,6 +1,6 @@
 import Foundation
 
-/// Cribbity+ extra practice sets. The free beginner drills remain intact;
+/// Cribbage+ extra practice sets. The free beginner drills remain intact;
 /// membership adds more original reps in the same mechanics.
 enum PlusContent {
     static let cardExtras: [QuizQuestion] = [

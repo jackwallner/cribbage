@@ -51,7 +51,7 @@ struct OnboardingView: View {
                 infoPage(
                     icon: "rectangle.portrait.on.rectangle.portrait.angled",
                     title: "Make it stick between games",
-                    body: "Cribbage fades fast between games. Cribbity gives you five-minute drills you can run anywhere, whether you are still learning card values or sharpening instincts you already have.",
+                    body: "Cribbage fades fast between games. Cribbage Trainer gives you five-minute drills you can run anywhere, whether you are still learning card values or sharpening instincts you already have.",
                     tiles: [.c(2), .d(5), .h(10), .s(13)]
                 ).tag(0)
                 infoPage(

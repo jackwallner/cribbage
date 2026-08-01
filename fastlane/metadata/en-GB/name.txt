@@ -1,1 +1,1 @@
-Cribbity: Cribbage Practice
+Cribbage Trainer: Count & Peg

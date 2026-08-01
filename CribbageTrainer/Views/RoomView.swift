@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// One room, its drills. Free drills open; Cribbity+ extra sets show the lock and
+/// One room, its drills. Free drills open; Cribbage+ extra sets show the lock and
 /// route to the paywall. A locked room (the Master Tables) locks every row.
 struct RoomView: View {
     let room: Room

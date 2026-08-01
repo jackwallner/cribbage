@@ -92,7 +92,7 @@ extension Room {
 /// The membership brand. The RevenueCat entitlement is still `pro`; this is
 /// only what players read.
 enum Membership {
-    static let name = "Cribbity+"
+    static let name = "Cribbage+"
 }
 
 /// The gold pill that marks anything behind the membership.

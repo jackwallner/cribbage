@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-time App Store Connect setup for Cribbity: subscription group,
+"""One-time App Store Connect setup for Cribbage Trainer: subscription group,
 monthly/yearly subs with prices + 1-week free trials (all territories),
 localizations, categories, and the age-rating questionnaire.
 
@@ -14,11 +14,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 import asc_lib
 
 BUNDLE = "com.jackwallner.cribbage"
-GROUP_NAME = "Cribbity+"
+GROUP_NAME = "Cribbage+"
 SUBS = [
     {
         "productId": "com.jackwallner.cribbage.monthly",
-        "name": "Cribbity+ Monthly",
+        "name": "Cribbage+ Monthly",
         "period": "ONE_MONTH",
         "price": "1.99",
         "desc": "All rooms and drills, billed monthly.",
@@ -26,7 +26,7 @@ SUBS = [
     },
     {
         "productId": "com.jackwallner.cribbage.yearly",
-        "name": "Cribbity+ Yearly",
+        "name": "Cribbage+ Yearly",
         "period": "ONE_YEAR",
         "price": "9.99",
         "desc": "All rooms and drills, billed yearly.",
@@ -127,7 +127,7 @@ def main() -> None:
             {
                 "data": {
                     "type": "subscriptionGroupLocalizations",
-                    "attributes": {"locale": "en-US", "name": GROUP_NAME, "customAppName": "Cribbity"},
+                    "attributes": {"locale": "en-US", "name": GROUP_NAME, "customAppName": "Cribbage Trainer"},
                     "relationships": {
                         "subscriptionGroup": {"data": {"type": "subscriptionGroups", "id": group_id}}
                     },

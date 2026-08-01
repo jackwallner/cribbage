@@ -414,7 +414,7 @@ struct FlipCardFace: View {
     }
 
     private var front: some View {
-        CribbageCardFace(accent: accent, eyebrow: "CRIBBITY") {
+        CribbageCardFace(accent: accent, eyebrow: "CRIBBAGE") {
             VStack(spacing: 18) {
                 Spacer(minLength: 0)
                 Text(card.frontTitle)

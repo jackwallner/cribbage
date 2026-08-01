@@ -108,7 +108,7 @@ SHOTS = [
     Shot(
         raw="05-home.png",
         out="05_home.png",
-        eyebrow="CRIBBITY",
+        eyebrow="CRIBBAGE",
         headline="Five minutes a day. It sticks.",
         accent=JADE,
     ),

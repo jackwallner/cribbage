@@ -2,7 +2,7 @@ import Foundation
 import StoreKit
 
 enum AppStoreLinks {
-    /// Cribbity's App Store record.
+    /// Cribbage Trainer's App Store record.
     static let appStoreID = "6796911073"
 
     /// The write-a-review page. No storefront prefix: the App Store resolves
@@ -24,7 +24,7 @@ enum ReviewPromptOutcome: String, Sendable {
 /// the player has done enough for the ask to be fair.
 ///
 /// The funnel itself: a positive moment (a finished drill) leads to "Enjoying
-/// Cribbity?" A yes leads to the App Store; a no leads to a feedback box
+/// Cribbage Trainer?" A yes leads to the App Store; a no leads to a feedback box
 /// that mails us instead. Unhappy players never get pushed at a star rating,
 /// which is the whole point of gating it.
 @MainActor

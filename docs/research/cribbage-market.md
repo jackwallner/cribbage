@@ -1,12 +1,12 @@
 # Cribbage practice market notes
 
-This is a lightweight product note for Cribbity, not a claim of
+This is a lightweight product note for Cribbage Trainer, not a claim of
 current market size or App Store ranking. Recheck competitors and prices before
 making a monetization decision.
 
 ## Position
 
-Most cribbage apps focus on playing complete games. Cribbity is
+Most cribbage apps focus on playing complete games. Cribbage Trainer is
 deliberately narrower: short practice reps for people who already have a table
 or partner but want to improve between games. The differentiator is a calm,
 explanation-first loop with no opponent, timer, or account requirement in the

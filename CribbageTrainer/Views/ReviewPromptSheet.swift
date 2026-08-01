@@ -65,7 +65,7 @@ struct ReviewPromptSheet: View {
 
     private var navigationTitle: String {
         switch step {
-        case .enjoyment: "Enjoying Cribbity?"
+        case .enjoyment: "Enjoying Cribbage Trainer?"
         case .reviewPitch: "Support an indie app"
         case .feedback: "Help us improve"
         }
@@ -74,7 +74,7 @@ struct ReviewPromptSheet: View {
     private var enjoymentContent: some View {
         VStack(spacing: 20) {
             icon("checkmark.seal.fill", Theme.jade)
-            Text("You've finished \(ReviewPromptTracker.positiveMomentCount) drills. If Cribbity is making your count feel easier between games, a quick rating helps other players find it.")
+            Text("You've finished \(ReviewPromptTracker.positiveMomentCount) drills. If Cribbage Trainer is making your count feel easier between games, a quick rating helps other players find it.")
                 .font(.subheadline)
                 .foregroundStyle(Theme.inkSecondary)
                 .multilineTextAlignment(.center)
@@ -98,7 +98,7 @@ struct ReviewPromptSheet: View {
     private var reviewPitchContent: some View {
         VStack(spacing: 18) {
             icon("star.fill", Theme.gold)
-            Text("Cribbity is built by one person. No ads, no accounts, and your practice history never leaves your phone.")
+            Text("Cribbage Trainer is built by one person. No ads, no accounts, and your practice history never leaves your phone.")
                 .font(.subheadline)
                 .foregroundStyle(Theme.inkSecondary)
                 .multilineTextAlignment(.center)
@@ -133,7 +133,7 @@ struct ReviewPromptSheet: View {
 
     private var feedbackContent: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("What would make Cribbity better for you?")
+            Text("What would make Cribbage Trainer better for you?")
                 .font(.headline)
                 .foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
@@ -216,7 +216,7 @@ struct ReviewPromptSheet: View {
         components.scheme = "mailto"
         components.path = AppStoreLinks.feedbackEmail
         components.queryItems = [
-            URLQueryItem(name: "subject", value: "Cribbity feedback"),
+            URLQueryItem(name: "subject", value: "Cribbage Trainer feedback"),
             URLQueryItem(name: "body", value: body),
         ]
         return components.url

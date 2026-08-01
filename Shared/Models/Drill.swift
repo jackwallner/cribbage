@@ -91,7 +91,7 @@ struct Drill: Identifiable, Sendable {
     let subtitle: String
     let kind: DrillKind
     /// Extra practice sets inside an otherwise-free room. These are additions
-    /// behind Cribbity+, so the beginner set remains open to everyone.
+    /// behind Cribbage+, so the beginner set remains open to everyone.
     let isPlus: Bool
 
     init(id: String, title: String, subtitle: String, kind: DrillKind, isPlus: Bool = false) {

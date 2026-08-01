@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Set Cribbity subscription prices in every territory from the USA base.
+"""Set Cribbage Trainer subscription prices in every territory from the USA base.
 
 Adapted from Queasy's asc-equalize-sub-prices.py. Takes the target USA price
 point per subscription, fetches Apple's equalizations, and posts a

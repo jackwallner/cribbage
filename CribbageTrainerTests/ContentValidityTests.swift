@@ -115,7 +115,7 @@ final class ContentValidityTests: XCTestCase {
                 XCTAssertFalse(room.isFree)
             } else {
                 XCTAssertTrue(room.isFree)
-                XCTAssertEqual(room.drills.filter(\.isPlus).count, 1, "\(room.id) should have one Cribbity+ extra set")
+                XCTAssertEqual(room.drills.filter(\.isPlus).count, 1, "\(room.id) should have one Cribbage+ extra set")
             }
         }
     }

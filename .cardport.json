@@ -1,10 +1,10 @@
 {
-  "name": "Cribbity",
-  "name_status": "placeholder_needs_aso_review",
+  "name": "Cribbage Trainer: Count & Peg",
+  "name_status": "final",
   "slug": "cribbage",
   "module": "CribbageTrainer",
   "bundle_id": "com.jackwallner.cribbage",
-  "membership": "Cribbity+",
+  "membership": "Cribbage+",
   "revenuecat_public_key": "appl_OgAKVcKNWSTOrcdpcKwBzNzUint",
   "app_store_id": "6796911073",
   "source_product": "Mahj Trainer",
