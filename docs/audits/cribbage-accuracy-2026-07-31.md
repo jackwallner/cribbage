@@ -18,13 +18,11 @@ This audit records the domain conversion from the source training app.
 
 The unit tests cover unique IDs, valid choice indices, free room access, plus
 sets, Master Tables locking, Quick Session filtering, and generated hand
-ambiguity. The public App Store ID is intentionally unset until the Cribbage
-record exists.
+ambiguity. The public App Store ID is `6796911073`, and the review funnel uses
+the App Store write-review URL after the enjoyment gate.
 
 ## Remaining release checks
 
 - Confirm house-rule wording with the rules source used for the release.
 - Capture every room on `agent-cribbage` at the final Dynamic Type sizes.
-- Add the final App Store ID to `AppStoreLinks` before shipping a write-review
-  URL.
-
+- Run the Cardport parity gate against Mahj after every product-surface change.

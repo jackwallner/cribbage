@@ -15,3 +15,19 @@ The port preserves the source app's runtime structure:
 The dedicated simulator and the test command are recorded in the handoff notes
 after the final runtime pass.
 
+## Final parity pass, 2026-08-01
+
+- Device: `agent-cribbage`, UDID `37E4A923-3AC9-4425-ADAB-F356FF51F103`.
+- Build: `xcodegen generate`, then the `CribbageTrainer` scheme on the
+  dedicated simulator.
+- Tests: 52 tests, 0 failures.
+- Headless UI checks: Home, Get Started, Scoring Room, Discard Room, a live
+  six-card discard screen, Settings, and the Cribbity+ paywall. The paywall
+  showed yearly, lifetime, and monthly pricing, trial and renewal language,
+  Restore, Terms of Use, and Privacy Policy.
+- Release captures: six real screens in `scripts/screenshot_raw/`,
+  `fastlane/screenshots/en-US/`, `docs/screenshots/`, and the six public
+  `docs/appstore-screenshot-*.png` assets.
+- Simulator safety: the final runtime log contained no production RevenueCat
+  configure call or RevenueCat API endpoint.
+- Structural gate: Cardport parity passed against `/Users/jackwallner/mahj`.

@@ -25,7 +25,6 @@ struct ReviewPromptSheet: View {
     let onFinish: (ReviewPromptDismissOutcome) -> Void
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.requestReview) private var requestReview
     @State private var step: Step
     @State private var feedbackText = ""
     @State private var mailFailed = false
@@ -112,11 +111,7 @@ struct ReviewPromptSheet: View {
             VStack(spacing: 10) {
                 Button {
                     ReviewPromptTracker.markOpenedWriteReview()
-                    if let url = AppStoreLinks.writeReviewURL {
-                        UIApplication.shared.open(url)
-                    } else {
-                        requestReview()
-                    }
+                    UIApplication.shared.open(AppStoreLinks.writeReviewURL)
                     finish(.openedWriteReview)
                 } label: {
                     Text("Rate on the App Store").primaryCTA()

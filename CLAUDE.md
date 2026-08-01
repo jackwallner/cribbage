@@ -25,9 +25,8 @@ the free versus Cribbity+ split.
 
 The review funnel is intentionally terminal. After the third positive drill,
 `ReviewPromptSheet` asks whether the player is enjoying the app. Yes opens the
-App Store review page when `AppStoreLinks.appStoreID` is configured, otherwise
-it uses Apple's in-app request. No opens the feedback mail draft. Do not ask an
-unhappy player for a rating.
+App Store write-review page for `6796911073`. No opens the feedback mail draft.
+Do not ask an unhappy player for a rating.
 
 ## Cribbity+ products
 
@@ -80,8 +79,10 @@ When adding a room or card set:
 5. Run the unit tests and inspect the room in `agent-cribbage`.
 
 The reusable porting workflow for future card apps lives in the sibling
-`/Users/jackwallner/cardport` folder. Start with its README, then use the
-scaffold and validation scripts before replacing the model and content.
+`/Users/jackwallner/cardport` folder. Start with its README and
+`docs/parity-contract.md`, then use the scaffold and validation scripts before
+replacing the model and content. The port must preserve this app's full
+runtime, release, website, legal, and screenshot surface.
 
 ## Build and simulator rules
 
@@ -91,8 +92,8 @@ Use `xcodegen generate` after adding or removing Swift files or changing
 
 The repository's release scripts expect App Store Connect credentials from the
 local credential file and must never print those credentials. The App Store ID
-is not set yet, so the review funnel currently falls back to the in-app review
-request until the Cribbage App Store record exists.
+is `6796911073`, and the review funnel opens the app's App Store write-review
+page after the enjoyment gate.
 
 See `CribbageTrainer/Views/Drills/CLAUDE.md` for the gesture and flip
 invariants of the signature swipe deck.
