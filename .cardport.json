@@ -1,5 +1,6 @@
 {
   "name": "Cribbity",
+  "name_status": "placeholder_needs_aso_review",
   "slug": "cribbage",
   "module": "CribbageTrainer",
   "bundle_id": "com.jackwallner.cribbage",
@@ -9,5 +10,6 @@
   "source_product": "Mahj Trainer",
   "source_game": "American Mah Jongg",
   "template": "card-app-template",
-  "metadata_strategy": "mahj-bridge-fallback-localizations"
+  "metadata_strategy": "mahj-bridge-fallback-localizations",
+  "aso_brief": "docs/research/aso-cribbage.md"
 }

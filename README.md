@@ -15,6 +15,8 @@ not a complete multiplayer game.
 - Privacy: <https://jackwallner.github.io/cribbage/privacy-policy>
 - Terms: <https://jackwallner.github.io/cribbage/terms>
 - Membership: Cribbity+
+- Name status: placeholder, pending the per-app ASO brief in
+  `docs/research/aso-cribbage.md`
 
 ## Development
 
@@ -43,6 +45,15 @@ archive/upload only after the headless test pass:
 
 Do not submit for App Review automatically. A readiness report is the normal
 end of a port; submission is a separate decision.
+
+Before a public name or metadata change, complete the ASO brief, replace the
+placeholder name everywhere, and run:
+
+```sh
+python3 scripts/validate_aso_brief.py \
+  --brief docs/research/aso-cribbage.md \
+  --product-name "<final name>"
+```
 
 ## Reusable port workflow
 

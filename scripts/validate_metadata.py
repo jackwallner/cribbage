@@ -20,6 +20,7 @@ LIMITS = {
     "description": 4000,
     "release_notes": 4000,
 }
+BYTE_LIMIT_FIELDS = {"keywords"}
 REQUIRED = tuple(LIMITS) + ("support_url", "marketing_url", "privacy_url")
 DEFAULT_FORBIDDEN = ("mahj", "mahjong", "nmjl", "bridge trainer", "bridge+")
 
@@ -57,8 +58,10 @@ def main() -> int:
                 errors.append(f"{locale}/{field}.txt is empty or missing")
                 continue
             limit = LIMITS.get(field)
-            if limit and len(text) > limit:
-                errors.append(f"{locale}/{field}.txt is {len(text)} chars, limit is {limit}")
+            measured = len(text.encode("utf-8")) if field in BYTE_LIMIT_FIELDS else len(text)
+            unit = "bytes" if field in BYTE_LIMIT_FIELDS else "chars"
+            if limit and measured > limit:
+                errors.append(f"{locale}/{field}.txt is {measured} {unit}, limit is {limit}")
             if "—" in text:
                 errors.append(f"{locale}/{field}.txt contains an em dash")
             if field.endswith("_url") and not is_url(text):
