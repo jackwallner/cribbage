@@ -101,7 +101,7 @@ Expected result: **4+**, no advisory content descriptors.
   configured by `asc-setup-release.py`, `asc-create-lifetime.py`, and
   `asc-finish-products.py`; confirm processing in App Store Connect before
   submitting.
-- I (TestFlight build): build 15 is `VALID` and attached to the editable 1.0
+- I (TestFlight build): build 17 is `VALID` and attached to the editable 1.0
   version by `asc-attach-build.py`.
 - Submitting for review: **explicitly held for Jack's go**, per task
   instructions. This session pushed metadata only (no submit-for-review

@@ -3,7 +3,7 @@
 
 Usage:
     source ~/.baseball_credentials
-    ASC_APP_VERSION=1.0 ASC_BUILD_NUMBER=15 python3 scripts/asc-attach-build.py
+    ASC_APP_VERSION=1.0 ASC_BUILD_NUMBER=17 python3 scripts/asc-attach-build.py
 
 The upload to TestFlight and the version attachment are separate App Store
 Connect operations. This script makes the second operation explicit and

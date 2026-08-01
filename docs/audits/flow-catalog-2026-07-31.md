@@ -31,3 +31,11 @@ after the final runtime pass.
 - Simulator safety: the final runtime log contained no production RevenueCat
   configure call or RevenueCat API endpoint.
 - Structural gate: Cardport parity passed against `/Users/jackwallner/mahj`.
+
+## Release handoff, 2026-08-01
+
+- TestFlight: version `1.0`, build `17`, upload succeeded and processing is
+  `VALID`.
+- App Store Connect: build `17` is attached to the editable `1.0` version.
+- Screenshots: six uploaded to en-US `APP_IPHONE_67`.
+- Submission: no submit-for-review call was made.
