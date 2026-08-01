@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Seed every supported App Store Connect locale from the canonical locale.
 
-The Mahj and Bridge release workflow keeps one authoritative en-US copy, then
-creates complete fallback folders for every ASC-supported locale. Missing local
+The card-app release workflow keeps one authoritative en-US copy, then creates
+complete fallback folders for every ASC-supported locale. Missing local
 translations are deliberate English fallbacks until a real translation is
 reviewed. This script never overwrites existing locale text unless --force is
 passed.
