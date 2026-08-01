@@ -30,7 +30,9 @@ after the final runtime pass.
   `docs/appstore-screenshot-*.png` assets.
 - Simulator safety: the final runtime log contained no production RevenueCat
   configure call or RevenueCat API endpoint.
-- Structural gate: Cardport parity passed against `/Users/jackwallner/mahj`.
+- Structural gate: Cardport parity passed against a clean temporary snapshot of
+  committed Mahj `HEAD`. The live `/Users/jackwallner/mahj` worktree had
+  unrelated staged Bridge-port changes, so it was not used as the reference.
 
 ## Release handoff, 2026-08-01
 
