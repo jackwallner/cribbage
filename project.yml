@@ -1,0 +1,68 @@
+name: CribbageTrainer
+packages:
+  RevenueCat:
+    url: https://github.com/RevenueCat/purchases-ios-spm.git
+    from: 5.72.0
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  lastUpgradeCheck: "1600"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+targets:
+  CribbageTrainer:
+    type: application
+    platform: iOS
+    sources:
+      - path: CribbageTrainer
+      - path: Shared
+    settings:
+      base:
+        DEVELOPMENT_TEAM: YXG4MP6W39
+        CODE_SIGN_STYLE: Automatic
+        PRODUCT_BUNDLE_IDENTIFIER: com.jackwallner.cribbage
+        PRODUCT_NAME: "Cribbity"
+        PRODUCT_MODULE_NAME: CribbageTrainer
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "15"
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: CribbageTrainer/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+    dependencies:
+      - package: RevenueCat
+
+  CribbageTrainerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: CribbageTrainerTests
+    dependencies:
+      - target: CribbageTrainer
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Cribbity.app/Cribbity"
+
+schemes:
+  CribbageTrainer:
+    build:
+      targets:
+        CribbageTrainer: all
+    run:
+      config: Debug
+      storeKitConfiguration: CribbageTrainer/CribbageTrainer.storekit
+    test:
+      config: Debug
+      targets:
+        - CribbageTrainerTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cribbity | Cribbage practice</title>
+    <meta
+      name="description"
+      content="Calm, focused cribbage practice for counting, pegging, discarding, and table decisions."
+    />
+    <link rel="canonical" href="https://jackwallner.github.io/cribbage/" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #29241f;
+        --muted: #70665c;
+        --felt: #176b5c;
+        --felt-dark: #0f5045;
+        --cream: #f7f1e6;
+        --paper: #fffdf8;
+        --line: #dbd1bf;
+        --coral: #d96d55;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+        line-height: 1.6;
+        color: var(--ink);
+        background: var(--cream);
+      }
+      main {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 11vh 24px 9vh;
+      }
+      h1,
+      h2 {
+        font-family: Georgia, serif;
+        line-height: 1.1;
+      }
+      h1 {
+        max-width: 680px;
+        margin: 0 0 22px;
+        color: var(--felt);
+        font-size: clamp(3rem, 10vw, 6.4rem);
+      }
+      h2 {
+        margin: 62px 0 20px;
+        font-size: 2rem;
+      }
+      p,
+      li {
+        font-size: 1.08rem;
+      }
+      .eyebrow {
+        margin: 0 0 20px;
+        color: var(--coral);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+      }
+      .tagline {
+        max-width: 650px;
+        margin: 0 0 24px;
+        font-size: 1.4rem;
+      }
+      .intro {
+        max-width: 680px;
+      }
+      .rooms {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        padding: 0;
+        list-style: none;
+      }
+      .rooms li {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--paper);
+      }
+      .rooms strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--felt);
+      }
+      a {
+        color: var(--felt-dark);
+        font-weight: 650;
+      }
+      .plus {
+        padding: 24px;
+        border-left: 5px solid var(--coral);
+        border-radius: 14px;
+        background: var(--paper);
+      }
+      .links {
+        margin-top: 56px;
+      }
+      footer {
+        margin-top: 64px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">CRIBBITY</p>
+      <h1>Practice the hand. Play the table.</h1>
+      <p class="tagline">
+        Calm, focused drills for counting, pegging, discarding, and the small
+        decisions that make a cribbage hand easier to read.
+      </p>
+      <p class="intro">
+        Cribbity is an independent cribbage practice companion. There are no
+        opponents, no account, and no pressure. Open a room, take a few reps,
+        and bring the explanation back to your next game.
+      </p>
+
+      <h2>Four free practice rooms</h2>
+      <ul class="rooms">
+        <li>
+          <strong>The Card Room</strong>Learn the deck, card values, starter,
+          crib, and race to 121.
+        </li>
+        <li>
+          <strong>The Scoring Room</strong>Recognize fifteens, pairs, runs,
+          flushes, nobs, and count order.
+        </li>
+        <li>
+          <strong>The Discard Room</strong>Choose two cards for the crib and
+          understand the tradeoff.
+        </li>
+        <li>
+          <strong>The Pegging Room</strong>Practice 15s, 31, pairs, runs, go,
+          last card, and running totals.
+        </li>
+      </ul>
+
+      <h2>Cribbity+</h2>
+      <div class="plus">
+        <p>
+          Cribbity+ adds generated practice, spaced review, a timed challenge,
+          extra sets in every beginner room, and The Master Tables for advanced
+          decisions. The free rooms remain free.
+        </p>
+        <p>New practice is added as the library grows.</p>
+      </div>
+
+      <p class="links">
+        <a href="support/">Support</a> &middot;
+        <a href="privacy-policy/">Privacy</a> &middot;
+        <a href="terms/">Terms</a>
+      </p>
+      <footer>
+        Cribbity is an independent practice app. House rules vary, so use the
+        rules agreed at your table.
+      </footer>
+    </main>
+  </body>
+</html>

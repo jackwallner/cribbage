@@ -1,0 +1,13 @@
+{
+  "name": "Cribbity",
+  "slug": "cribbage",
+  "module": "CribbageTrainer",
+  "bundle_id": "com.jackwallner.cribbage",
+  "membership": "Cribbity+",
+  "revenuecat_public_key": "appl_OgAKVcKNWSTOrcdpcKwBzNzUint",
+  "app_store_id": "6796911073",
+  "source_product": "Mahj Trainer",
+  "source_game": "American Mah Jongg",
+  "template": "card-app-template",
+  "metadata_strategy": "mahj-bridge-fallback-localizations"
+}
