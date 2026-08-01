@@ -47,6 +47,6 @@ end of a port; submission is a separate decision.
 ## Reusable port workflow
 
 The source template and complete end-to-end porting instructions live in
-[/Users/jackwallner/cardport](file:///Users/jackwallner/cardport). Start with
+`/Users/jackwallner/cardport`. Start with
 `cardport/docs/porting-guide.md`, then use the scaffold and verification
 scripts. The `.cardport.json` file records public identity values for this port.
