@@ -1,4 +1,4 @@
-# App Store Connect submission checklist , Cribbity
+# App Store Connect submission checklist , Cribbage Trainer
 
 Not a script, a reference for filling the App Store Connect web UI (App Privacy
 questionnaire + Age Rating questionnaire) before submitting for review. Nothing
@@ -64,7 +64,7 @@ Answer **No** / **None** to every content category:
 - Mature/Suggestive Themes: None
 - Horror/Fear Themes: None
 - Medical/Treatment Information: None
-- **Simulated Gambling: NO.** Cribbity is a solitaire-style *training*
+- **Simulated Gambling: NO.** Cribbage Trainer is a solitaire-style *training*
   app , flashcards, quizzes, and hand-matching drills. There are no
   opponents, no betting, no chips, no stakes, and no wagering mechanic of any
   kind, simulated or otherwise. It never presents cribbage as a game to win

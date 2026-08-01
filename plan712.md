@@ -1,4 +1,4 @@
-# Cribbity port record
+# Cribbage Trainer port record
 
 The app began as a structural copy of the source trainer UX and was converted
 to standard-deck cribbage. The conversion replaces the model, card renderer,

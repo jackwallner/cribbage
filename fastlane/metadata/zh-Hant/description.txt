@@ -1,6 +1,6 @@
 Practice standard-deck cribbage in five-minute drills: count hands, read the pegging board, choose strong discards, and learn the reason behind every answer.
 
-Cribbity is a focused practice companion for players learning the game or sharpening decisions between table sessions. No opponents, no pressure, and no account required. Just quick interactive reps that build confidence before the next deal.
+Cribbage Trainer is a focused practice companion for players learning the game or sharpening decisions between table sessions. No opponents, no pressure, and no account required. Just quick interactive reps that build confidence before the next deal.
 
 FOUR FREE PRACTICE ROOMS
 
@@ -16,8 +16,8 @@ Study the tradeoff between your hand and the dealer's crib. Choose two cards to 
 THE PEGGING ROOM
 Practice running totals, 15s, 31, pairs, runs, go, last card, and the small decisions that turn a pegging sequence into points.
 
-CRIBBITY+ (optional upgrade)
-Everything above stays free, forever. Cribbity+ adds fresh practice that never runs out:
+CRIBBAGE+ (optional upgrade)
+Everything above stays free, forever. Cribbage+ adds fresh practice that never runs out:
 
 ENDLESS PRACTICE generates new legal hands for focused counting and pegging practice.
 
@@ -32,7 +32,7 @@ THE MASTER TABLES open advanced counting, defense, discard, and table strategy.
 BUILT FOR NEW PLAYERS
 Swipeable cards explain the why on the back. Streaks keep practice moving. Original teaching hands make the rules easier to remember at a real table.
 
-Cribbity is an independent practice app. House rules vary, so use the rules agreed at your table.
+Cribbage Trainer is an independent practice app. House rules vary, so use the rules agreed at your table.
 
 SUBSCRIPTIONS
-Cribbity+ is available by auto-renewing subscription or a one-time purchase: Monthly $1.99/month, Yearly $9.99/year, both with a 1-week free trial, or Lifetime $29.99 one time. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Manage or cancel anytime in Account Settings on your device. Terms of Use (Apple's standard EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Privacy Policy: https://jackwallner.github.io/cribbage/privacy-policy.
+Cribbage+ is available by auto-renewing subscription or a one-time purchase: Monthly $1.99/month, Yearly $9.99/year, both with a 1-week free trial, or Lifetime $29.99 one time. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Manage or cancel anytime in Account Settings on your device. Terms of Use (Apple's standard EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Privacy Policy: https://jackwallner.github.io/cribbage/privacy-policy.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create the Cribbity+ Lifetime non-consumable in App Store Connect.
+"""Create the Cribbage+ Lifetime non-consumable in App Store Connect.
 
 Creates com.jackwallner.cribbage.lifetime, adds the en-US localization, sets a
 $29.99 USA-based price schedule (other territories auto-equalize from the base
@@ -24,8 +24,8 @@ import asc_lib
 BUNDLE = "com.jackwallner.cribbage"
 PRODUCT_ID = "com.jackwallner.cribbage.lifetime"
 PRICE = "29.99"
-NAME = "Cribbity+ Lifetime"
-DISPLAY_NAME = "Cribbity+ Lifetime"
+NAME = "Cribbage+ Lifetime"
+DISPLAY_NAME = "Cribbage+ Lifetime"
 DESCRIPTION = "All rooms and drills, forever"
 
 BASE = "https://api.appstoreconnect.apple.com"

@@ -267,6 +267,6 @@ def description_for_locale(locale: str, source: str = "en-US") -> str:
     if len(desc) < 10:
         desc = (
             read_meta("en-US", "description")
-            or "Cribbity - practice app for American Cribbage with quick drills."
+            or "Cribbage Trainer - practice app for American Cribbage with quick drills."
         )
     return desc[:4000]

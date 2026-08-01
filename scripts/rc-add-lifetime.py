@@ -62,7 +62,7 @@ def main() -> None:
             "store_identifier": PRODUCT_ID,
             "app_id": app["id"],
             "type": "one_time",
-            "display_name": "Cribbity+ Lifetime",
+            "display_name": "Cribbage+ Lifetime",
         })
         print(f"created product {product['id']}")
     else:

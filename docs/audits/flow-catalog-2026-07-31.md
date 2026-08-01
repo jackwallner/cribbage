@@ -22,7 +22,7 @@ after the final runtime pass.
   dedicated simulator.
 - Tests: 52 tests, 0 failures.
 - Headless UI checks: Home, Get Started, Scoring Room, Discard Room, a live
-  six-card discard screen, Settings, and the Cribbity+ paywall. The paywall
+  six-card discard screen, Settings, and the Cribbage+ paywall. The paywall
   showed yearly, lifetime, and monthly pricing, trial and renewal language,
   Restore, Terms of Use, and Privacy Policy.
 - Release captures: six real screens in `scripts/screenshot_raw/`,

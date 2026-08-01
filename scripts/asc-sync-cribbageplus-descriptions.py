@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Synchronize the Cribbity+ product paragraph in fastlane metadata.
+"""Synchronize the Cribbage+ product paragraph in fastlane metadata.
 
 The source locale is en-US. Other locales are updated with the same accurate
 English product block until a reviewed translation is available. This avoids
@@ -12,9 +12,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent / "fastlane" / "metadata"
-PLUS_HEADING = "CRIBBITY+ (optional upgrade)"
+PLUS_HEADING = "CRIBBAGE+ (optional upgrade)"
 PLUS_BODY = (
-    "Everything above stays free, forever. Cribbity+ adds one extra practice "
+    "Everything above stays free, forever. Cribbage+ adds one extra practice "
     "set in every beginner room, plus The Master Tables for advanced counting, "
     "pegging, discard decisions, and table strategy. New drills are added "
     "throughout the year."

@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Home is the lobby: Get Started, then the rooms as doors. The drills
 /// themselves live one level down in `RoomView`. (Home used to list every
-/// drill flat; once each room grew a Cribbity+ extra set that list ran to a dozen
+/// drill flat; once each room grew a Cribbage+ extra set that list ran to a dozen
 /// rows and the rooms stopped reading as places.)
 ///
 /// The rooms are what Home is FOR, so everything else earns its space or
@@ -126,7 +126,7 @@ struct HomeView: View {
     private var header: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Cribbity")
+                Text("Cribbage Trainer")
                     .font(Theme.display(32))
                     .foregroundStyle(Theme.ink)
                 Text("Your seat at the table.")
@@ -398,13 +398,13 @@ struct HomeView: View {
         .padding(.horizontal, 4)
     }
 
-    /// Progress is a ring, not a sentence. "2 of 3 done · 2 free, 1 with Cribbity+"
+    /// Progress is a ring, not a sentence. "2 of 3 done · 2 free, 1 with Cribbage+"
     /// was three facts nobody asked for on a card whose job is to be a door.
     private func roomCard(_ room: Room) -> some View {
         let locked = !room.isFree && !subscriptions.isPro
         let highlighted = highlightedRoomID == room.id
         // Count only the drills this player can actually open. Putting the
-        // locked Cribbity+ set in the denominator would mean a free player's ring
+        // locked Cribbage+ set in the denominator would mean a free player's ring
         // can never close, which is a nag dressed up as progress.
         let open = room.drills.filter { !room.isLocked($0, isMember: subscriptions.isPro) }
         let total = open.count
@@ -497,7 +497,7 @@ struct HomeView: View {
     }
 
     private var disclaimerFooter: some View {
-        Text("Cribbity is an independent practice app with original teaching hands. House rules vary, so use the rules agreed at your table.")
+        Text("Cribbage Trainer is an independent practice app with original teaching hands. House rules vary, so use the rules agreed at your table.")
             .font(.caption2)
             .foregroundStyle(Theme.inkTertiary)
             .multilineTextAlignment(.center)

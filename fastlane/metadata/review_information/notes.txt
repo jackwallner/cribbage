@@ -1,1 +1,1 @@
-
+CONTENT NOTE: every example hand and practice deal in the app is an original teaching example written by the developer. The app teaches standard cribbage counting, pegging, discarding, and table decisions. It does not reproduce a third-party card or rules publication. Cribbage Trainer is an independent practice app. House rules vary, and the app presents its assumptions in the explanations.

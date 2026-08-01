@@ -1,6 +1,6 @@
-# Cribbity project guide
+# Cribbage Trainer project guide
 
-Cribbity is a practice app for standard-deck cribbage. It teaches
+Cribbage Trainer is a practice app for standard-deck cribbage. It teaches
 counting, pegging, discarding, and table decisions through short drills. It is
 not a full multiplayer game. The XcodeGen project and scheme are
 `CribbageTrainer`, the headless simulator is `agent-cribbage`, and the bundle ID
@@ -21,14 +21,14 @@ variation is common.
 Keep IDs unique, use a 52-card deck, do not repeat a physical card in one hand
 or deal, keep discard scenarios at six cards with two recommended discards,
 keep player-facing copy free of em dashes and stale domain terms, and preserve
-the free versus Cribbity+ split.
+the free versus Cribbage+ split.
 
 The review funnel is intentionally terminal. After the third positive drill,
 `ReviewPromptSheet` asks whether the player is enjoying the app. Yes opens the
 App Store write-review page for `6796911073`. No opens the feedback mail draft.
 Do not ask an unhappy player for a rating.
 
-## Cribbity+ products
+## Cribbage+ products
 
 The local StoreKit configuration contains:
 
@@ -37,7 +37,7 @@ The local StoreKit configuration contains:
 - `com.jackwallner.cribbage.lifetime`, $29.99 one time
 
 The RevenueCat entitlement remains `pro` for fleet compatibility. The player
-facing membership name is `Cribbity+`. The public RevenueCat key lives in
+facing membership name is `Cribbage+`. The public RevenueCat key lives in
 `Shared/Services/SubscriptionService.swift`. The simulator guard must remain
 in place so the production `appl_` key is never configured by simulator builds.
 Use the local StoreKit file and the Settings local membership override for
@@ -58,7 +58,7 @@ simulator purchase testing.
 - `CribbageTrainer/Utilities/Theme.swift` contains the warm card-table visual
   system, haptics, sounds, and reusable view styles.
 
-The beginner rooms are free. Each free room has one extra Cribbity+ set. The
+The beginner rooms are free. Each free room has one extra Cribbage+ set. The
 Master Tables room is membership-only. `Room.isLocked(_:isMember:)` is the
 single locking rule, and `SessionBuilder` applies the same rule to Quick
 Session content.
@@ -73,7 +73,7 @@ must remain finite, valid, and independent of authored IDs.
 When adding a room or card set:
 
 1. Add original content under `Shared/Content`.
-2. Register the drill in `DrillLibrary` and assign its free or Cribbity+ state.
+2. Register the drill in `DrillLibrary` and assign its free or Cribbage+ state.
 3. Add or update invariants in `ContentValidityTests`.
 4. Regenerate the Xcode project with `xcodegen generate`.
 5. Run the unit tests and inspect the room in `agent-cribbage`.

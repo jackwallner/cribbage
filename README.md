@@ -1,12 +1,13 @@
-# Cribbity
+# Cribbage Trainer
 
-Cribbity is a five-minute cribbage practice app for counting, pegging,
+Cribbage Trainer is a five-minute cribbage practice app for counting, pegging,
 discarding, and table decisions. The app is an independent practice companion,
 not a complete multiplayer game.
 
 ## Product identity
 
-- Display name: Cribbity
+- Display name: Cribbage Trainer
+- App Store name: Cribbage Trainer: Count & Peg
 - Bundle ID: `com.jackwallner.cribbage`
 - App Store ID: `6796911073`
 - Marketing version: `1.0`
@@ -14,9 +15,8 @@ not a complete multiplayer game.
 - Support: <https://jackwallner.github.io/cribbage/support>
 - Privacy: <https://jackwallner.github.io/cribbage/privacy-policy>
 - Terms: <https://jackwallner.github.io/cribbage/terms>
-- Membership: Cribbity+
-- Name status: placeholder, pending the per-app ASO brief in
-  `docs/research/aso-cribbage.md`
+- Membership: Cribbage+
+- Name status: final, with the ASO brief in `docs/research/aso-cribbage.md`
 
 ## Development
 
@@ -52,7 +52,7 @@ placeholder name everywhere, and run:
 ```sh
 python3 scripts/validate_aso_brief.py \
   --brief docs/research/aso-cribbage.md \
-  --product-name "<final name>"
+  --product-name "Cribbage Trainer: Count & Peg"
 ```
 
 ## Reusable port workflow

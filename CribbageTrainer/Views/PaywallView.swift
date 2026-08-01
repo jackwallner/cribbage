@@ -193,7 +193,7 @@ struct PaywallView: View {
                         .foregroundStyle(Theme.inkSecondary)
                 }
             }
-            .alert("Cribbity", isPresented: .init(
+            .alert("Cribbage Trainer", isPresented: .init(
                 get: { message != nil },
                 set: { if !$0 { message = nil } }
             )) {
