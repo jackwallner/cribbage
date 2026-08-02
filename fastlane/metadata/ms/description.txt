@@ -1,7 +1,7 @@
-Latih cribbage dengan dek standar dalam sesi lima menit. Tanpa lawan, tekanan, atau akun.
+Berlatih cribbage dengan dek standard dalam sesi lima minit. Tiada lawan, tekanan atau akaun diperlukan.
 
-Ruang Kartu, Skor, Buang Kartu, dan Pegging. Latih 15, 31, pasangan, run, go, dan kartu terakhir.
+Bilik Kad, Mata, Buang Kad dan Pegging. Berlatih 15, 31, pasangan, run, go dan kad terakhir.
 
-Cribbage+ menambahkan Endless Practice, ulasan kesalahan, tantangan 90 detik, set ekstra, dan Master Tables. Dasarnya tetap gratis.
+Cribbage+ menambah Endless Practice, ulang kaji kesilapan, cabaran 90 saat, set tambahan dan Master Tables. Asas kekal percuma.
 
-Cribbage+ tersedia seharga $1.99 per bulan atau $9.99 per tahun, keduanya dengan uji coba gratis satu minggu, atau Lifetime $29.99 sekali bayar. Pembayaran memakai Apple ID dan langganan diperpanjang otomatis. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+Cribbage+ berharga $1.99 sebulan atau $9.99 setahun, kedua-duanya termasuk percubaan percuma seminggu, atau Lifetime $29.99 sekali bayar. Bayaran dicaj kepada Apple ID dan langganan diperbaharui secara automatik. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy

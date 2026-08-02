@@ -1,1 +1,1 @@
-cribbage,kartu,poin,pegging,crib,buang,hitung,pemula,pelajaran,latihan,aturan,strategi,kuis
+cribbage,kad,mata,pegging,crib,buang,kira,pemula,pelajaran,latihan,peraturan,strategi,kuiz

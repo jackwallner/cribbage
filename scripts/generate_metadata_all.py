@@ -242,6 +242,17 @@ PROFILES: dict[str, dict[str, str]] = {
         "Cribbage+ menambahkan Endless Practice, ulasan kesalahan, tantangan 90 detik, set ekstra, dan Master Tables. Dasarnya tetap gratis.",
         "Cribbage+ tersedia seharga $1.99 per bulan atau $9.99 per tahun, keduanya dengan uji coba gratis satu minggu, atau Lifetime $29.99 sekali bayar. Pembayaran memakai Apple ID dan langganan diperpanjang otomatis.",
     ),
+    "ms": profile(
+        "Cribbage Trainer: Berlatih",
+        "Kira mata, pegging dan buang",
+        "cribbage,kad,mata,pegging,crib,buang,kira,pemula,pelajaran,latihan,peraturan,strategi,kuiz",
+        "Baharu: Endless Practice mengagihkan tangan baharu setiap kali. Ulang kesilapan dan kejar rekod terbaik dalam cabaran 90 saat.",
+        "Berlatih mengira, menjaringkan mata, membuang kad dan pegging dalam empat bilik percuma.",
+        "Berlatih cribbage dengan dek standard dalam sesi lima minit. Tiada lawan, tekanan atau akaun diperlukan.",
+        "Bilik Kad, Mata, Buang Kad dan Pegging. Berlatih 15, 31, pasangan, run, go dan kad terakhir.",
+        "Cribbage+ menambah Endless Practice, ulang kaji kesilapan, cabaran 90 saat, set tambahan dan Master Tables. Asas kekal percuma.",
+        "Cribbage+ berharga $1.99 sebulan atau $9.99 setahun, kedua-duanya termasuk percubaan percuma seminggu, atau Lifetime $29.99 sekali bayar. Bayaran dicaj kepada Apple ID dan langganan diperbaharui secara automatik.",
+    ),
     "th": profile(
         "Cribbage Trainer: ฝึกเล่น",
         "นับแต้ม เพ็กกิง และทิ้งไพ่",
@@ -553,13 +564,17 @@ PROFILES: dict[str, dict[str, str]] = {
 }
 
 
+for regional_english in ("en-GB", "en-AU", "en-CA"):
+    PROFILES[regional_english]["description"] = EN_DESCRIPTION
+
+
 LOCALE_PROFILES = {
-    "en-US": "en", "en-GB": "en", "en-AU": "en", "en-CA": "en",
+    "en-US": "en", "en-GB": "en-GB", "en-AU": "en-AU", "en-CA": "en-CA",
     "es-ES": "es", "es-MX": "es", "fr-FR": "fr", "fr-CA": "fr",
     "de-DE": "de", "it": "it", "pt-BR": "pt", "pt-PT": "pt",
     "ja": "ja", "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant", "ko": "ko",
     "ar-SA": "ar", "he": "he", "nl-NL": "nl", "pl": "pl", "ru": "ru",
-    "tr": "tr", "vi": "vi", "id": "id", "ms": "id", "th": "th",
+    "tr": "tr", "vi": "vi", "id": "id", "ms": "ms", "th": "th",
     "ca": "ca", "cs": "cs", "da": "da", "el": "el", "fi": "fi",
     "hr": "hr", "hu": "hu", "no": "no", "ro": "ro", "sk": "sk",
     "sl-SI": "sl", "sv": "sv", "uk": "uk", "hi": "hi", "mr-IN": "mr",
