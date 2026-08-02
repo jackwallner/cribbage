@@ -167,6 +167,7 @@ enum Haptics {
         UserDefaults.standard.object(forKey: "settings.haptics") as? Bool ?? true
     }
 
+    @MainActor
     static func impact(_ style: Impact, intensity: CGFloat = 1.0) {
         #if canImport(UIKit)
         guard enabled else { return }
@@ -181,6 +182,7 @@ enum Haptics {
         #endif
     }
 
+    @MainActor
     static func success() {
         #if canImport(UIKit)
         guard enabled else { return }
@@ -188,6 +190,7 @@ enum Haptics {
         #endif
     }
 
+    @MainActor
     static func error() {
         #if canImport(UIKit)
         guard enabled else { return }
@@ -200,6 +203,7 @@ enum Haptics {
     /// patterns are both stutters and are easy to confuse mid-drill, so:
     /// right = a crisp light tap rising into the success chime; wrong = a
     /// single dull heavy thud, no chime, nothing bright about it.
+    @MainActor
     static func correctAnswer() {
         #if canImport(UIKit)
         guard enabled else { return }
@@ -211,6 +215,7 @@ enum Haptics {
         #endif
     }
 
+    @MainActor
     static func wrongAnswer() {
         #if canImport(UIKit)
         guard enabled else { return }
