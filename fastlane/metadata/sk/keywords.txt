@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+cribbage,karty,body,pegging,crib,odhod,počítanie,začiatočník,lekcia,cvičenie,pravidlá

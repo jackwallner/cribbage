@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+cribbage,kortit,pisteet,pegging,crib,poisheitto,laskenta,aloittelija,oppitunti,harjoitus,säännöt

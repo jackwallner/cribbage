@@ -24,11 +24,11 @@ not a complete multiplayer game.
 xcodegen generate
 python3 scripts/validate_metadata.py
 xcodebuild -project CribbageTrainer.xcodeproj -scheme CribbageTrainer \
-  -destination 'platform=iOS Simulator,id=<agent-cribbage-udid>' \
+  -destination 'platform=iOS Simulator,id=<checked-out-agent-sim-udid>' \
   test CODE_SIGNING_ALLOWED=NO
 ```
 
-Use the dedicated headless simulator `agent-cribbage`. Never open
+Use a checked-out shared `agent-sim` device for runtime checks. Never open
 Simulator.app. Simulator builds must not configure the production RevenueCat
 key.
 

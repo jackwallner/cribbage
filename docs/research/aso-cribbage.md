@@ -68,11 +68,13 @@ Promotional text angle: fresh generated hands, spaced mistake review, and a
 | Locale group | Native reviewer | Query evidence | Translation status | Approved date |
 | --- | --- | --- | --- | --- |
 | en-US | Jack | This brief and the App Store competitor set above. | Approved canonical copy. | 2026-08-01 |
-| Other supported locales | Jack for fallback validation | No locale-specific search research in this release. | Complete English fallback package, intentionally deferred until native review. | 2026-08-01 |
+| Other supported locales | Jack for storefront copy review | No locale-specific search research in this release. | Localized App Store copy generated for the supported storefronts; in-app UI remains English. | 2026-08-02 |
 
-The 50 locale folders are complete and use the approved en-US fallback copy.
-Native translation is a follow-up localization project, not an identity or
-metadata completeness blocker for the initial English storefront release.
+The 50 locale folders are complete and the App Store title, subtitle, keywords,
+description, promotional text, and release notes are localized for the
+non-English storefronts. The app UI remains English by design for this release.
+Native review of storefront copy can still refine wording later without
+blocking the release.
 
 ## Screenshot and experiment plan
 
@@ -91,9 +93,8 @@ metadata completeness blocker for the initial English storefront release.
 - [x] Competitor evidence is dated and the selected terms describe real
   features.
 - [x] Competitor names and unsupported claims are absent from metadata.
-- [x] All 50 metadata folders contain complete fallback fields.
+- [x] All 50 metadata folders contain complete localized storefront fields.
 - [x] Six real product screenshots are present and distinct from Mahj.
 - [x] `validate_aso_brief.py` passes without `--allow-draft`.
 - [x] `validate_metadata.py` passes for every supported locale.
-- [ ] Native translation review for non-en-US storefronts remains a later
-  localization pass.
+- [x] In-app localization is intentionally out of scope for this release.

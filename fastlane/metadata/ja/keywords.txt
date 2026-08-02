@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+クリベッジ,カード,得点,ペギング,クリブ,捨て札,初心者,練習,ルール

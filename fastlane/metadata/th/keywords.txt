@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+คริบเบจ,ไพ่,แต้ม,เพ็กกิง,คริบ

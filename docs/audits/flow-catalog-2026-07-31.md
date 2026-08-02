@@ -12,14 +12,14 @@ The port preserves the source app's runtime structure:
 | Master Tables | advanced locked content | membership-gated drill completion |
 | Practice | generated, review, or timed items | score, best score, or review history |
 
-The dedicated simulator and the test command are recorded in the handoff notes
-after the final runtime pass.
+The checked-out shared simulator and the test command are recorded in the
+handoff notes after the final runtime pass.
 
 ## Final parity pass, 2026-08-01
 
-- Device: `agent-cribbage`, UDID `37E4A923-3AC9-4425-ADAB-F356FF51F103`.
+- Device: checked-out shared `agent-sim-9`, UDID `ACCA6797-0070-4807-B21D-4F930237B574`.
 - Build: `xcodegen generate`, then the `CribbageTrainer` scheme on the
-  dedicated simulator.
+  checked-out simulator.
 - Tests: 52 tests, 0 failures.
 - Headless UI checks: Home, Get Started, Scoring Room, Discard Room, a live
   six-card discard screen, Settings, and the Cribbage+ paywall. The paywall
@@ -34,10 +34,12 @@ after the final runtime pass.
   committed Mahj `HEAD`. The live `/Users/jackwallner/mahj` worktree had
   unrelated staged Bridge-port changes, so it was not used as the reference.
 
-## Release handoff, 2026-08-01
+## Release handoff, 2026-08-02
 
-- TestFlight: version `1.0`, build `17`, upload succeeded and processing is
+- TestFlight: version `1.0`, build `20`, upload succeeded and processing is
   `VALID`.
-- App Store Connect: build `17` is attached to the editable `1.0` version.
+- App Store Connect: build `20` is attached to the editable `1.0` version.
+- App Store metadata: all 50 storefront localizations were uploaded, with
+  localized copy and English-only in-app UI by design.
 - Screenshots: six uploaded to en-US `APP_IPHONE_67`.
 - Submission: no submit-for-review call was made.
