@@ -3,7 +3,7 @@
 Cribbage Trainer is a practice app for standard-deck cribbage. It teaches
 counting, pegging, discarding, and table decisions through short drills. It is
 not a full multiplayer game. The XcodeGen project and scheme are
-`CribbageTrainer`, the headless simulator is `agent-cribbage`, and the bundle ID
+`CribbageTrainer`, runtime checks use a checked-out shared agent-sim group, and the bundle ID
 is `com.jackwallner.cribbage`.
 
 ## Product rules
@@ -76,7 +76,7 @@ When adding a room or card set:
 2. Register the drill in `DrillLibrary` and assign its free or Cribbage+ state.
 3. Add or update invariants in `ContentValidityTests`.
 4. Regenerate the Xcode project with `xcodegen generate`.
-5. Run the unit tests and inspect the room in `agent-cribbage`.
+5. Run the unit tests and inspect the room on the checked-out agent-sim UDID.
 
 The reusable porting workflow for future card apps lives in the sibling
 `/Users/jackwallner/cardport` folder. Start with its README and
@@ -87,8 +87,8 @@ runtime, release, website, legal, and screenshot surface.
 ## Build and simulator rules
 
 Use `xcodegen generate` after adding or removing Swift files or changing
-`project.yml`. Build with the `CribbageTrainer` scheme. Use only the dedicated
-`agent-cribbage` simulator for runtime checks. Do not open Simulator.app.
+`project.yml`. Build with the `CribbageTrainer` scheme. Use only a checked-out
+shared agent-sim group for runtime checks. Do not open Simulator.app.
 
 The repository's release scripts expect App Store Connect credentials from the
 local credential file and must never print those credentials. The App Store ID
