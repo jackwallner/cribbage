@@ -24,5 +24,6 @@ the App Store write-review URL after the enjoyment gate.
 ## Remaining release checks
 
 - Confirm house-rule wording with the rules source used for the release.
-- Capture every room on `agent-cribbage` at the final Dynamic Type sizes.
+- Capture every room on a checked-out shared `agent-sim` device at the final
+  Dynamic Type sizes.
 - Run the Cardport parity gate against Mahj after every product-surface change.
