@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+克里比奇,撲克牌,算分,peg,crib,棄牌,計數,新手,教學,練習,規則,策略,測驗

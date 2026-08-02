@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+cribbage,iskambil,puan,pegging,crib,kartatma,sayma,başlangıç,ders,alıştırma,kurallar,strateji

@@ -1,7 +1,7 @@
 # Cribbage Trainer screenshots
 
 The checked-in `01_onboarding.png` is a headless simulator proof capture from
-the dedicated `agent-cribbage` device. The six numbered product captures are
+a checked-out shared `agent-sim` device. The six numbered product captures are
 the release flow: Quick Session, Hand Match, Discard, Pegging, Home, and Card
 Room. The old source screenshots were removed because they showed the template
 app's previous card domain.

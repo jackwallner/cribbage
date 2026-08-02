@@ -1,1 +1,1 @@
-cribbage,practice,scoring,pegging,discard,crib,counting,beginner,lesson,drill,rule,strategy,quiz
+கிரிபேஜ்,சீட்டு,மதிப்பெண்,பெக்கிங்

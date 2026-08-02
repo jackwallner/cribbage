@@ -1,38 +1,7 @@
-Practice standard-deck cribbage in five-minute drills: count hands, read the pegging board, choose strong discards, and learn the reason behind every answer.
+സാധാരണ കാർഡ് ഡെക്കുമായി അഞ്ച് മിനിറ്റ് പരിശീലനത്തിൽ ക്രിബേജ് പഠിക്കൂ. എതിരാളിയോ അക്കൗണ്ടോ ആവശ്യമില്ല.
 
-Cribbage Trainer is a focused practice companion for players learning the game or sharpening decisions between table sessions. No opponents, no pressure, and no account required. Just quick interactive reps that build confidence before the next deal.
+കാർഡ്, പോയിന്റ്, നീക്കം, പെഗ്ഗിംഗ് മുറികൾ. 15, 31, ജോഡി, റൺ, go, അവസാന കാർഡ് എന്നിവ പരിശീലിക്കൂ.
 
-FOUR FREE PRACTICE ROOMS
+Cribbage+ ൽ Endless Practice, തെറ്റുകളുടെ ആവർത്തനം, 90 സെക്കൻഡ് ചലഞ്ച്, അധിക സെറ്റുകൾ, Master Tables എന്നിവ ലഭിക്കും. അടിസ്ഥാന ഉള്ളടക്കം സൗജന്യം.
 
-THE CARD ROOM
-Learn the standard deck, card values, fifteens, pairs, runs, flushes, his nobs, the starter, the crib, and the race to 121.
-
-THE SCORING ROOM
-See a hand, identify its scoring shapes, and build a reliable order for counting fifteens, pairs, runs, flushes, nobs, and the crib.
-
-THE DISCARD ROOM
-Study the tradeoff between your hand and the dealer's crib. Choose two cards to discard, then compare your decision with the coach's reasoning.
-
-THE PEGGING ROOM
-Practice running totals, 15s, 31, pairs, runs, go, last card, and the small decisions that turn a pegging sequence into points.
-
-CRIBBAGE+ (optional upgrade)
-Everything above stays free, forever. Cribbage+ adds fresh practice that never runs out:
-
-ENDLESS PRACTICE generates new legal hands for focused counting and pegging practice.
-
-FIX MY MISTAKES remembers what you missed and brings it back on a spaced schedule.
-
-TIMED CHALLENGE gives you ninety seconds and a personal best to chase.
-
-EXTRA PRACTICE SETS add original questions to every beginner room.
-
-THE MASTER TABLES open advanced counting, defense, discard, and table strategy.
-
-BUILT FOR NEW PLAYERS
-Swipeable cards explain the why on the back. Streaks keep practice moving. Original teaching hands make the rules easier to remember at a real table.
-
-Cribbage Trainer is an independent practice app. House rules vary, so use the rules agreed at your table.
-
-SUBSCRIPTIONS
-Cribbage+ is available by auto-renewing subscription or a one-time purchase: Monthly $1.99/month, Yearly $9.99/year, both with a 1-week free trial, or Lifetime $29.99 one time. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Manage or cancel anytime in Account Settings on your device. Terms of Use (Apple's standard EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Privacy Policy: https://jackwallner.github.io/cribbage/privacy-policy.
+Cribbage+ മാസം $1.99 അല്ലെങ്കിൽ വർഷം $9.99, രണ്ടിലും ഒരാഴ്ച സൗജന്യ പരീക്ഷണം, അല്ലെങ്കിൽ ഒറ്റത്തവണ Lifetime $29.99. പണം Apple IDയിൽ നിന്ന് ഈടാക്കുകയും സബ്സ്ക്രിപ്ഷൻ സ്വയം പുതുക്കുകയും ചെയ്യും. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
