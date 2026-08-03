@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from asc_lib import (
     ASCClient, bearer_token, bundle_id_from_appfile, find_app,
-    find_editable_app_info, find_editable_version, list_all, load_credentials,
+    find_editable_app_info, find_submittable_version, list_all, load_credentials,
 )
 
 
@@ -23,9 +23,9 @@ def main() -> int:
     app_id = app["id"]
     print(f"App: {app['attributes'].get('name')}  ({app_id})")
 
-    version = find_editable_version(client, app_id)
+    version = find_submittable_version(client, app_id)
     if not version:
-        print("NO editable version found.")
+        print("NO submittable version found.")
         return 1
     vid = version["id"]
     vattr = version["attributes"]

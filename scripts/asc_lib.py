@@ -17,6 +17,7 @@ except ImportError:
     jwt = None  # type: ignore
 
 API = "https://api.appstoreconnect.apple.com/v1"
+API_V2 = "https://api.appstoreconnect.apple.com/v2"
 ROOT = Path(__file__).resolve().parent.parent
 META = ROOT / "fastlane/metadata"
 STATE_FILE = Path(__file__).parent / ".asc-state.json"
@@ -69,8 +70,8 @@ class ASCClient:
     def __init__(self, token: str):
         self.token = token
 
-    def request(self, method: str, path: str, body: dict | None = None) -> dict:
-        url = f"{API}{path}"
+    def _request(self, base: str, method: str, path: str, body: dict | None = None) -> dict:
+        url = f"{base}{path}"
         data = json.dumps(body).encode() if body is not None else None
         req = urllib.request.Request(
             url,
@@ -100,6 +101,12 @@ class ASCClient:
                 time.sleep(2 ** attempt)
         raise RuntimeError(f"{method} {path} -> giving up after retries: {last}")
 
+    def request(self, method: str, path: str, body: dict | None = None) -> dict:
+        return self._request(API, method, path, body)
+
+    def request_v2(self, method: str, path: str, body: dict | None = None) -> dict:
+        return self._request(API_V2, method, path, body)
+
     def get(self, path: str) -> dict:
         return self.request("GET", path)
 
@@ -108,6 +115,9 @@ class ASCClient:
 
     def patch(self, path: str, body: dict) -> dict:
         return self.request("PATCH", path, body)
+
+    def get_v2(self, path: str) -> dict:
+        return self.request_v2("GET", path)
 
 
 def list_all(client: ASCClient, path: str) -> list[dict]:
@@ -155,6 +165,26 @@ def find_editable_version(client: ASCClient, app_id: str) -> dict | None:
         for v in list_versions(client, app_id):
             if v.get("attributes", {}).get("appStoreState") == state:
                 return v
+    return None
+
+
+SUBMITTABLE_VERSION_STATES = (
+    "READY_FOR_REVIEW",
+    "PREPARE_FOR_SUBMISSION",
+    "DEVELOPER_REJECTED",
+    "REJECTED",
+    "METADATA_REJECTED",
+)
+
+
+def find_submittable_version(client: ASCClient, app_id: str) -> dict | None:
+    versions = list_versions(client, app_id)
+    for state in SUBMITTABLE_VERSION_STATES:
+        candidates = [
+            v for v in versions if v.get("attributes", {}).get("appStoreState") == state
+        ]
+        if candidates:
+            return candidates[0]
     return None
 
 
