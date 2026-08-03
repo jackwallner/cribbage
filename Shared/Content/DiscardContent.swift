@@ -67,16 +67,16 @@ enum DiscardContent {
             id: "discard-scenario-1",
             situation: "You are pone. Choose 2 cards to discard.",
             deal: [.c(2), .d(3), .h(4), .s(5), .c(10), .d(13)],
-            recommendedDiscard: [.c(2), .d(13)],
-            reasoning: "Keep 3-4-5-10: the connected small cards make runs and fifteens, while the 2 and king create fewer useful combinations. As pone, avoid giving the dealer a 5 or a pair.",
-            tip: "Protect the 5 and the cards that connect to it."
+            recommendedDiscard: [.c(10), .d(13)],
+            reasoning: "Keep 2-3-4-5 for a run of four. Trading the 5 away would be worse: it is the single most useful card in the deck, and as pone every card you throw lands in the dealer's crib. The 10 and king neither pair nor make fifteen together, so they are the cheapest pair to give up.",
+            tip: "As pone, judge a discard by what it gives the dealer, not only by what it costs you."
         ),
         DiscardScenario(
             id: "discard-scenario-2",
             situation: "You are the dealer. Choose 2 cards to discard.",
             deal: [.c(5), .d(5), .h(6), .s(7), .c(10), .d(12)],
-            recommendedDiscard: [.c(10), .d(12)],
-            reasoning: "Keep the pair of 5s plus 6 and 7. The hand already has a pair, two fifteens with ten-value cards, and a run path. The queen and 10 are useful in the dealer's crib but do not improve the four-card hand as much here.",
+            recommendedDiscard: [.h(6), .s(7)],
+            reasoning: "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either, because they make fifteen together in your own crib.",
             tip: "As dealer, evaluate the hand and the crib together."
         ),
         DiscardScenario(
@@ -89,23 +89,23 @@ enum DiscardContent {
         ),
         DiscardScenario(
             id: "discard-scenario-4",
-            situation: "You are the dealer. Choose 2 cards from a paired hand.",
+            situation: "You are the dealer. Where does the pair do the most work?",
             deal: [.c(7), .d(7), .h(3), .s(4), .c(5), .d(10)],
-            recommendedDiscard: [.h(3), .d(10)],
-            reasoning: "Keep the pair of 7s and the 4-5 connection. The pair is guaranteed value, and 4-5 can connect with the starter. The 3 and 10 are the least integrated cards in this particular hand.",
-            tip: "Do not break guaranteed points without a clear reason."
+            recommendedDiscard: [.c(7), .d(7)],
+            reasoning: "Keeping the 7s scores 2 and almost nothing else, because 7-7-4-5 makes no fifteen and no run. Put the pair in your own crib instead: it still scores 2 there, and 3-4-5-10 keeps a run, the 5-10 fifteen, and the widest set of helpful cuts.",
+            tip: "A dealer's own crib is a safe home for a pair that does not fit the hand."
         ),
         DiscardScenario(
             id: "discard-scenario-5",
             situation: "You are pone. Which two cards starve the crib best?",
             deal: [.c(2), .d(5), .h(6), .s(8), .c(9), .d(13)],
-            recommendedDiscard: [.c(2), .d(13)],
-            reasoning: "Keep 5-6-8-9, which offers runs and fifteens. Throwing the 2 and king gives the dealer two cards that do not immediately pair or make 15 with each other, while keeping the 5 away from the crib.",
+            recommendedDiscard: [.c(2), .s(8)],
+            reasoning: "Keep 5-6-9-K for two fifteens: 6 with 9, and 5 with the king. Throwing the 2 and the 8 gives the dealer two cards that neither pair nor reach fifteen together, and it keeps the 5 out of the crib.",
             tip: "For the pone, crib defense is part of your score."
         ),
         DiscardScenario(
             id: "discard-scenario-6",
-            situation: "Choose 2 cards while keeping a double run alive.",
+            situation: "You are the dealer. Keep the double run alive.",
             deal: [.c(4), .d(4), .h(5), .s(6), .c(9), .d(12)],
             recommendedDiscard: [.c(9), .d(12)],
             reasoning: "The two 4s with 5 and 6 make a double run of three. The 9 and queen are isolated from that shape and do not form a useful pair or fifteen with each other.",
@@ -115,16 +115,16 @@ enum DiscardContent {
             id: "discard-scenario-7",
             situation: "You are the dealer with a high-card-heavy deal.",
             deal: [.c(10), .d(10), .h(11), .s(12), .c(13), .d(4)],
-            recommendedDiscard: [.h(11), .d(4)],
-            reasoning: "Keep the pair of 10s and the queen and king, then place the jack and 4 in the crib. The pair guarantees points, and the dealer can accept the high-card shape while avoiding a discard pair in the crib.",
-            tip: "Ten-value cards have low variety for fifteens but still pair and run by rank."
+            recommendedDiscard: [.c(13), .d(4)],
+            reasoning: "Keep 10-10-J-Q. The second 10 lets 10-jack-queen form twice, a double run of three for 6, plus 2 for the pair. Dropping the king breaks nothing, because 10-jack-queen-king would only be a single run of four, and the 4 connects to nothing here.",
+            tip: "Ten-value cards make few fifteens, but they still pair and run by rank."
         ),
         DiscardScenario(
             id: "discard-scenario-8",
-            situation: "The board is tight. Choose the safer two-card discard.",
+            situation: "You are the dealer and the board is tight. Choose two.",
             deal: [.c(3), .d(4), .h(5), .s(7), .c(8), .d(10)],
             recommendedDiscard: [.s(7), .c(8)],
-            reasoning: "The 3-4-5 block is the most connected part of the deal, with several run and fifteen possibilities. Keep it and discard the less integrated 7 and 8. In a close race, favor a hand you can count confidently.",
+            reasoning: "The 3-4-5 block plus a ten-value card is the most connected hand here: a run of three and the 5-10 fifteen, with many helpful cuts. The 7 and 8 are not a loss either, because they already make fifteen in your own crib.",
             tip: "The board can make a safe, countable hand the best hand."
         ),
     ]

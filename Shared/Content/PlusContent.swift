@@ -70,45 +70,45 @@ enum PlusContent {
     static let extraHandReading: [HandMatchQuestion] = [
         HandMatchQuestion(
             id: "plus-hand-1",
-            tiles: [.c(3), .d(4), .h(5), .s(6), .c(9)],
+            tiles: [.c(8), .s(9), .d(10), .d(11), .h(13)],
             choices: [.runs, .fifteens, .flushes],
             answer: .runs,
-            explanation: "3-4-5-6 is a run of four. The 9 is separate, but the run is the first structure to identify."
+            explanation: "8-9-10-jack is a run of four. Rank order is what builds a run, so the jack sits directly above the 10 even though both are worth 10 toward a fifteen."
         ),
         HandMatchQuestion(
             id: "plus-hand-2",
-            tiles: [.c(5), .d(5), .h(5), .s(10), .c(12)],
+            tiles: [.c(6), .d(7), .h(7), .s(7), .d(12)],
             choices: [.pairs, .fifteens, .nobs],
             answer: .pairs,
-            explanation: "Three 5s contain three pairs. They also create fifteens with the 10, so a full count must include both patterns."
+            explanation: "Three 7s contain three separate pairs for 6 points, not a single three-of-a-kind score. Nothing here reaches fifteen and there is no jack."
         ),
         HandMatchQuestion(
             id: "plus-hand-3",
             tiles: [.s(2), .s(6), .s(8), .s(13), .d(4)],
-            choices: [.flushes, .runs, .crib],
+            choices: [.flushes, .runs, .nobs],
             answer: .flushes,
-            explanation: "Four spades create a four-card hand flush."
+            explanation: "Four spades create a four-card hand flush worth 4, and a spade cut would make it 5."
         ),
         HandMatchQuestion(
             id: "plus-hand-4",
             tiles: [.c(2), .d(2), .h(3), .s(4), .c(5)],
-            choices: [.runs, .pairs, .counting],
+            choices: [.runs, .flushes, .nobs],
             answer: .runs,
-            explanation: "The 2-3-4-5 sequence is a run of four, with the duplicate 2 creating a double run of three inside it."
+            explanation: "2-3-4-5 is a run of four, and the second 2 lets it form twice. That double run of four is 8 points before the pair of 2s adds 2 more."
         ),
         HandMatchQuestion(
             id: "plus-hand-5",
-            tiles: [.h(11), .c(5), .d(10), .s(8), .c(2)],
-            choices: [.nobs, .fifteens, .flushes],
+            tiles: [.c(5), .d(10), .s(12), .h(8), .c(2)],
+            choices: [.fifteens, .runs, .pairs],
             answer: .fifteens,
-            explanation: "The 5 makes a fifteen with both the 10 and the jack. The jack's suit would matter only if the starter is a heart."
+            explanation: "The 5 makes fifteen with the 10 and again with the queen, and 2-5-8 makes a third. Three fifteens is 6 points, with no repeated rank and no sequence."
         ),
         HandMatchQuestion(
             id: "plus-hand-6",
             tiles: [.c(7), .d(7), .h(7), .s(7), .c(13)],
-            choices: [.pairs, .counting, .runs],
+            choices: [.pairs, .runs, .flushes],
             answer: .pairs,
-            explanation: "Four of a rank contain six separate pairs. The king is not consecutive with the 7s."
+            explanation: "Four of a rank contain six separate pairs for 12 points. The king is not consecutive with the 7s and only two cards share a suit."
         ),
     ]
 
@@ -117,21 +117,21 @@ enum PlusContent {
             id: "plus-discard-1",
             situation: "You are pone. Keep the broadest scoring hand.",
             deal: [.c(3), .d(4), .h(5), .s(6), .c(10), .d(13)],
-            recommendedDiscard: [.s(6), .d(13)],
-            reasoning: "Keep 3-4-5-10 for several fifteens and a run path. The 6 and king are less connected to the rest of the hand in this example.",
+            recommendedDiscard: [.c(10), .d(13)],
+            reasoning: "Keep 3-4-5-6: a run of four for 4, plus the 4-5-6 fifteen for 2. Swapping the 6 for the 10 looks similar but drops the run to three cards. The two ten-value cards neither pair nor make fifteen together, so they are the safest thing to hand the dealer.",
             tip: "Count combinations, not just the prettiest sequence."
         ),
         DiscardScenario(
             id: "plus-discard-2",
-            situation: "You are the dealer. Protect the hand and feed a useful crib.",
-            deal: [.c(5), .d(5), .h(6), .s(7), .c(10), .d(11)],
-            recommendedDiscard: [.c(10), .d(11)],
-            reasoning: "Keep the 5 pair and the 6-7 connection. The dealer can place two ten-value cards in the crib while preserving guaranteed points in the hand.",
-            tip: "A dealer can accept a useful crib when the hand stays strong."
+            situation: "You are the dealer. A pair sits inside a run.",
+            deal: [.c(6), .d(6), .h(7), .s(8), .c(2), .d(13)],
+            recommendedDiscard: [.c(2), .d(13)],
+            reasoning: "Keep 6-6-7-8. The second 6 gives 6-7-8 two ways to form, a double run of three for 6, plus 2 for the pair and 2 for the 7-8 fifteen: 10 points before the cut. The 2 and the king touch none of that.",
+            tip: "A pair inside a run is worth far more than a pair on its own."
         ),
         DiscardScenario(
             id: "plus-discard-3",
-            situation: "Pone has four diamonds. Choose two cards to protect the crib.",
+            situation: "You are pone with four diamonds. Choose two cards.",
             deal: [.d(2), .d(6), .d(9), .d(12), .c(4), .s(8)],
             recommendedDiscard: [.c(4), .s(8)],
             reasoning: "The four diamonds preserve a hand flush and give the cut a chance to make five. The off-suit cards are not a pair and do not form a fifteen together.",
@@ -139,7 +139,7 @@ enum PlusContent {
         ),
         DiscardScenario(
             id: "plus-discard-4",
-            situation: "The board is close. Choose the easy hand to count.",
+            situation: "You are pone and the board is close. Choose the easy hand to count.",
             deal: [.c(2), .d(3), .h(4), .s(9), .c(10), .d(12)],
             recommendedDiscard: [.s(9), .d(12)],
             reasoning: "The 2-3-4 block has a clear run path and the 10 helps a 5 if the cut arrives. The 9 and queen are the least integrated cards.",

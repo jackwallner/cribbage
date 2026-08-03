@@ -1,18 +1,16 @@
 import Foundation
 
-/// The scoring and decision families a cribbage player learns to recognize.
-/// These are teaching categories, not a copyrighted card or a substitute for
-/// the official rules used at a table.
+/// The five scoring shapes a player can spot in a five-card cribbage layout.
+/// Every hand-match question offers three of these, and exactly one of the
+/// three is present in the cards on screen, so the answer is never a judgment
+/// call. These are teaching categories, not a substitute for the full rules
+/// used at a table.
 enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     case fifteens
     case pairs
     case runs
     case flushes
     case nobs
-    case pegging
-    case crib
-    case counting
-    case endgame
 
     var id: String { rawValue }
 
@@ -23,26 +21,10 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
         case .runs: return "Runs"
         case .flushes: return "Flushes"
         case .nobs: return "His Nobs"
-        case .pegging: return "Pegging"
-        case .crib: return "The Crib"
-        case .counting: return "Counting"
-        case .endgame: return "Endgame"
         }
     }
 
-    var shortName: String {
-        switch self {
-        case .fifteens: return "Fifteens"
-        case .pairs: return "Pairs"
-        case .runs: return "Runs"
-        case .flushes: return "Flushes"
-        case .nobs: return "His Nobs"
-        case .pegging: return "Pegging"
-        case .crib: return "The Crib"
-        case .counting: return "Counting"
-        case .endgame: return "Endgame"
-        }
-    }
+    var shortName: String { displayName }
 
     var howToSpot: String {
         switch self {
@@ -55,15 +37,20 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
         case .flushes:
             return "Four cards of one suit score a hand flush. A fifth card, the cut, can extend it when it matches too."
         case .nobs:
-            return "A jack matching the cut card's suit is his nobs, worth one point. It is easy to miss because the cut matters."
-        case .pegging:
-            return "During play, stay at or below 31 while looking for 15s, pairs, runs, and the last-card point."
-        case .crib:
-            return "The crib belongs to the dealer, so discard choices should balance your hand's score against what you are giving away."
-        case .counting:
-            return "Count every scoring combination once, then add the cut-card bonuses and any pegging points separately."
-        case .endgame:
-            return "The board changes priorities. A safe point now can matter more than a flashy hand later when someone is close to the finish."
+            return "A jack in the hand can become his nobs when the cut matches its suit. It is easy to miss because the cut decides it."
+        }
+    }
+
+    /// True when this shape is actually present in the cards on screen. Nobs is
+    /// potential rather than guaranteed, because the cut decides it, so a jack
+    /// in the layout counts as present.
+    func isPresent(in cards: [PlayingCard]) -> Bool {
+        switch self {
+        case .fifteens: return HandScoring.fifteens(cards) > 0
+        case .pairs: return HandScoring.pairs(cards) > 0
+        case .runs: return HandScoring.runs(cards) > 0
+        case .flushes: return HandScoring.longestSuitCount(cards) >= 4
+        case .nobs: return cards.contains { $0.rankValue == 11 }
         }
     }
 }

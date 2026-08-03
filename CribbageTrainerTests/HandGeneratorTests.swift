@@ -4,43 +4,76 @@ import XCTest
 final class HandGeneratorTests: XCTestCase {
     func testReadsAFlush() {
         let cards: [PlayingCard] = [.h(2), .h(5), .h(8), .h(11), .h(13)]
-        XCTAssertEqual(HandGenerator.category(for: cards), .flushes)
+        XCTAssertTrue(HandCategory.flushes.isPresent(in: cards))
+        XCTAssertFalse(HandCategory.pairs.isPresent(in: cards))
     }
 
     func testReadsARun() {
         let cards: [PlayingCard] = [.c(3), .d(4), .h(5), .s(6), .c(7)]
-        XCTAssertEqual(HandGenerator.category(for: cards), .runs)
-        XCTAssertFalse(HandGenerator.fits(cards, .flushes))
+        XCTAssertTrue(HandCategory.runs.isPresent(in: cards))
+        XCTAssertFalse(HandCategory.flushes.isPresent(in: cards))
+        XCTAssertFalse(HandCategory.pairs.isPresent(in: cards))
     }
 
     func testReadsPairs() {
         let cards: [PlayingCard] = [.c(8), .d(8), .h(2), .s(6), .c(13)]
-        XCTAssertEqual(HandGenerator.category(for: cards), .pairs)
+        XCTAssertTrue(HandCategory.pairs.isPresent(in: cards))
+        XCTAssertFalse(HandCategory.runs.isPresent(in: cards))
     }
 
     func testReadsFifteens() {
         let cards: [PlayingCard] = [.c(5), .d(10), .h(1), .s(2), .c(7)]
-        XCTAssertEqual(HandGenerator.category(for: cards), .fifteens)
+        XCTAssertTrue(HandCategory.fifteens.isPresent(in: cards))
+        XCTAssertFalse(HandCategory.nobs.isPresent(in: cards))
     }
 
+    func testNobsIsPresentOnlyWithAJack() {
+        XCTAssertTrue(HandCategory.nobs.isPresent(in: [.h(11), .c(2), .d(6), .s(8), .c(13)]))
+        XCTAssertFalse(HandCategory.nobs.isPresent(in: [.h(12), .c(2), .d(6), .s(8), .c(13)]))
+    }
+
+    /// Generated questions keep the same contract as the authored ones: of the
+    /// three categories offered, exactly one is really in the cards.
     func testGeneratedHandsAreLegalAndUnambiguous() {
         for target in HandGenerator.generatableCategories {
-            for _ in 0..<20 {
+            for _ in 0..<40 {
                 guard let hand = HandGenerator.hand(for: target) else {
                     XCTFail("Could not deal a hand for \(target.displayName)")
                     continue
                 }
-                XCTAssertEqual(hand.tiles.count, 5)
-                XCTAssertEqual(Set(hand.tiles).count, hand.tiles.count)
-                XCTAssertEqual(HandGenerator.category(for: hand.tiles), target)
-                XCTAssertTrue(hand.choices.contains(target))
-                XCTAssertGreaterThanOrEqual(hand.choices.count, 3)
-                XCTAssertEqual(Set(hand.choices).count, hand.choices.count)
-                for choice in hand.choices where choice != target {
-                    XCTAssertFalse(HandGenerator.fits(hand.tiles, choice), "\(choice.displayName) is also a correct answer")
-                }
+                let shown = hand.tiles.map(\.shortLabel).joined(separator: " ")
+                XCTAssertEqual(hand.tiles.count, 5, shown)
+                XCTAssertEqual(Set(hand.tiles).count, hand.tiles.count, shown)
+                XCTAssertEqual(hand.answer, target)
+                XCTAssertTrue(hand.choices.contains(target), shown)
+                XCTAssertEqual(hand.choices.count, 3, shown)
+                XCTAssertEqual(Set(hand.choices).count, hand.choices.count, shown)
+                let present = hand.choices.filter { $0.isPresent(in: hand.tiles) }
+                XCTAssertEqual(present, [target],
+                               "[\(shown)] offers \(hand.choices.map(\.rawValue)) but contains \(present.map(\.rawValue))")
                 XCTAssertFalse(hand.explanation.isEmpty)
                 XCTAssertFalse(hand.explanation.contains("\u{2014}"))
+            }
+        }
+    }
+
+    /// Cards are dealt from one 52-card deck, so no rank can appear five times
+    /// and no physical card can repeat.
+    func testGeneratedHandsUseOneStandardDeck() {
+        for target in HandGenerator.generatableCategories {
+            for _ in 0..<40 {
+                guard let hand = HandGenerator.hand(for: target) else { continue }
+                var counts: [Int: Int] = [:]
+                for tile in hand.tiles {
+                    guard case .standard(let rank, _) = tile else {
+                        XCTFail("Generated hand contains a joker")
+                        continue
+                    }
+                    XCTAssertTrue((1...13).contains(rank))
+                    counts[rank, default: 0] += 1
+                }
+                XCTAssertLessThanOrEqual(counts.values.max() ?? 0, 4,
+                                         "A rank appeared more than four times")
             }
         }
     }

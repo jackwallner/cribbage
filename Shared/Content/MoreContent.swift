@@ -53,44 +53,44 @@ enum MoreContent {
         HandMatchQuestion(
             id: "more-hand-1",
             tiles: [.c(2), .d(3), .h(4), .s(8), .c(10)],
-            choices: [.runs, .fifteens, .flushes],
+            choices: [.runs, .pairs, .flushes],
             answer: .runs,
-            explanation: "The 2-3-4 sequence is the clear connected shape. It can also participate in fifteens, but the run is the first structure to see."
+            explanation: "2-3-4 is a run of three. No rank repeats and only two cards share a suit, so the run is the shape on the table. Two fifteens hide behind it for a full count of 7."
         ),
         HandMatchQuestion(
             id: "more-hand-2",
             tiles: [.c(5), .d(5), .h(10), .s(11), .c(2)],
-            choices: [.fifteens, .pairs, .nobs],
+            choices: [.fifteens, .runs, .flushes],
             answer: .fifteens,
-            explanation: "Each 5 pairs with a ten-value card for a fifteen, so this hand has multiple fifteen combinations before the pair is counted."
+            explanation: "Each 5 makes fifteen with the 10 and again with the jack. Four fifteens is 8 points, before the pair of 5s adds 2 more."
         ),
         HandMatchQuestion(
             id: "more-hand-3",
             tiles: [.h(1), .h(4), .h(7), .h(12), .c(9)],
-            choices: [.flushes, .pairs, .pegging],
+            choices: [.flushes, .pairs, .runs],
             answer: .flushes,
-            explanation: "Four hearts make a four-card hand flush. The starter would determine whether the fifth card extends it."
+            explanation: "Four hearts make a four-card hand flush. The starter would determine whether a fifth heart extends it to 5 points."
         ),
         HandMatchQuestion(
             id: "more-hand-4",
             tiles: [.c(9), .d(9), .h(9), .s(4), .c(6)],
-            choices: [.pairs, .runs, .counting],
+            choices: [.pairs, .runs, .flushes],
             answer: .pairs,
-            explanation: "Three 9s contain three separate pairs. There is no consecutive sequence in the hand."
+            explanation: "Three 9s contain three separate pairs for 6 points. There is no consecutive sequence, though each 9 does make fifteen with the 6."
         ),
         HandMatchQuestion(
             id: "more-hand-5",
             tiles: [.c(6), .d(7), .h(8), .s(9), .c(13)],
-            choices: [.runs, .fifteens, .crib],
+            choices: [.runs, .pairs, .flushes],
             answer: .runs,
-            explanation: "6-7-8-9 is a run of four. The king is separate from that sequence."
+            explanation: "6-7-8-9 is a run of four. The king sits apart from that sequence, and the two fifteens, 6 with 9 and 7 with 8, are counted separately."
         ),
         HandMatchQuestion(
             id: "more-hand-6",
             tiles: [.h(11), .c(2), .d(5), .s(8), .c(10)],
-            choices: [.nobs, .fifteens, .flushes],
+            choices: [.nobs, .runs, .flushes],
             answer: .nobs,
-            explanation: "The heart jack becomes his nobs if the starter is a heart. Keep the starter in the picture when evaluating this hand."
+            explanation: "The heart jack becomes his nobs if the starter is a heart. Nothing here runs three deep and only two cards share a suit, so the jack is the shape to watch."
         ),
     ]
 
@@ -113,18 +113,18 @@ enum MoreContent {
         ),
         DiscardScenario(
             id: "more-discard-3",
-            situation: "Four cards share a suit. Protect the potential flush.",
-            deal: [.h(2), .h(6), .h(8), .h(12), .c(4), .s(7)],
-            recommendedDiscard: [.c(4), .s(7)],
-            reasoning: "Keeping the four hearts preserves a four-card flush and gives the starter a chance to add a fifth. The off-suit cards are not connected to each other.",
+            situation: "You are pone and four cards share a suit. Protect the flush.",
+            deal: [.c(2), .c(4), .c(9), .c(12), .d(7), .h(13)],
+            recommendedDiscard: [.d(7), .h(13)],
+            reasoning: "Keeping the four clubs is 4 for the flush plus 2 for the 2-4-9 fifteen, and a club cut makes the flush 5. The 7 and king are off-suit, do not pair, and do not reach fifteen together, so they cost the dealer's crib very little.",
             tip: "A four-card flush is already a real source of points."
         ),
         DiscardScenario(
             id: "more-discard-4",
-            situation: "You are near the finish. Favor the hand you can count safely.",
+            situation: "You are pone near the finish. Favor the hand you can count safely.",
             deal: [.c(2), .d(3), .h(4), .s(8), .c(9), .d(10)],
-            recommendedDiscard: [.s(8), .c(9)],
-            reasoning: "The 2-3-4 block has clear run and fifteen potential. Keeping the connected small cards makes a stable hand when the board matters more than a speculative ceiling.",
+            recommendedDiscard: [.s(8), .d(10)],
+            reasoning: "Keep 2-3-4 with the 9: the run scores 3 and 2-4-9 makes fifteen. Holding the 9 rather than the 10 matters on the discard side, because 8 and 10 give the dealer nothing, while 8 and 9 hand over a run start.",
             tip: "The board can make a dependable point more valuable than a risky maximum."
         ),
     ]

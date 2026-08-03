@@ -9,7 +9,7 @@ enum CategoryContent {
             frontTiles: [.c(5), .d(10), .h(4), .s(1)],
             frontSubtitle: "The combinations add up",
             backTitle: "Count every combination",
-            backBody: "A 5 with a ten-value card is one fifteen. An ace and a 4 make another. When a hand has several small cards, check combinations systematically so none are missed."
+            backBody: "A 5 with a ten-value card is one fifteen. The ace, the 4, and the same ten-value card make another. When a hand has several small cards, check combinations systematically so none are missed."
         ),
         Flashcard(
             id: "score-pairs",
@@ -85,16 +85,16 @@ enum CategoryContent {
         HandMatchQuestion(
             id: "score-match-3",
             tiles: [.c(4), .d(5), .s(6), .h(7), .c(10)],
-            choices: [.runs, .flushes, .crib],
+            choices: [.runs, .flushes, .nobs],
             answer: .runs,
-            explanation: "The four cards from 4 through 7 form a run of four. The suits are mixed, so this is not a flush."
+            explanation: "The four cards from 4 through 7 form a run of four. The suits are mixed, so this is not a flush, and there is no jack to watch."
         ),
         HandMatchQuestion(
             id: "score-match-4",
-            tiles: [.h(2), .h(6), .h(9), .h(13), .c(4)],
+            tiles: [.d(6), .d(8), .d(12), .d(13), .h(4)],
             choices: [.flushes, .fifteens, .pairs],
             answer: .flushes,
-            explanation: "Four cards in the hand are hearts, so the hand has a four-card flush. The cut could extend it to five."
+            explanation: "Four cards in the hand are diamonds, so the hand has a four-card flush worth 4, and a diamond cut would make it 5. Nothing here adds to fifteen and no rank repeats."
         ),
         HandMatchQuestion(
             id: "score-match-5",
@@ -106,23 +106,23 @@ enum CategoryContent {
         HandMatchQuestion(
             id: "score-match-6",
             tiles: [.c(3), .d(3), .h(4), .s(5), .c(6)],
-            choices: [.runs, .pairs, .counting],
+            choices: [.runs, .flushes, .nobs],
             answer: .runs,
-            explanation: "The 3-4-5-6 shape is a four-card run, duplicated through the two 3s for a double run of four."
+            explanation: "The 3-4-5-6 shape is a four-card run, and the second 3 lets it form twice. That double run of four is 8 points before the pair is counted."
         ),
         HandMatchQuestion(
             id: "score-match-7",
-            tiles: [.c(2), .d(3), .h(4), .s(6), .c(9)],
-            choices: [.counting, .fifteens, .pegging],
-            answer: .counting,
-            explanation: "This is a counting exercise: sort the values, find every fifteen, and do not confuse a hand count with a pegging sequence."
+            tiles: [.s(3), .s(5), .d(6), .c(9), .h(12)],
+            choices: [.fifteens, .runs, .pairs],
+            answer: .fifteens,
+            explanation: "Two combinations reach fifteen: the 6 with the 9, and the 5 with the queen. No rank repeats and nothing runs three deep, so 4 points of fifteens is the whole count."
         ),
         HandMatchQuestion(
             id: "score-match-8",
-            tiles: [.c(4), .d(5), .h(6), .s(10), .c(10)],
-            choices: [.pairs, .runs, .crib],
+            tiles: [.c(1), .d(10), .s(10), .c(12), .h(13)],
+            choices: [.pairs, .runs, .fifteens],
             answer: .pairs,
-            explanation: "The two 10s make a pair. The 4-5-6 run is also present, but the question's strongest first read is to spot the duplicate rank."
+            explanation: "Only the two 10s share a rank, so there is exactly one pair. Queen and king are also worth 10 toward a fifteen, but rank is what pairs, and 10-queen-king skips the jack so there is no run."
         ),
     ]
 }

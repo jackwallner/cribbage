@@ -1,74 +1,20 @@
 import Foundation
 
-/// Deals original five-card cribbage hands that foreground one scoring idea.
+/// Deals original five-card cribbage hands that foreground one scoring shape.
+///
+/// The contract is the one the authored hand-match questions keep: of the three
+/// categories offered, exactly one is actually present in the cards on screen.
+/// Both distractors are shapes the hand genuinely does not contain, so a player
+/// who reads the cards correctly is never marked wrong.
+///
 /// Generated hands are teaching shapes, not copies of any external card or
 /// copyrighted content.
 enum HandGenerator {
-    static let generatableCategories: [HandCategory] = [.fifteens, .pairs, .runs, .flushes]
+    static let generatableCategories: [HandCategory] = HandCategory.allCases
 
-    private static func ranks(_ cards: [PlayingCard]) -> [Int] {
-        cards.compactMap { card in
-            if case .standard(let rank, _) = card { return rank }
-            return nil
-        }
-    }
-
-    private static func suits(_ cards: [PlayingCard]) -> [Suit] {
-        cards.compactMap { card in
-            if case .standard(_, let suit) = card { return suit }
-            return nil
-        }
-    }
-
-    private static func hasFifteen(_ cards: [PlayingCard]) -> Bool {
-        let values = cards.map(\.cribbageValue)
-        for mask in 1..<(1 << values.count) {
-            var total = 0
-            for index in values.indices where mask & (1 << index) != 0 {
-                total += values[index]
-            }
-            if total == 15 { return true }
-        }
-        return false
-    }
-
-    private static func hasPair(_ cards: [PlayingCard]) -> Bool {
-        let values = ranks(cards)
-        return Set(values).count < values.count
-    }
-
-    private static func hasRun(_ cards: [PlayingCard]) -> Bool {
-        let values = Set(ranks(cards)).sorted()
-        guard values.count == cards.count, let low = values.first, let high = values.last else { return false }
-        return high - low == values.count - 1
-    }
-
-    private static func hasFlush(_ cards: [PlayingCard]) -> Bool {
-        let values = suits(cards)
-        return values.count == cards.count && Set(values).count == 1
-    }
-
-    /// The precedence makes generated answer choices mutually exclusive. A
-    /// hand may contain several real scoring patterns, but the question gives
-    /// the player one deliberately chosen teaching read.
-    static func fits(_ cards: [PlayingCard], _ category: HandCategory) -> Bool {
-        switch category {
-        case .flushes:
-            return hasFlush(cards)
-        case .runs:
-            return !hasFlush(cards) && hasRun(cards)
-        case .pairs:
-            return !hasFlush(cards) && !hasRun(cards) && hasPair(cards)
-        case .fifteens:
-            return !hasFlush(cards) && !hasRun(cards) && !hasPair(cards) && hasFifteen(cards)
-        default:
-            return false
-        }
-    }
-
-    static func category(for cards: [PlayingCard]) -> HandCategory? {
-        let matches = generatableCategories.filter { fits(cards, $0) }
-        return matches.count == 1 ? matches[0] : nil
+    /// Every shape actually present in the layout.
+    static func presentCategories(_ cards: [PlayingCard]) -> [HandCategory] {
+        HandCategory.allCases.filter { $0.isPresent(in: cards) }
     }
 
     struct GeneratedHand {
@@ -78,69 +24,88 @@ enum HandGenerator {
         let explanation: String
     }
 
-    private static func uniqueCards(count: Int, ranks: [Int], suit: Suit? = nil) -> [PlayingCard] {
-        let suits = suit.map { [$0] } ?? Suit.allCases
-        var result: [PlayingCard] = []
-        for rank in ranks {
-            guard let selectedSuit = suits.shuffled().first(where: { candidate in
-                !result.contains(.standard(rank: rank, suit: candidate))
-            }) else { continue }
-            result.append(.standard(rank: rank, suit: selectedSuit))
-            if result.count == count { break }
+    // MARK: - Dealing
+
+    private static func fill(_ cards: [PlayingCard], to count: Int, avoiding blocked: Set<Int>) -> [PlayingCard] {
+        var result = cards
+        var pool = PlayingCard.standardDeck.shuffled()
+        while result.count < count, let next = pool.popLast() {
+            guard !result.contains(next), !blocked.contains(next.rankValue) else { continue }
+            result.append(next)
         }
         return result
     }
 
-    private static func deal(_ targetCategory: HandCategory) -> [PlayingCard]? {
-        switch targetCategory {
-        case .flushes:
-            let suit = Suit.allCases.randomElement() ?? .hearts
-            for _ in 0..<40 {
-                let cards = uniqueCards(count: 5, ranks: (1...13).shuffled(), suit: suit)
-                if cards.count == 5 && Self.category(for: cards) == .flushes { return cards }
-            }
-        case .runs:
-            for _ in 0..<40 {
-                let start = Int.random(in: 1...9)
-                let cards = uniqueCards(count: 5, ranks: Array(start...(start + 4)))
-                if cards.count == 5 && Self.category(for: cards) == .runs { return cards }
-            }
-        case .pairs:
-            for _ in 0..<80 {
-                let pairRank = Int.random(in: 1...13)
-                let otherRanks = (1...13).filter { $0 != pairRank }.shuffled()
-                guard let first = otherRanks.first, let second = otherRanks.dropFirst().first, let third = otherRanks.dropFirst(2).first else { continue }
-                let pairSuit = Suit.allCases.shuffled().prefix(2)
-                let cards = [
-                    .standard(rank: pairRank, suit: pairSuit[0]),
-                    .standard(rank: pairRank, suit: pairSuit[1]),
-                ] + uniqueCards(count: 3, ranks: [first, second, third])
-                if cards.count == 5 && Self.category(for: cards) == .pairs { return cards }
-            }
-        case .fifteens:
-            for _ in 0..<100 {
-                let ranks = [5, 10, 1, 2, 7].shuffled()
-                let cards = uniqueCards(count: 5, ranks: ranks)
-                if cards.count == 5 && Self.category(for: cards) == .fifteens { return cards }
-            }
-        default:
-            break
+    /// The seed ranks plus the ranks on either side, so filler cards cannot
+    /// accidentally extend a run or duplicate a rank.
+    private static func neighbors(of ranks: [Int]) -> Set<Int> {
+        var blocked = Set(ranks)
+        for rank in ranks {
+            blocked.insert(rank - 1)
+            blocked.insert(rank + 1)
         }
-        return nil
+        return blocked
     }
 
-    static func hand(for target: HandCategory, attempts: Int = 120) -> GeneratedHand? {
+    private static func deal(_ target: HandCategory) -> [PlayingCard] {
+        switch target {
+        case .flushes:
+            let suit = Suit.allCases.randomElement() ?? .hearts
+            let ranks = Array((1...13).shuffled().prefix(4))
+            let suited = ranks.map { PlayingCard.standard(rank: $0, suit: suit) }
+            let others = Suit.allCases.filter { $0 != suit }
+            let oddRank = (1...13).filter { !ranks.contains($0) }.randomElement() ?? 1
+            let odd = PlayingCard.standard(rank: oddRank, suit: others.randomElement() ?? .clubs)
+            return suited + [odd]
+
+        case .runs:
+            let length = [3, 3, 4, 5].randomElement() ?? 3
+            let start = Int.random(in: 1...(14 - length))
+            let sequence = Array(start..<(start + length))
+            let run = sequence.map { rank in
+                PlayingCard.standard(rank: rank, suit: Suit.allCases.randomElement() ?? .clubs)
+            }
+            return fill(run, to: 5, avoiding: neighbors(of: sequence))
+
+        case .pairs:
+            let rank = Int.random(in: 1...13)
+            let copies = [2, 2, 3].randomElement() ?? 2
+            let pair = Suit.allCases.shuffled().prefix(copies).map {
+                PlayingCard.standard(rank: rank, suit: $0)
+            }
+            return fill(Array(pair), to: 5, avoiding: neighbors(of: [rank]))
+
+        case .nobs:
+            let jack = PlayingCard.standard(rank: 11, suit: Suit.allCases.randomElement() ?? .hearts)
+            return fill([jack], to: 5, avoiding: neighbors(of: [11]))
+
+        case .fifteens:
+            let anchor = [2, 5, 6, 7, 9].randomElement() ?? 5
+            let partner = min(15 - anchor, 10)
+            guard partner != anchor else { return fill([], to: 5, avoiding: []) }
+            let first = PlayingCard.standard(rank: anchor, suit: Suit.allCases.randomElement() ?? .clubs)
+            let second = PlayingCard.standard(rank: partner, suit: Suit.allCases.randomElement() ?? .diamonds)
+            return fill([first, second], to: 5, avoiding: neighbors(of: [anchor, partner]))
+        }
+    }
+
+    // MARK: - Question assembly
+
+    static func hand(for target: HandCategory, attempts: Int = 200) -> GeneratedHand? {
         for _ in 0..<attempts {
-            guard let cards = deal(target), category(for: cards) == target else { continue }
-            let distractors = generatableCategories
-                .filter { $0 != target && !fits(cards, $0) }
+            let cards = deal(target)
+            guard cards.count == 5, Set(cards).count == 5 else { continue }
+            let present = presentCategories(cards)
+            guard present.contains(target) else { continue }
+            let distractors = HandCategory.allCases
+                .filter { !present.contains($0) }
                 .shuffled()
-                .prefix(3)
-            guard distractors.count >= 2 else { continue }
+                .prefix(2)
+            guard distractors.count == 2 else { continue }
             return GeneratedHand(
                 tiles: cards.racked,
                 answer: target,
-                choices: ([target] + distractors).shuffled(),
+                choices: (CollectionOfOne(target) + distractors).shuffled(),
                 explanation: explain(cards, answer: target)
             )
         }
@@ -155,19 +120,23 @@ enum HandGenerator {
         return targets.prefix(count).compactMap { hand(for: $0) }.shuffled()
     }
 
+    // MARK: - Explanations
+
     static func explain(_ cards: [PlayingCard], answer: HandCategory) -> String {
-        let labels = ranks(cards).sorted().map(String.init).joined(separator: ", ")
         switch answer {
         case .flushes:
-            return "All five cards share a suit. That is a flush shape, so start with the suit bonus before checking the other combinations."
+            let count = HandScoring.longestSuitCount(cards)
+            return count == 5
+                ? "All five cards share a suit, so the flush alone is 5 points."
+                : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5."
         case .runs:
-            return "The ranks form a consecutive sequence (\(labels)). The suits are mixed, so the run is the strongest first read."
+            return "The ranks build a run worth \(HandScoring.runs(cards)) points. Suits never matter for a run, and aces stay low."
         case .pairs:
-            return "Two cards share a rank, while the hand is not a flush or a clean run. Start with the guaranteed pair and then search for fifteens."
+            return "Matching ranks are worth \(HandScoring.pairs(cards)) points here. Three of a rank is three separate pairs, not one score."
         case .fifteens:
-            return "At least one combination totals 15, and no pair, run, or flush dominates the shape. Search the small cards and ten-value cards systematically."
-        default:
-            return answer.howToSpot
+            return "Combinations totaling fifteen are worth \(HandScoring.fifteens(cards)) points here. Court cards count 10 and the ace counts 1."
+        case .nobs:
+            return "The hand holds a jack, so his nobs is live: one point if the cut comes up in that jack's suit."
         }
     }
 }
