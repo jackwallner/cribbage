@@ -87,7 +87,7 @@ SHOTS = [
     Shot(
         raw="02-handmatch.png",
         out="02_hand_match.png",
-        eyebrow="THE CARD ROOM",
+        eyebrow="THE SCORING ROOM",
         headline="Read the hand, name the scoring shape",
         accent=CORAL,
     ),

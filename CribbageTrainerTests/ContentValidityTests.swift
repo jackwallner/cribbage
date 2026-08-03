@@ -43,6 +43,74 @@ final class ContentValidityTests: XCTestCase {
         for question in allHandMatch {
             XCTAssertTrue(question.choices.contains(question.answer), "\(question.id) answer missing from choices")
             XCTAssertEqual(Set(question.choices).count, question.choices.count, "\(question.id) has duplicate choices")
+            XCTAssertGreaterThanOrEqual(question.choices.count, 3, "\(question.id) needs at least 3 choices")
+        }
+    }
+
+    /// The contract that makes a hand-match question fair: of the categories
+    /// offered, the answer is present in the cards on screen and every other
+    /// offered category genuinely is not. Without this, a player who correctly
+    /// spots a second real shape gets marked wrong.
+    func testHandMatchQuestionsHaveExactlyOneCorrectAnswer() {
+        for question in allHandMatch {
+            let present = question.choices.filter { $0.isPresent(in: question.tiles) }
+            let shown = question.tiles.map(\.shortLabel).joined(separator: " ")
+            XCTAssertEqual(
+                present, [question.answer],
+                "\(question.id) [\(shown)] offers \(question.choices.map(\.rawValue)) "
+                + "but the hand actually contains \(present.map(\.rawValue))"
+            )
+        }
+    }
+
+    /// Every discard scenario has to say whose crib the two cards land in,
+    /// because that single fact can flip the right answer.
+    func testDiscardScenariosStateTheRole() {
+        for scenario in allDiscard {
+            let text = scenario.situation.lowercased()
+            let isDealer = text.contains("dealer")
+            let isPone = text.contains("pone")
+            XCTAssertNotEqual(isDealer, isPone,
+                              "\(scenario.id) must state exactly one role: \(scenario.situation)")
+        }
+    }
+
+    /// The coach's answer must be the best available discard, measured the way
+    /// the game measures it: the expected count of the four cards kept, plus
+    /// what the two thrown cards make in the crib for the dealer, or minus it
+    /// for the pone.
+    func testRecommendedDiscardsAreOptimal() {
+        for scenario in allDiscard {
+            let isDealer = scenario.situation.lowercased().contains("dealer")
+            let ranked = HandScoring.rankedDiscards(deal: scenario.deal, isDealer: isDealer)
+            guard let best = ranked.first else {
+                XCTFail("\(scenario.id) produced no discard options")
+                continue
+            }
+            let recommended = HandScoring.discardValue(
+                deal: scenario.deal, discard: scenario.recommendedDiscard, isDealer: isDealer
+            )
+            XCTAssertEqual(
+                recommended, best.value, accuracy: 0.05,
+                "\(scenario.id) recommends \(scenario.recommendedDiscard.map(\.shortLabel)) "
+                + "worth \(String(format: "%.2f", recommended)), but "
+                + "\(best.discard.map(\.shortLabel)) is worth \(String(format: "%.2f", best.value))"
+            )
+        }
+    }
+
+    /// Pone throws into the opponent's crib, so the app must never coach a
+    /// discard that hands the dealer free points.
+    func testPoneDiscardsNeverGiftTheCrib() {
+        for scenario in allDiscard where !scenario.situation.lowercased().contains("dealer") {
+            let thrown = scenario.recommendedDiscard
+            guard thrown.count == 2 else { continue }
+            XCTAssertNotEqual(thrown[0].rankValue, thrown[1].rankValue,
+                              "\(scenario.id) gives the dealer's crib a pair")
+            XCTAssertNotEqual(thrown[0].cribbageValue + thrown[1].cribbageValue, 15,
+                              "\(scenario.id) gives the dealer's crib a fifteen")
+            XCTAssertFalse(thrown.contains { $0.rankValue == 5 },
+                           "\(scenario.id) gives the dealer's crib a 5")
         }
     }
 
