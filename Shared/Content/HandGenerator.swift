@@ -26,9 +26,9 @@ enum HandGenerator {
 
     // MARK: - Dealing
 
-    private static func fill(_ cards: [PlayingCard], to count: Int, avoiding blocked: Set<Int>) -> [PlayingCard] {
+    private static func fill<R: RandomNumberGenerator>(_ cards: [PlayingCard], to count: Int, avoiding blocked: Set<Int>, using generator: inout R) -> [PlayingCard] {
         var result = cards
-        var pool = PlayingCard.standardDeck.shuffled()
+        var pool = PlayingCard.standardDeck.shuffled(using: &generator)
         while result.count < count, let next = pool.popLast() {
             guard !result.contains(next), !blocked.contains(next.rankValue) else { continue }
             result.append(next)
@@ -47,65 +47,77 @@ enum HandGenerator {
         return blocked
     }
 
-    private static func deal(_ target: HandCategory) -> [PlayingCard] {
+    private static func deal<R: RandomNumberGenerator>(_ target: HandCategory, using generator: inout R) -> [PlayingCard] {
         switch target {
         case .flushes:
-            let suit = Suit.allCases.randomElement() ?? .hearts
-            let ranks = Array((1...13).shuffled().prefix(4))
+            let suit = Suit.allCases.randomElement(using: &generator) ?? .hearts
+            let ranks = Array((1...13).shuffled(using: &generator).prefix(4))
             let suited = ranks.map { PlayingCard.standard(rank: $0, suit: suit) }
             let others = Suit.allCases.filter { $0 != suit }
-            let oddRank = (1...13).filter { !ranks.contains($0) }.randomElement() ?? 1
-            let odd = PlayingCard.standard(rank: oddRank, suit: others.randomElement() ?? .clubs)
+            let oddRank = (1...13).filter { !ranks.contains($0) }.randomElement(using: &generator) ?? 1
+            let odd = PlayingCard.standard(rank: oddRank, suit: others.randomElement(using: &generator) ?? .clubs)
             return suited + [odd]
 
         case .runs:
-            let length = [3, 3, 4, 5].randomElement() ?? 3
-            let start = Int.random(in: 1...(14 - length))
+            let length = [3, 3, 4, 5].randomElement(using: &generator) ?? 3
+            let start = Int.random(in: 1...(14 - length), using: &generator)
             let sequence = Array(start..<(start + length))
             let run = sequence.map { rank in
-                PlayingCard.standard(rank: rank, suit: Suit.allCases.randomElement() ?? .clubs)
+                PlayingCard.standard(rank: rank, suit: Suit.allCases.randomElement(using: &generator) ?? .clubs)
             }
-            return fill(run, to: 5, avoiding: neighbors(of: sequence))
+            return fill(run, to: 5, avoiding: neighbors(of: sequence), using: &generator)
 
         case .pairs:
-            let rank = Int.random(in: 1...13)
-            let copies = [2, 2, 3].randomElement() ?? 2
-            let pair = Suit.allCases.shuffled().prefix(copies).map {
+            let rank = Int.random(in: 1...13, using: &generator)
+            let copies = [2, 2, 3].randomElement(using: &generator) ?? 2
+            let pair = Suit.allCases.shuffled(using: &generator).prefix(copies).map {
                 PlayingCard.standard(rank: rank, suit: $0)
             }
-            return fill(Array(pair), to: 5, avoiding: neighbors(of: [rank]))
+            return fill(Array(pair), to: 5, avoiding: neighbors(of: [rank]), using: &generator)
 
         case .nobs:
-            let jack = PlayingCard.standard(rank: 11, suit: Suit.allCases.randomElement() ?? .hearts)
-            return fill([jack], to: 5, avoiding: neighbors(of: [11]))
+            let jack = PlayingCard.standard(rank: 11, suit: Suit.allCases.randomElement(using: &generator) ?? .hearts)
+            return fill([jack], to: 5, avoiding: neighbors(of: [11]), using: &generator)
 
         case .fifteens:
-            let anchor = [2, 5, 6, 7, 9].randomElement() ?? 5
+            let anchor = [2, 5, 6, 7, 9].randomElement(using: &generator) ?? 5
             let partner = min(15 - anchor, 10)
-            guard partner != anchor else { return fill([], to: 5, avoiding: []) }
-            let first = PlayingCard.standard(rank: anchor, suit: Suit.allCases.randomElement() ?? .clubs)
-            let second = PlayingCard.standard(rank: partner, suit: Suit.allCases.randomElement() ?? .diamonds)
-            return fill([first, second], to: 5, avoiding: neighbors(of: [anchor, partner]))
+            guard partner != anchor else { return fill([], to: 5, avoiding: [], using: &generator) }
+            let first = PlayingCard.standard(rank: anchor, suit: Suit.allCases.randomElement(using: &generator) ?? .clubs)
+            let second = PlayingCard.standard(rank: partner, suit: Suit.allCases.randomElement(using: &generator) ?? .diamonds)
+            return fill([first, second], to: 5, avoiding: neighbors(of: [anchor, partner]), using: &generator)
         }
     }
 
     // MARK: - Question assembly
 
     static func hand(for target: HandCategory, attempts: Int = 200) -> GeneratedHand? {
+        var generator = SystemRandomNumberGenerator()
+        return hand(for: target, attempts: attempts, using: &generator)
+    }
+
+    /// The seeded variant. A dated challenge has to deal the SAME original hand
+    /// on every device, so every source of randomness inside has to come from
+    /// the caller's generator, not from the system one.
+    static func hand<R: RandomNumberGenerator>(
+        for target: HandCategory,
+        attempts: Int = 200,
+        using generator: inout R
+    ) -> GeneratedHand? {
         for _ in 0..<attempts {
-            let cards = deal(target)
+            let cards = deal(target, using: &generator)
             guard cards.count == 5, Set(cards).count == 5 else { continue }
             let present = presentCategories(cards)
             guard present.contains(target) else { continue }
             let distractors = HandCategory.allCases
                 .filter { !present.contains($0) }
-                .shuffled()
+                .shuffled(using: &generator)
                 .prefix(2)
             guard distractors.count == 2 else { continue }
             return GeneratedHand(
                 tiles: cards.racked,
                 answer: target,
-                choices: (CollectionOfOne(target) + distractors).shuffled(),
+                choices: (CollectionOfOne(target) + distractors).shuffled(using: &generator),
                 explanation: explain(cards, answer: target)
             )
         }
@@ -113,11 +125,27 @@ enum HandGenerator {
     }
 
     static func batch(count: Int) -> [GeneratedHand] {
+        var generator = SystemRandomNumberGenerator()
+        return batch(count: count, using: &generator)
+    }
+
+    /// A reproducible batch for a dated shared challenge. The same app build
+    /// and seed produce the same original hands on every device, which is what
+    /// lets every member answer the same daily challenge without a server.
+    static func batch(count: Int, seed: String) -> [GeneratedHand] {
+        var generator = StableSeededGenerator(seed: seed)
+        return batch(count: count, using: &generator)
+    }
+
+    private static func batch<R: RandomNumberGenerator>(
+        count: Int,
+        using generator: inout R
+    ) -> [GeneratedHand] {
         var targets: [HandCategory] = []
         while targets.count < count {
-            targets += generatableCategories.shuffled()
+            targets += generatableCategories.shuffled(using: &generator)
         }
-        return targets.prefix(count).compactMap { hand(for: $0) }.shuffled()
+        return targets.prefix(count).compactMap { hand(for: $0, using: &generator) }.shuffled(using: &generator)
     }
 
     // MARK: - Explanations
