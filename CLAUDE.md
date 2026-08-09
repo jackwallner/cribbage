@@ -107,3 +107,62 @@ page after the enjoyment gate.
 
 See `CribbageTrainer/Views/Drills/CLAUDE.md` for the gesture and flip
 invariants of the signature swipe deck.
+
+## Game-night rhythm (1.2)
+
+Cribbage+ owns two recurring rituals. `CribbageMinuteContent` deterministically builds the
+same five questions for every member on a local calendar day: two generated
+hand reads, one discard decision, and two pegging questions. Results and a 30-day
+archive stay on device in `CribbageMinuteStore`; sharing uses the system share sheet and
+needs no account or leaderboard.
+
+The discard question is built straight from the authored scenarios, NOT through
+`SessionBuilder.choiceItems`. The quick-session pool deliberately excludes
+those drills, so drawing the daily from it silently produced a four-question
+challenge with that skill missing entirely.
+
+`HandGenerator` deals the daily hands from a caller-supplied generator all the
+way down: `deal`, `fill`, and `randomHand` are all generic over
+`RandomNumberGenerator`. One `.shuffled()` or `.randomElement()` left calling
+the system source is enough to make the same day deal different hands on
+different devices, and the stability test is what catches it.
+
+`GameNightPrepView` stores a weekly game night in `AppSettings`, schedules a
+local notification, and opens directly into `SessionBuilder.gameNightPrep`,
+which prioritizes due mistakes, misses, the weakest room, and unseen member
+content in that order. Both features are entirely Cribbage+ gated.
+
+## iPad (1.2)
+
+iPad support is free: `TARGETED_DEVICE_FAMILY "1,2"`, portrait and landscape,
+adaptive Home columns, drill grids, and readable content widths.
+
+Every drill body is a scroll view, so a question that underfills the viewport
+was pinned to the top and left the bottom half of a 13-inch iPad empty.
+`CenteringScrollView` centres short content and leaves taller content scrolling
+untouched (minHeight, not height). Keep its `maxWidth: .infinity`: a plain
+ScrollView centres narrow content for you, an explicitly framed one does not.
+The room eyebrow lives INSIDE `QuestionPager` so it centres with the question,
+and the flashcard deck is capped at 520pt wide so a card still looks like a
+card.
+
+## Screenshots
+
+`scripts/capture-screenshots.sh <udid> <out-dir> [prefix]` drives the real app
+through the App Store screens via the `Screenshots` scheme.
+`scripts/with-ipad-sim.sh` creates a throwaway 13-inch iPad (App Store iPad
+shots must be 2064x2752 and the agent-sim pool has no iPad Pro), boots it
+headless, and deletes it on exit:
+
+```bash
+./scripts/with-ipad-sim.sh sh -c './scripts/capture-screenshots.sh "$IPAD_UDID" out ipad_'
+```
+
+Gotchas baked into the test: the What's New sheet covers Home on the first
+launch after a version bump and returns every time Home reappears, so the
+script passes the marketing version in through
+`TEST_RUNNER_SCREENSHOT_APP_VERSION` and the test marks it seen; returning to
+the root only taps navigation-bar button 0 while a back button is there,
+because on Home that button is the Settings gear; and the test never calls
+XCTFail, because a failing UI test spends ten minutes collecting simulator
+diagnostics first.
