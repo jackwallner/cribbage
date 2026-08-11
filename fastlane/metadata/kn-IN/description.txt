@@ -4,4 +4,5 @@
 
 Cribbage+ ನಲ್ಲಿ Endless Practice, ತಪ್ಪುಗಳ ಪುನರಾವರ್ತನೆ, 90 ಸೆಕೆಂಡ್ ಸವಾಲು, ಹೆಚ್ಚುವರಿ ಸೆಟ್‌ಗಳು ಮತ್ತು Master Tables ಇವೆ. ಮೂಲ ವಿಷಯ ಉಚಿತ.
 
-Cribbage+ ತಿಂಗಳಿಗೆ $1.99 ಅಥವಾ ವರ್ಷಕ್ಕೆ $9.99, ಎರಡರಲ್ಲೂ ಒಂದು ವಾರದ ಉಚಿತ ಪ್ರಯೋಗ, ಅಥವಾ ಒಮ್ಮೆ Lifetime $29.99. ಪಾವತಿ Apple ID ಮೂಲಕ ನಡೆಯುತ್ತದೆ ಮತ್ತು ಚಂದಾದಾರಿಕೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸುತ್ತದೆ. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+ಚಂದಾದಾರಿಕೆಗಳು
+Cribbage+ ಸ್ವಯಂ-ನವೀಕರಣಗೊಳ್ಳುವ ಚಂದಾದಾರಿಕೆಯಾಗಿ (ಮಾಸಿಕ ಅಥವಾ ವಾರ್ಷಿಕ, ಎರಡರಲ್ಲೂ 7 ದಿನಗಳ ಉಚಿತ ಟ್ರಯಲ್) ಅಥವಾ ಒಂದೇ ಬಾರಿಯ Lifetime ಖರೀದಿಯಾಗಿ ಲಭ್ಯವಿದೆ. ಖರೀದಿಗೂ ಮೊದಲು ಬೆಲೆಗಳು ಆ್ಯಪ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ ಮತ್ತು ಪ್ರದೇಶಕ್ಕೆ ತಕ್ಕಂತೆ ಬದಲಾಗುತ್ತವೆ. ದೃಢೀಕರಿಸಿದಾಗ ನಿಮ್ಮ Apple ID ಯಿಂದ ಪಾವತಿ ಪಡೆಯಲಾಗುತ್ತದೆ. ಪ್ರಸ್ತುತ ಅವಧಿ ಮುಗಿಯುವ ಕನಿಷ್ಠ 24 ಗಂಟೆ ಮೊದಲು ರದ್ದುಗೊಳಿಸದಿದ್ದರೆ ಚಂದಾದಾರಿಕೆ ತಾನಾಗಿಯೇ ನವೀಕರಣಗೊಳ್ಳುತ್ತದೆ. ಯಾವಾಗ ಬೇಕಾದರೂ Settings → Apple ID → Subscriptions ನಲ್ಲಿ ನಿರ್ವಹಿಸಿ ಅಥವಾ ರದ್ದುಗೊಳಿಸಿ. ಬಳಕೆಯ ನಿಯಮಗಳು (Apple ನ ಪ್ರಮಾಣಿತ EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. ಗೌಪ್ಯತಾ ನೀತಿ: https://jackwallner.github.io/cribbage/privacy-policy.

@@ -4,4 +4,5 @@ Místnosti Karty, Skóre, Odhozy a Pegging. Procvičuj 15, 31, páry, postupky, 
 
 Cribbage+ přidává Endless Practice, opakování chyb, výzvu na 90 sekund, další sady a Master Tables. Základ zůstává zdarma.
 
-Cribbage+ stojí $1.99 měsíčně nebo $9.99 ročně, oba plány mají týdenní zkušební období, případně Lifetime za $29.99 jednorázově. Platba jde přes Apple ID a předplatné se obnovuje automaticky. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+PŘEDPLATNÉ
+Cribbage+ je k dispozici jako automaticky obnovované předplatné (měsíční nebo roční, obojí se 7denní bezplatnou zkušební verzí) nebo jako jednorázový nákup Lifetime. Ceny se zobrazují v aplikaci před nákupem a liší se podle regionu. Platba se strhne z vašeho Apple ID při potvrzení. Předplatné se automaticky obnovuje, pokud ho nezrušíte alespoň 24 hodin před koncem aktuálního období. Spravovat nebo zrušit můžete kdykoli v Nastavení → Apple ID → Předplatné. Podmínky použití (standardní EULA Applu): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Zásady ochrany osobních údajů: https://jackwallner.github.io/cribbage/privacy-policy.

@@ -4,4 +4,5 @@ Salas de cartas, puntuación, descarte y pegging. Cuenta manos, elige dos cartas
 
 Cribbage+ añade Endless Practice, repaso de errores, un reto de 90 segundos, sets extra y Master Tables. El contenido básico sigue siendo gratuito.
 
-Cribbage+ cuesta $1.99 al mes o $9.99 al año, ambos con una prueba gratuita de una semana, o $29.99 una sola vez con Lifetime. El pago se carga a tu Apple ID y la suscripción se renueva automáticamente salvo cancelación. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+SUSCRIPCIONES
+Cribbage+ está disponible como suscripción de renovación automática (mensual o anual, ambas con 7 días de prueba gratis) o como compra única Lifetime. Los precios se muestran en la app antes de comprar y varían según la región. El pago se carga a tu Apple ID al confirmar. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes de que termine el periodo en curso. Gestiona o cancela cuando quieras en Ajustes → Apple ID → Suscripciones. Términos de uso (CLUF estándar de Apple): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Política de privacidad: https://jackwallner.github.io/cribbage/privacy-policy.

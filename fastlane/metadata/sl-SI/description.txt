@@ -4,4 +4,5 @@ Sobe za karte, točkovanje, odmetavanje in pegging. Vadi 15, 31, pare, zaporedja
 
 Cribbage+ doda Endless Practice, ponavljanje napak, 90-sekundni izziv, dodatne sklope in Master Tables. Osnove ostanejo brezplačne.
 
-Cribbage+ stane $1.99 mesečno ali $9.99 letno, oba načrta z brezplačnim tednom preizkusa, ali Lifetime $29.99 enkratno. Plačilo poteka prek Apple ID in naročnina se samodejno obnovi. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+NAROČNINE
+Cribbage+ je na voljo kot samodejno obnavljajoča se naročnina (mesečna ali letna, obe s 7-dnevnim brezplačnim preizkusom) ali kot enkratni nakup Lifetime. Cene so prikazane v aplikaciji pred nakupom in se razlikujejo glede na regijo. Plačilo se ob potrditvi zaračuna na vaš Apple ID. Naročnine se samodejno obnovijo, razen če jih prekličete vsaj 24 ur pred koncem tekočega obdobja. Upravljajte ali prekličite jih kadar koli v Nastavitve → Apple ID → Naročnine. Pogoji uporabe (Applov standardni EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Pravilnik o zasebnosti: https://jackwallner.github.io/cribbage/privacy-policy.

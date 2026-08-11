@@ -32,9 +32,9 @@ Do not ask an unhappy player for a rating.
 
 The local StoreKit configuration contains:
 
-- `com.jackwallner.cribbage.monthly`, $1.99 per month, one-week trial
-- `com.jackwallner.cribbage.yearly`, $9.99 per year, one-week trial
-- `com.jackwallner.cribbage.lifetime`, $29.99 one time
+- `com.jackwallner.cribbage.monthly`, $6.99 per month, one-week trial
+- `com.jackwallner.cribbage.yearly`, $29.99 per year, one-week trial
+- `com.jackwallner.cribbage.lifetime`, $69.99 one time
 
 This project has two entitlements, `pro` and `Cribbage+`, and every product is
 attached to both. The scaffold keyed the entitlement to the player-facing name
