@@ -1,1 +1,9 @@
-Practise counting, scoring, discarding and pegging in four free rooms.
+A smarter rhythm for cribbage night.
+
+Cribbage Minute is a new daily challenge. Every member gets the same five questions on the same day: two hand reads, one discard decision, and two pegging calls. Share your score, and keep a forgiving five-day weekly rhythm with a 30-day archive to catch up from.
+
+Game Night Prep lets you set your usual cribbage night. A reminder arrives beforehand and opens straight into a five-minute session built from your due mistakes, your weakest room, and material you have not seen yet.
+
+Cribbage Trainer now runs natively on iPad, in portrait or landscape.
+
+Cribbage Minute and Game Night Prep are part of Cribbage+.
