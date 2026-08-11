@@ -4,4 +4,5 @@ Rum för kort, poäng, kast och pegging. Träna 15, 31, par, serier, go och det 
 
 Cribbage+ ger Endless Practice, repetition av fel, en 90-sekundersutmaning, extra set och Master Tables. Grunderna är gratis.
 
-Cribbage+ kostar $1.99 per månad eller $9.99 per år, båda med en gratis provvecka, eller Lifetime för $29.99 som engångsköp. Betalning sker via Apple ID och förnyas automatiskt. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+PRENUMERATIONER
+Cribbage+ finns som en prenumeration med automatisk förnyelse (månadsvis eller årsvis, båda med 7 dagars gratis provperiod) eller som ett engångsköp av Lifetime. Priserna visas i appen innan du köper och varierar mellan regioner. Betalningen dras från ditt Apple-ID vid bekräftelsen. Prenumerationer förnyas automatiskt om de inte sägs upp minst 24 timmar före den aktuella periodens slut. Hantera eller säg upp när som helst under Inställningar → Apple-ID → Prenumerationer. Användarvillkor (Apples standard-EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Integritetspolicy: https://jackwallner.github.io/cribbage/privacy-policy.

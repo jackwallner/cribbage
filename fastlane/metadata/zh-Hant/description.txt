@@ -4,4 +4,6 @@
 
 Cribbage+增加Endless Practice、錯題複習、90秒挑戰、額外練習集和Master Tables。基礎內容保持免費。
 
-Cribbage+提供每月$1.99、每年$9.99的自動續訂訂閱，均含一週免費試用，也提供一次性買斷Lifetime $29.99。確認購買後費用從Apple ID扣除。 Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+訂閱說明
+Cribbage+ 提供自動續訂訂閱（每月或每年，兩者皆含 7 天免費試用）或一次買斷 Lifetime。價格會在購買前顯示於 App 內，並因地區而異。確認購買時將由你的 Apple ID 扣款。除非在目前週期結束前至少 24 小時取消，否則訂閱會自動續訂。你可隨時在「設定 → Apple ID → 訂閱項目」中管理或取消。 使用條款（Apple 標準 EULA）：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ 隱私權政策：https://jackwallner.github.io/cribbage/privacy-policy
+隱私權政策：https://jackwallner.github.io/cribbage/privacy-policy

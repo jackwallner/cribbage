@@ -4,4 +4,5 @@
 
 Cribbage+ मध्ये Endless Practice, चुकांचे पुनरावलोकन, 90 सेकंदांचे आव्हान, अतिरिक्त संच आणि Master Tables मिळतात. मूलभूत सामग्री मोफत आहे.
 
-Cribbage+ दरमहा $1.99 किंवा दरवर्षी $9.99, दोन्हीसोबत एक आठवड्याची मोफत चाचणी, किंवा एकदाच Lifetime $29.99. देयक Apple ID वर आकारले जाते आणि सदस्यता आपोआप नूतनीकरण होते. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+सबस्क्रिप्शन
+Cribbage+ स्वयं-नूतनीकरण होणाऱ्या सदस्यत्वाच्या स्वरूपात (मासिक किंवा वार्षिक, दोन्हीत 7 दिवसांची मोफत चाचणी) किंवा एकदाच्या Lifetime खरेदीच्या स्वरूपात उपलब्ध आहे. किमती खरेदीपूर्वी अ‍ॅपमध्ये दिसतात आणि प्रदेशानुसार बदलतात. पुष्टी करताना तुमच्या Apple ID वरून रक्कम आकारली जाते. चालू कालावधी संपण्याच्या किमान 24 तास आधी रद्द न केल्यास सदस्यत्व आपोआप नूतनीकरण होते. कधीही Settings → Apple ID → Subscriptions मध्ये व्यवस्थापित करा किंवा रद्द करा. वापराच्या अटी (Apple चा मानक EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. गोपनीयता धोरण: https://jackwallner.github.io/cribbage/privacy-policy.

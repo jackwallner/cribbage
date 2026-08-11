@@ -4,4 +4,5 @@ Pokoje Kart, Punktacji, Odrzutów i Peggingu. Ćwicz 15, 31, pary, sekwencje, go
 
 Cribbage+ dodaje Endless Practice, powtórkę błędów, wyzwanie 90 sekund, dodatkowe zestawy i Master Tables. Podstawy są darmowe.
 
-Cribbage+ kosztuje $1.99 miesięcznie lub $9.99 rocznie, oba plany obejmują tydzień próby, albo $29.99 jednorazowo za Lifetime. Płatność pobiera Apple ID, a subskrypcja odnawia się automatycznie. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+SUBSKRYPCJE
+Cribbage+ jest dostępny w automatycznie odnawianej subskrypcji (miesięcznej lub rocznej, obie z 7-dniowym bezpłatnym okresem próbnym) albo jako jednorazowy zakup Lifetime. Ceny są widoczne w aplikacji przed zakupem i różnią się w zależności od regionu. Płatność jest pobierana z Apple ID przy potwierdzeniu. Subskrypcje odnawiają się automatycznie, o ile nie zostaną anulowane co najmniej 24 godziny przed końcem bieżącego okresu. Zarządzaj nimi lub anuluj w dowolnej chwili w Ustawienia → Apple ID → Subskrypcje. Warunki korzystania (standardowa umowa EULA Apple): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Polityka prywatności: https://jackwallner.github.io/cribbage/privacy-policy.

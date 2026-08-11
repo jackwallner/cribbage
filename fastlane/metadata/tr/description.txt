@@ -4,4 +4,6 @@ Kart, puanlama, kart atma ve pegging odalarında 15, 31, çift, seri, go ve son 
 
 Cribbage+ Endless Practice, hata tekrarı, 90 saniyelik meydan okuma, ek setler ve Master Tables ekler. Temel içerik ücretsizdir.
 
-Cribbage+ aylık $1.99 veya yıllık $9.99, ikisi de bir haftalık ücretsiz denemeyle, ya da tek seferlik $29.99 Lifetime satın alımıyla sunulur. Ödeme Apple ID'den alınır ve abonelik otomatik yenilenir. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+ABONELİKLER HAKKINDA
+Cribbage+, otomatik yenilenen abonelik (Aylık veya Yıllık, ikisinde de 7 günlük ücretsiz deneme) ya da tek seferlik Lifetime satın alma olarak sunulur. Fiyatlar satın almadan önce uygulamada gösterilir ve bölgeye göre değişir. Ödeme, onay sırasında Apple Kimliğinizden tahsil edilir. Geçerli dönemin bitiminden en az 24 saat önce iptal edilmediği sürece abonelikler otomatik olarak yenilenir. Ayarlar → Apple Kimliği → Abonelikler bölümünden istediğiniz zaman yönetin veya iptal edin. Kullanım Koşulları (Apple'ın standart EULA'sı): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Gizlilik Politikası: https://jackwallner.github.io/cribbage/privacy-policy.
+Gizlilik Politikası: https://jackwallner.github.io/cribbage/privacy-policy

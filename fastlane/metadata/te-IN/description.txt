@@ -4,4 +4,5 @@
 
 Cribbage+లో Endless Practice, తప్పుల పునరావృతం, 90 సెకన్ల సవాలు, అదనపు సెట్లు మరియు Master Tables ఉంటాయి. ప్రాథమిక విషయాలు ఉచితం.
 
-Cribbage+ నెలకు $1.99 లేదా సంవత్సరానికి $9.99, రెండింటిలో ఒక వారం ఉచిత ట్రయల్, లేదా ఒకసారి Lifetime $29.99. చెల్లింపు Apple ID నుంచి తీసుకోబడుతుంది మరియు సభ్యత్వం ఆటోమేటిక్‌గా పునరుద్ధరించబడుతుంది. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+సబ్‌స్క్రిప్షన్లు
+Cribbage+ ఆటో-రెన్యూ అయ్యే సబ్‌స్క్రిప్షన్‌గా (నెలవారీ లేదా వార్షికం, రెండింటిలోనూ 7 రోజుల ఉచిత ట్రయల్) లేదా ఒకసారి చేసే Lifetime కొనుగోలుగా అందుబాటులో ఉంది. కొనుగోలుకు ముందు ధరలు యాప్‌లో కనిపిస్తాయి, అవి ప్రాంతాన్ని బట్టి మారతాయి. నిర్ధారించినప్పుడు మీ Apple ID నుంచి చెల్లింపు జరుగుతుంది. ప్రస్తుత వ్యవధి ముగియడానికి కనీసం 24 గంటల ముందు రద్దు చేయకపోతే సబ్‌స్క్రిప్షన్ దానంతట అదే రెన్యూ అవుతుంది. ఎప్పుడైనా Settings → Apple ID → Subscriptions లో నిర్వహించండి లేదా రద్దు చేయండి. వినియోగ నిబంధనలు (Apple ప్రామాణిక EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. గోప్యతా విధానం: https://jackwallner.github.io/cribbage/privacy-policy.

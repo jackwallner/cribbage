@@ -4,4 +4,5 @@ Kortti-, piste-, poisheitto- ja pegging-huoneet. Harjoittele 15:tä, 31:tä, par
 
 Cribbage+ lisää Endless Practicen, virheiden kertauksen, 90 sekunnin haasteen, lisäsarjat ja Master Tablesin. Perus sisältö on maksutonta.
 
-Cribbage+ maksaa $1.99 kuukaudessa tai $9.99 vuodessa, molemmissa on viikon ilmainen kokeilu, tai Lifetime $29.99 kertamaksuna. Maksu veloitetaan Apple ID:ltä ja tilaus uusiutuu automaattisesti. Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ Privacy: https://jackwallner.github.io/cribbage/privacy-policy
+TILAUKSET
+Cribbage+ on saatavana automaattisesti uusiutuvana tilauksena (kuukausi tai vuosi, molemmissa 7 päivän ilmainen kokeilu) tai kertaostoksena Lifetime. Hinnat näkyvät apissa ennen ostoa ja vaihtelevat alueittain. Maksu veloitetaan Apple ID:ltäsi vahvistuksen yhteydessä. Tilaukset uusiutuvat automaattisesti, ellei niitä peruuteta vähintään 24 tuntia ennen kuluvan jakson päättymistä. Voit hallita tai peruuttaa milloin tahansa: Asetukset → Apple ID → Tilaukset. Käyttöehdot (Applen vakio-EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Tietosuojakäytäntö: https://jackwallner.github.io/cribbage/privacy-policy.
