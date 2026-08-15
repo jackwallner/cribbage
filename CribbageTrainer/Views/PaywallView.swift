@@ -214,6 +214,8 @@ enum PaywallPricing {
 
 /// Standalone paywall sheet (locked drills, locked rooms, Settings upgrade).
 struct PaywallView: View {
+    /// Which surface opened the sheet; reported to RevenueCat.
+    var source: String = "cribbage_paywall_sheet"
     @EnvironmentObject private var subscriptions: SubscriptionService
     @Environment(\.dismiss) private var dismiss
     @State private var selectedPlan: PaywallPlan = .yearly
@@ -270,7 +272,10 @@ struct PaywallView: View {
             .onChange(of: subscriptions.isPro) { _, isPro in
                 if isPro { dismiss() }
             }
-            .task { await subscriptions.ensureOfferings() }
+            .task {
+                subscriptions.trackPaywallImpression(id: source)
+                await subscriptions.ensureOfferings()
+            }
         }
     }
 
