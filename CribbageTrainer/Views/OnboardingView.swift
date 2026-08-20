@@ -74,6 +74,13 @@ struct OnboardingView: View {
             footer
         }
         .background(Theme.background)
+        // Resolve the product before the price slot is on screen. The service
+        // already asks at launch, but on a cold network the answer can still be
+        // in flight when someone swipes through five pages in three seconds,
+        // and the trial step has to show a real billed amount by then.
+        .task(id: page) {
+            await subscriptions.ensureOfferings()
+        }
         .onChange(of: page) { _, newPage in
             guard newPage == lastPage else { return }
             subscriptions.trackPaywallImpression(id: "cribbage_onboarding_trial", oncePerSession: true)
@@ -227,6 +234,12 @@ struct OnboardingView: View {
         }
     }
 
+    /// The billed amount, shown prominently at the point of purchase (App Review
+    /// 3.1.2(c) flagged that it wasn't clearly and conspicuously displayed).
+    private var monthlyPrice: String {
+        PaywallPricing.priceText(subscriptions, .monthly)
+    }
+
     /// One concise line, matching the approved fleet pattern (StatScout): trial
     /// length, price, that it renews, how to cancel. The EULA behind the Terms
     /// link carries the full legalese; this is the point-of-purchase micro copy.
@@ -258,15 +271,25 @@ struct OnboardingView: View {
             .frame(height: 30)
             .opacity(onTrialPage ? 1 : 0)
             .disabled(!onTrialPage)
-            // Disclosure slot, also reserved. Small and tertiary: present at the
-            // point of purchase (3.1.2) without shouting.
-            Text(monthlyDisclosure)
-                .font(.caption2)
-                .foregroundStyle(Theme.inkTertiary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(height: 30)
-                .opacity(onTrialPage ? 1 : 0)
+            // Pricing slot, reserved on every page. Adds a conspicuous billed
+            // amount above the existing disclosure (App Review 3.1.2(c) flagged
+            // it wasn't clearly displayed); everything else is unchanged. This
+            // is Bridge Trainer's approved fix, ported as-is.
+            VStack(spacing: 2) {
+                Text(monthlyPrice)
+                    .font(Theme.display(22))
+                    .foregroundStyle(Theme.ink)
+                Text(monthlyDisclosure)
+                    .font(.caption2)
+                    .foregroundStyle(Theme.inkTertiary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            // minHeight, not Bridge's fixed 48: the English disclosure wraps to
+            // two lines under a 22pt price. The slot renders on every page
+            // regardless, so the CTA still never shifts.
+            .frame(minHeight: 48)
+            .opacity(onTrialPage ? 1 : 0)
             Button {
                 primaryAction()
             } label: {
