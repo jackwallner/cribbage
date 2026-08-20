@@ -232,6 +232,12 @@ struct PaywallView: View {
             .background(Theme.background)
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: 8) {
+                    // Billed amount, shown prominently at the point of purchase
+                    // (App Review 3.1.2(c)): the reviewer flagged that it wasn't
+                    // clearly and conspicuously displayed.
+                    Text(PaywallPricing.priceText(subscriptions, selectedPlan))
+                        .font(Theme.display(22))
+                        .foregroundStyle(Theme.ink)
                     Text(PaywallPricing.terms(subscriptions, selectedPlan))
                         .font(.caption)
                         .foregroundStyle(Theme.inkSecondary)
