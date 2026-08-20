@@ -121,8 +121,14 @@ final class WhatsNewTests: XCTestCase {
     }
 
     /// A player updating from a build that predates the feature has no stored
-    /// marker at all. That is exactly who the sheet is for.
+    /// marker at all. That is exactly who the sheet is for, WHEN the running
+    /// version has notes. A maintenance release deliberately ships none, and
+    /// then nobody is shown an empty sheet.
     func testShownToAnUpgraderWithNoMarker() {
+        guard WhatsNew.currentRelease != nil else {
+            XCTAssertFalse(WhatsNew.shouldPresent(hasOnboarded: true, defaults: defaults))
+            return
+        }
         XCTAssertTrue(WhatsNew.shouldPresent(hasOnboarded: true, defaults: defaults))
     }
 
@@ -136,15 +142,31 @@ final class WhatsNewTests: XCTestCase {
         XCTAssertFalse(WhatsNew.shouldPresent(hasOnboarded: true, defaults: defaults))
     }
 
+    /// Checks EVERY authored release, not just the running one. The old version
+    /// unwrapped `currentRelease` and failed outright on a maintenance build
+    /// that ships no notes, which said nothing about the copy it was meant to
+    /// guard; this way the em dash and duplicate-id checks cover the whole file.
     func testReleaseNotesAreWellFormed() {
-        let release = try! XCTUnwrap(WhatsNew.currentRelease)
-        XCTAssertEqual(release.version, WhatsNew.currentVersion)
-        XCTAssertFalse(release.items.isEmpty)
-        XCTAssertEqual(Set(release.items.map(\.id)).count, release.items.count)
-        for item in release.items {
-            XCTAssertFalse(item.title.isEmpty)
-            XCTAssertFalse(item.body.isEmpty)
-            XCTAssertFalse(item.body.contains("\u{2014}"), "No em dash in copy")
+        XCTAssertFalse(WhatsNew.releases.isEmpty)
+        XCTAssertEqual(Set(WhatsNew.releases.map(\.version)).count, WhatsNew.releases.count)
+        for release in WhatsNew.releases {
+            XCTAssertFalse(release.version.isEmpty)
+            XCTAssertFalse(release.headline.isEmpty)
+            XCTAssertFalse(release.headline.contains("\u{2014}"), "No em dash in copy")
+            XCTAssertFalse(release.items.isEmpty)
+            XCTAssertEqual(Set(release.items.map(\.id)).count, release.items.count)
+            for item in release.items {
+                XCTAssertFalse(item.title.isEmpty)
+                XCTAssertFalse(item.body.isEmpty)
+                XCTAssertFalse(item.body.contains("\u{2014}"), "No em dash in copy")
+            }
         }
+    }
+
+    /// The running version may or may not have notes, but if it does they have
+    /// to be the ones that will actually render.
+    func testCurrentReleaseMatchesTheRunningVersion() {
+        guard let release = WhatsNew.currentRelease else { return }
+        XCTAssertEqual(release.version, WhatsNew.currentVersion)
     }
 }
