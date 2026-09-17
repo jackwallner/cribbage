@@ -29,6 +29,7 @@ final class ScreenshotTests: XCTestCase {
             "-progress.hasOnboarded", "YES",
             "-cribbage.hasReadPrimer", "YES",
             "-cribbage.skillLevel", "some",
+            "-subscription.localProOverride", "YES",
         ]
         // The What's New sheet fires on the first launch after a version bump
         // and covers Home. Marking the CURRENT version as already seen is what
@@ -45,30 +46,63 @@ final class ScreenshotTests: XCTestCase {
         settle()
         dismissWhatsNew()
         capture("05_home")
-        attachTree("home")
 
         if open("Get Started") {
             capture("01_quick_session")
+            if answerVisibleChoice() {
+                capture("01_quick_session_answered")
+            }
         }
         home()
 
         if open("The Scoring Room"), open("Read the Hand") {
             capture("02_hand_match")
+            if answerVisibleChoice() {
+                let nextHand = app.buttons["Next Hand"].firstMatch
+                if nextHand.waitForExistence(timeout: 3) {
+                    nextHand.tap()
+                    settle()
+                }
+                if answerVisibleChoice() {
+                    capture("02_hand_match_answered")
+                }
+            }
         }
         home()
 
         if open("The Pegging Room"), open("Pegging Judgment") {
             capture("03_pegging")
+            if answerVisibleChoice() {
+                capture("03_pegging_answered")
+            }
         }
         home()
 
         if open("The Discard Room"), open("Pick Your Discard") {
             capture("04_discard")
+            if answerDiscard() {
+                capture("04_discard_answered")
+            }
         }
         home()
 
         if open("The Card Room") {
             capture("06_card_room")
+        }
+        home()
+
+        if open("The Scoring Room") {
+            capture("07_scoring_room")
+        }
+        home()
+
+        if open("The Pegging Room") {
+            capture("08_pegging_room")
+        }
+        home()
+
+        if open("The Discard Room") {
+            capture("09_discard_room")
         }
 
         if !problems.isEmpty {
@@ -138,6 +172,50 @@ final class ScreenshotTests: XCTestCase {
         }
     }
 
+    @discardableResult
+    private func answerVisibleChoice() -> Bool {
+        let height = max(app.windows.firstMatch.frame.height, 1)
+        let excluded = ["Settings", "Back", "Next", "Next Hand", "Next Question", "Finish", "Close"]
+        let choice = app.buttons.allElementsBoundByIndex.first { element in
+            let label = element.label
+            return !label.isEmpty
+                && !excluded.contains(label)
+                && element.frame.midY > height * 0.20
+                && element.frame.midY < height * 0.82
+        }
+        guard let choice else {
+            problems.append("could not answer visible choice")
+            return false
+        }
+        choice.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        settle()
+        return true
+    }
+
+    @discardableResult
+    private func answerDiscard() -> Bool {
+        // CardHandView uses tap gestures rather than Button, so the cards are
+        // not exposed as XCUI buttons. The first two cards sit at fixed
+        // normalized positions in this capture layout.
+        let cardY = 0.55
+        for cardX in [0.18, 0.32] {
+            app.coordinate(withNormalizedOffset: CGVector(dx: cardX, dy: cardY)).tap()
+        }
+        settle(0.4)
+        guard app.staticTexts["Selected 2 of 2"].waitForExistence(timeout: 3) else {
+            problems.append("discard cards did not select")
+            return false
+        }
+        let submit = app.buttons["Discard These 2"].firstMatch
+        guard submit.waitForExistence(timeout: 3) else {
+            problems.append("could not submit discard")
+            return false
+        }
+        submit.tap()
+        settle()
+        return true
+    }
+
     private var atHome: Bool {
         app.staticTexts.matching(NSPredicate(format: "label == %@", "THE ROOMS")).firstMatch.exists
     }
@@ -157,10 +235,4 @@ final class ScreenshotTests: XCTestCase {
         add(shot)
     }
 
-    private func attachTree(_ name: String) {
-        let tree = XCTAttachment(string: app.debugDescription)
-        tree.name = "tree_\(name)"
-        tree.lifetime = .keepAlways
-        add(tree)
-    }
 }
