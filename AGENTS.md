@@ -101,11 +101,11 @@ local credential file and must never print those credentials. The App Store ID
 is `6796911073`, and the review funnel opens the app's App Store write-review
 page after the enjoyment gate.
 
-See `CribbageTrainer/Views/Drills/CLAUDE.md` for the gesture and flip
+See `CribbageTrainer/Views/Drills/AGENTS.md` for the gesture and flip
 invariants of the signature swipe deck.
 
 ## Deep notes (load on demand)
-These files load automatically when you read a file matching their `paths:`. Agents that do not auto-load rules (AGENTS.md readers) should open the file for the area they are touching. Record new area-specific learnings in the matching file, not here.
+These files load automatically when you read a file matching their `paths:`. Agents that do not auto-load rules (Codex, Cursor) should open the file for the area they are touching. Record new area-specific learnings in the matching file, not here.
 
 | File | Covers | Read when |
 |---|---|---|
