@@ -4,6 +4,6 @@ Developer notes and historical audits for this repository. The published site re
 
 ## Audits
 
-- [aso827.md](audits/aso827.md)
-- [audit823.md](audits/audit823.md)
-- [ios27CribbageTrainer.md](audits/ios27CribbageTrainer.md)
+- [aso827.md](audits/aso827.md): Cribbage Trainer ASO Audit
+- [audit823.md](audits/audit823.md): Cribbity / Cribbage Trainer audit
+- [ios27CribbageTrainer.md](audits/ios27CribbageTrainer.md): iOS 27 compatibility audit: Cribbage Trainer
