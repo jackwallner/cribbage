@@ -1,1 +1,1 @@
-practice,scoring,crib,board,pegboard,muggins,drill,quiz,skunk,game,counter,learn,coach,offline
+practice,scoring,crib,muggins,beginner,lesson,drill,rule,strategy,quiz,skunk,hand,offline,coach
