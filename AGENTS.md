@@ -23,10 +23,12 @@ or deal, keep discard scenarios at six cards with two recommended discards,
 keep player-facing copy free of em dashes and stale domain terms, and preserve
 the free versus Cribbage+ split.
 
-The review funnel is intentionally terminal. After the third positive drill,
-`ReviewPromptSheet` asks whether the player is enjoying the app. Yes opens the
-App Store write-review page for `6796911073`. No opens the feedback mail draft.
-Do not ask an unhappy player for a rating.
+Ratings: no custom rating question (App Review 5.6.1). A finished drill or
+Cribbage Minute records a positive moment, and `requestsReview(after:)` calls
+Apple's prompt about 3s later if the screen is still clear. Gates: second cold
+launch, onboarding done, 30-day cooldown. Only the Settings "Rate Cribbage
+Trainer" row (write-review page for `6796911073`) ends the asks; "Send Feedback"
+opens `FeedbackSheet` and never stops them.
 
 ## Cribbage+ products
 
@@ -61,7 +63,7 @@ simulator purchase testing.
   pegging, primer, plus, and Master Tables content. `DrillLibrary.rooms` is the
   source of truth for the five rooms.
 - `Shared/Services` contains progress, settings, spaced review, subscriptions,
-  notifications, and the review funnel.
+  notifications, and the rating-ask tracker.
 - `CribbageTrainer/Views` contains onboarding, the home lobby, room screens,
   the swipe deck, quick sessions, generated practice, settings, and the
   paywall.
@@ -98,8 +100,7 @@ runtime, release, website, legal, and screenshot surface.
 
 The repository's release scripts expect App Store Connect credentials from the
 local credential file and must never print those credentials. The App Store ID
-is `6796911073`, and the review funnel opens the app's App Store write-review
-page after the enjoyment gate.
+is `6796911073`; the Settings rate row opens its App Store write-review page.
 
 See `CribbageTrainer/Views/Drills/AGENTS.md` for the gesture and flip
 invariants of the signature swipe deck.
