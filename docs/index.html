@@ -36,6 +36,7 @@
         "@graph": [
             {
                 "@type": "MobileApplication",
+                "dateModified": "2026-10-15",
                 "@id": "https://jackwallner.com/ios/cribbage/#app",
                 "name": "Cribbage Trainer: Count & Peg",
                 "description": "Cribbage Trainer is a free cribbage practice app for iPhone and iPad. It teaches you to count the hand, choose the discard and peg to 31 in five-minute drills across four practice rooms, with the coach's reasoning behind every answer. It has no opponents, needs no account and works offline.",
@@ -270,7 +271,7 @@
 
       .hero .platforms {
         font-size: 13px;
-        color: #86868b;
+        color: #6e6e73;
         letter-spacing: 0.3px;
         margin-bottom: 36px;
       }
@@ -364,20 +365,6 @@
       .feature-card {
         background: #fff;
         padding: 36px 32px;
-      }
-
-      .feature-card .label {
-        display: inline-block;
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        color: #86868b;
-        margin-bottom: 10px;
-      }
-
-      .feature-card .label.cribbage-plus {
-        color: #21594a;
       }
 
       .feature-card h3 {
@@ -487,7 +474,7 @@
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.8px;
-        color: #86868b;
+        color: #6e6e73;
         margin-bottom: 12px;
       }
 
@@ -519,7 +506,7 @@
       }
 
       .specs-table td:first-child {
-        color: #86868b;
+        color: #6e6e73;
         width: 140px;
         font-size: 12px;
         text-transform: uppercase;
@@ -538,7 +525,7 @@
       .disclaimer p {
         font-size: 12px;
         line-height: 1.6;
-        color: #86868b;
+        color: #6e6e73;
         text-align: center;
       }
 
@@ -559,7 +546,7 @@
 
       .cta p {
         font-size: 15px;
-        color: #86868b;
+        color: #6e6e73;
         margin-bottom: 28px;
       }
 
@@ -568,11 +555,11 @@
         text-align: center;
         padding: 20px 24px;
         font-size: 12px;
-        color: #86868b;
+        color: #6e6e73;
       }
 
       footer a {
-        color: #86868b;
+        color: #6e6e73;
         text-decoration: none;
         margin: 0 10px;
       }
@@ -620,6 +607,12 @@
           height: 360px;
         }
       }
+        .feature-card .tier {
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #21594a;
+        }
     </style>
   </head>
   <body>
@@ -693,7 +686,6 @@
       </div>
       <div class="features-grid">
         <div class="feature-card">
-          <span class="label">Card Room</span>
           <h3>Learn the deck</h3>
           <p>
             Card values, suits, the cut, dealer and pone, and the board, then
@@ -701,7 +693,6 @@
           </p>
         </div>
         <div class="feature-card">
-          <span class="label">Scoring Room</span>
           <h3>Count the hand</h3>
           <p>
             Fifteens, pairs, runs, flushes, nobs, and the order that turns a
@@ -709,7 +700,6 @@
           </p>
         </div>
         <div class="feature-card">
-          <span class="label">Hand reading</span>
           <h3>Name the scoring shape</h3>
           <p>
             See five cards and call the patterns that matter before the count
@@ -717,7 +707,6 @@
           </p>
         </div>
         <div class="feature-card">
-          <span class="label">Discard Room</span>
           <h3>Choose two with a plan</h3>
           <p>
             Work six-card deals, compare your discard with the coach's pick, and
@@ -725,7 +714,6 @@
           </p>
         </div>
         <div class="feature-card">
-          <span class="label">Pegging Room</span>
           <h3>Play to 31</h3>
           <p>
             Find fifteens, pairs, runs, go, 31, last card, and safe totals while
@@ -733,34 +721,28 @@
           </p>
         </div>
         <div class="feature-card">
-          <span class="label">Flashcards</span>
           <h3>The why on the back</h3>
           <p>
             Swipeable cards that explain the rule instead of just testing it.
           </p>
         </div>
         <div class="feature-card">
-          <span class="label cribbage-plus"
-            >Extra practice &middot; Cribbage+</span
-          >
           <h3>More reps per room</h3>
           <p>
             An additional practice set in all four rooms, with fresh questions,
             hands, deals, and calls added through the year.
           </p>
+          <p class="tier">Included with Cribbage+</p>
         </div>
         <div class="feature-card">
-          <span class="label cribbage-plus"
-            >Master Tables &middot; Cribbage+</span
-          >
           <h3>Past the basics</h3>
           <p>
             Advanced discard strategy, pegging defense, endgame decisions, and
             expert counting drills.
           </p>
+          <p class="tier">Included with Cribbage+</p>
         </div>
         <div class="feature-card">
-          <span class="label">Streaks</span>
           <h3>Practice between games</h3>
           <p>
             Streaks, missed-item review, and per-room progress keep the useful
@@ -945,7 +927,7 @@
     </section>
 
     <footer>
-      <div class="divider">&copy; 2026 Jack Wallner</div>
+      <div class="divider">&copy; 2026 Jack Wallner · Last updated <time datetime="2026-10-15" data-updated>October 15, 2026</time></div>
       <div>
         <a href="how-to-count-a-cribbage-hand.html">How to count a cribbage hand</a>
         <a href="best-cribbage-app.html">Best cribbage app</a>
