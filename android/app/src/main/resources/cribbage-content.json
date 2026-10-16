@@ -1,0 +1,2472 @@
+{
+  "categories" : [
+    {
+      "displayName" : "Fifteens",
+      "howToSpot" : "Look for any combination of cards whose values add to 15. A ten-value card pairs with a five, while smaller cards can make several combinations.",
+      "id" : "fifteens",
+      "shortName" : "Fifteens"
+    },
+    {
+      "displayName" : "Pairs",
+      "howToSpot" : "Two cards of the same rank score a pair. Three of a rank makes three pairs, and four makes six pairs.",
+      "id" : "pairs",
+      "shortName" : "Pairs"
+    },
+    {
+      "displayName" : "Runs",
+      "howToSpot" : "Three or more consecutive ranks score a run. Duplicate ranks can multiply the run through pairs.",
+      "id" : "runs",
+      "shortName" : "Runs"
+    },
+    {
+      "displayName" : "Flushes",
+      "howToSpot" : "Four cards of one suit score a hand flush. A fifth card, the cut, can extend it when it matches too.",
+      "id" : "flushes",
+      "shortName" : "Flushes"
+    },
+    {
+      "displayName" : "His Nobs",
+      "howToSpot" : "A jack in the hand can become his nobs when the cut matches its suit. It is easy to miss because the cut decides it.",
+      "id" : "nobs",
+      "shortName" : "His Nobs"
+    }
+  ],
+  "primer" : [
+    {
+      "body" : "Cribbage is a race to 121 points. You score by making combinations in your hand and crib, then by playing cards in order during pegging. The first player to reach the finish wins.",
+      "icon" : "flag.checkered",
+      "id" : "crib-goal",
+      "tiles" : [
+        "C5",
+        "D10"
+      ],
+      "tip" : "A fifteen is any combination of cards totaling 15, worth 2 points.",
+      "title" : "The goal"
+    },
+    {
+      "body" : "Use a standard 52-card deck. Aces are low and count as 1. Number cards keep their values, while jacks, queens, and kings count as 10 for fifteens.",
+      "icon" : "suit.club.fill",
+      "id" : "crib-deck",
+      "tiles" : [
+        "C1",
+        "D5",
+        "H10",
+        "S13"
+      ],
+      "title" : "Meet the deck"
+    },
+    {
+      "body" : "Each player receives six cards and discards two to the dealer's crib. The non-dealer cuts the starter card, which joins both hands and the crib for scoring.",
+      "icon" : "rectangle.stack.fill",
+      "id" : "crib-deal",
+      "tiles" : [
+        "C2",
+        "D4",
+        "H6",
+        "S8",
+        "C10",
+        "D12"
+      ],
+      "tip" : "The dealer wants a strong crib. The pone tries to starve it.",
+      "title" : "Deal and discard"
+    },
+    {
+      "body" : "Score every combination of 15, then pairs, runs, and flushes. Add one for his nobs when a jack matches the starter's suit. The same starter card can create several bonuses at once.",
+      "icon" : "number.circle.fill",
+      "id" : "crib-score",
+      "tiles" : [
+        "C4",
+        "D5",
+        "H6"
+      ],
+      "tip" : "Count in the same order every time so your points do not disappear.",
+      "title" : "Count the hand"
+    },
+    {
+      "body" : "After the starter is cut, players alternate playing one card while keeping the running total at or below 31. Score for 15, pairs, runs, 31, go, and the last card.",
+      "icon" : "arrow.up.right.circle.fill",
+      "id" : "crib-pegging",
+      "tiles" : [
+        "C4",
+        "D6",
+        "H10"
+      ],
+      "tip" : "Say the running total out loud. It is the center of every pegging decision.",
+      "title" : "Peg the cards"
+    },
+    {
+      "body" : "That is the whole loop: choose a discard, peg carefully, count every combination, and keep an eye on the board. The drills teach each skill one room at a time, five minutes at a stretch.",
+      "icon" : "checkmark.seal.fill",
+      "id" : "crib-ready",
+      "tiles" : [
+
+      ],
+      "title" : "You are ready"
+    }
+  ],
+  "rooms" : [
+    {
+      "drills" : [
+        {
+          "id" : "meet-cards",
+          "isPlus" : false,
+          "items" : [
+            {
+              "backBody" : "Cribbage uses a standard 52-card deck. Each player is dealt six cards, discards two to the crib, and then the starter card is cut from the deck.",
+              "backTitle" : "52 cards, one cut",
+              "frontSubtitle" : "Start with the shape of the game",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "The deck",
+              "id" : "cards-deck"
+            },
+            {
+              "backBody" : "Clubs, diamonds, hearts, and spades each have thirteen ranks. Suit matters for flushes and his nobs. Most fifteens, pairs, and runs care about rank or value instead.",
+              "backTitle" : "Suit matters selectively",
+              "frontSubtitle" : "The same rank, four suits",
+              "frontTiles" : [
+                "C7",
+                "D7",
+                "H7",
+                "S7"
+              ],
+              "frontTitle" : "Four suits",
+              "id" : "cards-suits"
+            },
+            {
+              "backBody" : "Aces count as 1. Number cards keep their number. Jacks, queens, and kings each count as 10. The rank still matters for pairs and runs.",
+              "backTitle" : "Ace is 1, face cards are 10",
+              "frontSubtitle" : "What counts toward fifteen?",
+              "frontTiles" : [
+                "C1",
+                "D5",
+                "H10",
+                "S13"
+              ],
+              "frontTitle" : "Card values",
+              "id" : "cards-values"
+            },
+            {
+              "backBody" : "Every distinct combination totaling 15 scores 2 points. A hand can contain several fifteens, and each one is counted separately.",
+              "backTitle" : "Every combination counts",
+              "frontSubtitle" : "The most common scoring pattern",
+              "frontTiles" : [
+                "C5",
+                "D10"
+              ],
+              "frontTitle" : "Make fifteen",
+              "id" : "cards-fifteen"
+            },
+            {
+              "backBody" : "Two cards with the same rank score 2 points. Three of a kind contains three separate pairs, and four of a kind contains six.",
+              "backTitle" : "A pair is 2 points",
+              "frontSubtitle" : "Matching rank, different suit",
+              "frontTiles" : [
+                "C9",
+                "H9"
+              ],
+              "frontTitle" : "Spot a pair",
+              "id" : "cards-pairs"
+            },
+            {
+              "backBody" : "Three consecutive ranks score 3 points, four score 4, and so on. Suits may be mixed. Duplicate ranks can create double, triple, or quadruple runs.",
+              "backTitle" : "Three in sequence is 3",
+              "frontSubtitle" : "Order matters, suit does not",
+              "frontTiles" : [
+                "C4",
+                "D5",
+                "S6"
+              ],
+              "frontTitle" : "Build a run",
+              "id" : "cards-runs"
+            },
+            {
+              "backBody" : "After the discard, the non-dealer cuts the deck and the starter card joins both hands and the crib. It can create new fifteens, pairs, runs, a flush, or his nobs.",
+              "backTitle" : "It joins both counts",
+              "frontSubtitle" : "The cut changes the hand",
+              "frontTiles" : [
+                "H11"
+              ],
+              "frontTitle" : "The starter card",
+              "id" : "cards-starter"
+            },
+            {
+              "backBody" : "If your hand contains a jack that matches the starter card's suit, score one point for his nobs. The jack does not need to match the starter's rank.",
+              "backTitle" : "A matching jack is 1",
+              "frontSubtitle" : "One tiny suit check",
+              "frontTiles" : [
+                "H11",
+                "H4"
+              ],
+              "frontTitle" : "His nobs",
+              "id" : "cards-nobs"
+            },
+            {
+              "backBody" : "Both players discard two cards to the dealer's crib. The dealer counts the crib after counting their own hand, so dealer discards are both an opportunity and a risk.",
+              "backTitle" : "The dealer scores it",
+              "frontSubtitle" : "The dealer's tradeoff",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Who owns the crib?",
+              "id" : "cards-dealer"
+            },
+            {
+              "backBody" : "Players move pegs around a 120-hole board. The first player to reach 121 wins, so a safe point now can matter more than a perfect-looking hand later.",
+              "backTitle" : "Reach 121 first",
+              "frontSubtitle" : "Why every point matters",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "The race",
+              "id" : "cards-goal"
+            }
+          ],
+          "kind" : "flashcards",
+          "subtitle" : "Flashcards: suits, values, the cut, and the board",
+          "title" : "Meet the Cards"
+        },
+        {
+          "id" : "card-quiz",
+          "isPlus" : false,
+          "items" : [
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "1 point",
+                "2 points",
+                "5 points"
+              ],
+              "explanation" : "Each distinct combination totaling 15 scores 2 points.",
+              "id" : "card-quiz-1",
+              "prompt" : "How many points does a single combination totaling 15 score?",
+              "tiles" : [
+                "C5",
+                "D10"
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "10",
+                "12",
+                "0"
+              ],
+              "explanation" : "Jacks, queens, and kings each have a cribbage value of 10, while their ranks stay distinct for pairs and runs.",
+              "id" : "card-quiz-2",
+              "prompt" : "What value does a queen contribute to a fifteen?",
+              "tiles" : [
+                "H12"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "The non-dealer",
+                "The dealer",
+                "Whoever cut the starter"
+              ],
+              "explanation" : "The crib belongs to the dealer. Both players contribute two cards to it.",
+              "id" : "card-quiz-3",
+              "prompt" : "Who scores the crib?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "A jack matching the starter's suit",
+                "Any jack in the hand",
+                "A pair of jacks"
+              ],
+              "explanation" : "His nobs is one point for a jack matching the starter card's suit.",
+              "id" : "card-quiz-4",
+              "prompt" : "What makes his nobs?",
+              "tiles" : [
+                "H11",
+                "H6"
+              ]
+            },
+            {
+              "answerIndex" : 2,
+              "choices" : [
+                "4",
+                "5",
+                "6"
+              ],
+              "explanation" : "The standard deal gives each player six cards. Each player then discards two to the crib.",
+              "id" : "card-quiz-5",
+              "prompt" : "How many cards does each player receive before discarding?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "Yes",
+                "No, all suits must match",
+                "Only in the crib"
+              ],
+              "explanation" : "Runs use consecutive ranks. The suits can be mixed.",
+              "id" : "card-quiz-6",
+              "prompt" : "Can a run use mixed suits?",
+              "tiles" : [
+                "C3",
+                "D4",
+                "S5"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "1",
+                "2",
+                "4"
+              ],
+              "explanation" : "Two cards of the same rank make one pair worth 2 points.",
+              "id" : "card-quiz-7",
+              "prompt" : "How many points does a pair score?",
+              "tiles" : [
+                "C8",
+                "S8"
+              ]
+            },
+            {
+              "answerIndex" : 2,
+              "choices" : [
+                "31",
+                "61",
+                "121"
+              ],
+              "explanation" : "Cribbage is normally a race to 121 points.",
+              "id" : "card-quiz-8",
+              "prompt" : "What is the usual winning hole on a cribbage board?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "The starter card is cut",
+                "The dealer redeals",
+                "Pegging starts immediately"
+              ],
+              "explanation" : "The non-dealer cuts the deck and the starter card is placed face up before pegging begins.",
+              "id" : "card-quiz-9",
+              "prompt" : "What happens after the two players discard?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "10s only",
+                "10s and face cards",
+                "All cards above 9 count as their rank"
+              ],
+              "explanation" : "Tens, jacks, queens, and kings each contribute 10 to a fifteen.",
+              "id" : "card-quiz-10",
+              "prompt" : "Which cards all count as 10 for fifteens?",
+              "tiles" : [
+
+              ]
+            }
+          ],
+          "kind" : "quiz",
+          "subtitle" : "Quick quiz: the rules new players miss first",
+          "title" : "Card Check"
+        },
+        {
+          "id" : "plus-card-extras",
+          "isPlus" : true,
+          "items" : [
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "2",
+                "4",
+                "6"
+              ],
+              "explanation" : "Each player contributes two cards, so the dealer's crib has four cards before the starter joins it.",
+              "id" : "plus-card-1",
+              "prompt" : "How many cards are in the crib before the starter is cut?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "A ten-value card for 15",
+                "Only another 5",
+                "Nothing until pegging"
+              ],
+              "explanation" : "A 5 plus any 10, jack, queen, or king is a fifteen worth 2 points.",
+              "id" : "plus-card-2",
+              "prompt" : "What does a 5 combine with most readily?",
+              "tiles" : [
+                "C5",
+                "D10"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Yes",
+                "No",
+                "Only in the crib"
+              ],
+              "explanation" : "A run is about consecutive ranks. The suits may be mixed.",
+              "id" : "plus-card-3",
+              "prompt" : "Does a run need matching suits?",
+              "tiles" : [
+                "C4",
+                "H5",
+                "S6"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Any three matching suits",
+                "All four crib cards and the starter match",
+                "Only the four crib cards match"
+              ],
+              "explanation" : "The crib's flush rule is stricter than a hand flush: all five cards, including the starter, must match suit.",
+              "id" : "plus-card-4",
+              "prompt" : "What makes a crib flush?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "A jack matching the starter suit",
+                "Any queen",
+                "Any card matching the starter rank"
+              ],
+              "explanation" : "His nobs is one point for a jack whose suit matches the starter.",
+              "id" : "plus-card-5",
+              "prompt" : "Which card can be his nobs?",
+              "tiles" : [
+                "H11",
+                "H4"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Three fifteens",
+                "Three ways to make the same run",
+                "Three cards of one suit"
+              ],
+              "explanation" : "Three copies of a rank inside a run create three distinct ways to form that sequence.",
+              "id" : "plus-card-6",
+              "prompt" : "What is a triple run?",
+              "tiles" : [
+                "C4",
+                "D4",
+                "H4",
+                "S5",
+                "C6"
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "The pone",
+                "The dealer",
+                "Whoever cut"
+              ],
+              "explanation" : "The pone counts first, then the dealer counts their hand and the crib. The order can decide a close game.",
+              "id" : "plus-card-7",
+              "prompt" : "Who counts first after pegging?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "1",
+                "10",
+                "11"
+              ],
+              "explanation" : "An ace counts as 1 and is low in runs.",
+              "id" : "plus-card-8",
+              "prompt" : "What is an ace's value in a fifteen?",
+              "tiles" : [
+                "C1"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "1",
+                "2",
+                "3"
+              ],
+              "explanation" : "Each player discards exactly two cards. The dealer's crib then contains four cards before the starter is cut.",
+              "id" : "more-card-deal",
+              "prompt" : "How many cards does each player discard to the crib?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "10",
+                "13",
+                "0"
+              ],
+              "explanation" : "Every face card counts as 10 for fifteens, even though its rank stays jack, queen, or king for pairs and runs.",
+              "id" : "more-card-face",
+              "prompt" : "What is a king worth toward fifteen?",
+              "tiles" : [
+                "S13"
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "Wins",
+                "Deals the next hand",
+                "Scores the crib twice"
+              ],
+              "explanation" : "Standard cribbage is a race to 121. A player who reaches the finish first wins immediately.",
+              "id" : "more-card-board",
+              "prompt" : "What does the first player to 121 do?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "The non-dealer",
+                "The dealer",
+                "The player with fewer points"
+              ],
+              "explanation" : "The non-dealer cuts the deck after both players have discarded.",
+              "id" : "more-card-cut",
+              "prompt" : "Who usually cuts for the starter card?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Yes, after a king",
+                "No, it is low",
+                "Only in the crib"
+              ],
+              "explanation" : "Aces are low in cribbage. A, 2, 3 is a run, but Q, K, A is not.",
+              "id" : "more-card-ace",
+              "prompt" : "Can an ace be high in a run?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Count only the best-looking pattern",
+                "Use a fixed order and check every combination",
+                "Count the cut card last and ignore it"
+              ],
+              "explanation" : "A repeatable count order, such as fifteens, pairs, runs, flush, and nobs, prevents omissions and double counting.",
+              "id" : "more-card-count",
+              "prompt" : "What is the safest way to count a complicated hand?",
+              "tiles" : [
+
+              ]
+            }
+          ],
+          "kind" : "quiz",
+          "subtitle" : "Eight more: deal sizes, values, cuts, and counts",
+          "title" : "Card Check: Extra Reps"
+        }
+      ],
+      "icon" : "rectangle.portrait.on.rectangle.portrait.angled",
+      "id" : "card-room",
+      "isFree" : true,
+      "name" : "The Card Room",
+      "tagline" : "Meet the deck and learn the vocabulary"
+    },
+    {
+      "drills" : [
+        {
+          "id" : "scoring-cards",
+          "isPlus" : false,
+          "items" : [
+            {
+              "backBody" : "A 5 with a ten-value card is one fifteen. The ace, the 4, and the same ten-value card make another. When a hand has several small cards, check combinations systematically so none are missed.",
+              "backTitle" : "Count every combination",
+              "frontSubtitle" : "The combinations add up",
+              "frontTiles" : [
+                "C5",
+                "D10",
+                "H4",
+                "S1"
+              ],
+              "frontTitle" : "Fifteens",
+              "id" : "score-fifteens"
+            },
+            {
+              "backBody" : "This example has two separate pairs for 4 points. Three cards of one rank create three pairs, not one three-of-a-kind score.",
+              "backTitle" : "Two points per pair",
+              "frontSubtitle" : "Same rank, different suits",
+              "frontTiles" : [
+                "C8",
+                "D8",
+                "H3",
+                "S3"
+              ],
+              "frontTitle" : "Pairs",
+              "id" : "score-pairs"
+            },
+            {
+              "backBody" : "Three in sequence scores 3, four scores 4, and five scores 5. Duplicate ranks can create multiple runs, so sort the cards before counting.",
+              "backTitle" : "Length is the score",
+              "frontSubtitle" : "Consecutive ranks",
+              "frontTiles" : [
+                "C3",
+                "D4",
+                "S5",
+                "H6"
+              ],
+              "frontTitle" : "Runs",
+              "id" : "score-runs"
+            },
+            {
+              "backBody" : "Four cards of the same suit score 4 in a hand. If the starter also matches, the hand flush is 5. The crib has a stricter flush rule: all five cards must match.",
+              "backTitle" : "Four or five matching suits",
+              "frontSubtitle" : "Suit is the whole clue",
+              "frontTiles" : [
+                "H2",
+                "H5",
+                "H8",
+                "H11"
+              ],
+              "frontTitle" : "Flushes",
+              "id" : "score-flush"
+            },
+            {
+              "backBody" : "A jack matching the starter card's suit scores one point. In a real count, keep the jack in view until you know the cut.",
+              "backTitle" : "One point for a match",
+              "frontSubtitle" : "The jack is watching the cut",
+              "frontTiles" : [
+                "H11",
+                "C7",
+                "D9",
+                "S4"
+              ],
+              "frontTitle" : "His nobs",
+              "id" : "score-nobs"
+            },
+            {
+              "backBody" : "The 4-5-6 sequence appears twice because there are two 4s. That is a double run of three for 6 points, before any fifteens.",
+              "backTitle" : "The pair makes two runs",
+              "frontSubtitle" : "A pair can multiply a run",
+              "frontTiles" : [
+                "C4",
+                "D4",
+                "H5",
+                "S6"
+              ],
+              "frontTitle" : "A double run",
+              "id" : "score-double-run"
+            },
+            {
+              "backBody" : "Use the same order every time. Count fifteens first, then pairs, runs, flushes, and his nobs. Add the starter-driven bonuses as you go.",
+              "backTitle" : "Fifteens, pairs, runs, flush, nobs",
+              "frontSubtitle" : "A habit prevents misses",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Count in an order",
+              "id" : "score-count-order"
+            },
+            {
+              "backBody" : "During pegging, points come from making 15, pairs, runs, 31, go, and the last card. The same cards can score differently in this phase because order matters.",
+              "backTitle" : "Track the running total",
+              "frontSubtitle" : "The hand count is not the whole game",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Pegging scores too",
+              "id" : "score-pegging"
+            }
+          ],
+          "kind" : "flashcards",
+          "subtitle" : "Flashcards: fifteens, pairs, runs, flushes, and nobs",
+          "title" : "Know the Scores"
+        },
+        {
+          "id" : "hand-match",
+          "isPlus" : false,
+          "items" : [
+            {
+              "answer" : "fifteens",
+              "choices" : [
+                "fifteens",
+                "pairs",
+                "flushes"
+              ],
+              "explanation" : "The 5 with the 10 is a clear fifteen, and the 2, 3, and 10-value card make another 15. There is no pair or four-card flush.",
+              "id" : "score-match-1",
+              "tiles" : [
+                "C5",
+                "D10",
+                "H2",
+                "S3",
+                "C9"
+              ]
+            },
+            {
+              "answer" : "pairs",
+              "choices" : [
+                "pairs",
+                "runs",
+                "nobs"
+              ],
+              "explanation" : "Three 7s create three separate pairs for 6 points. They are not a run, and no jack is present.",
+              "id" : "score-match-2",
+              "tiles" : [
+                "C7",
+                "D7",
+                "H7",
+                "S2",
+                "C10"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "flushes",
+                "nobs"
+              ],
+              "explanation" : "The four cards from 4 through 7 form a run of four. The suits are mixed, so this is not a flush, and there is no jack to watch.",
+              "id" : "score-match-3",
+              "tiles" : [
+                "C4",
+                "D5",
+                "S6",
+                "H7",
+                "C10"
+              ]
+            },
+            {
+              "answer" : "flushes",
+              "choices" : [
+                "flushes",
+                "fifteens",
+                "pairs"
+              ],
+              "explanation" : "Four cards in the hand are diamonds, so the hand has a four-card flush worth 4, and a diamond cut would make it 5. Nothing here adds to fifteen and no rank repeats.",
+              "id" : "score-match-4",
+              "tiles" : [
+                "D6",
+                "D8",
+                "D12",
+                "D13",
+                "H4"
+              ]
+            },
+            {
+              "answer" : "nobs",
+              "choices" : [
+                "nobs",
+                "runs",
+                "flushes"
+              ],
+              "explanation" : "The hand contains a heart jack. If the starter is a heart, that jack becomes his nobs for one point.",
+              "id" : "score-match-5",
+              "tiles" : [
+                "H11",
+                "C2",
+                "D6",
+                "S8",
+                "C13"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "flushes",
+                "nobs"
+              ],
+              "explanation" : "The 3-4-5-6 shape is a four-card run, and the second 3 lets it form twice. That double run of four is 8 points before the pair is counted.",
+              "id" : "score-match-6",
+              "tiles" : [
+                "C3",
+                "D3",
+                "H4",
+                "S5",
+                "C6"
+              ]
+            },
+            {
+              "answer" : "fifteens",
+              "choices" : [
+                "fifteens",
+                "runs",
+                "pairs"
+              ],
+              "explanation" : "Two combinations reach fifteen: the 6 with the 9, and the 5 with the queen. No rank repeats and nothing runs three deep, so 4 points of fifteens is the whole count.",
+              "id" : "score-match-7",
+              "tiles" : [
+                "S3",
+                "S5",
+                "D6",
+                "C9",
+                "H12"
+              ]
+            },
+            {
+              "answer" : "pairs",
+              "choices" : [
+                "pairs",
+                "runs",
+                "fifteens"
+              ],
+              "explanation" : "Only the two 10s share a rank, so there is exactly one pair. Queen and king are also worth 10 toward a fifteen, but rank is what pairs, and 10-queen-king skips the jack so there is no run.",
+              "id" : "score-match-8",
+              "tiles" : [
+                "C1",
+                "D10",
+                "S10",
+                "C12",
+                "H13"
+              ]
+            }
+          ],
+          "kind" : "handMatch",
+          "subtitle" : "See five cards, name the scoring shape",
+          "title" : "Read the Hand"
+        },
+        {
+          "id" : "plus-hand-extras",
+          "isPlus" : true,
+          "items" : [
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "fifteens",
+                "flushes"
+              ],
+              "explanation" : "8-9-10-jack is a run of four. Rank order is what builds a run, so the jack sits directly above the 10 even though both are worth 10 toward a fifteen.",
+              "id" : "plus-hand-1",
+              "tiles" : [
+                "C8",
+                "S9",
+                "D10",
+                "D11",
+                "H13"
+              ]
+            },
+            {
+              "answer" : "pairs",
+              "choices" : [
+                "pairs",
+                "fifteens",
+                "nobs"
+              ],
+              "explanation" : "Three 7s contain three separate pairs for 6 points, not a single three-of-a-kind score. Nothing here reaches fifteen and there is no jack.",
+              "id" : "plus-hand-2",
+              "tiles" : [
+                "C6",
+                "D7",
+                "H7",
+                "S7",
+                "D12"
+              ]
+            },
+            {
+              "answer" : "flushes",
+              "choices" : [
+                "flushes",
+                "runs",
+                "nobs"
+              ],
+              "explanation" : "Four spades create a four-card hand flush worth 4, and a spade cut would make it 5.",
+              "id" : "plus-hand-3",
+              "tiles" : [
+                "S2",
+                "S6",
+                "S8",
+                "S13",
+                "D4"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "flushes",
+                "nobs"
+              ],
+              "explanation" : "2-3-4-5 is a run of four, and the second 2 lets it form twice. That double run of four is 8 points before the pair of 2s adds 2 more.",
+              "id" : "plus-hand-4",
+              "tiles" : [
+                "C2",
+                "D2",
+                "H3",
+                "S4",
+                "C5"
+              ]
+            },
+            {
+              "answer" : "fifteens",
+              "choices" : [
+                "fifteens",
+                "runs",
+                "pairs"
+              ],
+              "explanation" : "The 5 makes fifteen with the 10 and again with the queen, and 2-5-8 makes a third. Three fifteens is 6 points, with no repeated rank and no sequence.",
+              "id" : "plus-hand-5",
+              "tiles" : [
+                "C5",
+                "D10",
+                "S12",
+                "H8",
+                "C2"
+              ]
+            },
+            {
+              "answer" : "pairs",
+              "choices" : [
+                "pairs",
+                "runs",
+                "flushes"
+              ],
+              "explanation" : "Four of a rank contain six separate pairs for 12 points. The king is not consecutive with the 7s and only two cards share a suit.",
+              "id" : "plus-hand-6",
+              "tiles" : [
+                "C7",
+                "D7",
+                "H7",
+                "S7",
+                "C13"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "pairs",
+                "flushes"
+              ],
+              "explanation" : "2-3-4 is a run of three. No rank repeats and only two cards share a suit, so the run is the shape on the table. Two fifteens hide behind it for a full count of 7.",
+              "id" : "more-hand-1",
+              "tiles" : [
+                "C2",
+                "D3",
+                "H4",
+                "S8",
+                "C10"
+              ]
+            },
+            {
+              "answer" : "fifteens",
+              "choices" : [
+                "fifteens",
+                "runs",
+                "flushes"
+              ],
+              "explanation" : "Each 5 makes fifteen with the 10 and again with the jack. Four fifteens is 8 points, before the pair of 5s adds 2 more.",
+              "id" : "more-hand-2",
+              "tiles" : [
+                "C5",
+                "D5",
+                "H10",
+                "S11",
+                "C2"
+              ]
+            },
+            {
+              "answer" : "flushes",
+              "choices" : [
+                "flushes",
+                "pairs",
+                "runs"
+              ],
+              "explanation" : "Four hearts make a four-card hand flush. The starter would determine whether a fifth heart extends it to 5 points.",
+              "id" : "more-hand-3",
+              "tiles" : [
+                "H1",
+                "H4",
+                "H7",
+                "H12",
+                "C9"
+              ]
+            },
+            {
+              "answer" : "pairs",
+              "choices" : [
+                "pairs",
+                "runs",
+                "flushes"
+              ],
+              "explanation" : "Three 9s contain three separate pairs for 6 points. There is no consecutive sequence, though each 9 does make fifteen with the 6.",
+              "id" : "more-hand-4",
+              "tiles" : [
+                "C9",
+                "D9",
+                "H9",
+                "S4",
+                "C6"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "pairs",
+                "flushes"
+              ],
+              "explanation" : "6-7-8-9 is a run of four. The king sits apart from that sequence, and the two fifteens, 6 with 9 and 7 with 8, are counted separately.",
+              "id" : "more-hand-5",
+              "tiles" : [
+                "C6",
+                "D7",
+                "H8",
+                "S9",
+                "C13"
+              ]
+            },
+            {
+              "answer" : "nobs",
+              "choices" : [
+                "nobs",
+                "runs",
+                "flushes"
+              ],
+              "explanation" : "The heart jack becomes his nobs if the starter is a heart. Nothing here runs three deep and only two cards share a suit, so the jack is the shape to watch.",
+              "id" : "more-hand-6",
+              "tiles" : [
+                "H11",
+                "C2",
+                "D5",
+                "S8",
+                "C10"
+              ]
+            }
+          ],
+          "kind" : "handMatch",
+          "subtitle" : "Six more hands with overlapping scoring patterns",
+          "title" : "Read the Hand: Extra Reps"
+        }
+      ],
+      "icon" : "number.circle.fill",
+      "id" : "scoring-room",
+      "isFree" : true,
+      "name" : "The Scoring Room",
+      "tagline" : "See the points before you count them"
+    },
+    {
+      "drills" : [
+        {
+          "id" : "discard-rules",
+          "isPlus" : false,
+          "items" : [
+            {
+              "backBody" : "Each player receives six cards and discards exactly two. The four cards you keep are your hand. The dealer adds both discards to the crib.",
+              "backTitle" : "Two cards to the crib",
+              "frontSubtitle" : "The first decision after the deal",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "What are you choosing?",
+              "id" : "discard-what"
+            },
+            {
+              "backBody" : "The dealer scores the crib later, so a dealer can accept a slightly weaker hand when the discarded pair is likely to make a useful crib. The pone tries to starve it.",
+              "backTitle" : "Dealer wants a strong crib",
+              "frontSubtitle" : "The same hand has two different jobs",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Dealer or pone?",
+              "id" : "discard-dealer"
+            },
+            {
+              "backBody" : "A 5 pairs with every ten-value card for a fifteen and connects with small cards. As pone, discarding a 5 is often risky unless your hand improves dramatically.",
+              "backTitle" : "A 5 feeds many cribs",
+              "frontSubtitle" : "A gift worth watching",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "The dangerous 5",
+              "id" : "discard-five"
+            },
+            {
+              "backBody" : "A pair is already worth 2. Break it only when the replacement creates a much stronger mix of fifteens, runs, or a flush, and account for what the crib will receive.",
+              "backTitle" : "Start with the guaranteed 2",
+              "frontSubtitle" : "Guaranteed points versus flexibility",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Keep a pair?",
+              "id" : "discard-pair"
+            },
+            {
+              "backBody" : "A 4, 5, and 6 can make runs and fifteens. The more combinations a card participates in, the more expensive it is to throw away.",
+              "backTitle" : "Keep cards that make several shapes",
+              "frontSubtitle" : "The cards talk to each other",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Connected cards",
+              "id" : "discard-run"
+            },
+            {
+              "backBody" : "When you are pone, look at the cards you are giving the dealer. Avoid giving a pair, a 5, or two cards that immediately make 15 together when a similar hand score is available.",
+              "backTitle" : "Avoid pairs and fifteens",
+              "frontSubtitle" : "Pone's defensive lens",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Starve the opponent",
+              "id" : "discard-crib-safety"
+            },
+            {
+              "backBody" : "The starter is random, so do not build a discard around one miracle card. Favor a hand that already scores and has several useful cuts.",
+              "backTitle" : "Prefer broad potential",
+              "frontSubtitle" : "Plan for the unknown",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "You cannot see the cut",
+              "id" : "discard-cut"
+            },
+            {
+              "backBody" : "During the hand count, the same starter joins your hand and the crib. During pegging, the discarded cards are gone, so use the information to estimate what remains.",
+              "backTitle" : "Remember what went where",
+              "frontSubtitle" : "The decision is not finished",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "After the discard",
+              "id" : "discard-crib-count"
+            }
+          ],
+          "kind" : "flashcards",
+          "subtitle" : "Flashcards: dealer, pone, crib defense, and useful cuts",
+          "title" : "Discard Playbook"
+        },
+        {
+          "id" : "discard-two",
+          "isPlus" : false,
+          "items" : [
+            {
+              "deal" : [
+                "C2",
+                "D3",
+                "H4",
+                "S5",
+                "C10",
+                "D13"
+              ],
+              "id" : "discard-scenario-1",
+              "reasoning" : "Keep 2-3-4-5 for a run of four. Trading the 5 away would be worse: it is the single most useful card in the deck, and as pone every card you throw lands in the dealer's crib. The 10 and king neither pair nor make fifteen together, so they are the cheapest pair to give up.",
+              "recommendedDiscard" : [
+                "C10",
+                "D13"
+              ],
+              "situation" : "You are pone. Choose 2 cards to discard.",
+              "tip" : "As pone, judge a discard by what it gives the dealer, not only by what it costs you."
+            },
+            {
+              "deal" : [
+                "C5",
+                "D5",
+                "H6",
+                "S7",
+                "C10",
+                "D12"
+              ],
+              "id" : "discard-scenario-2",
+              "reasoning" : "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either, because they make fifteen together in your own crib.",
+              "recommendedDiscard" : [
+                "H6",
+                "S7"
+              ],
+              "situation" : "You are the dealer. Choose 2 cards to discard.",
+              "tip" : "As dealer, evaluate the hand and the crib together."
+            },
+            {
+              "deal" : [
+                "H2",
+                "H5",
+                "H8",
+                "H11",
+                "C4",
+                "S9"
+              ],
+              "id" : "discard-scenario-3",
+              "reasoning" : "Keeping the four hearts preserves a four-card flush and gives the starter a chance to extend it. The off-suit 4 and 9 do not create a stronger structure together, and neither is an appealing gift as a pair.",
+              "recommendedDiscard" : [
+                "C4",
+                "S9"
+              ],
+              "situation" : "You are pone. A flush is available. Choose 2 cards.",
+              "tip" : "Four cards of one suit are already a meaningful hand feature."
+            },
+            {
+              "deal" : [
+                "C7",
+                "D7",
+                "H3",
+                "S4",
+                "C5",
+                "D10"
+              ],
+              "id" : "discard-scenario-4",
+              "reasoning" : "Keeping the 7s scores 2 and almost nothing else, because 7-7-4-5 makes no fifteen and no run. Put the pair in your own crib instead: it still scores 2 there, and 3-4-5-10 keeps a run, the 5-10 fifteen, and the widest set of helpful cuts.",
+              "recommendedDiscard" : [
+                "C7",
+                "D7"
+              ],
+              "situation" : "You are the dealer. Where does the pair do the most work?",
+              "tip" : "A dealer's own crib is a safe home for a pair that does not fit the hand."
+            },
+            {
+              "deal" : [
+                "C2",
+                "D5",
+                "H6",
+                "S8",
+                "C9",
+                "D13"
+              ],
+              "id" : "discard-scenario-5",
+              "reasoning" : "Keep 5-6-9-K for two fifteens: 6 with 9, and 5 with the king. Throwing the 2 and the 8 gives the dealer two cards that neither pair nor reach fifteen together, and it keeps the 5 out of the crib.",
+              "recommendedDiscard" : [
+                "C2",
+                "S8"
+              ],
+              "situation" : "You are pone. Which two cards starve the crib best?",
+              "tip" : "For the pone, crib defense is part of your score."
+            },
+            {
+              "deal" : [
+                "C4",
+                "D4",
+                "H5",
+                "S6",
+                "C9",
+                "D12"
+              ],
+              "id" : "discard-scenario-6",
+              "reasoning" : "The two 4s with 5 and 6 make a double run of three. The 9 and queen are isolated from that shape and do not form a useful pair or fifteen with each other.",
+              "recommendedDiscard" : [
+                "C9",
+                "D12"
+              ],
+              "situation" : "You are the dealer. Keep the double run alive.",
+              "tip" : "Duplicate ranks can multiply a run, so sort before discarding."
+            },
+            {
+              "deal" : [
+                "C10",
+                "D10",
+                "H11",
+                "S12",
+                "C13",
+                "D4"
+              ],
+              "id" : "discard-scenario-7",
+              "reasoning" : "Keep 10-10-J-Q. The second 10 lets 10-jack-queen form twice, a double run of three for 6, plus 2 for the pair. Dropping the king breaks nothing, because 10-jack-queen-king would only be a single run of four, and the 4 connects to nothing here.",
+              "recommendedDiscard" : [
+                "C13",
+                "D4"
+              ],
+              "situation" : "You are the dealer with a high-card-heavy deal.",
+              "tip" : "Ten-value cards make few fifteens, but they still pair and run by rank."
+            },
+            {
+              "deal" : [
+                "C3",
+                "D4",
+                "H5",
+                "S7",
+                "C8",
+                "D10"
+              ],
+              "id" : "discard-scenario-8",
+              "reasoning" : "The 3-4-5 block plus a ten-value card is the most connected hand here: a run of three and the 5-10 fifteen, with many helpful cuts. The 7 and 8 are not a loss either, because they already make fifteen in your own crib.",
+              "recommendedDiscard" : [
+                "S7",
+                "C8"
+              ],
+              "situation" : "You are the dealer and the board is tight. Choose two.",
+              "tip" : "The board can make a safe, countable hand the best hand."
+            }
+          ],
+          "kind" : "discard",
+          "subtitle" : "Six-card deals: choose two, then compare with the coach",
+          "title" : "Pick Your Discard"
+        },
+        {
+          "id" : "plus-discard-extras",
+          "isPlus" : true,
+          "items" : [
+            {
+              "deal" : [
+                "C3",
+                "D4",
+                "H5",
+                "S6",
+                "C10",
+                "D13"
+              ],
+              "id" : "plus-discard-1",
+              "reasoning" : "Keep 3-4-5-6: a run of four for 4, plus the 4-5-6 fifteen for 2. Swapping the 6 for the 10 looks similar but drops the run to three cards. The two ten-value cards neither pair nor make fifteen together, so they are the safest thing to hand the dealer.",
+              "recommendedDiscard" : [
+                "C10",
+                "D13"
+              ],
+              "situation" : "You are pone. Keep the broadest scoring hand.",
+              "tip" : "Count combinations, not just the prettiest sequence."
+            },
+            {
+              "deal" : [
+                "C6",
+                "D6",
+                "H7",
+                "S8",
+                "C2",
+                "D13"
+              ],
+              "id" : "plus-discard-2",
+              "reasoning" : "Keep 6-6-7-8. The second 6 gives 6-7-8 two ways to form, a double run of three for 6, plus 2 for the pair and 2 for the 7-8 fifteen: 10 points before the cut. The 2 and the king touch none of that.",
+              "recommendedDiscard" : [
+                "C2",
+                "D13"
+              ],
+              "situation" : "You are the dealer. A pair sits inside a run.",
+              "tip" : "A pair inside a run is worth far more than a pair on its own."
+            },
+            {
+              "deal" : [
+                "D2",
+                "D6",
+                "D9",
+                "D12",
+                "C4",
+                "S8"
+              ],
+              "id" : "plus-discard-3",
+              "reasoning" : "The four diamonds preserve a hand flush and give the cut a chance to make five. The off-suit cards are not a pair and do not form a fifteen together.",
+              "recommendedDiscard" : [
+                "C4",
+                "S8"
+              ],
+              "situation" : "You are pone with four diamonds. Choose two cards.",
+              "tip" : "As pone, do not give away a pair or a clean fifteen when you have another path."
+            },
+            {
+              "deal" : [
+                "C2",
+                "D3",
+                "H4",
+                "S9",
+                "C10",
+                "D12"
+              ],
+              "id" : "plus-discard-4",
+              "reasoning" : "The 2-3-4 block has a clear run path and the 10 helps a 5 if the cut arrives. The 9 and queen are the least integrated cards.",
+              "recommendedDiscard" : [
+                "S9",
+                "D12"
+              ],
+              "situation" : "You are pone and the board is close. Choose the easy hand to count.",
+              "tip" : "Reliable points are often worth more than a fragile ceiling."
+            },
+            {
+              "deal" : [
+                "C3",
+                "D4",
+                "H5",
+                "S9",
+                "C10",
+                "D13"
+              ],
+              "id" : "more-discard-1",
+              "reasoning" : "Keep 3-4-5-10, which is rich in runs and fifteens. The 9 and king are the least connected cards, and they do not make 15 together.",
+              "recommendedDiscard" : [
+                "S9",
+                "D13"
+              ],
+              "situation" : "You are pone. Choose two cards without feeding the crib.",
+              "tip" : "Pone should protect the crib as well as build a hand."
+            },
+            {
+              "deal" : [
+                "C4",
+                "D4",
+                "H5",
+                "S6",
+                "C10",
+                "D12"
+              ],
+              "id" : "more-discard-2",
+              "reasoning" : "Keep the pair of 4s and the 5-6 connection. The pair is guaranteed value, while 10 and queen are the least integrated cards in this deal.",
+              "recommendedDiscard" : [
+                "C10",
+                "D12"
+              ],
+              "situation" : "You are the dealer with a pair and a run. Choose two.",
+              "tip" : "Dealer decisions weigh both the hand and the crib."
+            },
+            {
+              "deal" : [
+                "C2",
+                "C4",
+                "C9",
+                "C12",
+                "D7",
+                "H13"
+              ],
+              "id" : "more-discard-3",
+              "reasoning" : "Keeping the four clubs is 4 for the flush plus 2 for the 2-4-9 fifteen, and a club cut makes the flush 5. The 7 and king are off-suit, do not pair, and do not reach fifteen together, so they cost the dealer's crib very little.",
+              "recommendedDiscard" : [
+                "D7",
+                "H13"
+              ],
+              "situation" : "You are pone and four cards share a suit. Protect the flush.",
+              "tip" : "A four-card flush is already a real source of points."
+            },
+            {
+              "deal" : [
+                "C2",
+                "D3",
+                "H4",
+                "S8",
+                "C9",
+                "D10"
+              ],
+              "id" : "more-discard-4",
+              "reasoning" : "Keep 2-3-4 with the 9: the run scores 3 and 2-4-9 makes fifteen. Holding the 9 rather than the 10 matters on the discard side, because 8 and 10 give the dealer nothing, while 8 and 9 hand over a run start.",
+              "recommendedDiscard" : [
+                "S8",
+                "D10"
+              ],
+              "situation" : "You are pone near the finish. Favor the hand you can count safely.",
+              "tip" : "The board can make a dependable point more valuable than a risky maximum."
+            }
+          ],
+          "kind" : "discard",
+          "subtitle" : "Four more deals: flushes, pairs, board position, and defense",
+          "title" : "Pick Your Discard: Extra Reps"
+        }
+      ],
+      "icon" : "arrow.left.arrow.right",
+      "id" : "discard-room",
+      "isFree" : true,
+      "name" : "The Discard Room",
+      "tagline" : "Choose two cards with a plan"
+    },
+    {
+      "drills" : [
+        {
+          "id" : "pegging-judgment",
+          "isPlus" : false,
+          "items" : [
+            {
+              "backBody" : "A 5 connects with every ten-value card for a fifteen and is one of the most valuable cards to keep. Discard the card that creates the fewest combinations with the rest of the hand.",
+              "backTitle" : "Protect the 5",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep the 5",
+                  "Discard the 5"
+                ]
+              },
+              "frontSubtitle" : "Which card is the anchor?",
+              "frontTiles" : [
+                "C5",
+                "D10",
+                "H2",
+                "S8",
+                "C11",
+                "D4"
+              ],
+              "frontTitle" : "Six cards: keep the 5",
+              "id" : "decision-keep-five"
+            },
+            {
+              "backBody" : "As dealer, you want your hand and crib to score. When two discards help your hand equally, prefer the pair that is less likely to give the pone a fifteen or run in the crib.",
+              "backTitle" : "Avoid gifting connected cards",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Protect your hand first",
+                  "Give away your best fifteen cards"
+                ]
+              },
+              "frontSubtitle" : "The crib changes the tradeoff",
+              "frontTiles" : [
+                "C2",
+                "D3",
+                "H7",
+                "S8",
+                "C10",
+                "D12"
+              ],
+              "frontTitle" : "You are the dealer",
+              "id" : "decision-dealer-crib"
+            },
+            {
+              "backBody" : "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may be dangerous if it pairs a card already likely to land in the crib.",
+              "backTitle" : "Do not feed the crib",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Minimize crib help",
+                  "Maximize only your hand"
+                ]
+              },
+              "frontSubtitle" : "The dealer owns your discards",
+              "frontTiles" : [
+                "C4",
+                "D5",
+                "H6",
+                "S10",
+                "C13",
+                "D2"
+              ],
+              "frontTitle" : "You are the pone",
+              "id" : "decision-pone-danger"
+            },
+            {
+              "backBody" : "A pair guarantees 2 points before the cut. Do not break it casually just to chase a speculative run unless the complete hand shape makes the trade worthwhile.",
+              "backTitle" : "Pairs are sturdy",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep the pair",
+                  "Break the pair automatically"
+                ]
+              },
+              "frontSubtitle" : "The obvious points",
+              "frontTiles" : [
+                "C8",
+                "D8",
+                "H3",
+                "S5",
+                "C10",
+                "D13"
+              ],
+              "frontTitle" : "A natural pair",
+              "id" : "decision-pair"
+            },
+            {
+              "backBody" : "A 4-5-6 run is already 3 points. Cards that extend it or create fifteens are valuable, while an isolated queen offers fewer connections here.",
+              "backTitle" : "Keep connected ranks",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep the 4-5-6 shape",
+                  "Keep the isolated queen"
+                ]
+              },
+              "frontSubtitle" : "A run has room to grow",
+              "frontTiles" : [
+                "C4",
+                "D5",
+                "H6",
+                "S9",
+                "C12",
+                "D2"
+              ],
+              "frontTitle" : "Three in sequence",
+              "id" : "decision-run"
+            },
+            {
+              "backBody" : "Four matching suits score 4 in the hand, and a matching starter would make 5. Keep the suited block when the other cards do not offer a clearly stronger structure.",
+              "backTitle" : "A four-card flush is real value",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Preserve the hearts",
+                  "Ignore the suits"
+                ]
+              },
+              "frontSubtitle" : "A cut can matter",
+              "frontTiles" : [
+                "H2",
+                "H6",
+                "H9",
+                "H12",
+                "C4",
+                "S7"
+              ],
+              "frontTitle" : "Four hearts",
+              "id" : "decision-suited"
+            },
+            {
+              "backBody" : "The 5 already makes a fifteen with the 10 and king. It can also connect with small ranks into runs, so it is usually a keeper in a close choice.",
+              "backTitle" : "A 5 is rarely dead",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep the 5",
+                  "Keep the disconnected 2"
+                ]
+              },
+              "frontSubtitle" : "One small card, many outcomes",
+              "frontTiles" : [
+                "C5",
+                "D10",
+                "H7",
+                "S8",
+                "C2",
+                "D13"
+              ],
+              "frontTitle" : "The ten-value connection",
+              "id" : "decision-ten-five"
+            },
+            {
+              "backBody" : "When either player is close to 121, a conservative discard and safe pegging line can beat a higher theoretical hand. Cribbage is a race, not only a counting puzzle.",
+              "backTitle" : "Count the board, not just the cards",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Choose the safer line",
+                  "Always chase the biggest hand"
+                ]
+              },
+              "frontSubtitle" : "The board changes your priorities",
+              "frontTiles" : [
+                "C2",
+                "D4",
+                "H5",
+                "S7",
+                "C9",
+                "D10"
+              ],
+              "frontTitle" : "You are near the finish",
+              "id" : "decision-endgame"
+            }
+          ],
+          "kind" : "flashcards",
+          "subtitle" : "Make the call, then flip to see the coach's answer",
+          "title" : "Pegging Judgment"
+        },
+        {
+          "id" : "pegging-quiz",
+          "isPlus" : false,
+          "items" : [
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "Fifteen for 2",
+                "Go",
+                "Last card"
+              ],
+              "explanation" : "A pegging total of exactly 15 scores 2 points.",
+              "id" : "more-table-peg-15",
+              "prompt" : "During pegging, what do you announce when the running total reaches 15?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "The player scores 2 and the count resets",
+                "The hand ends",
+                "Only the dealer scores"
+              ],
+              "explanation" : "Reaching exactly 31 scores 2 points, then the running count resets for the remaining cards.",
+              "id" : "more-table-peg-31",
+              "prompt" : "What happens when a play brings the running total to 31?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "A player cannot play without exceeding 31",
+                "A player wins the game",
+                "A discarded card is reclaimed"
+              ],
+              "explanation" : "When you cannot play without going over 31, you say go. The opponent may continue if they can.",
+              "id" : "more-table-go",
+              "prompt" : "What is a go in pegging?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "1",
+                "2",
+                "3"
+              ],
+              "explanation" : "A pair in the pegging sequence is worth 2 points, just like a pair in the hand.",
+              "id" : "more-table-pair-run",
+              "prompt" : "A play makes a pair during pegging. How many points is that?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "The player who played the last card",
+                "The dealer only",
+                "Nobody"
+              ],
+              "explanation" : "The player who plays the final card before the count resets scores 1 for last card.",
+              "id" : "more-table-last",
+              "prompt" : "Who scores the last-card point in a pegging sequence that does not reach 31?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Only after counting",
+                "Before choosing a discard and during pegging",
+                "Never, the highest hand always wins"
+              ],
+              "explanation" : "Cribbage is a race. Board position should shape discards, pegging risk, and whether you chase points or safety.",
+              "id" : "more-table-order",
+              "prompt" : "When should you think about the board position?",
+              "tiles" : [
+
+              ]
+            }
+          ],
+          "kind" : "quiz",
+          "subtitle" : "Fifteens, pairs, runs, go, 31, and last card",
+          "title" : "Pegging Rules"
+        },
+        {
+          "id" : "plus-pegging-extras",
+          "isPlus" : true,
+          "items" : [
+            {
+              "backBody" : "Playing the 5 makes 31 for 2 points. The ten-value card would go over, so the legal choice is clear.",
+              "backTitle" : "Play the 5",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Play the 5",
+                  "Play the 10"
+                ]
+              },
+              "frontSubtitle" : "Which card keeps you under 31?",
+              "frontTiles" : [
+                "C5",
+                "D10"
+              ],
+              "frontTitle" : "Pegging total is 26",
+              "id" : "plus-judgment-1"
+            },
+            {
+              "backBody" : "A pair scores 2 before the cut. Breaking it is a major trade, not a default defensive move.",
+              "backTitle" : "Keep the guaranteed pair",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep both",
+                  "Break the pair"
+                ]
+              },
+              "frontSubtitle" : "Throw one to avoid a bad crib?",
+              "frontTiles" : [
+                "C8",
+                "H8"
+              ],
+              "frontTitle" : "You hold a pair",
+              "id" : "plus-judgment-2"
+            },
+            {
+              "backBody" : "The dealer is already at a finish line. If your hand can stay competitive without discarding the 5, protect the crib and make the opponent work for the win.",
+              "backTitle" : "Avoid the risky gift",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep the 5",
+                  "Give the 5 away"
+                ]
+              },
+              "frontSubtitle" : "Should you gift a 5 to the crib?",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "The dealer is one point from 121",
+              "id" : "plus-judgment-3"
+            },
+            {
+              "backBody" : "Say the score out loud and peg 2 points before the next player acts. Verbalizing the total keeps the sequence honest.",
+              "backTitle" : "Fifteen for 2",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Announce 2",
+                  "Wait until the hand count"
+                ]
+              },
+              "frontSubtitle" : "What do you announce?",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "You made 15 while pegging",
+              "id" : "plus-judgment-4"
+            },
+            {
+              "backBody" : "A jack matching the starter's suit scores one point. Keep a separate nobs check in your count routine.",
+              "backTitle" : "Add his nobs",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Add 1",
+                  "Ignore it"
+                ]
+              },
+              "frontSubtitle" : "Do you add the bonus?",
+              "frontTiles" : [
+                "H11",
+                "H4"
+              ],
+              "frontTitle" : "The starter matches your jack",
+              "id" : "plus-judgment-5"
+            },
+            {
+              "backBody" : "A 5 connects with every ten-value card and is a dangerous crib gift. Keep it unless the hand improvement from discarding it is overwhelming.",
+              "backTitle" : "Usually keep it",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep it",
+                  "Throw it"
+                ]
+              },
+              "frontSubtitle" : "Throw it to the dealer?",
+              "frontTiles" : [
+                "C5"
+              ],
+              "frontTitle" : "You are pone with a 5",
+              "id" : "more-judgment-five"
+            },
+            {
+              "backBody" : "A pair is 2 points before the starter. Keep it unless the alternative creates a much stronger, clearly countable hand.",
+              "backTitle" : "Respect guaranteed points",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Keep the pair",
+                  "Break it automatically"
+                ]
+              },
+              "frontSubtitle" : "Break it for a thin possibility?",
+              "frontTiles" : [
+                "C8",
+                "D8"
+              ],
+              "frontTitle" : "A guaranteed pair",
+              "id" : "more-judgment-pair"
+            },
+            {
+              "backBody" : "A close board rewards choices that create reliable points and reduce the opponent's crib. The theoretical maximum is not always the practical best play.",
+              "backTitle" : "Safety gets louder",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Choose the safe line",
+                  "Always chase the maximum"
+                ]
+              },
+              "frontSubtitle" : "Big hand or safe hand?",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "You lead by one hole",
+              "id" : "more-judgment-board"
+            },
+            {
+              "backBody" : "The 4 makes 31 for 2 points. Playing the 8 would exceed 31, so the legal safe play is the 4.",
+              "backTitle" : "Play the 4",
+              "choice" : {
+                "answerIndex" : 0,
+                "options" : [
+                  "Play the 4",
+                  "Play the 8"
+                ]
+              },
+              "frontSubtitle" : "Your remaining cards are 4 and 8",
+              "frontTiles" : [
+
+              ],
+              "frontTitle" : "Pegging total is 27",
+              "id" : "more-judgment-go"
+            }
+          ],
+          "kind" : "flashcards",
+          "subtitle" : "Five more calls: safe totals, board pressure, and nobs",
+          "title" : "Pegging Judgment: Extra Reps"
+        }
+      ],
+      "icon" : "arrow.up.right.circle.fill",
+      "id" : "pegging-room",
+      "isFree" : true,
+      "name" : "The Pegging Room",
+      "tagline" : "Play to 31 without giving points away"
+    },
+    {
+      "drills" : [
+        {
+          "id" : "master-discard",
+          "isPlus" : false,
+          "items" : [
+            {
+              "deal" : [
+                "D1",
+                "H1",
+                "S5",
+                "H6",
+                "H8",
+                "C12"
+              ],
+              "id" : "master-discard-1",
+              "reasoning" : "Keeping A-A-6-8 counts 6 and A-A-5-8 counts 4, so the bigger hand is two points better. It is still the wrong choice: the cards it throws are a 5 and a queen, which already make fifteen in the crib you do not own. Throw the 6 and the queen instead and hand over nothing that scores by itself.",
+              "recommendedDiscard" : [
+                "H6",
+                "C12"
+              ],
+              "situation" : "You are pone. The bigger hand is the wrong hand. Choose two.",
+              "tip" : "As pone, subtract what the crib gains before you compare two hands."
+            },
+            {
+              "deal" : [
+                "H2",
+                "H6",
+                "H9",
+                "H12",
+                "C5",
+                "D5"
+              ],
+              "id" : "master-discard-2",
+              "reasoning" : "Both halves score, so the question is where each half is worth more. The four hearts are 4 in the hand with a fifth heart still live, and a pair of 5s is the single strongest thing you can put in your own crib, because it pairs and makes fifteen with every ten-value card that lands there.",
+              "recommendedDiscard" : [
+                "C5",
+                "D5"
+              ],
+              "situation" : "You are the dealer, choosing between a pair and a flush.",
+              "tip" : "When dealer, a pair can be a feature of the crib rather than the hand."
+            },
+            {
+              "deal" : [
+                "C5",
+                "D10",
+                "H11",
+                "S12",
+                "C13",
+                "D4"
+              ],
+              "id" : "master-discard-3",
+              "reasoning" : "Keep 5-10-J-Q. The 5 makes fifteen with each of the three ten-value cards, and 10-jack-queen is a run of three, so the hand counts 9 before the cut, with a jack that can add his nobs. The king and the 4 neither pair nor make fifteen together in the dealer's crib.",
+              "recommendedDiscard" : [
+                "C13",
+                "D4"
+              ],
+              "situation" : "You are pone with four ten-value cards. Choose two.",
+              "tip" : "A high card count can be worse than a lower count if the crib swings the race."
+            },
+            {
+              "deal" : [
+                "C3",
+                "D4",
+                "H5",
+                "S8",
+                "C8",
+                "D13"
+              ],
+              "id" : "master-discard-4",
+              "reasoning" : "Breaking the pair of 8s costs a guaranteed 2, but 3-4-5 with one 8 already scores 5: the run is 3 and 3-4-8 makes fifteen. The low block also improves on far more cuts, and an 8 with a king is a quiet gift to the dealer.",
+              "recommendedDiscard" : [
+                "S8",
+                "D13"
+              ],
+              "situation" : "You are pone. Keep the hand with more useful cuts.",
+              "tip" : "Useful cuts are a distribution, not one favorite card."
+            },
+            {
+              "deal" : [
+                "C2",
+                "D3",
+                "H7",
+                "S8",
+                "C10",
+                "D11"
+              ],
+              "id" : "master-discard-5",
+              "reasoning" : "Keep 2-3-10-J: 2-3-10 and 2-3-jack are two fifteens, and the jack can still add his nobs. The 7 and 8 are the strongest pair of cards you can put in your own crib, because they already make fifteen there no matter what the opponent throws.",
+              "recommendedDiscard" : [
+                "H7",
+                "S8"
+              ],
+              "situation" : "You are the dealer. Choose the discard that works twice.",
+              "tip" : "Discard choices can set up the crib before the cut is turned."
+            },
+            {
+              "deal" : [
+                "C4",
+                "D5",
+                "H6",
+                "S10",
+                "C10",
+                "D12"
+              ],
+              "id" : "master-discard-6",
+              "reasoning" : "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but it denies the dealer a 10-queen crib package and keeps the block that most cuts improve.",
+              "recommendedDiscard" : [
+                "S10",
+                "D12"
+              ],
+              "situation" : "You are pone and your lead is safe. Choose two.",
+              "tip" : "Know whose crib you are feeding before evaluating any discard."
+            }
+          ],
+          "kind" : "discard",
+          "subtitle" : "Hand value, crib value, and board position together",
+          "title" : "Advanced Discard"
+        },
+        {
+          "id" : "master-defense",
+          "isPlus" : false,
+          "items" : [
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "Whether you can win before they count",
+                "Your highest theoretical hand",
+                "Keeping the dealer's crib large"
+              ],
+              "explanation" : "Cribbage is a race. If the opponent can reach 121 while counting first, ordinary hand value may not matter.",
+              "id" : "master-defense-1",
+              "prompt" : "The opponent is at 120 and counts next. What matters most?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "A 5 in every situation",
+                "A card that avoids giving an immediate 15 or pair",
+                "The highest card always"
+              ],
+              "explanation" : "Pegging defense depends on the running total and your opponent's likely replies. There is no universal safe rank, but avoiding obvious 15s and pairs is a strong start.",
+              "id" : "master-defense-2",
+              "prompt" : "During pegging, which card is often safest to lead from a small connected hand?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Only the current hand score",
+                "Board position, opponent cards, and the reset",
+                "The suit of the card"
+              ],
+              "explanation" : "A 31 is 2 points, but saving a card can deny the opponent a go or earn last card. Use the board and the unseen cards, not a single rule.",
+              "id" : "master-defense-3",
+              "prompt" : "You have a choice between pegging 31 now or saving a card for last. What should decide it?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "To predict which runs and pairs remain possible",
+                "Because discards can be reclaimed",
+                "To change the starter"
+              ],
+              "explanation" : "Known discards reduce the live copies of ranks and help you judge both hand potential and pegging danger.",
+              "id" : "master-defense-4",
+              "prompt" : "Why track discarded ranks during the hand?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "Counting the run only once",
+                "Counting a pair as a flush",
+                "Adding the starter twice"
+              ],
+              "explanation" : "A duplicate rank creates multiple ways to form the same run. Count each distinct run, then count fifteens and pairs separately.",
+              "id" : "master-defense-5",
+              "prompt" : "What is the most common counting error in a double run?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "When the board and crib swing make it the better race decision",
+                "Never",
+                "Only when the suits match"
+              ],
+              "explanation" : "The correct decision maximizes your chance to win, not the number printed by a hand calculator in isolation.",
+              "id" : "master-defense-6",
+              "prompt" : "When should you choose a lower expected hand over a higher one?",
+              "tiles" : [
+
+              ]
+            }
+          ],
+          "kind" : "quiz",
+          "subtitle" : "Track the board, the count, and the cards still live",
+          "title" : "Defense School"
+        },
+        {
+          "id" : "master-counting",
+          "isPlus" : false,
+          "items" : [
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "flushes",
+                "nobs"
+              ],
+              "explanation" : "The second 4 gives 4-5-6 two ways to form, a double run of three worth 6. Add 2 for the pair and 6 for three fifteens, two of them 4-5-6 and one the 5 with the 10, and the hand counts 14.",
+              "id" : "master-hand-1",
+              "tiles" : [
+                "C4",
+                "D4",
+                "H5",
+                "S6",
+                "C10"
+              ]
+            },
+            {
+              "answer" : "fifteens",
+              "choices" : [
+                "fifteens",
+                "runs",
+                "flushes"
+              ],
+              "explanation" : "Every 5 makes fifteen with the 10 and again with the jack, and the three 5s together also total fifteen. Seven fifteens is 14 points, before 6 more for the three pairs.",
+              "id" : "master-hand-2",
+              "tiles" : [
+                "C5",
+                "D5",
+                "H5",
+                "S10",
+                "C11"
+              ]
+            },
+            {
+              "answer" : "flushes",
+              "choices" : [
+                "flushes",
+                "pairs",
+                "nobs"
+              ],
+              "explanation" : "Four hearts make a hand flush worth 4, and a heart cut would make it 5. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table.",
+              "id" : "master-hand-3",
+              "tiles" : [
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "C9"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "pairs",
+                "flushes"
+              ],
+              "explanation" : "6-7-8-9-10 is a five-card run worth 5, regardless of the mixed suits. It also hides two fifteens, 6 with 9 and 7 with 8, for a full count of 9.",
+              "id" : "master-hand-4",
+              "tiles" : [
+                "C6",
+                "D7",
+                "H8",
+                "S9",
+                "C10"
+              ]
+            },
+            {
+              "answer" : "pairs",
+              "choices" : [
+                "pairs",
+                "fifteens",
+                "runs"
+              ],
+              "explanation" : "Four 2s contain six separate pairs for 12. The 2s and the 10 reach 12, 14, 16, and 18 but never fifteen, so the duplicate rank is the entire count.",
+              "id" : "master-hand-5",
+              "tiles" : [
+                "C2",
+                "D2",
+                "H2",
+                "S2",
+                "C10"
+              ]
+            },
+            {
+              "answer" : "fifteens",
+              "choices" : [
+                "fifteens",
+                "runs",
+                "pairs"
+              ],
+              "explanation" : "The 5 makes fifteen with the 10 and again with the jack, for 4 points. Nothing repeats a rank, and 4-5 never reaches a third consecutive card.",
+              "id" : "master-hand-6",
+              "tiles" : [
+                "H11",
+                "C5",
+                "D10",
+                "S4",
+                "C8"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "flushes",
+                "nobs"
+              ],
+              "explanation" : "Two 3s and two 4s let 3-4-5 form four different ways, 12 points of runs. Add 4 for the two pairs and 4 for the two fifteens and the hand counts 20.",
+              "id" : "master-hand-7",
+              "tiles" : [
+                "C3",
+                "D3",
+                "H4",
+                "S4",
+                "C5"
+              ]
+            },
+            {
+              "answer" : "runs",
+              "choices" : [
+                "runs",
+                "pairs",
+                "flushes"
+              ],
+              "explanation" : "Ace through 5 is a five-card run for 5 points, and the five cards together total exactly fifteen for 2 more. Aces are low, so the run starts at the ace.",
+              "id" : "master-hand-8",
+              "tiles" : [
+                "C1",
+                "D2",
+                "H3",
+                "S4",
+                "C5"
+              ]
+            }
+          ],
+          "kind" : "handMatch",
+          "subtitle" : "Overlapping runs, fifteens, pairs, and deceptive hands",
+          "title" : "Expert Counting"
+        },
+        {
+          "id" : "master-rules",
+          "isPlus" : false,
+          "items" : [
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "A rule allowing an opponent to claim missed points",
+                "A special crib",
+                "A kind of run"
+              ],
+              "explanation" : "In games using muggins, an opponent may call out points you failed to peg or count. Agree on the rule before play.",
+              "id" : "more-advanced-muggins",
+              "prompt" : "What is muggins?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "The four crib cards match",
+                "All four crib cards and the starter match",
+                "Any four cards match"
+              ],
+              "explanation" : "A crib flush requires all four crib cards plus the starter to be the same suit.",
+              "id" : "more-advanced-crib-flush",
+              "prompt" : "What is required for a five-card flush in the crib?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "A duplicate rank inside a run",
+                "Two flushes",
+                "Two fifteens"
+              ],
+              "explanation" : "A duplicate rank gives the consecutive sequence two ways to be formed, doubling the run's points.",
+              "id" : "more-advanced-double-run",
+              "prompt" : "What creates a double run?",
+              "tiles" : [
+                "C4",
+                "D4",
+                "H5",
+                "S6"
+              ]
+            },
+            {
+              "answerIndex" : 1,
+              "choices" : [
+                "Q-K-A",
+                "A-2-3",
+                "K-A-2"
+              ],
+              "explanation" : "Aces are low in cribbage, so A-2-3 is a run. The ace does not wrap around from king.",
+              "id" : "more-advanced-ace-run",
+              "prompt" : "Which is a legal run?",
+              "tiles" : [
+
+              ]
+            },
+            {
+              "answerIndex" : 0,
+              "choices" : [
+                "The pone's hand, then the dealer's hand and crib",
+                "The dealer's crib, then the pone",
+                "The player with the higher score"
+              ],
+              "explanation" : "The pone counts first, then the dealer counts their hand and finally the crib. The order affects who can win before the other player counts.",
+              "id" : "more-advanced-dealer-order",
+              "prompt" : "Who counts first after pegging?",
+              "tiles" : [
+
+              ]
+            }
+          ],
+          "kind" : "quiz",
+          "subtitle" : "Muggins, crib flushes, double runs, and count order",
+          "title" : "Master Rules"
+        }
+      ],
+      "icon" : "crown.fill",
+      "id" : "pro-tables",
+      "isFree" : false,
+      "name" : "The Master Tables",
+      "tagline" : "Advanced board play, defense, and full counts"
+    }
+  ],
+  "whatsNew" : [
+    {
+      "headline" : "A smarter rhythm for cribbage night",
+      "items" : [
+        {
+          "body" : "Take the same five-question challenge as every other member, share your score, and keep a forgiving five-day weekly rhythm.",
+          "icon" : "calendar.badge.clock",
+          "id" : "cribbage-minute",
+          "isPlus" : true,
+          "title" : "Cribbage Minute"
+        },
+        {
+          "body" : "Choose your usual cribbage night and get a five-minute session built from your mistakes and weakest room when it matters.",
+          "icon" : "person.2.fill",
+          "id" : "game-night-prep",
+          "isPlus" : true,
+          "title" : "Game Night Prep"
+        }
+      ],
+      "version" : "1.2.0"
+    },
+    {
+      "headline" : "Learn the hand, one rep at a time",
+      "items" : [
+        {
+          "body" : "Build confidence with focused drills for cards, scoring, discards, and pegging.",
+          "icon" : "rectangle.grid.2x2.fill",
+          "id" : "rooms",
+          "isPlus" : false,
+          "title" : "Four free practice rooms"
+        },
+        {
+          "body" : "Every answer shows the rule, the observation, and why the choice works at the table.",
+          "icon" : "lightbulb.fill",
+          "id" : "coaching",
+          "isPlus" : false,
+          "title" : "Explanations that stick"
+        },
+        {
+          "body" : "Streaks, missed items, and a daily mixed session help you keep the useful parts in reach.",
+          "icon" : "chart.bar.fill",
+          "id" : "progress",
+          "isPlus" : false,
+          "title" : "Practice that remembers"
+        }
+      ],
+      "version" : "1.0"
+    },
+    {
+      "headline" : "Practice that never runs out",
+      "items" : [
+        {
+          "body" : "Freshly dealt hands, every time. Read the scoring shape or practice the running total for as long as you like, with a full explanation after every answer.",
+          "icon" : "infinity",
+          "id" : "endless",
+          "isPlus" : true,
+          "title" : "Endless Practice"
+        },
+        {
+          "body" : "The app now remembers what you get wrong and brings it back on a schedule, so the weak spots actually close instead of piling up.",
+          "icon" : "arrow.trianglehead.counterclockwise",
+          "id" : "review",
+          "isPlus" : true,
+          "title" : "Fix My Mistakes"
+        },
+        {
+          "body" : "Ninety seconds, as many correct reads as you can manage, and a personal best to chase.",
+          "icon" : "timer",
+          "id" : "challenge",
+          "isPlus" : true,
+          "title" : "Timed Challenge"
+        },
+        {
+          "body" : "Accuracy for every room, your weakest area, and how much you have practised overall.",
+          "icon" : "chart.bar.fill",
+          "id" : "stats",
+          "isPlus" : false,
+          "title" : "Your progress, in detail"
+        },
+        {
+          "body" : "New hand-written questions across the deck, scoring, discards, pegging, and the Master Tables.",
+          "icon" : "plus.rectangle.on.folder.fill",
+          "id" : "content",
+          "isPlus" : false,
+          "title" : "More drills in every room"
+        }
+      ],
+      "version" : "1.1"
+    }
+  ]
+}
