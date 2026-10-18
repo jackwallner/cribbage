@@ -128,6 +128,9 @@ no prices, no em dashes). Privacy and terms pages are
 
 ## Play state (2026-10-17)
 
+Ready to send (verified 2026-10-17): review code saved in App access, RevenueCat
+Play credentials set. Only Send for review remains, in this app's pacing slot.
+
 Staged, not sent for review. Play app id `4973159219964823462` (E3 Apps). versionCode 1
 (1.2.3) uploaded with `~/docs/android/tools/play_stage.py`; listing, icon,
 feature graphic and 6 screenshots committed by API; draft releases on
