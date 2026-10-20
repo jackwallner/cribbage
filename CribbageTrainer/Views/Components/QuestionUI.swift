@@ -119,6 +119,7 @@ struct ChoiceList: View {
     @State private var shineTrigger = 0
     @State private var landed = false
     @State private var shakes: CGFloat = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var answered: Bool { selection != nil }
 
@@ -139,7 +140,7 @@ struct ChoiceList: View {
                 landed = true
             }
             shineTrigger += 1
-            if selection != answerIndex {
+            if selection != answerIndex, !reduceMotion {
                 withAnimation(.linear(duration: 0.4)) { shakes = 2 }
             }
         }
