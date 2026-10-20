@@ -21,14 +21,14 @@ Status key: PRESENT, GAP (fixed in this change), MISSING (left), UNSUITABLE.
 | Feedback | PRESENT | `FeedbackSheet.swift`, rate row | Unchanged; rating policy per AGENTS.md. |
 | What's New | GAP, fixed | `WhatsNew.swift` | Marketing version 1.2.3 had no release entry, so no sheet would show. Added 1.3.0 and bumped `MARKETING_VERSION` to 1.3.0. |
 | Reduced motion | GAP, fixed | no `accessibilityReduceMotion` anywhere before | Confetti, shine sweep, wrong-answer shake, green flash and slide transitions now respect it in the practice runner and shared components. Other drill views still use springs for page changes (MISSING, lower risk: no flashing). |
-| Larger text | NEEDS WORK | see `project-docs/audits/mahj-parity-evidence.md` for captures | Fonts are dynamic styles; checked in running UI. |
+| Larger text | PARTLY MISSING | `PracticeRunView` status bar and `QuestionPager` at AccessibilityXXL | Everything stays readable and scrolls, but the status line and Next button grow very large and leave the question cramped. Not changed this pass. |
 
 ## Persona walk-through
 
 - Beginner: Count the Hand is a good next step after Read the Hand, but the explanation must show the total as a sum of parts (it does). Pegging Points removes the old "always tap Play" shortcut.
 - Experienced, improving weaknesses: topic coaching names the exact weak shape. Timed Challenge now mixes counting and pegging scoring, harder than before.
 - Returning: Fix My Mistakes and Minute unchanged; What's New now announces the update.
-- Larger text / reduced motion: see evidence file.
+- Larger text / reduced motion: see captures: larger text keeps all choices reachable; reduce motion now removes slides, shake, flash and confetti in the practice runner.
 
 ## Paid boundary
 
@@ -39,3 +39,8 @@ Unchanged. The two new skills sit in Endless Practice, which is already Cribbage
 - Hand totals of 19, 25, 26, 27 cannot occur and are never offered as options; a 5000-hand sample test guards the claim. Zero-point hands are not dealt (they are called "nineteen" at the table).
 - Pegging 1 point comes only from go or last card, never from a card play, so 1 is never an option.
 - A pegging pair counts only against the cards played immediately before; a run is the longest tail of the pile, in any order, of 3+ consecutive ranks with no duplicates.
+
+## Verification limits
+
+- Real UI captured with XCUITest screenshots on a GitHub simulator (`CribbageTrainerScreenshots/PracticeAuditTests.swift`), not local video. The `gh-sim launch --record-seconds` native recording came back as an empty file, and the runner has no ffprobe, so no frame cadence was measured and no 60 fps claim is made.
+- The reduce-motion setting could not be toggled in the simulator run, so that behaviour is covered by code review only.
