@@ -41,6 +41,32 @@ enum WhatsNew {
 
     static let releases: [WhatsNewRelease] = [
         WhatsNewRelease(
+            version: "1.3.0",
+            headline: "Count it, peg it, fix it",
+            items: [
+                WhatsNewItem(
+                    id: "count-hand",
+                    icon: "sum",
+                    title: "Count the Hand",
+                    body: "Endless four-card hands with a starter. Add up fifteens, pairs, runs, flushes and nobs, then see exactly where every point came from.",
+                    isPlus: true
+                ),
+                WhatsNewItem(
+                    id: "peg-points",
+                    icon: "target",
+                    title: "Pegging Points",
+                    body: "Play a card onto the pile and score it: fifteen, thirty-one, pairs and runs in any order.",
+                    isPlus: true
+                ),
+                WhatsNewItem(
+                    id: "sharpen",
+                    icon: "chart.bar.fill",
+                    title: "Know what to sharpen",
+                    body: "Your progress now names the exact skills you miss, like spotting runs, and Endless Practice flags them."
+                ),
+            ]
+        ),
+        WhatsNewRelease(
             version: "1.2.0",
             headline: "A smarter rhythm for cribbage night",
             items: [

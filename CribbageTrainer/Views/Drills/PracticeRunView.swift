@@ -241,6 +241,9 @@ struct PracticeRunView: View {
         attempted += 1
         let correct = pick == item.answerIndex
         records.record(itemID: item.id, roomID: item.roomID, correct: correct)
+        if let topic = item.topic {
+            records.recordTopic(topic, correct: correct)
+        }
         // Generated ids are unique per question, so feeding them to the
         // seen/missed sets would grow those sets forever and teach the daily
         // mix nothing. Authored items still feed it.

@@ -64,6 +64,11 @@ struct EndlessPickerView: View {
                         .font(.caption2)
                         .foregroundStyle(Theme.inkTertiary)
                 }
+                if let weak = records.weakTopics(skill: skill).first {
+                    Text("Needs work: \(PracticeTopic.title(weak.id).lowercased()), \(Int((weak.stat.accuracy * 100).rounded()))%")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(Theme.coral)
+                }
             }
             Spacer(minLength: 4)
             Image(systemName: "chevron.right")

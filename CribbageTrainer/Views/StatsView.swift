@@ -21,6 +21,9 @@ struct StatsView: View {
                         weakSpotCard(weakest)
                     }
                     roomBreakdown
+                    if !records.weakTopics().isEmpty {
+                        sharpenCard
+                    }
                 }
                 streakCard
             }
@@ -135,6 +138,34 @@ struct StatsView: View {
                         .foregroundStyle(Theme.inkTertiary)
                 }
             }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .themedCard()
+    }
+
+    private var sharpenCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("SHARPEN THESE")
+                .font(.caption.weight(.heavy))
+                .kerning(1.4)
+                .foregroundStyle(Theme.inkSecondary)
+            ForEach(records.weakTopics().prefix(4), id: \.id) { topic in
+                HStack {
+                    Text(PracticeTopic.title(topic.id))
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Theme.ink)
+                    Spacer()
+                    Text("\(percent(topic.stat.accuracy)) of \(topic.stat.attempts)")
+                        .font(.subheadline.weight(.bold))
+                        .foregroundStyle(barColor(topic.stat.accuracy))
+                        .monospacedDigit()
+                }
+                .accessibilityElement(children: .combine)
+            }
+            Text("From Endless Practice. Keep going and these update as you improve.")
+                .font(.caption2)
+                .foregroundStyle(Theme.inkTertiary)
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)

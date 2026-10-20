@@ -22,6 +22,8 @@ struct QuickItem: Identifiable, Sendable {
     /// False for one-off generated prompts that can never be scheduled back
     /// into Fix My Mistakes.
     let isReviewable: Bool
+    /// The narrow skill this generated question exercises, for mastery stats.
+    let topic: String?
 
     init(
         id: String,
@@ -33,7 +35,8 @@ struct QuickItem: Identifiable, Sendable {
         sourceLabel: String,
         roomID: String,
         trackingID: String? = nil,
-        isReviewable: Bool = true
+        isReviewable: Bool = true,
+        topic: String? = nil
     ) {
         self.id = id
         self.prompt = prompt
@@ -45,6 +48,7 @@ struct QuickItem: Identifiable, Sendable {
         self.roomID = roomID
         self.trackingID = trackingID ?? id
         self.isReviewable = isReviewable
+        self.topic = topic
     }
 }
 
@@ -155,7 +159,8 @@ enum SessionBuilder {
             sourceLabel: item.sourceLabel,
             roomID: item.roomID,
             trackingID: item.trackingID,
-            isReviewable: item.isReviewable
+            isReviewable: item.isReviewable,
+            topic: item.topic
         )
     }
 

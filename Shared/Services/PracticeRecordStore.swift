@@ -42,16 +42,33 @@ final class PracticeRecordStore: ObservableObject {
     /// rather than a per-item fact.
     @Published private(set) var bestChallengeScore: Int
 
+    /// Right and wrong counts for narrow generated skills ("Spotting runs"),
+    /// kept apart from `records` so the room totals are never double counted.
+    @Published private(set) var topics: [String: TopicStat]
+
+    struct TopicStat: Codable, Sendable {
+        var attempts = 0
+        var correct = 0
+        var accuracy: Double { attempts == 0 ? 0 : Double(correct) / Double(attempts) }
+    }
+
     private let defaults: UserDefaults
 
     private enum Keys {
         static let records = "practice.records"
         static let bestChallenge = "practice.bestChallengeScore"
+        static let topics = "practice.topics"
     }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         bestChallengeScore = defaults.integer(forKey: Keys.bestChallenge)
+        if let data = defaults.data(forKey: Keys.topics),
+           let decoded = try? JSONDecoder().decode([String: TopicStat].self, from: data) {
+            topics = decoded
+        } else {
+            topics = [:]
+        }
         if let data = defaults.data(forKey: Keys.records),
            let decoded = try? JSONDecoder().decode([String: PracticeRecord].self, from: data) {
             records = decoded
@@ -111,6 +128,28 @@ final class PracticeRecordStore: ObservableObject {
             record.ease = max(record.ease - 0.2, 1.3)
         }
         record.dueDate = now.addingTimeInterval(record.intervalDays * 86_400)
+    }
+
+    func recordTopic(_ topic: String, correct: Bool) {
+        var stat = topics[topic] ?? TopicStat()
+        stat.attempts += 1
+        if correct { stat.correct += 1 }
+        topics[topic] = stat
+        if let data = try? JSONEncoder().encode(topics) {
+            defaults.set(data, forKey: Keys.topics)
+        }
+    }
+
+    /// Topics worth coaching: enough answers to mean it and below 80%, weakest
+    /// first. Optionally limited to one practice skill.
+    func weakTopics(skill: PracticeSkill? = nil, minimumAttempts: Int = 4) -> [(id: String, stat: TopicStat)] {
+        topics
+            .filter { $0.value.attempts >= minimumAttempts && $0.value.accuracy < 0.8 }
+            .filter { skill == nil || PracticeTopic.skill(forTopic: $0.key) == skill }
+            .sorted { lhs, rhs in
+                lhs.value.accuracy != rhs.value.accuracy ? lhs.value.accuracy < rhs.value.accuracy : lhs.key < rhs.key
+            }
+            .map { (id: $0.key, stat: $0.value) }
     }
 
     func recordChallengeScore(_ score: Int) {
@@ -184,6 +223,8 @@ final class PracticeRecordStore: ObservableObject {
     func resetAll() {
         records = [:]
         bestChallengeScore = 0
+        topics = [:]
+        defaults.removeObject(forKey: Keys.topics)
         defaults.removeObject(forKey: Keys.records)
         defaults.removeObject(forKey: Keys.bestChallenge)
     }
