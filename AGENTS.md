@@ -24,11 +24,23 @@ keep player-facing copy free of em dashes and stale domain terms, and preserve
 the free versus Cribbage+ split.
 
 Ratings: no custom rating question (App Review 5.6.1). A finished drill or
-Cribbage Minute records a positive moment, and `requestsReview(after:)` calls
-Apple's prompt about 3s later if the screen is still clear. Gates: second cold
-launch, onboarding done, 30-day cooldown. Only the Settings "Rate Cribbage
+Cribbage Minute scoring half or better calls Apple's `requestReview()` about 3s
+later via `.requestsReview(after:)` if the screen is still clear. Gates live only
+in `ReviewPromptTracker` (second cold launch, 30-day cooldown) plus onboarding
+done and the RevenueCat `rating_prompt` switch. Only the Settings "Rate Cribbage
 Trainer" row (write-review page for `6796911073`) ends the asks; "Send Feedback"
-opens `FeedbackSheet` and never stops them.
+opens `ReviewPromptSheet(.feedback)`, which posts through `FeedbackService` (app
+key `cribbage`) to the shared feedback table and never stops them. The same
+sheet hosts the one churn question. Details:
+`.claude/rules/feedback-and-retention.md`.
+
+The trial flow (onboarding trial page, paywall, purchase to tour) is
+structurally Mahj 1.3.2; only the button wording varies, through RevenueCat
+offering metadata (`TrialCTA`). The billed amount is the most prominent price
+(3.1.2(c)) and prices are always read live from StoreKit. Any other change needs
+Jack's go-ahead. The Meta SDK is inert while `META_APP_ID` and
+`META_CLIENT_TOKEN` are empty in `project.yml`, and never starts on a simulator.
+Never ask for ATT outside `HomeView.askForTrackingIfNeeded`.
 
 ## Cribbage+ products
 
@@ -62,7 +74,8 @@ simulator purchase testing.
 - `Shared/Content` contains the authored card basics, scoring, discarding,
   pegging, primer, plus, and Master Tables content. `DrillLibrary.rooms` is the
   source of truth for the five rooms.
-- `Shared/Services` contains progress, settings, spaced review, subscriptions,
+- `Shared/Services` contains progress, settings, spaced review, mastery and the
+  weekly ledger, subscriptions, remote config, feedback, Meta ads (inert),
   notifications, and the rating-ask tracker.
 - `CribbageTrainer/Views` contains onboarding, the home lobby, room screens,
   the swipe deck, quick sessions, generated practice, settings, and the
@@ -113,4 +126,7 @@ These files load automatically when you read a file matching their `paths:`. Age
 | `.claude/rules/game-night.md` | Game-night rhythm (1.2): Cribbage Minute, the daily discard question, deterministic dealing, game night prep | `CribbageMinute*`, `GameNightPrepView`, `HandGenerator`, `SessionBuilder` |
 | `.claude/rules/ipad-layout.md` | iPad (1.2): device family, `CenteringScrollView`, the pager eyebrow, the deck width cap | Drill layouts, Home columns |
 | `.claude/rules/screenshots.md` | Screenshots: the capture script, the throwaway iPad, test gotchas | Capture scripts, the `Screenshots` scheme |
+| `.claude/rules/feedback-and-retention.md` | Feedback sink, churn question, mastery and the weekly gain ledger, ratings policy, what was not ported | `FeedbackService`, `ReviewPromptSheet`, `Mastery`, `MasteryLedger`, `ReviewRequest` |
+| `.claude/rules/meta-ads.md` | Meta SDK + ATT (inert), remote switches and `TrialCTA`, the relay that lives in Mahj | `MetaAds`, `RemoteConfig`, ATT timing, `project.yml` Meta ids |
+| `.claude/rules/membership-and-trial.md` | Trial flow, 3.1.2(c) price line, membership state, fit at every size, What's New mechanics | `SubscriptionService`, onboarding, paywall, primer, tour |
 | `.claude/rules/android.md` | Android port: identity, products and prices, RevenueCat IDs, build and signing, Pro emulator, Play assets, Play state | Anything under `android/`, Play scripts, `docs/android-*.html` |
