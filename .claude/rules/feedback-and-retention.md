@@ -78,5 +78,5 @@ number-free; `ReminderCopyTests` guards it).
 ## Not ported, on purpose
 
 Trial-end reminder screen (Mahj removed it from the frozen trial flow), the
-per-question report link, mastery rings on Home rooms, and the daily and monthly
-challenge (only its remote switch exists).
+per-question report link, mastery rings on Home rooms, and the monthly challenge
+(only its remote switch exists; the daily Cribbage Minute is separate).

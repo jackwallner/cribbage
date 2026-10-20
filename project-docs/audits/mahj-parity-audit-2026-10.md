@@ -18,7 +18,7 @@ Status key: PRESENT, GAP (fixed in this change), MISSING (left), UNSUITABLE.
 | Reminders | PRESENT | `AppSettings.swift` (daily and game-night reminders) | Unchanged. |
 | Progression | PRESENT, light | streak, drills done in `ProgressStore` | No levels. Unsuitable to add: a trainer with finite rule knowledge reads worse with XP. |
 | Reference / practice-hand flow | PRESENT | `HowToPlayView`, primer, `HandCategory.howToSpot` | Unchanged. |
-| Feedback | PRESENT | `FeedbackSheet.swift`, rate row | Unchanged; rating policy per AGENTS.md. |
+| Feedback | PRESENT | `ReviewPromptSheet.swift`, `FeedbackService.swift`, rate row | Replaced the mail-draft `FeedbackSheet` with in-app feedback to the shared table (offline queue); rating policy per AGENTS.md. |
 | What's New | GAP, fixed | `WhatsNew.swift` | Marketing version 1.2.3 had no release entry, so no sheet would show. Added 1.3.0 and bumped `MARKETING_VERSION` to 1.3.0. |
 | Reduced motion | GAP, fixed | no `accessibilityReduceMotion` anywhere before | Confetti, shine sweep, wrong-answer shake, green flash and slide transitions now respect it in the practice runner and shared components. Other drill views still use springs for page changes (MISSING, lower risk: no flashing). |
 | Larger text | PARTLY MISSING | `PracticeRunView` status bar and `QuestionPager` at AccessibilityXXL | Everything stays readable and scrolls, but the status line and Next button grow very large and leave the question cramped. Not changed this pass. |

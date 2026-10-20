@@ -37,8 +37,9 @@ full story.
   Free Trial" on the paywall; `my`: "Start my free trial"; `your`: "Start your
   free trial") and the switches `att_prompt`, `rating_prompt`, `challenge` (on
   unless exactly `off`; set the same on every offering). The `challenge` switch
-  is declared but nothing reads it: Cribbage has no challenge yet, and one must
-  gate its Home card and deep link on it (`AppDestination.isFree` is ready for
+  is declared but nothing reads it: Cribbage has no monthly challenge yet (the
+  daily Cribbage Minute is not behind it), and one must gate its Home card and
+  deep link on it (`AppDestination.isFree` is ready for
   a free challenge route). DEBUG builds pin any key with
   `-cribbage.rc.<key> <value>`; `-cribbage.previewMetaATT` shows the real ATT
   alert in captures.

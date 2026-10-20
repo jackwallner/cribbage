@@ -20,7 +20,9 @@ Moved verbatim from AGENTS.md. Loads when a matching file is read; update it her
 ## Game-night rhythm (1.2)
 
 Cribbage+ owns two recurring rituals. `CribbageMinuteContent` deterministically builds the
-same five questions for every member on a local calendar day: two generated
+same five questions for every member on a local calendar day (the day key and
+seed use `Calendar.gregorianLocal`, never `.current`, so a Buddhist or Hebrew
+system calendar deals everyone the same day): two generated
 hand reads, one discard decision, and two pegging questions. Results and a 30-day
 archive stay on device in `CribbageMinuteStore`; sharing uses the system share sheet and
 needs no account or leaderboard.
