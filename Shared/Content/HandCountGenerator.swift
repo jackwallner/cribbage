@@ -38,11 +38,13 @@ enum HandCountGenerator {
 
     /// The right total plus the three nearest other reachable totals, shuffled.
     static func options<R: RandomNumberGenerator>(for score: Int, using generator: inout R) -> [Int] {
-        let nearby = (1...maxScore)
-            .filter { $0 != score && !impossibleScores.contains($0) && abs($0 - score) <= 4 }
-            .shuffled(using: &generator)
-            .prefix(3)
-        return (nearby + [score]).shuffled(using: &generator)
+        let reachable = (1...maxScore).filter { $0 != score && !impossibleScores.contains($0) }
+        var nearby = reachable.filter { abs($0 - score) <= 4 }.shuffled(using: &generator)
+        if nearby.count < 3 {
+            // 28 and 29 sit above a gap of impossible totals; borrow the next closest.
+            nearby += reachable.filter { abs($0 - score) > 4 }.sorted { abs($0 - score) < abs($1 - score) }
+        }
+        return (Array(nearby.prefix(3)) + [score]).shuffled(using: &generator)
     }
 
     static func explain(hand: [PlayingCard], starter: PlayingCard) -> String {

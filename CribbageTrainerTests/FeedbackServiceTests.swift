@@ -134,6 +134,12 @@ final class FeedbackServiceTests: XCTestCase {
         XCTAssertEqual(StubURLProtocol.requestCount, 0)
     }
 
+    func testEveryOutcomeHasASpokenAnnouncement() {
+        for outcome in [FeedbackService.Outcome.sent, .queued, .failed] {
+            XCTAssertFalse(ReviewPromptSheet.announcement(outcome).isEmpty)
+        }
+    }
+
     func testQueueIsCapped() async {
         StubURLProtocol.fail = true
         for i in 0..<25 {

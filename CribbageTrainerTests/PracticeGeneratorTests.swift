@@ -126,6 +126,28 @@ final class PracticeGeneratorTests: XCTestCase {
         }
     }
 
+    func testTopTotalsStillGetFourReachableChoices() {
+        var generator = StableSeededGenerator(seed: "top-totals")
+        for score in [24, 28, 29] {
+            let choices = HandCountGenerator.options(for: score, using: &generator)
+            XCTAssertEqual(choices.count, 4, "score \(score)")
+            XCTAssertEqual(Set(choices).count, 4, "score \(score)")
+            XCTAssertTrue(choices.contains(score))
+            XCTAssertTrue(Set(choices).isDisjoint(with: HandCountGenerator.impossibleScores))
+        }
+    }
+
+    func testZeroPointExplanationDoesNotClaimTheCardMatchesNothing() {
+        // 5 9 then 5: the 5 matches an earlier card but not the one just before.
+        let pile: [PlayingCard] = [.c(5), .d(9)]
+        let play = PlayingCard.h(5)
+        let result = PeggingScoring.score(pile: pile, play: play)!
+        XCTAssertEqual(result.points, 0)
+        let text = PeggingQuestionGenerator.explain(pile: pile, play: play, result: result)
+        XCTAssertFalse(text.contains("matches nothing"))
+        XCTAssertTrue(text.contains("just before"))
+    }
+
     func testImpossibleScoresReallyNeverOccur() {
         var generator = StableSeededGenerator(seed: "impossible")
         for _ in 0..<5000 {

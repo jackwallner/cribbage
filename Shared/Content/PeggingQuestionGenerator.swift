@@ -55,7 +55,7 @@ enum PeggingQuestionGenerator {
         let before = PeggingScoring.runningTotal(pile)
         let count = "The count goes from \(before) to \(result.total)."
         guard result.points > 0 else {
-            return "\(count) That is not 15 or 31, the \(play.shortLabel) matches nothing before it, and the last cards form no run of three, so you score nothing."
+            return "\(count) That is not 15 or 31, the \(play.shortLabel) does not match the card played just before it, and the last cards form no run of three, so you score nothing."
         }
         return "\(count) You score \(result.summary), \(result.points) in all. A pegging run counts the last cards played in any order, and a pair only counts against the card played just before."
     }

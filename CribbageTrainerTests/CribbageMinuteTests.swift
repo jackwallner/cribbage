@@ -23,6 +23,12 @@ final class CribbageMinuteContentTests: XCTestCase {
         XCTAssertEqual(first.items.map(\.tiles), second.items.map(\.tiles))
     }
 
+    func testDefaultDayKeyIsGregorianWhateverTheSystemCalendar() {
+        let key = CribbageMinuteContent.key(for: date(2026, 8, 9))
+        XCTAssertEqual(key.prefix(4), "2026")
+        XCTAssertEqual(Calendar.gregorianLocal.identifier, .gregorian)
+    }
+
     func testChallengeHasThePromisedFiveQuestionMix() {
         let challenge = CribbageMinuteContent.challenge(for: date(2026, 8, 9), calendar: calendar)
         let categories = Dictionary(grouping: challenge.questions, by: \.category).mapValues(\.count)

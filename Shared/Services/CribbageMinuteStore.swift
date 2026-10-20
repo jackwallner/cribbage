@@ -45,7 +45,7 @@ final class CribbageMinuteStore: ObservableObject {
         }
     }
 
-    func result(for day: Date, calendar: Calendar = .current) -> CribbageMinuteResult? {
+    func result(for day: Date, calendar: Calendar = .gregorianLocal) -> CribbageMinuteResult? {
         results[CribbageMinuteContent.key(for: day, calendar: calendar)]
     }
 

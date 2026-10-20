@@ -3,9 +3,10 @@ import Foundation
 /// How well a room is actually known, as opposed to how much of it has been
 /// opened.
 ///
-/// The room ring used to count drills the player had started, which rewards
+/// The room ring on Home counts drills the player has started, which rewards
 /// tapping rather than learning: finish every drill once, badly, and the room
-/// reads as done forever. Mastery is coverage times durability instead. An
+/// reads as done forever. Mastery is coverage times durability instead (here it
+/// feeds the weekly gain, not the rings). An
 /// item counts as known only after two correct answers in a row, and it stops
 /// counting when its spaced-repetition interval has lapsed far enough that the
 /// player would probably miss it today.
@@ -101,8 +102,8 @@ extension PracticeRecordStore {
 
     /// Mastery for one room, measured against the items this player can
     /// actually reach. Locked Cribbage+ sets are excluded for a free player, the
-    /// same way the old completion ring excluded them: a denominator nobody
-    /// can close is a nag, not a goal.
+    /// same way the room ring excludes them: a denominator nobody can close is
+    /// a nag, not a goal.
     func mastery(for room: Room, isMember: Bool, now: Date = Date()) -> RoomMastery {
         let ids = Set(Self.trackableItemIDs(in: room, isMember: isMember))
         guard !ids.isEmpty else {

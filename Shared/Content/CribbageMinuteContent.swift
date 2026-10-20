@@ -51,7 +51,7 @@ enum CribbageMinuteContent {
         isPlus: true
     )
 
-    static func challenge(for day: Date = Date(), calendar: Calendar = .current) -> CribbageMinuteChallenge {
+    static func challenge(for day: Date = Date(), calendar: Calendar = .gregorianLocal) -> CribbageMinuteChallenge {
         let dayKey = key(for: day, calendar: calendar)
         let generated = generatedQuestions(dayKey: dayKey)
         let middle = discardQuestion(dayKey: dayKey).map { [$0] } ?? []
@@ -70,7 +70,7 @@ enum CribbageMinuteContent {
         return CribbageMinuteChallenge(day: day, dayKey: dayKey, shortDate: shortDate, questions: questions)
     }
 
-    static func key(for day: Date, calendar: Calendar = .current) -> String {
+    static func key(for day: Date, calendar: Calendar = .gregorianLocal) -> String {
         let parts = calendar.dateComponents([.year, .month, .day], from: day)
         return String(
             format: "%04d-%02d-%02d",

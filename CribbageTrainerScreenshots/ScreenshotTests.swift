@@ -7,7 +7,7 @@ import XCTest
 ///
 /// Run: scripts/capture-screenshots.sh <udid> <out-dir> [prefix]
 ///
-/// Not part of the CribbageTrainer scheme's test action — it lives on its own
+/// Not part of the CribbageTrainer scheme's test action, it lives on its own
 /// `Screenshots` scheme so the unit-test loop stays fast.
 ///
 /// The test never fails on a missing element. A hard XCTFail makes Xcode spend
@@ -33,7 +33,7 @@ final class ScreenshotTests: XCTestCase {
         ]
         // The What's New sheet fires on the first launch after a version bump
         // and covers Home. Marking the CURRENT version as already seen is what
-        // suppresses it — any other value still counts as an upgrade — so the
+        // suppresses it (any other value still counts as an upgrade), so the
         // capture script passes the real marketing version in.
         if let version = ProcessInfo.processInfo.environment["SCREENSHOT_APP_VERSION"] {
             app.launchArguments += ["-whatsnew.lastSeenVersion", version]
