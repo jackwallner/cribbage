@@ -1,0 +1,12 @@
+Aplicația este disponibilă doar în limba engleză.
+
+Învață cribbage cu un pachet standard în sesiuni de cinci minute. Fără adversari, presiune sau cont.
+
+Camere pentru cărți, punctaj, aruncare și pegging. Exersează 15, 31, perechi, serii, go și ultima carte.
+
+Cribbage+ adaugă Endless Practice, repetarea greșelilor, provocarea de 90 de secunde, seturi suplimentare și Master Tables. Baza rămâne gratuită.
+
+Cribbage+ oferă abonamente lunare sau anuale cu reînnoire automată ori o achiziție unică pe viață. Plata și gestionarea se fac prin Google Play, unde poți anula oricând.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

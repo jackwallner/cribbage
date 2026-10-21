@@ -1,0 +1,12 @@
+L’aplicació només està disponible en anglès.
+
+Practica el cribbage amb una baralla estàndard en sessions de cinc minuts. Sense rivals, pressió ni compte.
+
+Sales de cartes, puntuació, descart i pegging. Practica 15, 31, parelles, seqüències, go i l'última carta.
+
+Cribbage+ afegeix Endless Practice, repàs d'errors, un repte de 90 segons, conjunts addicionals i Master Tables. Les bases són gratuïtes.
+
+Cribbage+ ofereix subscripcions mensuals o anuals amb renovació automàtica o una compra única de per vida. El pagament i la gestió es fan a Google Play, on pots cancel·lar quan vulguis.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

@@ -1,0 +1,12 @@
+Aplikasi ini hanya tersedia dalam bahasa Inggris.
+
+Latih cribbage dengan dek standar dalam sesi lima menit. Tanpa lawan, tekanan, atau akun.
+
+Ruang Kartu, Skor, Buang Kartu, dan Pegging. Latih 15, 31, pasangan, run, go, dan kartu terakhir.
+
+Cribbage+ menambahkan Endless Practice, ulasan kesalahan, tantangan 90 detik, set ekstra, dan Master Tables. Dasarnya tetap gratis.
+
+Cribbage+ tersedia sebagai langganan bulanan atau tahunan yang diperpanjang otomatis, atau pembelian sekali untuk akses seumur hidup. Pembayaran dan pengelolaan melalui Google Play. Batalkan kapan saja.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

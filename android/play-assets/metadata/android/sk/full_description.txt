@@ -1,0 +1,12 @@
+Aplikácia je dostupná iba v angličtine.
+
+Cvič cribbage so štandardným balíčkom v päťminútových lekciách. Bez súperov, tlaku a účtu.
+
+Miestnosti Karty, Skóre, Odhody a Pegging. Cvič 15, 31, páry, postupky, go a poslednú kartu.
+
+Cribbage+ pridáva Endless Practice, opakovanie chýb, 90-sekundovú výzvu, ďalšie súpravy a Master Tables. Základ zostáva zadarmo.
+
+Cribbage+ ponúka automaticky obnovované mesačné alebo ročné predplatné či jednorazový nákup na celý život. Platby a správu zabezpečuje Google Play, kde môžete predplatné kedykoľvek zrušiť.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

@@ -1,0 +1,12 @@
+アプリ本体は英語のみ対応しています。
+
+標準デッキのクリベッジを、1回5分の練習で身につけましょう。対戦相手もプレッシャーも必要ありません。
+
+カード、得点計算、捨て札、ペギングのルームを収録。15、31、ペア、ラン、go、最後のカードを練習できます。
+
+Cribbage+では、Endless Practice、間違いの復習、90秒チャレンジ、追加セット、Master Tablesを利用できます。基本内容は無料です。
+
+Cribbage+は自動更新の月額・年額プラン、または買い切りの永久アクセスで利用できます。お支払いと定期購入の管理はGoogle Playで行い、いつでも解約できます。
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

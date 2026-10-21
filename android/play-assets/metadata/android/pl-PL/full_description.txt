@@ -1,0 +1,12 @@
+Aplikacja jest dostępna tylko w języku angielskim.
+
+Ćwicz cribbage ze standardową talią w pięciominutowych sesjach. Bez przeciwników, presji i konta.
+
+Pokoje Kart, Punktacji, Odrzutów i Peggingu. Ćwicz 15, 31, pary, sekwencje, go i ostatnią kartę.
+
+Cribbage+ dodaje Endless Practice, powtórkę błędów, wyzwanie 90 sekund, dodatkowe zestawy i Master Tables. Podstawy są darmowe.
+
+Cribbage+ oferuje automatycznie odnawianą subskrypcję miesięczną lub roczną albo jednorazowy zakup dostępu na zawsze. Płatności i zarządzanie odbywają się w Google Play. Subskrypcję możesz anulować w dowolnym momencie.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

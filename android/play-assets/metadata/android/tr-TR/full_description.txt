@@ -1,0 +1,12 @@
+Uygulama yalnızca İngilizce olarak sunulmaktadır.
+
+Standart desteyle cribbage oyununu beş dakikalık çalışmalarla öğren. Rakip, baskı veya hesap gerekmez.
+
+Kart, puanlama, kart atma ve pegging odalarında 15, 31, çift, seri, go ve son kartı çalış.
+
+Cribbage+ Endless Practice, hata tekrarı, 90 saniyelik meydan okuma, ek setler ve Master Tables ekler. Temel içerik ücretsizdir.
+
+Cribbage+, otomatik yenilenen aylık veya yıllık abonelik ya da tek seferlik ömür boyu satın alma ile sunulur. Ödeme ve yönetim Google Play üzerinden yapılır. Aboneliğini istediğin zaman iptal edebilirsin.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

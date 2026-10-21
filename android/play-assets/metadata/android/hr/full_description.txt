@@ -1,0 +1,12 @@
+Aplikacija je dostupna samo na engleskom jeziku.
+
+Vježbaj cribbage sa standardnim špilom u sesijama od pet minuta. Bez protivnika, pritiska ili računa.
+
+Sobe za karte, bodovanje, odbacivanje i pegging. Vježbaj 15, 31, parove, nizove, go i zadnju kartu.
+
+Cribbage+ dodaje Endless Practice, ponavljanje pogrešaka, izazov od 90 sekundi, dodatne setove i Master Tables. Osnove ostaju besplatne.
+
+Cribbage+ nudi mjesečnu ili godišnju pretplatu s automatskim obnavljanjem ili jednokratnu kupnju za doživotni pristup. Plaćanje i upravljanje obavljaju se putem Google Playa, gdje možete otkazati u bilo kojem trenutku.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

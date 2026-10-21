@@ -1,0 +1,1 @@
+Cribbage : comptez les points, pratiquez le pegging et choisissez vos défausses.

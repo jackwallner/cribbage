@@ -1,0 +1,12 @@
+L’app è disponibile solo in inglese.
+
+Impara il cribbage con un mazzo standard in sessioni da cinque minuti. Capisci ogni decisione senza avversari né pressione.
+
+Stanze Carte, Punteggio, Scarti e Pegging. Conta le mani, scegli due carte per il crib e pratica 15, 31, coppie, sequenze, go e ultima carta.
+
+Cribbage+ aggiunge Endless Practice, ripasso degli errori, una sfida da 90 secondi, set extra e Master Tables. I contenuti base restano gratuiti.
+
+Cribbage+ offre abbonamenti mensili o annuali con rinnovo automatico e un acquisto unico a vita. Pagamento e gestione passano da Google Play, dove puoi annullare in qualsiasi momento.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

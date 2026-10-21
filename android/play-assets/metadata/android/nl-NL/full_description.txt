@@ -1,0 +1,12 @@
+De app is alleen beschikbaar in het Engels.
+
+Oefen cribbage met een standaard kaartspel in sessies van vijf minuten. Geen tegenstanders, druk of account nodig.
+
+Kamers voor kaarten, score, afleggen en pegging. Oefen 15, 31, paren, reeksen, go en de laatste kaart.
+
+Cribbage+ voegt Endless Practice, foutenanalyse, een uitdaging van 90 seconden, extra sets en Master Tables toe. De basis blijft gratis.
+
+Cribbage+ biedt een maand- of jaarabonnement met automatische verlenging of een eenmalige aankoop voor levenslange toegang. Betaling en beheer verlopen via Google Play. Je kunt daar op elk moment opzeggen.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

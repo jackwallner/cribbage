@@ -1,0 +1,1 @@
+Cribbage öğren: puan sayma, pegging ve kart atma kararlarını çalış.

@@ -1,0 +1,12 @@
+Sovellus on saatavilla vain englanniksi.
+
+Harjoittele cribbagea tavallisella pakalla viiden minuutin jaksoissa. Ei vastustajia, painetta tai tiliä.
+
+Kortti-, piste-, poisheitto- ja pegging-huoneet. Harjoittele 15:tä, 31:tä, pareja, sarjoja, go:ta ja viimeistä korttia.
+
+Cribbage+ lisää Endless Practicen, virheiden kertauksen, 90 sekunnin haasteen, lisäsarjat ja Master Tablesin. Perus sisältö on maksutonta.
+
+Cribbage+ on saatavilla automaattisesti uusiutuvana kuukausi- tai vuositilauksena tai elinikäisenä kertaostona. Maksut ja tilauksen hallinta hoidetaan Google Playssa, jossa voit perua milloin tahansa.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

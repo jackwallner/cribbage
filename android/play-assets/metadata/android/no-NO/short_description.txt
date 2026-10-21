@@ -1,0 +1,1 @@
+Øv på cribbage: tell poeng, tren pegging og velg kort til cribben.

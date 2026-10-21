@@ -1,0 +1,1 @@
+Träna cribbage: räkna poäng, öva pegging och välj kort till cribben.

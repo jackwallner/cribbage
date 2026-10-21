@@ -1,0 +1,12 @@
+Az alkalmazás csak angol nyelven érhető el.
+
+Tanuld a cribbage-et szabványos paklival, ötperces gyakorlásokban. Nincs ellenfél, nyomás vagy fiók.
+
+Kártya-, pontozás-, dobás- és pegging-szobák. Gyakorold a 15-öt, 31-et, párokat, sorokat, go-t és az utolsó lapot.
+
+A Cribbage+ Endless Practice-t, hibaismétlést, 90 másodperces kihívást, extra készleteket és Master Tables-t ad. Az alap ingyenes.
+
+A Cribbage+ automatikusan megújuló havi vagy éves előfizetéssel, illetve egyszeri, örökös vásárlással érhető el. A fizetés és a kezelés a Google Play rendszerében történik, ahol bármikor lemondhatod az előfizetést.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

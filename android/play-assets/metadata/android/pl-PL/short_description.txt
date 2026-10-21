@@ -1,0 +1,1 @@
+Ćwicz cribbage: licz punkty, trenuj pegging i wybieraj karty do odrzucenia.

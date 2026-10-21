@@ -1,0 +1,12 @@
+应用本身仅提供英语界面。
+
+用每次五分钟的练习掌握标准牌组克里比奇。计算手牌，理解弃牌选择，并学习每个答案的原因。
+
+卡牌、算分、弃牌和Pegging房间。练习15、31、对子、顺子、go和最后一张牌。
+
+Cribbage+增加Endless Practice、错题复习、90秒挑战、额外练习集和Master Tables。基础内容保持免费。
+
+Cribbage+ 提供自动续订的月度或年度订阅，也可一次性购买终身使用权。付款和订阅管理通过 Google Play 进行，可随时取消订阅。
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

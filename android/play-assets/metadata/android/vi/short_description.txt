@@ -1,0 +1,1 @@
+Luyện cribbage: tính điểm, tập pegging và chọn bài bỏ vào crib.

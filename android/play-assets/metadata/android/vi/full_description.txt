@@ -1,0 +1,12 @@
+Ứng dụng chỉ có tiếng Anh.
+
+Luyện cribbage với bộ bài tiêu chuẩn trong các phiên năm phút. Không cần đối thủ, áp lực hay tài khoản.
+
+Các phòng Lá bài, Tính điểm, Bỏ bài và Pegging. Luyện 15, 31, đôi, chuỗi, go và lá cuối.
+
+Cribbage+ thêm Endless Practice, ôn lỗi sai, thử thách 90 giây, bộ bài bổ sung và Master Tables. Nội dung cơ bản vẫn miễn phí.
+
+Cribbage+ có gói tháng hoặc năm tự động gia hạn, hoặc mua một lần để dùng trọn đời. Thanh toán và quản lý đăng ký qua Google Play. Bạn có thể hủy bất cứ lúc nào.
+
+https://jackwallner.github.io/cribbage/android-privacy.html
+https://jackwallner.github.io/cribbage/android-terms.html

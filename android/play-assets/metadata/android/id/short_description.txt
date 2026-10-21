@@ -1,0 +1,1 @@
+Latihan cribbage: hitung poin, asah pegging dan pilih kartu untuk dibuang.
