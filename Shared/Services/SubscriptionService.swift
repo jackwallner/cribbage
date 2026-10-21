@@ -183,8 +183,6 @@ final class SubscriptionService: NSObject, ObservableObject {
         // campaign and keyword drove an install, so ad cohorts can be judged on
         // trials and revenue instead of installs alone.
         Purchases.shared.attribution.enableAdServicesAttributionTokenCollection()
-        // Meta ad measurement, off until the build carries a Meta app id.
-        MetaAds.linkRevenueCat()
         isConfigured = true
         #endif
     }
@@ -328,9 +326,6 @@ final class SubscriptionService: NSObject, ObservableObject {
             offeringID: package.presentedOfferingContext.offeringIdentifier
         )
         syncConversionAttributes()
-        // A trial or a purchase is the only thing that earns the tracking
-        // prompt (restore is not a purchase).
-        MetaAds.notePurchase()
         return .purchased
     }
 
