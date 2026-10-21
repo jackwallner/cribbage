@@ -306,6 +306,9 @@ final class SubscriptionService: NSObject, ObservableObject {
             offeringID: package.presentedOfferingContext.offeringIdentifier
         )
         syncConversionAttributes()
+        // A trial or a purchase is the only thing that earns the tracking
+        // prompt (restore is not a purchase).
+        MetaAds.notePurchase()
         return .purchased
     }
 
