@@ -4994,7 +4994,7 @@
           "pairs",
           "runs"
         ],
-        "explanation" : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5.",
+        "explanation" : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too.",
         "tiles" : [
           "H6",
           "S1",
@@ -5010,7 +5010,7 @@
           "fifteens",
           "flushes"
         ],
-        "explanation" : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5.",
+        "explanation" : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too.",
         "tiles" : [
           "C11",
           "S6",
@@ -5140,7 +5140,7 @@
           "runs",
           "flushes"
         ],
-        "explanation" : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5.",
+        "explanation" : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too.",
         "tiles" : [
           "D5",
           "S1",
@@ -5270,7 +5270,7 @@
           "pairs",
           "runs"
         ],
-        "explanation" : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5.",
+        "explanation" : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too.",
         "tiles" : [
           "C3",
           "C5",
@@ -5384,7 +5384,7 @@
           "flushes",
           "pairs"
         ],
-        "explanation" : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5.",
+        "explanation" : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too.",
         "tiles" : [
           "C2",
           "C11",
@@ -5915,7 +5915,7 @@
         "Pairs",
         "Flushes"
       ],
-      "explanation" : "Four cards in the hand are diamonds, so the hand has a four-card flush worth 4, and a diamond cut would make it 5. Nothing here adds to fifteen and no rank repeats.",
+      "explanation" : "Four of the five cards are diamonds, so a hand holding those four has a four-card flush worth 4, or 5 if the starter is a diamond too. Nothing here adds to fifteen and no rank repeats.",
       "id" : "score-match-4",
       "isReviewable" : true,
       "prompt" : "Which scoring shape should you spot first?",
@@ -6069,7 +6069,7 @@
         "Runs",
         "His Nobs"
       ],
-      "explanation" : "Four spades create a four-card hand flush worth 4, and a spade cut would make it 5.",
+      "explanation" : "Four spades create a four-card hand flush worth 4, or 5 if the starter is a spade too.",
       "id" : "plus-hand-3",
       "isReviewable" : true,
       "prompt" : "Which scoring shape should you spot first?",
@@ -6201,7 +6201,7 @@
         "Flushes",
         "Pairs"
       ],
-      "explanation" : "Four hearts make a four-card hand flush. The starter would determine whether a fifth heart extends it to 5 points.",
+      "explanation" : "Four hearts make a four-card hand flush worth 4, or 5 if the starter is a heart too.",
       "id" : "more-hand-3",
       "isReviewable" : true,
       "prompt" : "Which scoring shape should you spot first?",
@@ -6307,10 +6307,10 @@
     {
       "answerIndex" : 1,
       "choices" : [
-        "Give away your best fifteen cards",
-        "Protect your hand first"
+        "Starve your own crib",
+        "Hand first, then feed the crib"
       ],
-      "explanation" : "As dealer, you want your hand and crib to score. When two discards help your hand equally, prefer the pair that is less likely to give the pone a fifteen or run in the crib.",
+      "explanation" : "As dealer, the crib is yours. Keep the four cards that count best, then, when two discards help your hand about equally, throw the pair most likely to score in your own crib, such as two cards that make fifteen or a pair.",
       "id" : "decision-dealer-crib",
       "isReviewable" : true,
       "prompt" : "You are the dealer\nThe crib changes the tradeoff",
@@ -6332,7 +6332,7 @@
         "Minimize crib help",
         "Maximize only your hand"
       ],
-      "explanation" : "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may be dangerous if it pairs a card already likely to land in the crib.",
+      "explanation" : "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may still cost you if the two cards pair, make fifteen together, or include a 5.",
       "id" : "decision-pone-danger",
       "isReviewable" : true,
       "prompt" : "You are the pone\nThe dealer owns your discards",
@@ -6882,7 +6882,7 @@
         "His Nobs",
         "Flushes"
       ],
-      "explanation" : "Four hearts make a hand flush worth 4, and a heart cut would make it 5. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table.",
+      "explanation" : "Four hearts make a hand flush worth 4, or 5 if the starter is a heart too. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table.",
       "id" : "master-hand-3",
       "isReviewable" : true,
       "prompt" : "Which scoring shape should you spot first?",
@@ -7014,7 +7014,7 @@
         "A rule allowing an opponent to claim missed points",
         "A kind of run"
       ],
-      "explanation" : "In games using muggins, an opponent may call out points you failed to peg or count. Agree on the rule before play.",
+      "explanation" : "Muggins is an optional rule. When players agree to use it (the American Cribbage Congress calls it the only optional rule and requires it to be announced before play), an opponent can claim points you failed to peg during play or to count in your hand or crib. Without it, missed points are simply lost.",
       "id" : "more-advanced-muggins",
       "isReviewable" : true,
       "prompt" : "What is muggins?",
@@ -7139,7 +7139,7 @@
               "10 of Spades, Q of Diamonds",
               "5 of Diamonds, 10 of Spades"
             ],
-            "explanation" : "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but it denies the dealer a 10-queen crib package and keeps the block that most cuts improve.",
+            "explanation" : "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but the 10 and queen make neither a pair nor a fifteen in the dealer's crib, and the 4-5-6 block is the shape most cuts improve.",
             "id" : "cribbage-minute-discard-2026-02-28",
             "isReviewable" : false,
             "prompt" : "You are pone and your lead is safe. Choose two. Which two cards do you throw?",
@@ -7211,10 +7211,10 @@
           "item" : {
             "answerIndex" : 1,
             "choices" : [
-              "Give away your best fifteen cards",
-              "Protect your hand first"
+              "Starve your own crib",
+              "Hand first, then feed the crib"
             ],
-            "explanation" : "As dealer, you want your hand and crib to score. When two discards help your hand equally, prefer the pair that is less likely to give the pone a fifteen or run in the crib.",
+            "explanation" : "As dealer, the crib is yours. Keep the four cards that count best, then, when two discards help your hand about equally, throw the pair most likely to score in your own crib, such as two cards that make fifteen or a pair.",
             "id" : "decision-dealer-crib",
             "isReviewable" : true,
             "prompt" : "You are the dealer\nThe crib changes the tradeoff",

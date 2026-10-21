@@ -48,7 +48,7 @@ enum CardBasicsContent {
             frontTiles: [.c(4), .d(5), .s(6)],
             frontSubtitle: "Order matters, suit does not",
             backTitle: "Three in sequence is 3",
-            backBody: "Three consecutive ranks score 3 points, four score 4, and so on. Suits may be mixed. Duplicate ranks can create double, triple, or quadruple runs."
+            backBody: "Three consecutive ranks score 3 points, four score 4, and so on. Suits may be mixed. Duplicate ranks can create double, double-double, or triple runs."
         ),
         Flashcard(
             id: "cards-starter",
@@ -56,7 +56,7 @@ enum CardBasicsContent {
             frontTiles: [.h(11)],
             frontSubtitle: "The cut changes the hand",
             backTitle: "It joins both counts",
-            backBody: "After the discard, the non-dealer cuts the deck and the starter card joins both hands and the crib. It can create new fifteens, pairs, runs, a flush, or his nobs."
+            backBody: "After the discard, the non-dealer cuts the deck and the starter card joins both hands and the crib. It can create new fifteens, pairs, runs, a flush, or his nobs. A jack as the starter also pegs 2 for the dealer, called his heels."
         ),
         Flashcard(
             id: "cards-nobs",
@@ -78,7 +78,7 @@ enum CardBasicsContent {
             frontTitle: "The race",
             frontSubtitle: "Why every point matters",
             backTitle: "Reach 121 first",
-            backBody: "Players move pegs around a 120-hole board. The first player to reach 121 wins, so a safe point now can matter more than a perfect-looking hand later."
+            backBody: "Players move pegs along a board with 120 holes plus a final game hole. The first player to reach 121 wins, so a safe point now can matter more than a perfect-looking hand later."
         ),
     ]
 

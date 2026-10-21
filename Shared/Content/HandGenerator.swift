@@ -156,7 +156,7 @@ enum HandGenerator {
             let count = HandScoring.longestSuitCount(cards)
             return count == 5
                 ? "All five cards share a suit, so the flush alone is 5 points."
-                : "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5."
+                : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too."
         case .runs:
             return "The ranks build a run worth \(HandScoring.runs(cards)) points. Suits never matter for a run, and aces stay low."
         case .pairs:

@@ -170,7 +170,7 @@
               "id" : "cards-pairs"
             },
             {
-              "backBody" : "Three consecutive ranks score 3 points, four score 4, and so on. Suits may be mixed. Duplicate ranks can create double, triple, or quadruple runs.",
+              "backBody" : "Three consecutive ranks score 3 points, four score 4, and so on. Suits may be mixed. Duplicate ranks can create double, double-double, or triple runs.",
               "backTitle" : "Three in sequence is 3",
               "frontSubtitle" : "Order matters, suit does not",
               "frontTiles" : [
@@ -182,7 +182,7 @@
               "id" : "cards-runs"
             },
             {
-              "backBody" : "After the discard, the non-dealer cuts the deck and the starter card joins both hands and the crib. It can create new fifteens, pairs, runs, a flush, or his nobs.",
+              "backBody" : "After the discard, the non-dealer cuts the deck and the starter card joins both hands and the crib. It can create new fifteens, pairs, runs, a flush, or his nobs. A jack as the starter also pegs 2 for the dealer, called his heels.",
               "backTitle" : "It joins both counts",
               "frontSubtitle" : "The cut changes the hand",
               "frontTiles" : [
@@ -213,7 +213,7 @@
               "id" : "cards-dealer"
             },
             {
-              "backBody" : "Players move pegs around a 120-hole board. The first player to reach 121 wins, so a safe point now can matter more than a perfect-looking hand later.",
+              "backBody" : "Players move pegs along a board with 120 holes plus a final game hole. The first player to reach 121 wins, so a safe point now can matter more than a perfect-looking hand later.",
               "backTitle" : "Reach 121 first",
               "frontSubtitle" : "Why every point matters",
               "frontTiles" : [
@@ -591,7 +591,7 @@
             }
           ],
           "kind" : "quiz",
-          "subtitle" : "Eight more: deal sizes, values, cuts, and counts",
+          "subtitle" : "Fourteen more: deal sizes, values, cuts, and counts",
           "title" : "Card Check: Extra Reps"
         }
       ],
@@ -673,7 +673,7 @@
               "id" : "score-nobs"
             },
             {
-              "backBody" : "The 4-5-6 sequence appears twice because there are two 4s. That is a double run of three for 6 points, before any fifteens.",
+              "backBody" : "The 4-5-6 sequence appears twice because there are two 4s. The runs are worth 6, the pair adds 2, and the two 4-5-6 fifteens add 4, for 12 in all.",
               "backTitle" : "The pair makes two runs",
               "frontSubtitle" : "A pair can multiply a run",
               "frontTiles" : [
@@ -772,7 +772,7 @@
                 "fifteens",
                 "pairs"
               ],
-              "explanation" : "Four cards in the hand are diamonds, so the hand has a four-card flush worth 4, and a diamond cut would make it 5. Nothing here adds to fifteen and no rank repeats.",
+              "explanation" : "Four of the five cards are diamonds, so a hand holding those four has a four-card flush worth 4, or 5 if the starter is a diamond too. Nothing here adds to fifteen and no rank repeats.",
               "id" : "score-match-4",
               "tiles" : [
                 "D6",
@@ -900,7 +900,7 @@
                 "runs",
                 "nobs"
               ],
-              "explanation" : "Four spades create a four-card hand flush worth 4, and a spade cut would make it 5.",
+              "explanation" : "Four spades create a four-card hand flush worth 4, or 5 if the starter is a spade too.",
               "id" : "plus-hand-3",
               "tiles" : [
                 "S2",
@@ -1002,7 +1002,7 @@
                 "pairs",
                 "runs"
               ],
-              "explanation" : "Four hearts make a four-card hand flush. The starter would determine whether a fifth heart extends it to 5 points.",
+              "explanation" : "Four hearts make a four-card hand flush worth 4, or 5 if the starter is a heart too.",
               "id" : "more-hand-3",
               "tiles" : [
                 "H1",
@@ -1065,7 +1065,7 @@
             }
           ],
           "kind" : "handMatch",
-          "subtitle" : "Six more hands with overlapping scoring patterns",
+          "subtitle" : "Twelve more hands with overlapping scoring patterns",
           "title" : "Read the Hand: Extra Reps"
         }
       ],
@@ -1082,7 +1082,7 @@
           "isPlus" : false,
           "items" : [
             {
-              "backBody" : "Each player receives six cards and discards exactly two. The four cards you keep are your hand. The dealer adds both discards to the crib.",
+              "backBody" : "Each player receives six cards and discards exactly two. The four cards you keep are your hand. Both players' discards make up the dealer's crib.",
               "backTitle" : "Two cards to the crib",
               "frontSubtitle" : "The first decision after the deal",
               "frontTiles" : [
@@ -1198,7 +1198,7 @@
                 "D12"
               ],
               "id" : "discard-scenario-2",
-              "reasoning" : "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either, because they make fifteen together in your own crib.",
+              "reasoning" : "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either: in your own crib they are neighbors that can grow into a run, and they make fifteen with a 2.",
               "recommendedDiscard" : [
                 "H6",
                 "S7"
@@ -1234,7 +1234,7 @@
                 "D10"
               ],
               "id" : "discard-scenario-4",
-              "reasoning" : "Keeping the 7s scores 2 and almost nothing else, because 7-7-4-5 makes no fifteen and no run. Put the pair in your own crib instead: it still scores 2 there, and 3-4-5-10 keeps a run, the 5-10 fifteen, and the widest set of helpful cuts.",
+              "reasoning" : "Keeping the 7s with the 3 and 5 is the best hand that holds the pair, 6 points before the cut. Throwing the 7s keeps 3-4-5-10 for 5, a run plus the 5-10 fifteen, and puts a pair in your own crib, where it is worth about two points more than the 4 and 10 would be.",
               "recommendedDiscard" : [
                 "C7",
                 "D7"
@@ -1469,7 +1469,7 @@
             }
           ],
           "kind" : "discard",
-          "subtitle" : "Four more deals: flushes, pairs, board position, and defense",
+          "subtitle" : "Eight more deals: flushes, pairs, board position, and defense",
           "title" : "Pick Your Discard: Extra Reps"
         }
       ],
@@ -1508,13 +1508,13 @@
               "id" : "decision-keep-five"
             },
             {
-              "backBody" : "As dealer, you want your hand and crib to score. When two discards help your hand equally, prefer the pair that is less likely to give the pone a fifteen or run in the crib.",
-              "backTitle" : "Avoid gifting connected cards",
+              "backBody" : "As dealer, the crib is yours. Keep the four cards that count best, then, when two discards help your hand about equally, throw the pair most likely to score in your own crib, such as two cards that make fifteen or a pair.",
+              "backTitle" : "Hand first, then feed the crib",
               "choice" : {
                 "answerIndex" : 0,
                 "options" : [
-                  "Protect your hand first",
-                  "Give away your best fifteen cards"
+                  "Hand first, then feed the crib",
+                  "Starve your own crib"
                 ]
               },
               "frontSubtitle" : "The crib changes the tradeoff",
@@ -1530,7 +1530,7 @@
               "id" : "decision-dealer-crib"
             },
             {
-              "backBody" : "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may be dangerous if it pairs a card already likely to land in the crib.",
+              "backBody" : "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may still cost you if the two cards pair, make fifteen together, or include a 5.",
               "backTitle" : "Do not feed the crib",
               "choice" : {
                 "answerIndex" : 0,
@@ -1922,7 +1922,7 @@
             }
           ],
           "kind" : "flashcards",
-          "subtitle" : "Five more calls: safe totals, board pressure, and nobs",
+          "subtitle" : "Nine more calls: safe totals, board pressure, and nobs",
           "title" : "Pegging Judgment: Extra Reps"
         }
       ],
@@ -2038,7 +2038,7 @@
                 "D12"
               ],
               "id" : "master-discard-6",
-              "reasoning" : "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but it denies the dealer a 10-queen crib package and keeps the block that most cuts improve.",
+              "reasoning" : "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but the 10 and queen make neither a pair nor a fifteen in the dealer's crib, and the 4-5-6 block is the shape most cuts improve.",
               "recommendedDiscard" : [
                 "S10",
                 "D12"
@@ -2189,7 +2189,7 @@
                 "pairs",
                 "nobs"
               ],
-              "explanation" : "Four hearts make a hand flush worth 4, and a heart cut would make it 5. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table.",
+              "explanation" : "Four hearts make a hand flush worth 4, or 5 if the starter is a heart too. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table.",
               "id" : "master-hand-3",
               "tiles" : [
                 "H2",
@@ -2300,7 +2300,7 @@
                 "A special crib",
                 "A kind of run"
               ],
-              "explanation" : "In games using muggins, an opponent may call out points you failed to peg or count. Agree on the rule before play.",
+              "explanation" : "Muggins is an optional rule. When players agree to use it (the American Cribbage Congress calls it the only optional rule and requires it to be announced before play), an opponent can claim points you failed to peg during play or to count in your hand or crib. Without it, missed points are simply lost.",
               "id" : "more-advanced-muggins",
               "prompt" : "What is muggins?",
               "tiles" : [
@@ -2380,6 +2380,40 @@
     }
   ],
   "whatsNew" : [
+    {
+      "headline" : "Count it, peg it, fix it",
+      "items" : [
+        {
+          "body" : "Endless four-card hands with a starter. Add up fifteens, pairs, runs, flushes and nobs, then see exactly where every point came from.",
+          "icon" : "sum",
+          "id" : "count-hand",
+          "isPlus" : true,
+          "title" : "Count the Hand"
+        },
+        {
+          "body" : "Play a card onto the pile and score it: fifteen, thirty-one, pairs and runs in any order.",
+          "icon" : "target",
+          "id" : "peg-points",
+          "isPlus" : true,
+          "title" : "Pegging Points"
+        },
+        {
+          "body" : "Your progress now names the exact skills you miss, like spotting runs, and Endless Practice flags them.",
+          "icon" : "chart.bar.fill",
+          "id" : "sharpen",
+          "isPlus" : false,
+          "title" : "Know what to sharpen"
+        },
+        {
+          "body" : "Home and Your Progress show how many questions you locked in this week, so you can tell the practice is working.",
+          "icon" : "arrow.up.right",
+          "id" : "weekly-gain",
+          "isPlus" : false,
+          "title" : "See your week"
+        }
+      ],
+      "version" : "1.3.0"
+    },
     {
       "headline" : "A smarter rhythm for cribbage night",
       "items" : [

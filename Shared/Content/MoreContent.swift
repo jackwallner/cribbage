@@ -69,7 +69,7 @@ enum MoreContent {
             tiles: [.h(1), .h(4), .h(7), .h(12), .c(9)],
             choices: [.flushes, .pairs, .runs],
             answer: .flushes,
-            explanation: "Four hearts make a four-card hand flush. The starter would determine whether a fifth heart extends it to 5 points."
+            explanation: "Four hearts make a four-card hand flush worth 4, or 5 if the starter is a heart too."
         ),
         HandMatchQuestion(
             id: "more-hand-4",
@@ -217,7 +217,7 @@ enum MoreContent {
             prompt: "What is muggins?",
             choices: ["A rule allowing an opponent to claim missed points", "A special crib", "A kind of run"],
             answerIndex: 0,
-            explanation: "In games using muggins, an opponent may call out points you failed to peg or count. Agree on the rule before play."
+            explanation: "Muggins is an optional rule. When players agree to use it (the American Cribbage Congress calls it the only optional rule and requires it to be announced before play), an opponent can claim points you failed to peg during play or to count in your hand or crib. Without it, missed points are simply lost."
         ),
         QuizQuestion(
             id: "more-advanced-crib-flush",

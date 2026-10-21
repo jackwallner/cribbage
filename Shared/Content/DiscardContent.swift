@@ -9,7 +9,7 @@ enum DiscardContent {
             frontTitle: "What are you choosing?",
             frontSubtitle: "The first decision after the deal",
             backTitle: "Two cards to the crib",
-            backBody: "Each player receives six cards and discards exactly two. The four cards you keep are your hand. The dealer adds both discards to the crib."
+            backBody: "Each player receives six cards and discards exactly two. The four cards you keep are your hand. Both players' discards make up the dealer's crib."
         ),
         Flashcard(
             id: "discard-dealer",
@@ -76,7 +76,7 @@ enum DiscardContent {
             situation: "You are the dealer. Choose 2 cards to discard.",
             deal: [.c(5), .d(5), .h(6), .s(7), .c(10), .d(12)],
             recommendedDiscard: [.h(6), .s(7)],
-            reasoning: "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either, because they make fifteen together in your own crib.",
+            reasoning: "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either: in your own crib they are neighbors that can grow into a run, and they make fifteen with a 2.",
             tip: "As dealer, evaluate the hand and the crib together."
         ),
         DiscardScenario(
@@ -92,7 +92,7 @@ enum DiscardContent {
             situation: "You are the dealer. Where does the pair do the most work?",
             deal: [.c(7), .d(7), .h(3), .s(4), .c(5), .d(10)],
             recommendedDiscard: [.c(7), .d(7)],
-            reasoning: "Keeping the 7s scores 2 and almost nothing else, because 7-7-4-5 makes no fifteen and no run. Put the pair in your own crib instead: it still scores 2 there, and 3-4-5-10 keeps a run, the 5-10 fifteen, and the widest set of helpful cuts.",
+            reasoning: "Keeping the 7s with the 3 and 5 is the best hand that holds the pair, 6 points before the cut. Throwing the 7s keeps 3-4-5-10 for 5, a run plus the 5-10 fifteen, and puts a pair in your own crib, where it is worth about two points more than the 4 and 10 would be.",
             tip: "A dealer's own crib is a safe home for a pair that does not fit the hand."
         ),
         DiscardScenario(

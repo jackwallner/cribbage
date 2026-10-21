@@ -122,9 +122,9 @@ enum HandScoring {
     /// every opponent discard pair and every starter, weighted by how many
     /// copies of each rank are still live.
     ///
-    /// The one term this leaves out is the five-card crib flush, which needs
-    /// all four crib cards and the starter in a single suit. It is worth well
-    /// under a tenth of a point and cannot reorder a discard choice.
+    /// Two small terms are left out: the five-card crib flush, which needs all
+    /// four crib cards and the starter in a single suit, and nobs in the crib.
+    /// Each is worth under a tenth of a point and cannot reorder a discard.
     static func averageCrib(discard: [PlayingCard], dead: [PlayingCard]) -> Double {
         var live = [Int](repeating: 4, count: 14)
         for card in dead { live[card.rankValue] -= 1 }

@@ -87,7 +87,7 @@ enum PlusContent {
             tiles: [.s(2), .s(6), .s(8), .s(13), .d(4)],
             choices: [.flushes, .runs, .nobs],
             answer: .flushes,
-            explanation: "Four spades create a four-card hand flush worth 4, and a spade cut would make it 5."
+            explanation: "Four spades create a four-card hand flush worth 4, or 5 if the starter is a spade too."
         ),
         HandMatchQuestion(
             id: "plus-hand-4",

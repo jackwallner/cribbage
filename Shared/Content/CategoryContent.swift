@@ -49,7 +49,7 @@ enum CategoryContent {
             frontTiles: [.c(4), .d(4), .h(5), .s(6)],
             frontSubtitle: "A pair can multiply a run",
             backTitle: "The pair makes two runs",
-            backBody: "The 4-5-6 sequence appears twice because there are two 4s. That is a double run of three for 6 points, before any fifteens."
+            backBody: "The 4-5-6 sequence appears twice because there are two 4s. The runs are worth 6, the pair adds 2, and the two 4-5-6 fifteens add 4, for 12 in all."
         ),
         Flashcard(
             id: "score-count-order",
@@ -94,7 +94,7 @@ enum CategoryContent {
             tiles: [.d(6), .d(8), .d(12), .d(13), .h(4)],
             choices: [.flushes, .fifteens, .pairs],
             answer: .flushes,
-            explanation: "Four cards in the hand are diamonds, so the hand has a four-card flush worth 4, and a diamond cut would make it 5. Nothing here adds to fifteen and no rank repeats."
+            explanation: "Four of the five cards are diamonds, so a hand holding those four has a four-card flush worth 4, or 5 if the starter is a diamond too. Nothing here adds to fifteen and no rank repeats."
         ),
         HandMatchQuestion(
             id: "score-match-5",

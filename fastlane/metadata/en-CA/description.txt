@@ -1,4 +1,4 @@
-Practice standard-deck cribbage in five-minute drills: count hands, read the pegging board, choose strong discards, and learn the reason behind every answer.
+Practice standard-deck cribbage in five-minute drills: count hands, peg to 31, choose strong discards, and learn the reason behind every answer.
 
 Cribbage Trainer is a focused practice companion for players learning the game or sharpening decisions between table sessions. No opponents, no pressure, and no account required. Just quick interactive reps that build confidence before the next deal.
 

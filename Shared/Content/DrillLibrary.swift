@@ -24,7 +24,7 @@ enum DrillLibrary {
                 Drill(
                     id: "plus-card-extras",
                     title: "Card Check: Extra Reps",
-                    subtitle: "Eight more: deal sizes, values, cuts, and counts",
+                    subtitle: "Fourteen more: deal sizes, values, cuts, and counts",
                     kind: .quiz(PlusContent.cardExtras + MoreContent.cardExtras),
                     isPlus: true
                 ),
@@ -52,7 +52,7 @@ enum DrillLibrary {
                 Drill(
                     id: "plus-hand-extras",
                     title: "Read the Hand: Extra Reps",
-                    subtitle: "Six more hands with overlapping scoring patterns",
+                    subtitle: "Twelve more hands with overlapping scoring patterns",
                     kind: .handMatch(PlusContent.extraHandReading + MoreContent.handReading),
                     isPlus: true
                 ),
@@ -80,7 +80,7 @@ enum DrillLibrary {
                 Drill(
                     id: "plus-discard-extras",
                     title: "Pick Your Discard: Extra Reps",
-                    subtitle: "Four more deals: flushes, pairs, board position, and defense",
+                    subtitle: "Eight more deals: flushes, pairs, board position, and defense",
                     kind: .discard(PlusContent.extraDiscards + MoreContent.discardExtras),
                     isPlus: true
                 ),
@@ -108,7 +108,7 @@ enum DrillLibrary {
                 Drill(
                     id: "plus-pegging-extras",
                     title: "Pegging Judgment: Extra Reps",
-                    subtitle: "Five more calls: safe totals, board pressure, and nobs",
+                    subtitle: "Nine more calls: safe totals, board pressure, and nobs",
                     kind: .flashcards(PlusContent.extraJudgment + MoreContent.judgment),
                     isPlus: true
                 ),

@@ -71,7 +71,7 @@ struct OnboardingView: View {
                 infoPage(
                     icon: "figure.walk",
                     title: "Walk in confident",
-                    body: "Know which cards make fifteens, spot scoring patterns fast, and stop dreading the discard. Practice at your own pace: no timers, no opponents.",
+                    body: "Know which cards make fifteens, spot scoring patterns fast, and stop dreading the discard. Practice at your own pace, with no opponents.",
                     tiles: [.c(5), .d(10), .h(11)]
                 ).tag(2).accessibilityHidden(page != 2)
                 skillLevelPage.tag(3).accessibilityHidden(page != 3)

@@ -223,7 +223,7 @@ private fun OnboardingPages(skillLevel: String, onSkill: (String) -> Unit, onDon
                     2 -> InfoPage(
                         "figure.walk",
                         "Walk in confident",
-                        "Know which cards make fifteens, spot scoring patterns fast, and stop dreading the discard. Practice at your own pace: no timers, no opponents.",
+                        "Know which cards make fifteens, spot scoring patterns fast, and stop dreading the discard. Practice at your own pace, with no opponents.",
                         listOf(PlayingCard.c(5), PlayingCard.d(10), PlayingCard.h(11)),
                     )
                     3 -> SkillPage(skillLevel, onSkill)

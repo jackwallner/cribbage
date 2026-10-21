@@ -48,7 +48,7 @@ enum ProContent {
             situation: "You are pone and your lead is safe. Choose two.",
             deal: [.c(4), .d(5), .h(6), .s(10), .c(10), .d(12)],
             recommendedDiscard: [.s(10), .d(12)],
-            reasoning: "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but it denies the dealer a 10-queen crib package and keeps the block that most cuts improve.",
+            reasoning: "Keep 4-5-6 with one 10: the run is 3, 4-5-6 makes fifteen, and 5 with the 10 makes another, for 7 points. Breaking the pair of 10s costs 2, but the 10 and queen make neither a pair nor a fifteen in the dealer's crib, and the 4-5-6 block is the shape most cuts improve.",
             tip: "Know whose crib you are feeding before evaluating any discard."
         ),
     ]
@@ -118,7 +118,7 @@ enum ProContent {
             tiles: [.h(2), .h(3), .h(4), .h(5), .c(9)],
             choices: [.flushes, .pairs, .nobs],
             answer: .flushes,
-            explanation: "Four hearts make a hand flush worth 4, and a heart cut would make it 5. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table."
+            explanation: "Four hearts make a hand flush worth 4, or 5 if the starter is a heart too. No rank repeats and there is no jack, so the suit is the only one of these three shapes on the table."
         ),
         HandMatchQuestion(
             id: "master-hand-4",

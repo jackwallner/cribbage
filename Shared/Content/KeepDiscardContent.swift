@@ -17,9 +17,9 @@ enum KeepDiscardContent {
             frontTitle: "You are the dealer",
             frontTiles: [.c(2), .d(3), .h(7), .s(8), .c(10), .d(12)],
             frontSubtitle: "The crib changes the tradeoff",
-            backTitle: "Avoid gifting connected cards",
-            backBody: "As dealer, you want your hand and crib to score. When two discards help your hand equally, prefer the pair that is less likely to give the pone a fifteen or run in the crib.",
-            choice: CardChoice("Protect your hand first", "Give away your best fifteen cards", answerIndex: 0)
+            backTitle: "Hand first, then feed the crib",
+            backBody: "As dealer, the crib is yours. Keep the four cards that count best, then, when two discards help your hand about equally, throw the pair most likely to score in your own crib, such as two cards that make fifteen or a pair.",
+            choice: CardChoice("Hand first, then feed the crib", "Starve your own crib", answerIndex: 0)
         ),
         Flashcard(
             id: "decision-pone-danger",
@@ -27,7 +27,7 @@ enum KeepDiscardContent {
             frontTiles: [.c(4), .d(5), .h(6), .s(10), .c(13), .d(2)],
             frontSubtitle: "The dealer owns your discards",
             backTitle: "Do not feed the crib",
-            backBody: "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may be dangerous if it pairs a card already likely to land in the crib.",
+            backBody: "As pone, the crib belongs to the dealer. A discard that is fine for your own hand may still cost you if the two cards pair, make fifteen together, or include a 5.",
             choice: CardChoice("Minimize crib help", "Maximize only your hand", answerIndex: 0)
         ),
         Flashcard(

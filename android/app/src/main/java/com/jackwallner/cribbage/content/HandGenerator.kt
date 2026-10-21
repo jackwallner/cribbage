@@ -123,7 +123,7 @@ object HandGenerator {
     fun explain(cards: List<PlayingCard>, answer: HandCategory): String = when (answer) {
         HandCategory.FLUSHES ->
             if (HandScoring.longestSuitCount(cards) == 5) "All five cards share a suit, so the flush alone is 5 points."
-            else "Four cards share a suit for a 4-point hand flush, and a matching cut would make it 5."
+            else "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too."
         HandCategory.RUNS -> "The ranks build a run worth ${HandScoring.runs(cards)} points. Suits never matter for a run, and aces stay low."
         HandCategory.PAIRS -> "Matching ranks are worth ${HandScoring.pairs(cards)} points here. Three of a rank is three separate pairs, not one score."
         HandCategory.FIFTEENS -> "Combinations totaling fifteen are worth ${HandScoring.fifteens(cards)} points here. Court cards count 10 and the ace counts 1."

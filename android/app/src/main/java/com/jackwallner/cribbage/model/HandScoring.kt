@@ -87,7 +87,7 @@ object HandScoring {
     /**
      * What a two-card discard is worth once it lands in a crib, averaged over
      * every opponent discard pair and every starter, weighted by live copies.
-     * Leaves out the five-card crib flush, as iOS does.
+     * Leaves out the five-card crib flush and crib nobs, as iOS does.
      */
     fun averageCrib(discard: List<PlayingCard>, dead: List<PlayingCard>): Double {
         val live = IntArray(14) { 4 }
