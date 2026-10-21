@@ -52,6 +52,8 @@ gh-sim launch --device 'iPhone Duo' --wait 6 \
 ```
 
 The launch step has a 10 minute cap that includes boot and every screenshot, so
-keep to about 7 routes and 8 urls per launch. `--record-seconds` eats the same
+keep to about 7 routes and 8 urls per launch. Screenshot cadence varies by runner (one
+inner walk outran all eight inner shots), so for a must-have inner screen use
+2 routes with `-DuoTourStepRegular 45`; the last route holds to the end. `--record-seconds` eats the same
 budget. Never kill a watching `gh-sim`; reattach with `gh-sim get <id>`. Sizes:
 outer 1398x2034, inner 2853x2007, both in `APP_IPHONE_DUO`.
