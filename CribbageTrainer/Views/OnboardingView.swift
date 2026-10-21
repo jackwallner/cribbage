@@ -7,6 +7,8 @@ import SwiftUI
 /// to Apple's confirm. No plan cards here; the full paywall is only a fallback
 /// when products failed to load. This page is the proven trial flow: change
 /// the button's wording through a RevenueCat Experiment (`TrialCTA`), not here.
+/// An Apple Account that already had its free week (`trialEligible`) sees the
+/// price billed today instead, and "Join Cribbage+" on the button.
 ///
 /// After the trial decision (either way), brand-new players get the How to
 /// Play quick start FIRST, then everyone gets the feature tour, whose finale
@@ -22,6 +24,9 @@ struct OnboardingView: View {
     @State private var restoring = false
     @State private var showPaywallFallback = false
     @State private var purchaseError: String?
+    /// False once StoreKit says this Apple Account already had its free week:
+    /// the page then states the price billed today and promises no trial.
+    @State private var trialEligible = true
     @AppStorage("cribbage.skillLevel") private var skillLevel = ""
 
     private enum Stage: Equatable { case pages, tour, howToPlay }
@@ -86,6 +91,9 @@ struct OnboardingView: View {
         // and the trial step has to show a real billed amount by then.
         .task(id: page) {
             await subscriptions.ensureOfferings()
+            if page == lastPage {
+                trialEligible = await subscriptions.isTrialEligible(for: onboardingPlan)
+            }
         }
         .onChange(of: page) { _, newPage in
             // The TabView pages by swipe too, and only the Continue button is
@@ -370,7 +378,7 @@ struct OnboardingView: View {
 
     private var trialPageTitle: String {
         if subscriptions.isPro { return "\(Membership.name) is on your account" }
-        return "Try \(Membership.name) free"
+        return trialEligible ? "Try \(Membership.name) free" : "Get \(Membership.name) today"
     }
 
     /// The plan this tap buys: monthly. The price line and disclosure below
@@ -396,7 +404,8 @@ struct OnboardingView: View {
         // Nobody is being charged anything here, so quoting a price would be
         // a lie about the button next to it.
         if subscriptions.isPro { return "" }
-        return PaywallPricing.terms(amount: PaywallPricing.price(subscriptions, onboardingPlan), plan: onboardingPlan)
+        return PaywallPricing.terms(amount: PaywallPricing.price(subscriptions, onboardingPlan), plan: onboardingPlan,
+                                    trial: trialEligible)
     }
 
     /// A player who already owns \(Membership.name) is not a trial prospect.
@@ -407,7 +416,7 @@ struct OnboardingView: View {
     /// "you're already subscribed" sheet. Recognise them and just let them in.
     private var trialCTATitle: String {
         if subscriptions.isPro { return "Continue" }
-        return subscriptions.trialCTA(.onboarding)
+        return trialEligible ? subscriptions.trialCTA(.onboarding) : "Join \(Membership.name)"
     }
 
     // MARK: - Footer (identical geometry on every page: zero-shift CTA)
@@ -566,6 +575,13 @@ struct OnboardingView: View {
             // `trialDisclosure` above always names the plan bought here.
             guard let package = subscriptions.package(for: onboardingPlan) else {
                 showPaywallFallback = true
+                return
+            }
+            // The page may have drawn before StoreKit answered. If the free
+            // week is gone, show the real terms and let them tap again.
+            let eligible = await subscriptions.isTrialEligible(for: onboardingPlan)
+            guard eligible == trialEligible else {
+                trialEligible = eligible
                 return
             }
             do {
