@@ -1,1 +1,7 @@
-Behind-the-scenes improvements and fixes to keep Cribbage Trainer running smoothly. Thank you for being here.
+Count it, peg it, fix it.
+
+Count the Hand deals endless hands with a starter. Add up fifteens, pairs, runs, flushes and nobs, then see where every point came from.
+
+Pegging Points has you play a card onto the pile and score it: fifteen, thirty-one, pairs and runs.
+
+Your Progress now names the skills you miss, and Home counts the questions you locked in this week. Also new: Send Feedback in Settings, Reduce Motion support and clearer membership terms.

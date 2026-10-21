@@ -1,1 +1,1 @@
-Practica contar, puntuar, descartar y hacer pegging en cuatro salas gratuitas.
+Dos nuevas habilidades sin fin: Count the Hand y Pegging Points, con cada punto explicado. Your Progress señala las habilidades que fallas, además de Send Feedback, compatibilidad con Reducir movimiento y condiciones de suscripción más claras.

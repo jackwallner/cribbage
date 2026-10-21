@@ -1,9 +1,7 @@
-A smarter rhythm for cribbage night.
+Count it, peg it, fix it.
 
-Cribbage Minute is a new daily challenge. Every member gets the same five questions on the same day: two hand reads, one discard decision, and two pegging calls. Share your score, and keep a forgiving five-day weekly rhythm with a 30-day archive to catch up from.
+Count the Hand deals endless hands with a starter. Add up fifteens, pairs, runs, flushes and nobs, then see where every point came from.
 
-Game Night Prep lets you set your usual cribbage night. A reminder arrives beforehand and opens straight into a five-minute session built from your due mistakes, your weakest room, and material you have not seen yet.
+Pegging Points has you play a card onto the pile and score it: fifteen, thirty-one, pairs and runs.
 
-Cribbage Trainer now runs natively on iPad, in portrait or landscape.
-
-Cribbage Minute and Game Night Prep are part of Cribbage+.
+Your Progress now names the skills you miss, and Home counts the questions you locked in this week. Also new: Send Feedback in Settings, Reduce Motion support and clearer membership terms.

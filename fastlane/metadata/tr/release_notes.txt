@@ -1,1 +1,1 @@
-Dört ücretsiz odada sayma, puanlama, kart atma ve pegging çalış.
+İki yeni sonsuz beceri: Count the Hand ve Pegging Points, her puan açıklamalı. Your Progress kaçırdığın becerileri gösterir; ayrıca Send Feedback, Hareketi Azalt desteği ve daha net üyelik koşulları.
