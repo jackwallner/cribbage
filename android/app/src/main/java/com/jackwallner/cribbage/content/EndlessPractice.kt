@@ -1,5 +1,6 @@
 package com.jackwallner.cribbage.content
 
+import com.jackwallner.cribbage.model.HandCategory
 import com.jackwallner.cribbage.model.Drill
 import com.jackwallner.cribbage.model.DrillKind
 import com.jackwallner.cribbage.model.PlayingCard
@@ -44,7 +45,7 @@ object EndlessPractice {
     private fun handItems(count: Int): List<QuickItem> = HandGenerator.batch(count).map { hand ->
         QuickItem(
             id = newID(PracticeSkill.HAND_READING),
-            prompt = "Which scoring shape should you spot first?",
+            prompt = HandCategory.patternPrompt,
             tiles = hand.tiles,
             choices = hand.choices.map { it.displayName },
             answerIndex = hand.choices.indexOf(hand.answer).coerceAtLeast(0),

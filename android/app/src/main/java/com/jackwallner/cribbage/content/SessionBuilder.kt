@@ -1,5 +1,6 @@
 package com.jackwallner.cribbage.content
 
+import com.jackwallner.cribbage.model.HandCategory
 import com.jackwallner.cribbage.model.ChoiceShuffle
 import com.jackwallner.cribbage.model.Drill
 import com.jackwallner.cribbage.model.DrillKind
@@ -103,7 +104,7 @@ object SessionBuilder {
                     is DrillKind.HandMatch -> pool += kind.questions.map { question ->
                         QuickItem(
                             id = question.id,
-                            prompt = "Which scoring shape should you spot first?",
+                            prompt = HandCategory.patternPrompt,
                             tiles = question.tiles.racked,
                             choices = question.choices.map { it.displayName },
                             answerIndex = question.choices.indexOf(question.answer).coerceAtLeast(0),

@@ -155,8 +155,8 @@ enum HandGenerator {
         case .flushes:
             let count = HandScoring.longestSuitCount(cards)
             return count == 5
-                ? "All five cards share a suit, so the flush alone is 5 points."
-                : "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too."
+                ? "All five cards share a suit. Keeping four gives a 4-point hand flush; only a matching starter makes it 5."
+                : "Keeping the four suited cards would give a 4-point hand flush. A matching starter would make it 5; a crib flush always needs all five."
         case .runs:
             return "The ranks build a run worth \(HandScoring.runs(cards)) points. Suits never matter for a run, and aces stay low."
         case .pairs:
@@ -164,7 +164,7 @@ enum HandGenerator {
         case .fifteens:
             return "Combinations totaling fifteen are worth \(HandScoring.fifteens(cards)) points here. Court cards count 10 and the ace counts 1."
         case .nobs:
-            return "The hand holds a jack, so his nobs is live: one point if the cut comes up in that jack's suit."
+            return "The pattern includes a jack. It scores nobs only if kept and matched by the starter's suit."
         }
     }
 }

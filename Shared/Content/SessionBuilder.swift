@@ -190,7 +190,7 @@ enum SessionBuilder {
                         let answerIndex = question.choices.firstIndex(of: question.answer) ?? 0
                         return QuickItem(
                             id: question.id,
-                            prompt: "Which scoring shape should you spot first?",
+                            prompt: HandCategory.patternPrompt,
                             tiles: question.tiles.racked,
                             choices: labels,
                             answerIndex: answerIndex,

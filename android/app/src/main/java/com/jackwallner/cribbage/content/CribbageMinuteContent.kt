@@ -1,5 +1,6 @@
 package com.jackwallner.cribbage.content
 
+import com.jackwallner.cribbage.model.HandCategory
 import com.jackwallner.cribbage.model.ChoiceShuffle
 import com.jackwallner.cribbage.model.DiscardScenario
 import com.jackwallner.cribbage.model.Drill
@@ -59,7 +60,7 @@ object CribbageMinuteContent {
         HandGenerator.batch(2, "cribbage-minute-$dayKey-hands").mapIndexed { index, hand ->
             val item = QuickItem(
                 id = PracticeSkill.HAND_READING.itemPrefix + "minute-$dayKey-$index",
-                prompt = "Which scoring pattern is this hand built on?",
+                prompt = HandCategory.patternPrompt,
                 tiles = hand.tiles,
                 choices = hand.choices.map { it.displayName },
                 answerIndex = hand.choices.indexOf(hand.answer).coerceAtLeast(0),

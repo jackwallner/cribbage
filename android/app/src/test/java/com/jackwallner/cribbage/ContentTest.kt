@@ -75,7 +75,7 @@ class ContentTest {
             val isDealer = "dealer" in scenario.situation.lowercase()
             val best = HandScoring.rankedDiscards(scenario.deal, isDealer).first()
             val recommended = HandScoring.discardValue(scenario.deal, scenario.recommendedDiscard, isDealer)
-            assertEquals(scenario.id, best.value, recommended, 0.05)
+            assertEquals(scenario.id, best.value, recommended, 1e-9)
         }
     }
 

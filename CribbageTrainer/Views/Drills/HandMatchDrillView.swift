@@ -41,7 +41,7 @@ struct HandMatchDrillView: View {
                 .tint(Theme.jade)
             VStack(spacing: 16) {
                 QuestionPager(
-                    prompt: "Which scoring shape should you spot first?",
+                    prompt: HandCategory.patternPrompt,
                     tiles: question.tiles.racked,
                     explanation: question.explanation,
                     answered: answered

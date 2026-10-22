@@ -28,6 +28,7 @@ enum class HandCategory(val raw: String) {
     }
 
     companion object {
+        const val patternPrompt = "Which scoring pattern or potential can you spot? No starter is designated."
         fun fromRaw(raw: String): HandCategory = entries.first { it.raw == raw }
     }
 }

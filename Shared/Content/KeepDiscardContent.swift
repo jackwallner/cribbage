@@ -17,9 +17,9 @@ enum KeepDiscardContent {
             frontTitle: "You are the dealer",
             frontTiles: [.c(2), .d(3), .h(7), .s(8), .c(10), .d(12)],
             frontSubtitle: "The crib changes the tradeoff",
-            backTitle: "Hand first, then feed the crib",
-            backBody: "As dealer, the crib is yours. Keep the four cards that count best, then, when two discards help your hand about equally, throw the pair most likely to score in your own crib, such as two cards that make fifteen or a pair.",
-            choice: CardChoice("Hand first, then feed the crib", "Starve your own crib", answerIndex: 0)
+            backTitle: "Build your own crib",
+            backBody: "As dealer, you count both your hand and the crib. When two keeps have equal value, favor the discard with more crib potential. The pone does not score your crib.",
+            choice: CardChoice("Build hand plus crib", "Avoid points in your own crib", answerIndex: 0)
         ),
         Flashcard(
             id: "decision-pone-danger",

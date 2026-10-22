@@ -16,7 +16,7 @@ enum ProContent {
             situation: "You are the dealer, choosing between a pair and a flush.",
             deal: [.h(2), .h(6), .h(9), .h(12), .c(5), .d(5)],
             recommendedDiscard: [.c(5), .d(5)],
-            reasoning: "Both halves score, so the question is where each half is worth more. The four hearts are 4 in the hand with a fifth heart still live, and a pair of 5s is the single strongest thing you can put in your own crib, because it pairs and makes fifteen with every ten-value card that lands there.",
+            reasoning: "The four hearts count 6 before the cut: 4 for the flush and 2 for 6-9. The pair of 5s also builds your own crib. This choice has the best combined hand-and-crib average under the drill's random-discard model.",
             tip: "When dealer, a pair can be a feature of the crib rather than the hand."
         ),
         DiscardScenario(
@@ -40,7 +40,7 @@ enum ProContent {
             situation: "You are the dealer. Choose the discard that works twice.",
             deal: [.c(2), .d(3), .h(7), .s(8), .c(10), .d(11)],
             recommendedDiscard: [.h(7), .s(8)],
-            reasoning: "Keep 2-3-10-J: 2-3-10 and 2-3-jack are two fifteens, and the jack can still add his nobs. The 7 and 8 are the strongest pair of cards you can put in your own crib, because they already make fifteen there no matter what the opponent throws.",
+            reasoning: "Keep 2-3-10-J: 2-3-10 and 2-3-jack are two fifteens, and the jack can still add his nobs. For this deal, throwing 7-8 gives the best combined average in the drill's random-discard model. They already make fifteen in your crib.",
             tip: "Discard choices can set up the crib before the cut is turned."
         ),
         DiscardScenario(

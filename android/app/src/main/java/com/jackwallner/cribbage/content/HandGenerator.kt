@@ -122,11 +122,11 @@ object HandGenerator {
 
     fun explain(cards: List<PlayingCard>, answer: HandCategory): String = when (answer) {
         HandCategory.FLUSHES ->
-            if (HandScoring.longestSuitCount(cards) == 5) "All five cards share a suit, so the flush alone is 5 points."
-            else "Four cards share a suit, a 4-point flush in a hand, or 5 if the starter matches too."
+            if (HandScoring.longestSuitCount(cards) == 5) "All five cards share a suit. Keeping four gives a 4-point hand flush; only a matching starter makes it 5."
+            else "Keeping the four suited cards would give a 4-point hand flush. A matching starter would make it 5; a crib flush always needs all five."
         HandCategory.RUNS -> "The ranks build a run worth ${HandScoring.runs(cards)} points. Suits never matter for a run, and aces stay low."
         HandCategory.PAIRS -> "Matching ranks are worth ${HandScoring.pairs(cards)} points here. Three of a rank is three separate pairs, not one score."
         HandCategory.FIFTEENS -> "Combinations totaling fifteen are worth ${HandScoring.fifteens(cards)} points here. Court cards count 10 and the ace counts 1."
-        HandCategory.NOBS -> "The hand holds a jack, so his nobs is live: one point if the cut comes up in that jack's suit."
+        HandCategory.NOBS -> "The pattern includes a jack. It scores nobs only if kept and matched by the starter's suit."
     }
 }

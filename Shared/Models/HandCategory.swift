@@ -12,6 +12,8 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     case flushes
     case nobs
 
+    static let patternPrompt = "Which scoring pattern or potential can you spot? No starter is designated."
+
     var id: String { rawValue }
 
     var displayName: String {
@@ -19,8 +21,8 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
         case .fifteens: return "Fifteens"
         case .pairs: return "Pairs"
         case .runs: return "Runs"
-        case .flushes: return "Flushes"
-        case .nobs: return "His Nobs"
+        case .flushes: return "Flush potential"
+        case .nobs: return "Nobs potential"
         }
     }
 
@@ -35,7 +37,7 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
         case .runs:
             return "Three or more consecutive ranks score a run. Duplicate ranks can multiply the run through pairs."
         case .flushes:
-            return "Four cards of one suit score a hand flush. A fifth card, the cut, can extend it when it matches too."
+            return "Keeping four matching cards gives a hand flush. A matching starter extends it to five. This pattern exercise does not designate a starter."
         case .nobs:
             return "A jack in the hand can become his nobs when the cut matches its suit. It is easy to miss because the cut decides it."
         }

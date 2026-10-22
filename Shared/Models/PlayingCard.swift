@@ -46,6 +46,11 @@ enum PlayingCard: Hashable, Codable, Sendable {
         }
     }
 
+    var suit: Suit? {
+        if case .standard(_, let suit) = self { return suit }
+        return nil
+    }
+
     var cribbageValue: Int {
         switch self {
         case .standard(let rank, _): return min(rank, 10)

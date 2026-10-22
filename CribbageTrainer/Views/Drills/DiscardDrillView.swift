@@ -9,6 +9,7 @@ struct DiscardDrillView: View {
     @State private var index = 0
     @State private var selected: Set<Int> = []
     @State private var submitted = false
+    @State private var gradedMatches: Int?
     @State private var score = 0
     @State private var finished = false
     @State private var confettiTrigger = 0
@@ -75,7 +76,7 @@ struct DiscardDrillView: View {
                     .font(.headline)
             }
             VStack(alignment: .leading, spacing: 6) {
-                Text("Coach would discard:")
+                Text("One best discard:")
                     .font(.subheadline.weight(.semibold))
                 HStack(spacing: 6) {
                     ForEach(Array(scenario.recommendedDiscard.enumerated()), id: \.offset) { _, card in
@@ -111,6 +112,7 @@ struct DiscardDrillView: View {
     }
 
     private var matchCount: Int {
+        if let gradedMatches { return gradedMatches }
         var pool = scenario.recommendedDiscard
         var matches = 0
         for index in selected {
@@ -153,6 +155,7 @@ struct DiscardDrillView: View {
 
     private func submit() {
         guard selected.count == 2 else { return }
+        gradedMatches = HandScoring.discardMatches(selected.map { orderedDeal[$0] }, scenario: scenario)
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) { submitted = true }
         score += matchCount
         let correct = matchCount == 2
@@ -175,6 +178,7 @@ struct DiscardDrillView: View {
     private func advance() {
         if index + 1 < scenarios.count {
             selected = []
+            gradedMatches = nil
             submitted = false
             index += 1
         } else {

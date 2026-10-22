@@ -1,0 +1,459 @@
+{
+  "source": "ACC 2025 rules 1.7, 6, 7, 9, 10",
+  "hands": [
+    {
+      "id": "29",
+      "hand": [
+        "C5",
+        "D5",
+        "H5",
+        "SJ"
+      ],
+      "starter": "S5",
+      "isCrib": false,
+      "components": [
+        16,
+        12,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "28",
+      "hand": [
+        "C5",
+        "D5",
+        "H5",
+        "HJ"
+      ],
+      "starter": "S5",
+      "isCrib": false,
+      "components": [
+        16,
+        12,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hand flush",
+      "hand": [
+        "H2",
+        "H5",
+        "H8",
+        "HJ"
+      ],
+      "starter": "C9",
+      "isCrib": false,
+      "components": [
+        4,
+        0,
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "id": "crib no four flush",
+      "hand": [
+        "H2",
+        "H5",
+        "H8",
+        "HJ"
+      ],
+      "starter": "C9",
+      "isCrib": true,
+      "components": [
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "crib five flush nobs",
+      "hand": [
+        "H2",
+        "H5",
+        "H8",
+        "HJ"
+      ],
+      "starter": "H9",
+      "isCrib": true,
+      "components": [
+        4,
+        0,
+        0,
+        5,
+        1
+      ]
+    },
+    {
+      "id": "starter cannot make four flush",
+      "hand": [
+        "H2",
+        "H5",
+        "H8",
+        "CJ"
+      ],
+      "starter": "H9",
+      "isCrib": false,
+      "components": [
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "double double run",
+      "hand": [
+        "C3",
+        "D3",
+        "H4",
+        "S4"
+      ],
+      "starter": "C5",
+      "isCrib": false,
+      "components": [
+        4,
+        4,
+        12,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "triple run",
+      "hand": [
+        "C4",
+        "D4",
+        "H4",
+        "S5"
+      ],
+      "starter": "C6",
+      "isCrib": false,
+      "components": [
+        6,
+        6,
+        9,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "double run four",
+      "hand": [
+        "C2",
+        "D3",
+        "H4",
+        "S4"
+      ],
+      "starter": "C5",
+      "isCrib": false,
+      "components": [
+        2,
+        2,
+        8,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "ace low",
+      "hand": [
+        "CA",
+        "D2",
+        "H3",
+        "S4"
+      ],
+      "starter": "C5",
+      "isCrib": false,
+      "components": [
+        2,
+        0,
+        5,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "no wrap",
+      "hand": [
+        "CQ",
+        "DK",
+        "HA",
+        "S2"
+      ],
+      "starter": "C8",
+      "isCrib": false,
+      "components": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "six pairs",
+      "hand": [
+        "C7",
+        "D7",
+        "H7",
+        "S7"
+      ],
+      "starter": "CK",
+      "isCrib": false,
+      "components": [
+        0,
+        12,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "starter jack is not nobs",
+      "hand": [
+        "C2",
+        "D4",
+        "H6",
+        "S8"
+      ],
+      "starter": "HJ",
+      "isCrib": false,
+      "components": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "crib nobs",
+      "hand": [
+        "HJ",
+        "C2",
+        "D6",
+        "S8"
+      ],
+      "starter": "H3",
+      "isCrib": true,
+      "components": [
+        2,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "dealer flush lesson",
+      "hand": [
+        "H2",
+        "H6",
+        "H9",
+        "HQ"
+      ],
+      "starter": null,
+      "isCrib": false,
+      "components": [
+        2,
+        0,
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "pegging": [
+    {
+      "ranks": [
+        5,
+        5,
+        5
+      ],
+      "points": 8
+    },
+    {
+      "ranks": [
+        7,
+        7
+      ],
+      "points": 2
+    },
+    {
+      "ranks": [
+        7,
+        7,
+        7
+      ],
+      "points": 6
+    },
+    {
+      "ranks": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "points": 12
+    },
+    {
+      "ranks": [
+        4,
+        6,
+        5
+      ],
+      "points": 5
+    },
+    {
+      "ranks": [
+        4,
+        5,
+        5,
+        6
+      ],
+      "points": 0
+    },
+    {
+      "ranks": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "points": 4
+    },
+    {
+      "ranks": [
+        10,
+        10,
+        7,
+        4
+      ],
+      "points": 2
+    },
+    {
+      "ranks": [
+        1,
+        2,
+        3
+      ],
+      "points": 3
+    },
+    {
+      "ranks": [
+        12,
+        13,
+        1
+      ],
+      "points": 0
+    },
+    {
+      "ranks": [
+        4,
+        4,
+        5,
+        6
+      ],
+      "points": 3
+    }
+  ],
+  "keeps": [
+    {
+      "id": "discard-scenario-1",
+      "score": 4
+    },
+    {
+      "id": "discard-scenario-2",
+      "score": 10
+    },
+    {
+      "id": "discard-scenario-3",
+      "score": 8
+    },
+    {
+      "id": "discard-scenario-4",
+      "score": 5
+    },
+    {
+      "id": "discard-scenario-5",
+      "score": 4
+    },
+    {
+      "id": "discard-scenario-6",
+      "score": 12
+    },
+    {
+      "id": "discard-scenario-7",
+      "score": 8
+    },
+    {
+      "id": "discard-scenario-8",
+      "score": 5
+    },
+    {
+      "id": "plus-discard-1",
+      "score": 6
+    },
+    {
+      "id": "plus-discard-2",
+      "score": 10
+    },
+    {
+      "id": "plus-discard-3",
+      "score": 6
+    },
+    {
+      "id": "plus-discard-4",
+      "score": 5
+    },
+    {
+      "id": "more-discard-1",
+      "score": 5
+    },
+    {
+      "id": "more-discard-2",
+      "score": 12
+    },
+    {
+      "id": "more-discard-3",
+      "score": 6
+    },
+    {
+      "id": "more-discard-4",
+      "score": 5
+    },
+    {
+      "id": "master-discard-1",
+      "score": 4
+    },
+    {
+      "id": "master-discard-2",
+      "score": 6
+    },
+    {
+      "id": "master-discard-3",
+      "score": 9
+    },
+    {
+      "id": "master-discard-4",
+      "score": 5
+    },
+    {
+      "id": "master-discard-5",
+      "score": 4
+    },
+    {
+      "id": "master-discard-6",
+      "score": 7
+    }
+  ]
+}

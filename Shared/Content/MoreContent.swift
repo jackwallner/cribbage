@@ -198,7 +198,7 @@ enum MoreContent {
             frontTitle: "You lead by one hole",
             frontSubtitle: "Big hand or safe hand?",
             backTitle: "Safety gets louder",
-            backBody: "A close board rewards choices that create reliable points and reduce the opponent's crib. The theoretical maximum is not always the practical best play.",
+            backBody: "A one-point lead alone does not decide your strategy. Consider the actual scores, who counts first, and likely pegging. Choose the line that best serves the race.",
             choice: CardChoice("Choose the safe line", "Always chase the maximum", answerIndex: 0)
         ),
         Flashcard(
@@ -217,7 +217,7 @@ enum MoreContent {
             prompt: "What is muggins?",
             choices: ["A rule allowing an opponent to claim missed points", "A special crib", "A kind of run"],
             answerIndex: 0,
-            explanation: "Muggins is an optional rule. When players agree to use it (the American Cribbage Congress calls it the only optional rule and requires it to be announced before play), an opponent can claim points you failed to peg during play or to count in your hand or crib. Without it, missed points are simply lost."
+            explanation: "Muggins is an optional rule, agreed before play. Under ACC rules, after a player releases the peg or forfeits a score, the opponent may claim missed play, hand or crib points. Missed heels (the starter jack), penalties, muggins points and backward-pegging losses are excluded."
         ),
         QuizQuestion(
             id: "more-advanced-crib-flush",

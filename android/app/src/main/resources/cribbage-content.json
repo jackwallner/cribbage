@@ -19,16 +19,16 @@
       "shortName" : "Runs"
     },
     {
-      "displayName" : "Flushes",
-      "howToSpot" : "Four cards of one suit score a hand flush. A fifth card, the cut, can extend it when it matches too.",
+      "displayName" : "Flush potential",
+      "howToSpot" : "Keeping four matching cards gives a hand flush. A matching starter extends it to five. This pattern exercise does not designate a starter.",
       "id" : "flushes",
-      "shortName" : "Flushes"
+      "shortName" : "Flush potential"
     },
     {
-      "displayName" : "His Nobs",
+      "displayName" : "Nobs potential",
       "howToSpot" : "A jack in the hand can become his nobs when the cut matches its suit. It is easy to miss because the cut decides it.",
       "id" : "nobs",
-      "shortName" : "His Nobs"
+      "shortName" : "Nobs potential"
     }
   ],
   "primer" : [
@@ -673,7 +673,7 @@
               "id" : "score-nobs"
             },
             {
-              "backBody" : "The 4-5-6 sequence appears twice because there are two 4s. The runs are worth 6, the pair adds 2, and the two 4-5-6 fifteens add 4, for 12 in all.",
+              "backBody" : "The 4-5-6 sequence appears twice because there are two 4s. That is 6 points for the two runs, plus 2 for the pair. Count any fifteens separately.",
               "backTitle" : "The pair makes two runs",
               "frontSubtitle" : "A pair can multiply a run",
               "frontTiles" : [
@@ -1198,7 +1198,7 @@
                 "D12"
               ],
               "id" : "discard-scenario-2",
-              "reasoning" : "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either: in your own crib they are neighbors that can grow into a run, and they make fifteen with a 2.",
+              "reasoning" : "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are connected ranks that may build a run in your own crib. They total 13, so they do not score a fifteen by themselves.",
               "recommendedDiscard" : [
                 "H6",
                 "S7"
@@ -1508,13 +1508,13 @@
               "id" : "decision-keep-five"
             },
             {
-              "backBody" : "As dealer, the crib is yours. Keep the four cards that count best, then, when two discards help your hand about equally, throw the pair most likely to score in your own crib, such as two cards that make fifteen or a pair.",
-              "backTitle" : "Hand first, then feed the crib",
+              "backBody" : "As dealer, you count both your hand and the crib. When two keeps have equal value, favor the discard with more crib potential. The pone does not score your crib.",
+              "backTitle" : "Build your own crib",
               "choice" : {
                 "answerIndex" : 0,
                 "options" : [
-                  "Hand first, then feed the crib",
-                  "Starve your own crib"
+                  "Build hand plus crib",
+                  "Avoid points in your own crib"
                 ]
               },
               "frontSubtitle" : "The crib changes the tradeoff",
@@ -1887,7 +1887,7 @@
               "id" : "more-judgment-pair"
             },
             {
-              "backBody" : "A close board rewards choices that create reliable points and reduce the opponent's crib. The theoretical maximum is not always the practical best play.",
+              "backBody" : "A one-point lead alone does not decide your strategy. Consider the actual scores, who counts first, and likely pegging. Choose the line that best serves the race.",
               "backTitle" : "Safety gets louder",
               "choice" : {
                 "answerIndex" : 0,
@@ -1966,7 +1966,7 @@
                 "D5"
               ],
               "id" : "master-discard-2",
-              "reasoning" : "Both halves score, so the question is where each half is worth more. The four hearts are 4 in the hand with a fifth heart still live, and a pair of 5s is the single strongest thing you can put in your own crib, because it pairs and makes fifteen with every ten-value card that lands there.",
+              "reasoning" : "The four hearts count 6 before the cut: 4 for the flush and 2 for 6-9. The pair of 5s also builds your own crib. This choice has the best combined hand-and-crib average under the drill's random-discard model.",
               "recommendedDiscard" : [
                 "C5",
                 "D5"
@@ -2020,7 +2020,7 @@
                 "D11"
               ],
               "id" : "master-discard-5",
-              "reasoning" : "Keep 2-3-10-J: 2-3-10 and 2-3-jack are two fifteens, and the jack can still add his nobs. The 7 and 8 are the strongest pair of cards you can put in your own crib, because they already make fifteen there no matter what the opponent throws.",
+              "reasoning" : "Keep 2-3-10-J: 2-3-10 and 2-3-jack are two fifteens, and the jack can still add his nobs. For this deal, throwing 7-8 gives the best combined average in the drill's random-discard model. They already make fifteen in your crib.",
               "recommendedDiscard" : [
                 "H7",
                 "S8"
@@ -2300,7 +2300,7 @@
                 "A special crib",
                 "A kind of run"
               ],
-              "explanation" : "Muggins is an optional rule. When players agree to use it (the American Cribbage Congress calls it the only optional rule and requires it to be announced before play), an opponent can claim points you failed to peg during play or to count in your hand or crib. Without it, missed points are simply lost.",
+              "explanation" : "Muggins is an optional rule, agreed before play. Under ACC rules, after a player releases the peg or forfeits a score, the opponent may claim missed play, hand or crib points. Missed heels (the starter jack), penalties, muggins points and backward-pegging losses are excluded.",
               "id" : "more-advanced-muggins",
               "prompt" : "What is muggins?",
               "tiles" : [

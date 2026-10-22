@@ -1,5 +1,6 @@
 package com.jackwallner.cribbage.ui.screens
 
+import com.jackwallner.cribbage.model.HandCategory
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -180,7 +181,7 @@ fun HandMatchDrillScreen(drill: Drill, questions: List<HandMatchQuestion>) {
             ChoiceQuestionBody(
                 ChoiceQuestion(
                     key = question.id,
-                    prompt = "Which scoring shape should you spot first?",
+                    prompt = HandCategory.patternPrompt,
                     tiles = question.tiles.racked,
                     labels = categories.map { it.displayName },
                     answerIndex = answerIndex,

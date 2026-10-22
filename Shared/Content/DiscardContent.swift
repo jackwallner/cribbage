@@ -76,7 +76,7 @@ enum DiscardContent {
             situation: "You are the dealer. Choose 2 cards to discard.",
             deal: [.c(5), .d(5), .h(6), .s(7), .c(10), .d(12)],
             recommendedDiscard: [.h(6), .s(7)],
-            reasoning: "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are not wasted either: in your own crib they are neighbors that can grow into a run, and they make fifteen with a 2.",
+            reasoning: "Keep 5-5-10-Q. Each 5 makes fifteen with the 10 and again with the queen, so that is four fifteens for 8, plus 2 for the pair: 10 points before the cut. The 6 and 7 are connected ranks that may build a run in your own crib. They total 13, so they do not score a fifteen by themselves.",
             tip: "As dealer, evaluate the hand and the crib together."
         ),
         DiscardScenario(

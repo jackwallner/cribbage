@@ -48,6 +48,7 @@ object HandScoring {
 
     /** A hand flush is 4 for four matching cards, 5 when the starter matches. A crib flush needs all five. */
     fun flush(hand: List<PlayingCard>, starter: PlayingCard?, isCrib: Boolean): Int {
+        if (hand.size != 4) return 0
         val suits = mutableSetOf<Suit>()
         for (card in hand) {
             val standard = card as? PlayingCard.Standard ?: return 0
@@ -87,11 +88,12 @@ object HandScoring {
     /**
      * What a two-card discard is worth once it lands in a crib, averaged over
      * every opponent discard pair and every starter, weighted by live copies.
-     * Leaves out the five-card crib flush and crib nobs, as iOS does.
+     * Uniform random discards, including nobs and five-card crib flushes.
      */
     fun averageCrib(discard: List<PlayingCard>, dead: List<PlayingCard>): Double {
         val live = IntArray(14) { 4 }
-        for (card in dead) live[card.rankValue] -= 1
+        val excluded = (dead + discard).toSet()
+        for (card in excluded) live[card.rankValue] -= 1
         val thrown = discard.map { it.rankValue }
         var total = 0.0
         var weightSum = 0.0
@@ -114,7 +116,24 @@ object HandScoring {
                 }
             }
         }
-        return if (weightSum > 0) total / weightSum else 0.0
+        if (weightSum == 0.0) return 0.0
+        val unseen = PlayingCard.standardDeck.filter { it !in excluded }
+        val nobs = unseen.sumOf { cut ->
+            val suit = (cut as PlayingCard.Standard).suit
+            val jack = PlayingCard.Standard(11, suit)
+            when {
+                jack in discard -> 1.0
+                cut != jack && jack in unseen -> 2.0 / (unseen.size - 1)
+                else -> 0.0
+            }
+        } / unseen.size
+        val suits = discard.map { (it as PlayingCard.Standard).suit }
+        val flush = if (discard.size == 2 && suits[0] == suits[1]) {
+            val suited = unseen.count { (it as PlayingCard.Standard).suit == suits[0] }
+            val n = unseen.size.toDouble()
+            5.0 * suited * (suited - 1) * (suited - 2) / (n * (n - 1) * (n - 2))
+        } else 0.0
+        return total / weightSum + nobs + flush
     }
 
     /** Expected hand count plus (dealer) or minus (pone) the expected crib. */
@@ -136,5 +155,14 @@ object HandScoring {
             results += RankedDiscard(discard, discardValue(deal, discard, isDealer))
         }
         return results.sortedByDescending { it.value }
+    }
+
+    fun discardMatches(chosen: List<PlayingCard>, scenario: DiscardScenario): Int {
+        if (chosen.size != 2 || chosen.toSet().size != 2 || chosen.any { it !in scenario.deal }) return 0
+        if (chosen.toSet() == scenario.recommendedDiscard.toSet()) return 2
+        val dealer = scenario.situation.lowercase().contains("dealer")
+        val expected = discardValue(scenario.deal, scenario.recommendedDiscard, dealer)
+        val actual = discardValue(scenario.deal, chosen, dealer)
+        return if (kotlin.math.abs(actual - expected) < 1e-9) 2 else chosen.count { it in scenario.recommendedDiscard }
     }
 }

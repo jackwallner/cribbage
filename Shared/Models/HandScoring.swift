@@ -65,6 +65,7 @@ enum HandScoring {
     /// A hand flush is 4 for four matching cards, 5 when the starter matches.
     /// A crib flush scores only when all five cards match.
     static func flush(hand: [PlayingCard], starter: PlayingCard?, isCrib: Bool) -> Int {
+        guard hand.count == 4 else { return 0 }
         var suits: Set<Suit> = []
         for card in hand {
             guard case .standard(_, let suit) = card else { return 0 }
@@ -122,12 +123,12 @@ enum HandScoring {
     /// every opponent discard pair and every starter, weighted by how many
     /// copies of each rank are still live.
     ///
-    /// Two small terms are left out: the five-card crib flush, which needs all
-    /// four crib cards and the starter in a single suit, and nobs in the crib.
-    /// Each is worth under a tenth of a point and cannot reorder a discard.
+    /// This is a uniform random-discard model, not a prediction of an
+    /// opponent's strategy. Include nobs and crib flushes as well as ranks.
     static func averageCrib(discard: [PlayingCard], dead: [PlayingCard]) -> Double {
         var live = [Int](repeating: 4, count: 14)
-        for card in dead { live[card.rankValue] -= 1 }
+        let excluded = Set(dead + discard)
+        for card in excluded { live[card.rankValue] -= 1 }
         let thrown = discard.map(\.rankValue)
         var total = 0.0
         var weightSum = 0.0
@@ -147,10 +148,29 @@ enum HandScoring {
                 }
             }
         }
-        return weightSum > 0 ? total / weightSum : 0
+        guard weightSum > 0 else { return 0 }
+        let unseen = PlayingCard.standardDeck.filter { !excluded.contains($0) }
+        var nobsTotal = 0.0
+        for cut in unseen {
+            guard case .standard(_, let suit) = cut else { continue }
+            let matchingJack = PlayingCard.standard(rank: 11, suit: suit)
+            if discard.contains(matchingJack) {
+                nobsTotal += 1
+            } else if cut != matchingJack && unseen.contains(matchingJack) {
+                nobsTotal += 2.0 / Double(unseen.count - 1)
+            }
+        }
+        let nobs = nobsTotal / Double(unseen.count)
+        var flush = 0.0
+        if discard.count == 2, discard[0].suit == discard[1].suit {
+            let suited = unseen.filter { $0.suit == discard[0].suit }.count
+            let n = Double(unseen.count)
+            flush = 5 * Double(suited * (suited - 1) * (suited - 2)) / (n * (n - 1) * (n - 2))
+        }
+        return total / weightSum + nobs + flush
     }
 
-    /// A discard's true value: what the four cards you keep are expected to
+    /// A discard's value in the uniform random-discard model: what the four cards kept
     /// count, plus what the two you throw are expected to make in the crib if
     /// you are the dealer, or minus it if you are the pone.
     static func discardValue(deal: [PlayingCard], discard: [PlayingCard], isDealer: Bool) -> Double {
@@ -170,6 +190,17 @@ enum HandScoring {
             }
         }
         return results.sorted { $0.value > $1.value }
+    }
+
+    /// Equivalent physical-card choices earn the same credit as the coach.
+    static func discardMatches(_ chosen: [PlayingCard], scenario: DiscardScenario) -> Int {
+        guard chosen.count == 2, Set(chosen).count == 2, chosen.allSatisfy(scenario.deal.contains) else { return 0 }
+        if Set(chosen) == Set(scenario.recommendedDiscard) { return 2 }
+        let dealer = scenario.situation.lowercased().contains("dealer")
+        let expected = discardValue(deal: scenario.deal, discard: scenario.recommendedDiscard, isDealer: dealer)
+        let actual = discardValue(deal: scenario.deal, discard: chosen, isDealer: dealer)
+        if abs(actual - expected) < 1e-9 { return 2 }
+        return chosen.filter(scenario.recommendedDiscard.contains).count
     }
 }
 

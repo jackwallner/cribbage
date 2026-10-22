@@ -49,7 +49,7 @@ enum CategoryContent {
             frontTiles: [.c(4), .d(4), .h(5), .s(6)],
             frontSubtitle: "A pair can multiply a run",
             backTitle: "The pair makes two runs",
-            backBody: "The 4-5-6 sequence appears twice because there are two 4s. The runs are worth 6, the pair adds 2, and the two 4-5-6 fifteens add 4, for 12 in all."
+            backBody: "The 4-5-6 sequence appears twice because there are two 4s. That is 6 points for the two runs, plus 2 for the pair. Count any fifteens separately."
         ),
         Flashcard(
             id: "score-count-order",

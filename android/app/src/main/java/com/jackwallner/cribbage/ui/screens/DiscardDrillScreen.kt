@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jackwallner.cribbage.content.DrillLibrary
 import com.jackwallner.cribbage.model.DiscardScenario
+import com.jackwallner.cribbage.model.HandScoring
 import com.jackwallner.cribbage.model.Drill
 import com.jackwallner.cribbage.model.PlayingCard
 import com.jackwallner.cribbage.model.racked
@@ -78,7 +79,10 @@ fun DiscardDrillScreen(drill: Drill, scenarios: List<DiscardScenario>) {
     }
     val scenario = scenarios[index]
     val rack = remember(scenario.id) { scenario.deal.racked }
-    val matches = matchCount(selected, rack, scenario.recommendedDiscard)
+    val matches = remember(scenario.id, selected) {
+        if (selected.size == 2) HandScoring.discardMatches(selected.map { rack[it] }, scenario)
+        else matchCount(selected, rack, scenario.recommendedDiscard)
+    }
 
     LaunchedEffect(submitted, index) {
         if (submitted && matches == 2) {
@@ -173,7 +177,7 @@ private fun CoachCard(scenario: DiscardScenario, matches: Int, shineTrigger: Int
             Text(headline, style = CribbageType.headline, color = colors.ink, modifier = Modifier.testTag("coach-headline"))
         }
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text("Coach would discard:", style = CribbageType.subheadline.copy(fontWeight = FontWeight.SemiBold), color = colors.ink)
+            Text("One best discard:", style = CribbageType.subheadline.copy(fontWeight = FontWeight.SemiBold), color = colors.ink)
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 scenario.recommendedDiscard.forEach { PlayingCardView(it, 42.dp) }
             }

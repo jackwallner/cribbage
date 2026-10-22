@@ -85,7 +85,7 @@ enum EndlessPractice {
             let answerIndex = hand.choices.firstIndex(of: hand.answer) ?? 0
             return QuickItem(
                 id: PracticeSkill.handReading.itemPrefix + UUID().uuidString,
-                prompt: "Which scoring shape should you spot first?",
+                prompt: HandCategory.patternPrompt,
                 tiles: hand.tiles,
                 choices: labels,
                 answerIndex: answerIndex,

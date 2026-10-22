@@ -91,7 +91,7 @@ final class ContentValidityTests: XCTestCase {
                 deal: scenario.deal, discard: scenario.recommendedDiscard, isDealer: isDealer
             )
             XCTAssertEqual(
-                recommended, best.value, accuracy: 0.05,
+                recommended, best.value, accuracy: 1e-9,
                 "\(scenario.id) recommends \(scenario.recommendedDiscard.map(\.shortLabel)) "
                 + "worth \(String(format: "%.2f", recommended)), but "
                 + "\(best.discard.map(\.shortLabel)) is worth \(String(format: "%.2f", best.value))"

@@ -87,7 +87,7 @@ enum CribbageMinuteContent {
             let answerIndex = hand.choices.firstIndex(of: hand.answer) ?? 0
             let item = QuickItem(
                 id: PracticeSkill.handReading.itemPrefix + "minute-\(dayKey)-\(index)",
-                prompt: "Which scoring pattern is this hand built on?",
+                prompt: HandCategory.patternPrompt,
                 tiles: hand.tiles,
                 choices: labels,
                 answerIndex: answerIndex,
