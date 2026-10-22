@@ -219,7 +219,7 @@ final class NewcomerAuditUITests: XCTestCase {
         let excluded = ["Settings", "Back", "Next", "Finish", "Close"]
         let choice = app.buttons.allElementsBoundByIndex.first { element in
             let label = element.label
-            return !label.isEmpty && !excluded.contains(label)
+            return !label.isEmpty && !excluded.contains(label) && element.isHittable
                 && element.frame.midY > height * 0.20 && element.frame.midY < height * 0.85
         }
         guard let choice else {
