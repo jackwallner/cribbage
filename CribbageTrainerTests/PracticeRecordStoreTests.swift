@@ -1,3 +1,4 @@
+import SwiftUI
 import XCTest
 @testable import CribbageTrainer
 
@@ -33,24 +34,91 @@ final class PracticeRecordStoreTests: XCTestCase {
     /// the second condition an item would either nag forever or vanish on the
     /// first lucky guess.
     func testMissedItemEntersAndLeavesTheQueue() {
-        store.record(itemID: "q1", roomID: room, correct: false)
-        XCTAssertEqual(store.reviewQueue(), ["q1"])
+        let id = reviewItems[0].id
+        store.record(itemID: id, roomID: room, correct: false)
+        XCTAssertEqual(store.reviewQueue(), [id])
 
-        store.record(itemID: "q1", roomID: room, correct: true)
+        store.record(itemID: id, roomID: room, correct: true)
         XCTAssertEqual(store.reviewQueue(), [], "One correct answer schedules it a day out")
 
-        store.record(itemID: "q1", roomID: room, correct: true)
-        XCTAssertFalse(store.records["q1"]!.needsReview, "Two in a row retires it")
+        store.record(itemID: id, roomID: room, correct: true)
+        XCTAssertFalse(store.records[id]!.needsReview, "Two in a row retires it")
     }
 
     func testQueueRanksWorstFirst() {
-        // q1: 1 of 3. q2: 2 of 3. Both due, q1 should lead.
+        let ids = reviewItems.prefix(2).map(\.id)
         for correct in [false, false, false] {
-            store.record(itemID: "q1", roomID: room, correct: correct)
+            store.record(itemID: ids[0], roomID: room, correct: correct)
         }
-        store.record(itemID: "q2", roomID: room, correct: true)
-        store.record(itemID: "q2", roomID: room, correct: false)
-        XCTAssertEqual(store.reviewQueue().first, "q1")
+        store.record(itemID: ids[1], roomID: room, correct: true)
+        store.record(itemID: ids[1], roomID: room, correct: false)
+        XCTAssertEqual(store.reviewQueue().first, ids[0])
+    }
+
+    private var reviewItems: [QuickItem] {
+        SessionBuilder.quickSession(count: Int.max, seen: [], missed: [], includePro: true)
+            .sorted { $0.id < $1.id }
+    }
+
+    private var unsupportedIDs: [String] {
+        DrillLibrary.rooms.flatMap(\.drills).flatMap { drill -> [String] in
+            switch drill.kind {
+            case .flashcards(let cards): return cards.filter { $0.choice == nil }.map(\.id)
+            case .discard(let scenarios): return scenarios.map(\.id)
+            default: return []
+            }
+        } + ["removed-item"]
+    }
+
+    func testUnsupportedMistakesStayOutOfReviewButKeepTheirHistory() {
+        XCTAssertTrue(unsupportedIDs.contains("discard-scenario-1"))
+        XCTAssertTrue(unsupportedIDs.contains("cards-deck"))
+        for id in unsupportedIDs {
+            store.record(itemID: id, roomID: room, correct: false)
+        }
+        let reloaded = PracticeRecordStore(defaults: defaults)
+        XCTAssertEqual(reloaded.totalAttempts, unsupportedIDs.count)
+        XCTAssertEqual(reloaded.dueCount, 0)
+        XCTAssertTrue(reloaded.reviewQueue().isEmpty)
+    }
+
+    func testReviewFiltersBeforeLimitingAndBadgeMatchesPlayableItems() {
+        XCTAssertGreaterThan(unsupportedIDs.count, 12)
+        for id in unsupportedIDs {
+            store.record(itemID: id, roomID: room, correct: false, now: .distantPast)
+        }
+        let playable = reviewItems
+        XCTAssertGreaterThan(playable.count, 12)
+        for item in playable {
+            store.record(itemID: item.id, roomID: item.roomID, correct: false)
+        }
+        XCTAssertEqual(store.dueCount, playable.count)
+        let queue = store.reviewQueue()
+        XCTAssertEqual(queue.count, 12)
+        XCTAssertEqual(SessionBuilder.reviewSession(ids: queue, includePro: true).map(\.id), queue)
+        let allDue = store.reviewQueue(limit: Int.max)
+        XCTAssertEqual(Set(allDue), Set(playable.map(\.id)))
+        XCTAssertEqual(SessionBuilder.reviewSession(ids: allDue, includePro: true).count, store.dueCount)
+    }
+
+    func testEmptyReviewDoesNotRecordACompletedSession() async throws {
+        let progress = ProgressStore(defaults: defaults)
+        let controller = UIHostingController(rootView:
+            NavigationStack {
+                PracticeRunView(mode: .review)
+            }
+            .environmentObject(progress)
+            .environmentObject(SubscriptionService.shared)
+        )
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        window.rootViewController = controller
+        window.makeKeyAndVisible()
+        defer { window.isHidden = true }
+        controller.view.layoutIfNeeded()
+        try await Task.sleep(for: .milliseconds(300))
+        XCTAssertEqual(progress.totalSessions, 0)
+        XCTAssertEqual(progress.completions(for: SessionBuilder.reviewDrill.id), 0)
+        XCTAssertEqual(progress.streakCount, 0)
     }
 
     /// Generated items mint a new id per question. They must roll up onto one

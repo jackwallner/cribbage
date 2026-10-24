@@ -4,6 +4,7 @@ import com.jackwallner.cribbage.content.CribbageContent
 import com.jackwallner.cribbage.content.CribbageMinuteContent
 import com.jackwallner.cribbage.content.DrillLibrary
 import com.jackwallner.cribbage.content.PracticeSkill
+import com.jackwallner.cribbage.content.SessionBuilder
 import com.jackwallner.cribbage.data.AppClock
 import com.jackwallner.cribbage.data.ConversionDiagnostics
 import com.jackwallner.cribbage.data.CribbageMinuteStore
@@ -13,6 +14,7 @@ import com.jackwallner.cribbage.data.ProgressStore
 import com.jackwallner.cribbage.data.ReviewAccess
 import com.jackwallner.cribbage.data.ReviewPromptTracker
 import com.jackwallner.cribbage.data.WhatsNewTracker
+import com.jackwallner.cribbage.model.DrillKind
 import java.security.MessageDigest
 import java.time.Clock
 import java.time.Instant
@@ -106,17 +108,58 @@ class StoreTest {
     @Test
     fun missedItemEntersAndLeavesTheQueueWorstFirst() {
         val store = PracticeRecordStore(defaults, clock)
-        store.record("q1", room, correct = false)
-        assertEquals(listOf("q1"), store.reviewQueue())
-        store.record("q1", room, correct = true)
+        val ids = reviewItems.take(3).map { it.id }
+        store.record(ids[0], room, correct = false)
+        assertEquals(listOf(ids[0]), store.reviewQueue())
+        store.record(ids[0], room, correct = true)
         assertEquals("One correct answer schedules it a day out", emptyList<String>(), store.reviewQueue())
-        store.record("q1", room, correct = true)
-        assertFalse("Two in a row retires it", store.records.getValue("q1").needsReview)
+        store.record(ids[0], room, correct = true)
+        assertFalse("Two in a row retires it", store.records.getValue(ids[0]).needsReview)
 
-        repeat(3) { store.record("q2", room, correct = false) }
-        store.record("q3", room, correct = true)
-        store.record("q3", room, correct = false)
-        assertEquals("q2", store.reviewQueue().first())
+        repeat(3) { store.record(ids[1], room, correct = false) }
+        store.record(ids[2], room, correct = true)
+        store.record(ids[2], room, correct = false)
+        assertEquals(ids[1], store.reviewQueue().first())
+    }
+
+    private val reviewItems get() = SessionBuilder.quickSession(Int.MAX_VALUE, emptySet(), emptySet(), true).sortedBy { it.id }
+
+    private val unsupportedIDs get() = DrillLibrary.rooms.flatMap { it.drills }.flatMap { drill ->
+        when (val kind = drill.kind) {
+            is DrillKind.Flashcards -> kind.cards.filter { it.choice == null }.map { it.id }
+            is DrillKind.Discard -> kind.scenarios.map { it.id }
+            else -> emptyList()
+        }
+    } + "removed-item"
+
+    @Test
+    fun unsupportedMistakesStayOutOfReviewButKeepTheirHistory() {
+        val store = PracticeRecordStore(defaults, clock)
+        assertTrue("discard-scenario-1" in unsupportedIDs)
+        assertTrue("cards-deck" in unsupportedIDs)
+        for (id in unsupportedIDs) store.record(id, room, correct = false)
+        val reloaded = PracticeRecordStore(defaults, clock)
+        assertEquals(unsupportedIDs.size, reloaded.totalAttempts)
+        assertEquals(0, reloaded.dueCount)
+        assertTrue(reloaded.reviewQueue().isEmpty())
+    }
+
+    @Test
+    fun reviewFiltersBeforeLimitingAndBadgeMatchesPlayableItems() {
+        val store = PracticeRecordStore(defaults, clock)
+        assertTrue(unsupportedIDs.size > 12)
+        for (id in unsupportedIDs) store.record(id, room, correct = false)
+        advanceDays(1)
+        val playable = reviewItems
+        assertTrue(playable.size > 12)
+        for (item in playable) store.record(item.id, item.roomID, correct = false)
+        assertEquals(playable.size, store.dueCount)
+        val queue = store.reviewQueue()
+        assertEquals(12, queue.size)
+        assertEquals(queue, SessionBuilder.reviewSession(queue, true).map { it.id })
+        val allDue = store.reviewQueue(Int.MAX_VALUE)
+        assertEquals(playable.map { it.id }.toSet(), allDue.toSet())
+        assertEquals(store.dueCount, SessionBuilder.reviewSession(allDue, true).size)
     }
 
     @Test
