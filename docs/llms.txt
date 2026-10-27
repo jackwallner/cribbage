@@ -1,0 +1,20 @@
+# Cribbage Trainer: Count & Peg
+
+> Cribbage Trainer is a free cribbage practice app for iPhone and iPad. Five-minute drills on counting the hand, choosing the discard and pegging to 31.
+
+## App
+
+- [Cribbage Practice App for iPhone | Cribbage Trainer](https://jackwallner.com/ios/cribbage/index.html.md): Cribbage Trainer is a free cribbage practice app for iPhone and iPad. Five-minute drills on counting the hand, choosing the discard and pegging to 31.
+
+## Guides
+
+- [Best Cribbage App for iPhone (2026): 5 Compared](https://jackwallner.com/ios/cribbage/best-cribbage-app.html.md): The best cribbage apps for iPhone and iPad compared in October 2026: full games, discard analyzers, hand scorers and drills, with each one's trade-offs.
+- [How to Count a Cribbage Hand | Cribbage Trainer](https://jackwallner.com/ios/cribbage/how-to-count-a-cribbage-hand.html.md): How to count a cribbage hand step by step: fifteens, pairs, runs, flush and nobs, five worked examples, the 29 hand, and the scores that cannot happen.
+
+## Optional
+
+- [Cribbage Trainer Android Privacy Policy](https://jackwallner.github.io/cribbage/android-privacy.html.md): Cribbage Trainer works without an account. Practice progress, streaks, review history, onboarding choices, and preferences are stored locally on your device.
+- [Cribbage Trainer Android Terms of Use](https://jackwallner.github.io/cribbage/android-terms.html.md): Terms of Use for Cribbage Trainer on Android, including Cribbage+ subscriptions and the lifetime purchase through Google Play.
+- [Cribbage Trainer Privacy Policy](https://jackwallner.com/ios/cribbage/privacy-policy.html.md): Cribbage Trainer is designed to work without an account. Practice progress, streaks, preferences, review history, and onboarding choices are stored...
+- [Support | Cribbage Trainer](https://jackwallner.com/ios/cribbage/support.html.md): Email jackwallner+m@gmail.com and include your device model, iOS version, and the room or screen where the problem happened. Do not include payment details.
+- [Cribbage Trainer Terms of Use](https://jackwallner.com/ios/cribbage/terms.html.md): By using Cribbage Trainer, you agree to these Terms of Use and Apple's Standard Licensed Application End User License Agreement.
