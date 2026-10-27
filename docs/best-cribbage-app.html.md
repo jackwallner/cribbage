@@ -6,7 +6,7 @@ Web page: https://jackwallner.com/ios/cribbage/best-cribbage-app.html
 
 ## Best Cribbage App
 
-By Jack Wallner · Last updated October 18, 2026
+By Jack Wallner · Last updated October 21, 2026
 
 **Best for full games, online play and friends:** Cribbage Pro. **Best for learning discards:** Cribbage Classic, whose Discard Analyzer shows the minimum, maximum and average score of every keep-and-discard split. **Best for a fast, large-card game:** Cribbage JD. **Best for checking a hand's score:** Cribbage Score. **Best for short drills with the reason on every answer:** Cribbage Trainer, the app I make.
 
@@ -46,7 +46,7 @@ Cribbage Score is a tool, not a game. Pick the cards or deal a random hand, and 
 
 ## Cribbage Trainer (my app)
 
-Cribbage Trainer has four free practice rooms: Card, Scoring, Discard and Pegging. Swipeable cards explain the reason on the back, scoring drills show a hand and ask for the count, discard drills ask you to pick two cards and compare with the coach's reasoning, and pegging drills cover running totals, 15s, 31, pairs, runs and go. There are no opponents, no ads and no account. Its limits are real. It is not a game, so there is no board or opponent. The discard drill gives the coach's pick and explanation, not the table of average scores for every split that Cribbage Classic and Cribbage Score show. It has no tool for scoring an arbitrary hand, and it is new, with no ratings yet. Endless practice, Fix My Mistakes and the timed challenge need Cribbage+.
+Cribbage Trainer has four free practice rooms: Card, Scoring, Discard and Pegging. Swipeable cards explain the reason on the back, scoring drills show a hand and ask which scoring shape is on the table, discard drills ask you to pick two cards and compare with the coach's reasoning, and pegging drills cover running totals, 15s, 31, pairs, runs and go. There are no opponents, no ads and no account. Its limits are real. It is not a game, so there is no board or opponent. The discard drill gives the coach's pick and explanation, not the table of average scores for every split that Cribbage Classic and Cribbage Score show. It has no tool for scoring an arbitrary hand, and it is new, with no ratings yet. Endless practice, Fix My Mistakes and the timed challenge need Cribbage+.
 
 ## What other cribbage apps will you see?
 
@@ -61,6 +61,8 @@ Ultimate Cribbage is a full game against the computer with several difficulty le
 This is the Mac App Store edition of Cribbage Pro, from the same developer, Fuller Systems. Its listing describes the same features, including online multiplayer, daily challenges and manual counting with muggins, sold as a paid download with no ads. On iPhone and iPad, the Cribbage Pro entry above is the one to look at.
 
 ## Which should you pick?
+
+To play full games, pick Cribbage Pro. To learn to count and peg before you play, pick Cribbage Trainer.
 
 - **You want to play a full game or play friends online:** Cribbage Pro.
 - **You want to get better at discarding:** Cribbage Classic or Cribbage Score for the numbers, Cribbage Trainer for the reasoning in words.

@@ -6,7 +6,7 @@ Web page: https://jackwallner.com/ios/cribbage/privacy-policy.html
 
 ## Cribbage Trainer Privacy Policy
 
-Last updated: October 8, 2026
+Last updated: October 20, 2026
 
 Cribbage Trainer is designed to work without an account. Practice
 progress, streaks, preferences, review history, and onboarding choices
@@ -16,10 +16,25 @@ are stored locally on your device and are not uploaded by the app.
 
 Apple processes Cribbage+ purchases. RevenueCat verifies subscription
 status and may process an anonymous app user ID, transaction and
-entitlement information, and limited technical context. It does not
+entitlement information, and limited technical context. To learn which
+screens lead to a membership, the app also sends RevenueCat counts of
+where and how often the Cribbage+ offer was shown, the dates of the
+first offer and of a purchase, how many times the app was opened before
+the first offer, and which screen a purchase started from. It does not
 receive your practice content, name, or email. See
 [RevenueCat's privacy policy](https://www.revenuecat.com/privacy/). If you email support, we receive the information you include and use
 it to answer you.
+
+## Feedback
+
+On iPhone and iPad, Send Feedback and the one question asked when a
+membership is ending send what you write straight to the developer.
+Supabase stores it. Each message also carries the app version, iOS
+version, device model, language and region setting, and whether you are
+a Cribbage+ member. No name, email or account is attached. Messages are
+read to fix problems and improve the app, and are kept only as long as
+that takes. Because nothing ties a message to you, email us what you
+sent and roughly when if you want it removed.
 
 ## Ad attribution
 

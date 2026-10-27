@@ -6,7 +6,7 @@ Web page: https://jackwallner.com/ios/cribbage/how-to-count-a-cribbage-hand.html
 
 ## How to Count a Cribbage Hand
 
-By Jack Wallner · Last updated October 27, 2026
+By Jack Wallner · Last updated October 21, 2026
 
 To count a cribbage hand, add your four cards to the starter card and score, in order: fifteens (2 points each), pairs (2 each), runs (1 point per card, three or more in a row), a flush (4 points, or 5 with the starter) and nobs (1 point for a jack matching the starter suit). Every different combination counts, so one card can score several times. The highest hand is 29.
 
@@ -110,6 +110,8 @@ That is **29**. The same hand with the jack in the wrong suit is 28. I ran every
 
 ## What are the most common counting mistakes?
 
+Most counting errors come from miscounting fifteens, flushes, nobs and runs.
+
 - Forgetting that a queen or king is worth 10 toward fifteens, but still ranks above a jack for runs and pairs. A jack and a queen are not a pair.
 - Stopping at the first fifteen. A 5 with three ten-cards is three fifteens, not one.
 - Counting a three-card flush. Three hand cards plus the starter in one suit scores nothing.
@@ -120,7 +122,7 @@ The dealer's two points when the starter is a jack ("his heels") are pegged righ
 
 ## How does Cribbage Trainer help?
 
-[Cribbage Trainer](https://jackwallner.com/ios/cribbage/) is a free iPhone and iPad practice app. Its Scoring Room and hand reading drills show you five cards and ask for the count, then explain each fifteen, pair, run and flush. The scoring rules in the app follow the table above, with aces low, no wrapping runs, and the 5-card crib flush. The app has no opponents and works offline, so five minutes in a waiting room is a few dozen hands.
+[Cribbage Trainer](https://jackwallner.com/ios/cribbage/) is a free iPhone and iPad practice app. Its Scoring Room and hand reading drills show you five cards and ask which scoring shape is on the table, and the Count the Hand mode in Cribbage+ asks for the full count and shows where every point came from. The scoring rules in the app follow the table above, with aces low, no wrapping runs, and the 5-card crib flush. The app has no opponents and works offline, so five minutes in a waiting room is a dozen hands or more.
 
 ## Practice counting until it is automatic
 

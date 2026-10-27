@@ -39,8 +39,8 @@ see the crib tradeoff.
 
 ### Play to 31
 
-Find fifteens, pairs, runs, go, 31, last card, and safe totals while
-the board moves.
+Find fifteens, pairs, runs, go, 31, last card, and safe totals as
+the running count climbs.
 
 ### The why on the back
 
@@ -149,7 +149,7 @@ Keep the best scoring potential for your own hand, then weigh what the two cards
 
 ## Can I practice cribbage pegging on my phone?
 
-Yes. The Pegging Room covers fifteens, pairs, runs, go, 31, last card and safe totals while the board total stays in view.
+Yes. The Pegging Room covers fifteens, pairs, runs, go, 31, last card and safe totals with the running total in view.
 
 ## Is Cribbage Trainer free, and does it need an account?
 
