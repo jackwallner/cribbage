@@ -6,7 +6,7 @@ Web page: https://jackwallner.com/ios/cribbage/how-to-count-a-cribbage-hand.html
 
 ## How to Count a Cribbage Hand
 
-By Jack Wallner · Last updated October 21, 2026
+By Jack Wallner · Last updated October 28, 2026
 
 To count a cribbage hand, add your four cards to the starter card and score, in order: fifteens (2 points each), pairs (2 each), runs (1 point per card, three or more in a row), a flush (4 points, or 5 with the starter) and nobs (1 point for a jack matching the starter suit). Every different combination counts, so one card can score several times. The highest hand is 29.
 

@@ -6,7 +6,7 @@ Web page: https://jackwallner.com/ios/cribbage/best-cribbage-app.html
 
 ## Best Cribbage App
 
-By Jack Wallner · Last updated October 21, 2026
+By Jack Wallner · Last updated October 28, 2026
 
 **Best for full games, online play and friends:** Cribbage Pro. **Best for learning discards:** Cribbage Classic, whose Discard Analyzer shows the minimum, maximum and average score of every keep-and-discard split. **Best for a fast, large-card game:** Cribbage JD. **Best for checking a hand's score:** Cribbage Score. **Best for short drills with the reason on every answer:** Cribbage Trainer, the app I make.
 
