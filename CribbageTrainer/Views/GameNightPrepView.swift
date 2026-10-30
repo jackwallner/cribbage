@@ -127,15 +127,16 @@ struct GameNightPrepView: View {
     }
 
     private func personalizationCopy(_ weakest: PracticeRecordStore.RoomStat?) -> String {
-        if records.dueCount > 0, let weakest {
-            return "\(records.dueCount) due mistake\(records.dueCount == 1 ? "" : "s") first, then extra work in \(weakest.name)."
+        let due = records.dueCount
+        if due > 0, let weakest {
+            return String(localized: "\(due) due mistakes first, then extra work in \(weakest.name).")
         }
-        if records.dueCount > 0 {
-            return "\(records.dueCount) due mistake\(records.dueCount == 1 ? "" : "s") first, followed by material you have not seen yet."
+        if due > 0 {
+            return String(localized: "\(due) due mistakes first, followed by material you have not seen yet.")
         }
         if let weakest {
-            return "Extra work in \(weakest.name), followed by a balanced mix from the other rooms."
+            return String(localized: "Extra work in \(weakest.name), followed by a balanced mix from the other rooms.")
         }
-        return "A balanced member mix now. As you answer more questions, this session will zero in on your real weak spots."
+        return String(localized: "A balanced member mix now. As you answer more questions, this session will zero in on your real weak spots.")
     }
 }

@@ -16,24 +16,29 @@ enum PeggingScoring {
         var points: Int { fifteen + thirtyOne + pair + run }
 
         /// Plain-language breakdown, e.g. "2 for fifteen and 3 for a run of three".
+        /// Fifteen and thirty-one never meet, and neither do a pair and a run
+        /// (a pair ends on two equal ranks), so there are at most two parts.
         var summary: String {
             var parts: [String] = []
-            if fifteen > 0 { parts.append("\(fifteen) for making fifteen") }
-            if thirtyOne > 0 { parts.append("\(thirtyOne) for making thirty-one") }
-            if pair > 0 { parts.append("\(pair) for \(Self.pairName(pair))") }
-            if run > 0 { parts.append("\(run) for a run of \(run)") }
+            if fifteen > 0 { parts.append(String(localized: "\(fifteen) for making fifteen")) }
+            if thirtyOne > 0 { parts.append(String(localized: "\(thirtyOne) for making thirty-one")) }
+            if pair > 0 { parts.append(Self.pairPart(pair)) }
+            if run > 0 { parts.append(String(localized: "\(run) for a run of \(run)")) }
             switch parts.count {
-            case 0: return "nothing"
+            case 0: return String(localized: "nothing")
             case 1: return parts[0]
-            default: return parts.dropLast().joined(separator: ", ") + " and " + parts[parts.count - 1]
+            default:
+                let last = parts[parts.count - 1]
+                let first = parts.dropLast().joined(separator: ", ")
+                return String(localized: "\(first) and \(last)")
             }
         }
 
-        private static func pairName(_ points: Int) -> String {
+        private static func pairPart(_ points: Int) -> String {
             switch points {
-            case 12: return "a double pair royal"
-            case 6: return "a pair royal"
-            default: return "a pair"
+            case 12: return String(localized: "\(points) for a double pair royal")
+            case 6: return String(localized: "\(points) for a pair royal")
+            default: return String(localized: "\(points) for a pair")
             }
         }
     }

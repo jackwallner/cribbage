@@ -60,22 +60,22 @@ enum SessionBuilder {
 
     static let sessionDrill = Drill(
         id: "quick-session",
-        title: "Quick Session",
-        subtitle: "A short mix of what you need next",
+        title: String(localized: "Quick Session"),
+        subtitle: String(localized: "A short mix of what you need next"),
         kind: .flashcards([])
     )
 
     static let reviewDrill = Drill(
         id: "review-session",
-        title: "Fix My Mistakes",
-        subtitle: "The questions you keep getting wrong",
+        title: String(localized: "Fix My Mistakes"),
+        subtitle: String(localized: "The questions you keep getting wrong"),
         kind: .flashcards([])
     )
 
     static let gameNightPrepDrill = Drill(
         id: "game-night-prep",
-        title: "Game Night Prep",
-        subtitle: "A five-minute mix for your next table",
+        title: String(localized: "Game Night Prep"),
+        subtitle: String(localized: "A five-minute mix for your next table"),
         kind: .flashcards([])
     )
 
@@ -208,7 +208,7 @@ enum SessionBuilder {
                         guard let choice = card.choice else { return nil }
                         var prompt = card.frontTitle
                         if let subtitle = card.frontSubtitle {
-                            prompt += "\n\(subtitle)"
+                            prompt += "\n" + subtitle
                         }
                         return QuickItem(
                             id: card.id,

@@ -42,122 +42,122 @@ enum WhatsNew {
     static let releases: [WhatsNewRelease] = [
         WhatsNewRelease(
             version: "1.3.0",
-            headline: "Count it, peg it, fix it",
+            headline: String(localized: "Count it, peg it, fix it"),
             items: [
                 WhatsNewItem(
                     id: "count-hand",
                     icon: "sum",
-                    title: "Count the Hand",
-                    body: "Endless four-card hands with a starter. Add up fifteens, pairs, runs, flushes and nobs, then see exactly where every point came from.",
+                    title: String(localized: "Count the Hand"),
+                    body: String(localized: "Endless four-card hands with a starter. Add up fifteens, pairs, runs, flushes and nobs, then see exactly where every point came from."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "peg-points",
                     icon: "target",
-                    title: "Pegging Points",
-                    body: "Play a card onto the pile and score it: fifteen, thirty-one, pairs and runs in any order.",
+                    title: String(localized: "Pegging Points"),
+                    body: String(localized: "Play a card onto the pile and score it: fifteen, thirty-one, pairs and runs in any order."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "sharpen",
                     icon: "chart.bar.fill",
-                    title: "Know what to sharpen",
-                    body: "Your progress now names the exact skills you miss, like spotting runs, and Endless Practice flags them."
+                    title: String(localized: "Know what to sharpen"),
+                    body: String(localized: "Your progress now names the exact skills you miss, like spotting runs, and Endless Practice flags them.")
                 ),
                 WhatsNewItem(
                     id: "weekly-gain",
                     icon: "arrow.up.right",
-                    title: "See your week",
-                    body: "Home and Your Progress show how many questions you locked in this week, so you can tell the practice is working."
+                    title: String(localized: "See your week"),
+                    body: String(localized: "Home and Your Progress show how many questions you locked in this week, so you can tell the practice is working.")
                 ),
             ]
         ),
         WhatsNewRelease(
             version: "1.2.0",
-            headline: "A smarter rhythm for cribbage night",
+            headline: String(localized: "A smarter rhythm for cribbage night"),
             items: [
                 WhatsNewItem(
                     id: "cribbage-minute",
                     icon: "calendar.badge.clock",
-                    title: "Cribbage Minute",
-                    body: "Take the same five-question challenge as every other member, share your score, and keep a forgiving five-day weekly rhythm.",
+                    title: String(localized: "Cribbage Minute"),
+                    body: String(localized: "Take the same five-question challenge as every other member, share your score, and keep a forgiving five-day weekly rhythm."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "game-night-prep",
                     icon: "person.2.fill",
-                    title: "Game Night Prep",
-                    body: "Choose your usual cribbage night and get a five-minute session built from your mistakes and weakest room when it matters.",
+                    title: String(localized: "Game Night Prep"),
+                    body: String(localized: "Choose your usual cribbage night and get a five-minute session built from your mistakes and weakest room when it matters."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "ipad",
                     icon: "ipad.landscape",
-                    title: "Made for iPad",
-                    body: "Practice at the table with a native iPad layout in portrait or landscape."
+                    title: String(localized: "Made for iPad"),
+                    body: String(localized: "Practice at the table with a native iPad layout in portrait or landscape.")
                 ),
             ]
         ),
         WhatsNewRelease(
             version: "1.0",
-            headline: "Learn the hand, one rep at a time",
+            headline: String(localized: "Learn the hand, one rep at a time"),
             items: [
                 WhatsNewItem(
                     id: "rooms",
                     icon: "rectangle.grid.2x2.fill",
-                    title: "Four free practice rooms",
-                    body: "Build confidence with focused drills for cards, scoring, discards, and pegging."
+                    title: String(localized: "Four free practice rooms"),
+                    body: String(localized: "Build confidence with focused drills for cards, scoring, discards, and pegging.")
                 ),
                 WhatsNewItem(
                     id: "coaching",
                     icon: "lightbulb.fill",
-                    title: "Explanations that stick",
-                    body: "Every answer shows the rule, the observation, and why the choice works at the table."
+                    title: String(localized: "Explanations that stick"),
+                    body: String(localized: "Every answer shows the rule, the observation, and why the choice works at the table.")
                 ),
                 WhatsNewItem(
                     id: "progress",
                     icon: "chart.bar.fill",
-                    title: "Practice that remembers",
-                    body: "Streaks, missed items, and a daily mixed session help you keep the useful parts in reach."
+                    title: String(localized: "Practice that remembers"),
+                    body: String(localized: "Streaks, missed items, and a daily mixed session help you keep the useful parts in reach.")
                 ),
             ]
         ),
         WhatsNewRelease(
             version: "1.1",
-            headline: "Practice that never runs out",
+            headline: String(localized: "Practice that never runs out"),
             items: [
                 WhatsNewItem(
                     id: "endless",
                     icon: "infinity",
-                    title: "Endless Practice",
-                    body: "Freshly dealt hands, every time. Read the scoring shape or practice the running total for as long as you like, with a full explanation after every answer.",
+                    title: String(localized: "Endless Practice"),
+                    body: String(localized: "Freshly dealt hands, every time. Read the scoring shape or practice the running total for as long as you like, with a full explanation after every answer."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "review",
                     icon: "arrow.trianglehead.counterclockwise",
-                    title: "Fix My Mistakes",
-                    body: "The app now remembers what you get wrong and brings it back on a schedule, so the weak spots actually close instead of piling up.",
+                    title: String(localized: "Fix My Mistakes"),
+                    body: String(localized: "The app now remembers what you get wrong and brings it back on a schedule, so the weak spots actually close instead of piling up."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "challenge",
                     icon: "timer",
-                    title: "Timed Challenge",
-                    body: "Ninety seconds, as many correct reads as you can manage, and a personal best to chase.",
+                    title: String(localized: "Timed Challenge"),
+                    body: String(localized: "Ninety seconds, as many correct reads as you can manage, and a personal best to chase."),
                     isPlus: true
                 ),
                 WhatsNewItem(
                     id: "stats",
                     icon: "chart.bar.fill",
-                    title: "Your progress, in detail",
-                    body: "Accuracy for every room, your weakest area, and how much you have practised overall."
+                    title: String(localized: "Your progress, in detail"),
+                    body: String(localized: "Accuracy for every room, your weakest area, and how much you have practised overall.")
                 ),
                 WhatsNewItem(
                     id: "content",
                     icon: "plus.rectangle.on.folder.fill",
-                    title: "More drills in every room",
-                    body: "New hand-written questions across the deck, scoring, discards, pegging, and the Master Tables."
+                    title: String(localized: "More drills in every room"),
+                    body: String(localized: "New hand-written questions across the deck, scoring, discards, pegging, and the Master Tables.")
                 ),
             ]
         )

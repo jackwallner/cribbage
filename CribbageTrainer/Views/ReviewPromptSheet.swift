@@ -41,16 +41,16 @@ struct ReviewPromptSheet: View {
                 case .feedback:
                     composer(
                         kind: .general,
-                        question: "What would make Cribbage Trainer better for you?",
+                        question: String(localized: "What would make Cribbage Trainer better for you?"),
                         chips: [],
-                        thanks: "Thanks. It went straight to the developer."
+                        thanks: String(localized: "Thanks. It went straight to the developer.")
                     )
                 case .churn(let moment):
                     composer(
                         kind: .churn,
                         question: churnQuestion(moment),
                         chips: churnChips(moment),
-                        thanks: "Thanks for saying. It helps more than you'd think.",
+                        thanks: String(localized: "Thanks for saying. It helps more than you'd think."),
                         context: ["moment": moment.rawValue]
                     )
                 }
@@ -73,8 +73,9 @@ struct ReviewPromptSheet: View {
 
     private var navigationTitle: String {
         switch step {
-        case .feedback: "Help us improve"
-        case .churn(let moment): moment == .trialRenewalOff ? "Before your trial ends" : "Before you go"
+        case .feedback: String(localized: "Help us improve")
+        case .churn(let moment):
+            moment == .trialRenewalOff ? String(localized: "Before your trial ends") : String(localized: "Before you go")
         }
     }
 
@@ -149,7 +150,7 @@ struct ReviewPromptSheet: View {
                     HStack(spacing: 10) {
                         Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                             .foregroundStyle(selected ? Theme.jade : Theme.inkTertiary)
-                        Text(chip)
+                        Text(Self.chipLabel(chip))
                             .font(.subheadline.weight(.medium))
                             .foregroundStyle(Theme.ink)
                             .multilineTextAlignment(.leading)
@@ -263,9 +264,9 @@ struct ReviewPromptSheet: View {
 
     static func announcement(_ outcome: FeedbackService.Outcome) -> String {
         switch outcome {
-        case .sent: return "Sent. Thank you."
-        case .queued: return "Saved. It will send the next time you open the app with a connection."
-        case .failed: return "That didn't go through. Try again, or copy your message."
+        case .sent: return String(localized: "Sent. Thank you.")
+        case .queued: return String(localized: "Saved. It will send the next time you open the app with a connection.")
+        case .failed: return String(localized: "That didn't go through. Try again, or copy your message.")
         }
     }
 
@@ -273,18 +274,35 @@ struct ReviewPromptSheet: View {
 
     private func churnQuestion(_ moment: ChurnMoment) -> String {
         switch moment {
-        case .trialRenewalOff: return "Your trial won't renew. What held you back?"
-        case .trialLapsed: return "Your free week ended. What held you back from keeping Cribbage+?"
-        case .paidRenewalOff: return "Your membership won't renew. What would have kept you?"
-        case .paidLapsed: return "Your membership ended. What would have kept you?"
+        case .trialRenewalOff: return String(localized: "Your trial won't renew. What held you back?")
+        case .trialLapsed: return String(localized: "Your free week ended. What held you back from keeping Cribbage+?")
+        case .paidRenewalOff: return String(localized: "Your membership won't renew. What would have kept you?")
+        case .paidLapsed: return String(localized: "Your membership ended. What would have kept you?")
         }
     }
 
+    /// The chips are English tags: the chosen one is sent as "[tag]", so the
+    /// feedback table reads the same in every language. Only the label shown
+    /// on screen is translated.
     private func churnChips(_ moment: ChurnMoment) -> [String] {
         if moment.isTrial {
             return ["Too expensive", "Didn't use it enough", "Got what I needed", "Something was missing", "Something else"]
         }
         return ["Too expensive", "Not practicing enough anymore", "Learned what I needed", "Wanted more content", "Something else"]
+    }
+
+    static func chipLabel(_ tag: String) -> String {
+        switch tag {
+        case "Too expensive": return String(localized: "Too expensive")
+        case "Didn't use it enough": return String(localized: "Didn't use it enough")
+        case "Got what I needed": return String(localized: "Got what I needed")
+        case "Something was missing": return String(localized: "Something was missing")
+        case "Something else": return String(localized: "Something else")
+        case "Not practicing enough anymore": return String(localized: "Not practicing enough anymore")
+        case "Learned what I needed": return String(localized: "Learned what I needed")
+        case "Wanted more content": return String(localized: "Wanted more content")
+        default: return tag
+        }
     }
 
     // MARK: - Helpers

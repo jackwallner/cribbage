@@ -17,7 +17,7 @@ enum PurchaseError: LocalizedError {
     case productsUnavailable
 
     var errorDescription: String? {
-        "The App Store isn't reachable right now. Check your connection and try again."
+        String(localized: "The App Store isn't reachable right now. Check your connection and try again.")
     }
 }
 

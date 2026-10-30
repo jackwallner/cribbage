@@ -135,7 +135,7 @@ struct CribbageMinuteView: View {
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(Theme.ink)
                 Spacer()
-                Text(result.map { "\($0.score)/\($0.total)" } ?? "Play")
+                Text(result.map { "\($0.score)/\($0.total)" } ?? String(localized: "Play"))
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(result == nil ? Theme.coral : Theme.jade)
                     .monospacedDigit()
@@ -211,7 +211,7 @@ struct CribbageMinuteResultView: View {
             Text(result.score == result.total ? "Perfect minute!" : "Minute complete")
                 .font(Theme.display(28))
                 .foregroundStyle(Theme.ink)
-            Text("Cribbage Minute \(result.shortDate)")
+            Text("Cribbage Minute \(result.displayDate)")
                 .font(.subheadline)
                 .foregroundStyle(Theme.inkSecondary)
         }

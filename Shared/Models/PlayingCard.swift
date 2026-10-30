@@ -12,7 +12,14 @@ enum Suit: String, Codable, CaseIterable, Hashable, Sendable {
         }
     }
 
-    var displayName: String { rawValue.capitalized }
+    var displayName: String {
+        switch self {
+        case .clubs: return String(localized: "Clubs")
+        case .diamonds: return String(localized: "Diamonds")
+        case .hearts: return String(localized: "Hearts")
+        case .spades: return String(localized: "Spades")
+        }
+    }
 }
 
 enum PlayingCard: Hashable, Codable, Sendable {
@@ -28,13 +35,31 @@ enum PlayingCard: Hashable, Codable, Sendable {
     var shortLabel: String {
         switch self {
         case .standard(let rank, let suit): return "\(Self.rankLabel(rank))\(suit.symbol)"
-        case .joker: return "Joker"
+        case .joker: return String(localized: "Joker")
         }
     }
 
+    /// "7 of Hearts". One key per face rank so a language can name the card
+    /// its own way ("Herz-Bube") instead of reusing the corner letter.
     var spokenName: String {
         switch self {
-        case .standard(let rank, let suit): return "\(Self.rankLabel(rank)) of \(suit.displayName)"
+        case .standard(let rank, let suit):
+            switch rank {
+            case 1: return String(localized: "A of \(suit.displayName)")
+            case 11: return String(localized: "J of \(suit.displayName)")
+            case 12: return String(localized: "Q of \(suit.displayName)")
+            case 13: return String(localized: "K of \(suit.displayName)")
+            default: return String(localized: "\(rank) of \(suit.displayName)")
+            }
+        case .joker: return String(localized: "Joker")
+        }
+    }
+
+    /// The English name, for orderings that must match on every device
+    /// whatever the language (the daily discard's distractors).
+    var stableName: String {
+        switch self {
+        case .standard(let rank, let suit): return "\(Self.rankLabel(rank)) of \(suit.rawValue.capitalized)"
         case .joker: return "Joker"
         }
     }

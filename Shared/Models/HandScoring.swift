@@ -196,9 +196,8 @@ enum HandScoring {
     static func discardMatches(_ chosen: [PlayingCard], scenario: DiscardScenario) -> Int {
         guard chosen.count == 2, Set(chosen).count == 2, chosen.allSatisfy(scenario.deal.contains) else { return 0 }
         if Set(chosen) == Set(scenario.recommendedDiscard) { return 2 }
-        let dealer = scenario.situation.lowercased().contains("dealer")
-        let expected = discardValue(deal: scenario.deal, discard: scenario.recommendedDiscard, isDealer: dealer)
-        let actual = discardValue(deal: scenario.deal, discard: chosen, isDealer: dealer)
+        let expected = discardValue(deal: scenario.deal, discard: scenario.recommendedDiscard, isDealer: scenario.isDealer)
+        let actual = discardValue(deal: scenario.deal, discard: chosen, isDealer: scenario.isDealer)
         if abs(actual - expected) < 1e-9 { return 2 }
         return chosen.filter(scenario.recommendedDiscard.contains).count
     }

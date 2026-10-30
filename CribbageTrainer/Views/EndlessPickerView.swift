@@ -60,12 +60,12 @@ struct EndlessPickerView: View {
                     .font(.subheadline)
                     .foregroundStyle(Theme.inkSecondary)
                 if let record, record.attempts > 0 {
-                    Text("\(Int((record.accuracy * 100).rounded()))% across \(record.attempts) answered")
+                    Text("\(record.accuracy.percentText) across \(record.attempts) answered")
                         .font(.caption2)
                         .foregroundStyle(Theme.inkTertiary)
                 }
                 if let weak = records.weakTopics(skill: skill).first {
-                    Text("Needs work: \(PracticeTopic.title(weak.id).lowercased()), \(Int((weak.stat.accuracy * 100).rounded()))%")
+                    Text("Needs work: \(PracticeTopic.title(weak.id)), \(weak.stat.accuracy.percentText)")
                         .font(.caption2.weight(.semibold))
                         .foregroundStyle(Theme.coral)
                 }

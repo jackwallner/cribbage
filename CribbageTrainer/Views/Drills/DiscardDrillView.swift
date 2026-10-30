@@ -105,9 +105,9 @@ struct DiscardDrillView: View {
 
     private var headline: String {
         switch matchCount {
-        case 2: return "Perfect discard! 2 of 2"
-        case 1: return "Close! 1 of 2 matches"
-        default: return "The coach saw it differently"
+        case 2: return String(localized: "Perfect discard! 2 of 2")
+        case 1: return String(localized: "Close! 1 of 2 matches")
+        default: return String(localized: "The coach saw it differently")
         }
     }
 

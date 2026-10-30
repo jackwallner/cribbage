@@ -72,6 +72,8 @@ final class ContentValidityTests: XCTestCase {
             let isPone = text.contains("pone")
             XCTAssertNotEqual(isDealer, isPone,
                               "\(scenario.id) must state exactly one role: \(scenario.situation)")
+            XCTAssertEqual(scenario.isDealer, isDealer,
+                           "\(scenario.id) isDealer disagrees with its situation: \(scenario.situation)")
         }
     }
 
@@ -81,7 +83,7 @@ final class ContentValidityTests: XCTestCase {
     /// for the pone.
     func testRecommendedDiscardsAreOptimal() {
         for scenario in allDiscard {
-            let isDealer = scenario.situation.lowercased().contains("dealer")
+            let isDealer = scenario.isDealer
             let ranked = HandScoring.rankedDiscards(deal: scenario.deal, isDealer: isDealer)
             guard let best = ranked.first else {
                 XCTFail("\(scenario.id) produced no discard options")

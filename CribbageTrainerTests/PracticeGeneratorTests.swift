@@ -121,7 +121,7 @@ final class PracticeGeneratorTests: XCTestCase {
             // The explanation's parts must add to the answer it teaches.
             let total = q.explanation
                 .components(separatedBy: " That is ").last?
-                .components(separatedBy: " points").first.flatMap(Int.init)
+                .components(separatedBy: " point").first.flatMap(Int.init)
             XCTAssertEqual(total, q.score, q.explanation)
         }
     }
