@@ -107,8 +107,8 @@ struct PracticeRunView: View {
     private var title: String {
         switch mode {
         case .endless(let skill): return skill.title
-        case .timed: return "Timed Challenge"
-        case .review: return "Fix My Mistakes"
+        case .timed: return String(localized: "Timed Challenge")
+        case .review: return String(localized: "Fix My Mistakes")
         }
     }
 
@@ -229,7 +229,7 @@ struct PracticeRunView: View {
     }
 
     private var counterText: String {
-        mode == .review ? "\(index + 1) of \(items.count)" : "Question \(index + 1)"
+        mode == .review ? String(localized: "\(index + 1) of \(items.count)") : String(localized: "Question \(index + 1)")
     }
 
     // MARK: - Clock

@@ -49,15 +49,17 @@ enum HandCountGenerator {
 
     static func explain(hand: [PlayingCard], starter: PlayingCard) -> String {
         let all = hand + [starter]
-        let parts: [(String, Int)] = [
-            ("fifteens", HandScoring.fifteens(all)),
-            ("pairs", HandScoring.pairs(all)),
-            ("runs", HandScoring.runs(all)),
-            ("flush", HandScoring.flush(hand: hand, starter: starter, isCrib: false)),
-            ("his nobs", HandScoring.nobs(hand: hand, starter: starter)),
-        ].filter { $0.1 > 0 }
-        let detail = parts.map { "\($0.0) \($0.1)" }.joined(separator: ", ")
-        let total = parts.reduce(0) { $0 + $1.1 }
-        return "Count everything with the starter: \(detail). That is \(total) points in all. Count each fifteen, pair and run separately, and remember a flush in the hand needs four matching cards."
+        let parts: [(label: String, points: Int)] = [
+            (String(localized: "fifteens \(HandScoring.fifteens(all))"), HandScoring.fifteens(all)),
+            (String(localized: "pairs \(HandScoring.pairs(all))"), HandScoring.pairs(all)),
+            (String(localized: "runs \(HandScoring.runs(all))"), HandScoring.runs(all)),
+            (String(localized: "flush \(HandScoring.flush(hand: hand, starter: starter, isCrib: false))"),
+             HandScoring.flush(hand: hand, starter: starter, isCrib: false)),
+            (String(localized: "his nobs \(HandScoring.nobs(hand: hand, starter: starter))"),
+             HandScoring.nobs(hand: hand, starter: starter)),
+        ].filter { $0.points > 0 }
+        let detail = parts.map(\.label).joined(separator: ", ")
+        let total = parts.reduce(0) { $0 + $1.points }
+        return String(localized: "Count everything with the starter: \(detail). That is \(total) points in all. Count each fifteen, pair and run separately, and remember a flush in the hand needs four matching cards.")
     }
 }

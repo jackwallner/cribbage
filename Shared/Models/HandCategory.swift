@@ -12,17 +12,17 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     case flushes
     case nobs
 
-    static let patternPrompt = "Which scoring pattern or potential can you spot? No starter is designated."
+    static var patternPrompt: String { String(localized: "Which scoring pattern or potential can you spot? No starter is designated.") }
 
     var id: String { rawValue }
 
     var displayName: String {
         switch self {
-        case .fifteens: return "Fifteens"
-        case .pairs: return "Pairs"
-        case .runs: return "Runs"
-        case .flushes: return "Flush potential"
-        case .nobs: return "Nobs potential"
+        case .fifteens: return String(localized: "Fifteens")
+        case .pairs: return String(localized: "Pairs")
+        case .runs: return String(localized: "Runs")
+        case .flushes: return String(localized: "Flush potential")
+        case .nobs: return String(localized: "Nobs potential")
         }
     }
 
@@ -31,15 +31,15 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     var howToSpot: String {
         switch self {
         case .fifteens:
-            return "Look for any combination of cards whose values add to 15. A ten-value card pairs with a five, while smaller cards can make several combinations."
+            return String(localized: "Look for any combination of cards whose values add to 15. A ten-value card pairs with a five, while smaller cards can make several combinations.")
         case .pairs:
-            return "Two cards of the same rank score a pair. Three of a rank makes three pairs, and four makes six pairs."
+            return String(localized: "Two cards of the same rank score a pair. Three of a rank makes three pairs, and four makes six pairs.")
         case .runs:
-            return "Three or more consecutive ranks score a run. Duplicate ranks can multiply the run through pairs."
+            return String(localized: "Three or more consecutive ranks score a run. Duplicate ranks can multiply the run through pairs.")
         case .flushes:
-            return "Keeping four matching cards gives a hand flush. A matching starter extends it to five. This pattern exercise does not designate a starter."
+            return String(localized: "Keeping four matching cards gives a hand flush. A matching starter extends it to five. This pattern exercise does not designate a starter.")
         case .nobs:
-            return "A jack in the hand can become his nobs when the cut matches its suit. It is easy to miss because the cut decides it."
+            return String(localized: "A jack in the hand can become his nobs when the cut matches its suit. It is easy to miss because the cut decides it.")
         }
     }
 

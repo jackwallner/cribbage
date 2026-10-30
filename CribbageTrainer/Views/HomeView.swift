@@ -349,14 +349,14 @@ struct HomeView: View {
         } label: {
             HStack(spacing: 8) {
                 statChip(value: progress.currentStreak(), icon: "flame.fill", color: Theme.coral,
-                         label: "\(progress.currentStreak()) day streak")
+                         label: String(localized: "\(progress.currentStreak()) day streak"))
                 statChip(value: progress.totalSessions, icon: "checkmark.seal.fill", color: Theme.jade,
-                         label: "\(progress.totalSessions) drills done")
+                         label: String(localized: "\(progress.totalSessions) drills done"))
                 // Only ever positive. A week that went backwards is not news
                 // worth a chip; the ring already says where things stand.
                 if let gain = ledger.weeklyGain() {
                     statChip(value: gain, icon: "arrow.up.right", color: Theme.plum,
-                             label: "\(gain) \(gain == 1 ? "question" : "questions") locked in this week", prefix: "+")
+                             label: String(localized: "\(gain) questions locked in this week"), prefix: "+")
                 }
             }
         }
@@ -533,7 +533,7 @@ struct HomeView: View {
     @ViewBuilder
     private var trainingTiles: some View {
                 trainingTile(
-                    title: "Endless\nPractice",
+                    title: String(localized: "Endless\nPractice"),
                     icon: "infinity",
                     color: Theme.jade,
                     badge: nil
@@ -541,26 +541,27 @@ struct HomeView: View {
                     EndlessPickerView()
                 }
         trainingTile(
-            title: "Cribbage\nMinute",
+            title: String(localized: "Cribbage\nMinute"),
             icon: "calendar.badge.clock",
             color: Theme.coral,
-            badge: minuteStore.result(for: Date()).map { "\($0.score)/\($0.total) today" } ?? "Daily"
+            badge: minuteStore.result(for: Date()).map { String(localized: "\($0.score)/\($0.total) today") }
+                ?? String(localized: "Daily")
         ) {
             CribbageMinuteView()
         }
         trainingTile(
-            title: "Game Night\nPrep",
+            title: String(localized: "Game Night\nPrep"),
             icon: "person.2.fill",
             color: Theme.plum,
-            badge: settings.gameNightReminderEnabled ? settings.gameNightDay.displayName : "Weekly"
+            badge: settings.gameNightReminderEnabled ? settings.gameNightDay.displayName : String(localized: "Weekly")
         ) {
             GameNightPrepView()
         }
                 trainingTile(
-                    title: "Timed\nChallenge",
+                    title: String(localized: "Timed\nChallenge"),
                     icon: "timer",
                     color: Theme.coral,
-                    badge: records.bestChallengeScore > 0 ? "Best \(records.bestChallengeScore)" : nil
+                    badge: records.bestChallengeScore > 0 ? String(localized: "Best \(records.bestChallengeScore)") : nil
                 ) {
                     PracticeRunView(mode: .timed)
                 }
@@ -568,10 +569,10 @@ struct HomeView: View {
                 // review session is a dead end dressed up as a feature.
                 if records.dueCount > 0 {
                     trainingTile(
-                        title: "Fix My\nMistakes",
+                        title: String(localized: "Fix My\nMistakes"),
                         icon: "arrow.trianglehead.counterclockwise",
                         color: Theme.plum,
-                        badge: "\(records.dueCount) due"
+                        badge: String(localized: "\(records.dueCount) due")
                     ) {
                         PracticeRunView(
                             mode: .review,
@@ -725,8 +726,8 @@ struct HomeView: View {
         }
         .buttonStyle(PressableCardStyle())
         .accessibilityHint(locked
-            ? "Locked. \(total) drills, included with \(Membership.name)"
-            : "\(done) of \(total) drills done")
+            ? String(localized: "Locked. \(total) drills, included with \(Membership.name)")
+            : String(localized: "\(done) of \(total) drills done"))
         .id(room.id)
     }
 
@@ -825,12 +826,14 @@ extension DrillKind {
         }
     }
 
-    var unitName: String {
+    /// "8 cards", "10 questions": one plural key per kind.
+    var countLabel: String {
+        let count = itemCount
         switch self {
-        case .flashcards: return "cards"
-        case .quiz: return "questions"
-        case .handMatch: return "hands"
-        case .discard: return "deals"
+        case .flashcards: return String(localized: "\(count) cards")
+        case .quiz: return String(localized: "\(count) questions")
+        case .handMatch: return String(localized: "\(count) hands")
+        case .discard: return String(localized: "\(count) deals")
         }
     }
 }

@@ -62,6 +62,9 @@ struct HandMatchQuestion: Identifiable, Sendable {
 
 struct DiscardScenario: Identifiable, Sendable {
     let id: String
+    /// Whose crib the two cards land in. Stored rather than read from
+    /// `situation`, which is translated.
+    let isDealer: Bool
     let situation: String
     let deal: [PlayingCard]
     let recommendedDiscard: [PlayingCard]

@@ -9,9 +9,9 @@ enum CribbageMinuteCategory: String, CaseIterable, Codable, Identifiable, Sendab
 
     var title: String {
         switch self {
-        case .handReading: return "Hand Reading"
-        case .discarding: return "The Discard"
-        case .pegging: return "Pegging"
+        case .handReading: return String(localized: "Hand Reading")
+        case .discarding: return String(localized: "The Discard")
+        case .pegging: return String(localized: "Pegging")
         }
     }
 
@@ -37,6 +37,7 @@ struct CribbageMinuteChallenge: Identifiable, Sendable {
 
     var id: String { dayKey }
     var items: [QuickItem] { questions.map(\.item) }
+    var displayDate: String { CribbageMinuteContent.displayDate(dayKey: dayKey) }
 }
 
 /// One shared five-question set per calendar date: two generated hand reads, one discard decision, and two pegging calls. Hands are dealt procedurally from the same classifier that grades Endless Practice; the discard and pegging questions come from the app's authored teaching content. The day key is the whole protocol, so there is no account, no server, and no leaderboard.
@@ -46,7 +47,7 @@ enum CribbageMinuteContent {
     static let drill = Drill(
         id: "cribbage-minute",
         title: "Cribbage Minute",
-        subtitle: "Today's shared five-question challenge",
+        subtitle: String(localized: "Today's shared five-question challenge"),
         kind: .quiz([]),
         isPlus: true
     )
@@ -68,6 +69,23 @@ enum CribbageMinuteContent {
         let parts = calendar.dateComponents([.month, .day], from: day)
         let shortDate = String(format: "%02d/%02d", parts.month ?? 1, parts.day ?? 1)
         return CribbageMinuteChallenge(day: day, dayKey: dayKey, shortDate: shortDate, questions: questions)
+    }
+
+    /// Month and day in the current locale's order, read back from a day key.
+    static func displayDate(dayKey: String) -> String {
+        let parts = dayKey.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3 else { return dayKey }
+        var calendar = Calendar.gregorianLocal
+        calendar.locale = .current
+        guard let date = calendar.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2])) else {
+            return dayKey
+        }
+        let formatter = DateFormatter()
+        formatter.calendar = calendar
+        formatter.timeZone = calendar.timeZone
+        formatter.locale = .current
+        formatter.setLocalizedDateFormatFromTemplate("MMdd")
+        return formatter.string(from: date)
     }
 
     static func key(for day: Date, calendar: Calendar = .gregorianLocal) -> String {
@@ -92,7 +110,7 @@ enum CribbageMinuteContent {
                 choices: labels,
                 answerIndex: answerIndex,
                 explanation: hand.explanation,
-                sourceLabel: "Cribbage Minute: Hand Read",
+                sourceLabel: String(localized: "Cribbage Minute: Hand Read"),
                 roomID: PracticeSkill.handReading.roomID,
                 trackingID: PracticeSkill.handReading.rawValue,
                 isReviewable: false
@@ -119,17 +137,17 @@ enum CribbageMinuteContent {
         var generator = StableSeededGenerator(seed: "cribbage-minute-\(dayKey)-discard")
         let scenario = scenarios[Int(generator.next() % UInt64(scenarios.count))]
         let answer = label(scenario.recommendedDiscard)
-        let distractors = distractorLabels(for: scenario, dayKey: dayKey, answer: answer)
+        let distractors = distractorLabels(for: scenario, dayKey: dayKey)
         guard distractors.count >= 2 else { return nil }
 
         let item = QuickItem(
             id: "cribbage-minute-discard-\(dayKey)",
-            prompt: "\(scenario.situation) Which two cards do you throw?",
+            prompt: String(localized: "\(scenario.situation) Which two cards do you throw?"),
             tiles: scenario.deal,
             choices: [answer] + distractors,
             answerIndex: 0,
             explanation: scenario.reasoning,
-            sourceLabel: "Cribbage Minute: The Discard",
+            sourceLabel: String(localized: "Cribbage Minute: The Discard"),
             roomID: "discard-room",
             trackingID: "cribbage-minute-discard",
             isReviewable: false
@@ -139,25 +157,31 @@ enum CribbageMinuteContent {
 
     /// Every other pair from the same deal, so a wrong answer is always a real
     /// alternative the player could have chosen rather than an obvious dud.
+    /// Pairs are ordered by their English names, so every language draws the
+    /// same three alternatives on the same day.
     private static func distractorLabels(
         for scenario: DiscardScenario,
-        dayKey: String,
-        answer: String
+        dayKey: String
     ) -> [String] {
-        var labels: Set<String> = []
+        var pairs: [String: [PlayingCard]] = [:]
         for first in 0..<max(0, scenario.deal.count - 1) {
             for second in (first + 1)..<scenario.deal.count {
-                labels.insert(label([scenario.deal[first], scenario.deal[second]]))
+                let pair = [scenario.deal[first], scenario.deal[second]]
+                pairs[stableLabel(pair)] = pair
             }
         }
-        labels.remove(answer)
-        let sorted = labels.sorted()
+        pairs[stableLabel(scenario.recommendedDiscard)] = nil
+        let sorted = pairs.keys.sorted()
         let order = ChoiceShuffle.permutation(count: sorted.count, seed: "cribbage-minute-\(dayKey)-discard-choices")
-        return order.prefix(3).map { sorted[$0] }
+        return order.prefix(3).compactMap { pairs[sorted[$0]].map(label) }
     }
 
     private static func label(_ cards: [PlayingCard]) -> String {
         cards.map(\.spokenName).joined(separator: ", ")
+    }
+
+    private static func stableLabel(_ cards: [PlayingCard]) -> String {
+        cards.map(\.stableName).joined(separator: ", ")
     }
 
     /// Authored questions drawn from one room, picked by a permutation of the

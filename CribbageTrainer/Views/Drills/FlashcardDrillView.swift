@@ -159,10 +159,10 @@ struct FlashcardDrillView: View {
     }
 
     private var swipeAccessibilityHint: String {
-        guard isFlipped else { return "Tap to reveal the answer" }
+        guard isFlipped else { return String(localized: "Tap to reveal the answer") }
         return choiceAnswered
-            ? "Tap Next to continue"
-            : "Swipe right if you knew it, left to see it again"
+            ? String(localized: "Tap Next to continue")
+            : String(localized: "Swipe right if you knew it, left to see it again")
     }
 
     /// KNEW IT / AGAIN stamps fade in with the drag so the swipe directions
@@ -171,10 +171,10 @@ struct FlashcardDrillView: View {
     private var verdictStamps: some View {
         ZStack {
             if !choiceAnswered {
-                stamp("KNEW IT", color: Theme.jade, angle: -12)
+                stamp(String(localized: "KNEW IT"), color: Theme.jade, angle: -12)
                     .opacity(isFlipped ? stampOpacity(forDirection: 1) : 0)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                stamp("AGAIN", color: Theme.coral, angle: 12)
+                stamp(String(localized: "AGAIN"), color: Theme.coral, angle: 12)
                     .opacity(isFlipped ? stampOpacity(forDirection: -1) : 0)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             }
@@ -429,7 +429,7 @@ struct FlipCardFace: View {
     }
 
     private var front: some View {
-        CribbageCardFace(accent: accent, eyebrow: "CRIBBAGE") {
+        CribbageCardFace(accent: accent, eyebrow: String(localized: "CRIBBAGE")) {
             VStack(spacing: 18) {
                 Spacer(minLength: 0)
                 Text(card.frontTitle)
@@ -458,7 +458,7 @@ struct FlipCardFace: View {
     }
 
     private var back: some View {
-        CribbageCardFace(accent: accent, eyebrow: "THE CALL") {
+        CribbageCardFace(accent: accent, eyebrow: String(localized: "THE CALL")) {
             VStack(spacing: 14) {
                 if let verdict {
                     verdictBanner(verdict)
@@ -492,16 +492,15 @@ struct FlipCardFace: View {
         }
     }
 
-    private var verdict: (text: String, correct: Bool)? {
+    private var verdict: (pick: String, correct: Bool)? {
         guard let choice = card.choice, let pick = choicePick else { return nil }
-        let correct = pick == choice.answerIndex
-        return ("You said \"\(choice.options[pick])\"", correct)
+        return (choice.options[pick], pick == choice.answerIndex)
     }
 
-    private func verdictBanner(_ verdict: (text: String, correct: Bool)) -> some View {
+    private func verdictBanner(_ verdict: (pick: String, correct: Bool)) -> some View {
         HStack(spacing: 8) {
             Image(systemName: verdict.correct ? "checkmark.circle.fill" : "xmark.circle.fill")
-            Text(verdict.correct ? "\(verdict.text). Right!" : "\(verdict.text). Not this time.")
+            Text(verdict.correct ? "You said \"\(verdict.pick)\". Right!" : "You said \"\(verdict.pick)\". Not this time.")
                 .font(.footnote.weight(.semibold))
         }
         .foregroundStyle(verdict.correct ? Theme.jade : Theme.coral)

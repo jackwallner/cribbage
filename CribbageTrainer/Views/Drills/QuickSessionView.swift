@@ -236,7 +236,7 @@ struct QuickSessionView: View {
         streakBannerTrigger += 1
         let trigger = streakBannerTrigger
         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-            streakBannerText = "\(streak) in a row!"
+            streakBannerText = String(localized: "\(streak) in a row!")
         }
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 1_600_000_000)

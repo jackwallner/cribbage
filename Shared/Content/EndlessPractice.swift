@@ -13,19 +13,19 @@ enum PracticeSkill: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .handReading: return "Read the Hand"
-        case .pegging: return "Count to 31"
-        case .countHand: return "Count the Hand"
-        case .pegScore: return "Pegging Points"
+        case .handReading: return String(localized: "Read the Hand")
+        case .pegging: return String(localized: "Count to 31")
+        case .countHand: return String(localized: "Count the Hand")
+        case .pegScore: return String(localized: "Pegging Points")
         }
     }
 
     var subtitle: String {
         switch self {
-        case .handReading: return "Fresh five-card hands, unlimited reps"
-        case .pegging: return "Practice legal plays against the running total"
-        case .countHand: return "Add up a four-card hand and its starter"
-        case .pegScore: return "Score the card you just played"
+        case .handReading: return String(localized: "Fresh five-card hands, unlimited reps")
+        case .pegging: return String(localized: "Practice legal plays against the running total")
+        case .countHand: return String(localized: "Add up a four-card hand and its starter")
+        case .pegScore: return String(localized: "Score the card you just played")
         }
     }
 
@@ -59,8 +59,8 @@ enum EndlessPractice {
 
     static let challengeDrill = Drill(
         id: "timed-challenge",
-        title: "Timed Challenge",
-        subtitle: "Beat the clock",
+        title: String(localized: "Timed Challenge"),
+        subtitle: String(localized: "Beat the clock"),
         kind: .quiz([])
     )
 
@@ -90,7 +90,7 @@ enum EndlessPractice {
                 choices: labels,
                 answerIndex: answerIndex,
                 explanation: hand.explanation,
-                sourceLabel: "Endless Practice",
+                sourceLabel: String(localized: "Endless Practice"),
                 roomID: PracticeSkill.handReading.roomID,
                 topic: PracticeTopic.id(.handReading, hand.answer.rawValue)
             )
@@ -106,22 +106,23 @@ enum EndlessPractice {
             let value = card.cribbageValue
             let canPlay = total + value <= 31
             let nextTotal = total + value
+            let play = String(localized: "Play it, making \(nextTotal)")
             let choices = canPlay
-                ? ["Play it, making \(nextTotal)", "Say go", "Reset the count"]
-                : ["Play it, making \(nextTotal)", "Say go", "Ask for a new card"]
+                ? [play, String(localized: "Say go"), String(localized: "Reset the count")]
+                : [play, String(localized: "Say go"), String(localized: "Ask for a new card")]
             let explanation = canPlay
-                ? "The running total is \(total), and \(card.spokenName) is worth \(value), so the legal total is \(nextTotal). Check whether the play also creates 15, a pair, a run, or 31."
-                : "The running total is \(total), and \(card.spokenName) is worth \(value), which would pass 31. You must say go if you have no legal card."
+                ? String(localized: "The running total is \(total), and \(card.spokenName) is worth \(value), so the legal total is \(nextTotal). Check whether the play also creates 15, a pair, a run, or 31.")
+                : String(localized: "The running total is \(total), and \(card.spokenName) is worth \(value), which would pass 31. You must say go if you have no legal card.")
             let id = PracticeSkill.pegging.itemPrefix + UUID().uuidString
             let shuffled = ChoiceShuffle.shuffledChoices(labels: choices, answerIndex: canPlay ? 0 : 1, seed: id)
             items.append(QuickItem(
                 id: id,
-                prompt: "The running total is \(total). You hold the \(card.spokenName). What is the legal play?",
+                prompt: String(localized: "The running total is \(total). You hold the \(card.spokenName). What is the legal play?"),
                 tiles: [card],
                 choices: shuffled.labels,
                 answerIndex: shuffled.answerIndex,
                 explanation: explanation,
-                sourceLabel: "Endless Practice",
+                sourceLabel: String(localized: "Endless Practice"),
                 roomID: PracticeSkill.pegging.roomID,
                 topic: PracticeTopic.id(.pegging, canPlay ? "play" : "go")
             ))
@@ -139,12 +140,12 @@ enum EndlessPractice {
             let id = PracticeSkill.countHand.itemPrefix + UUID().uuidString
             return QuickItem(
                 id: id,
-                prompt: "Count this hand. The first four cards are your hand and the last card is the starter.",
+                prompt: String(localized: "Count this hand. The first four cards are your hand and the last card is the starter."),
                 tiles: question.hand.racked + [question.starter],
-                choices: question.choices.map { "\($0) points" },
+                choices: question.choices.map { String(localized: "\($0) points") },
                 answerIndex: question.choices.firstIndex(of: question.score) ?? 0,
                 explanation: question.explanation,
-                sourceLabel: "Endless Practice",
+                sourceLabel: String(localized: "Endless Practice"),
                 roomID: PracticeSkill.countHand.roomID
             )
         }
@@ -161,12 +162,12 @@ enum EndlessPractice {
             let pileText = question.pile.map(\.shortLabel).joined(separator: " ")
             return QuickItem(
                 id: id,
-                prompt: "Cards played so far: \(pileText). The count is \(question.runningTotal). You play the \(question.play.shortLabel). How many points do you score?",
+                prompt: String(localized: "Cards played so far: \(pileText). The count is \(question.runningTotal). You play the \(question.play.shortLabel). How many points do you score?"),
                 tiles: question.pile + [question.play],
-                choices: question.choices.map { $0 == 1 ? "1 point" : "\($0) points" },
+                choices: question.choices.map { String(localized: "\($0) points") },
                 answerIndex: question.choices.firstIndex(of: question.result.points) ?? 0,
                 explanation: question.explanation,
-                sourceLabel: "Endless Practice",
+                sourceLabel: String(localized: "Endless Practice"),
                 roomID: PracticeSkill.pegScore.roomID,
                 topic: PracticeTopic.id(.pegScore, question.topic)
             )
@@ -186,19 +187,19 @@ enum PracticeTopic {
 
     static func title(_ id: String) -> String {
         switch id {
-        case "handReading.fifteens": return "Spotting fifteens"
-        case "handReading.pairs": return "Spotting pairs"
-        case "handReading.runs": return "Spotting runs"
-        case "handReading.flushes": return "Spotting flushes"
-        case "handReading.nobs": return "Spotting his nobs"
-        case "pegging.play": return "Legal plays under 31"
-        case "pegging.go": return "Knowing when to say go"
-        case "pegScore.none": return "Plays that score nothing"
-        case "pegScore.fifteen": return "Pegging fifteens"
-        case "pegScore.thirtyOne": return "Pegging thirty-one"
-        case "pegScore.pair": return "Pegging pairs"
-        case "pegScore.run": return "Pegging runs"
-        case "pegScore.combo": return "Plays that score two ways"
+        case "handReading.fifteens": return String(localized: "Spotting fifteens")
+        case "handReading.pairs": return String(localized: "Spotting pairs")
+        case "handReading.runs": return String(localized: "Spotting runs")
+        case "handReading.flushes": return String(localized: "Spotting flushes")
+        case "handReading.nobs": return String(localized: "Spotting his nobs")
+        case "pegging.play": return String(localized: "Legal plays under 31")
+        case "pegging.go": return String(localized: "Knowing when to say go")
+        case "pegScore.none": return String(localized: "Plays that score nothing")
+        case "pegScore.fifteen": return String(localized: "Pegging fifteens")
+        case "pegScore.thirtyOne": return String(localized: "Pegging thirty-one")
+        case "pegScore.pair": return String(localized: "Pegging pairs")
+        case "pegScore.run": return String(localized: "Pegging runs")
+        case "pegScore.combo": return String(localized: "Plays that score two ways")
         default: return id
         }
     }

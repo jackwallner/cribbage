@@ -155,16 +155,16 @@ enum HandGenerator {
         case .flushes:
             let count = HandScoring.longestSuitCount(cards)
             return count == 5
-                ? "All five cards share a suit. Keeping four gives a 4-point hand flush; only a matching starter makes it 5."
-                : "Keeping the four suited cards would give a 4-point hand flush. A matching starter would make it 5; a crib flush always needs all five."
+                ? String(localized: "All five cards share a suit. Keeping four gives a 4-point hand flush; only a matching starter makes it 5.")
+                : String(localized: "Keeping the four suited cards would give a 4-point hand flush. A matching starter would make it 5; a crib flush always needs all five.")
         case .runs:
-            return "The ranks build a run worth \(HandScoring.runs(cards)) points. Suits never matter for a run, and aces stay low."
+            return String(localized: "The ranks build a run worth \(HandScoring.runs(cards)) points. Suits never matter for a run, and aces stay low.")
         case .pairs:
-            return "Matching ranks are worth \(HandScoring.pairs(cards)) points here. Three of a rank is three separate pairs, not one score."
+            return String(localized: "Matching ranks are worth \(HandScoring.pairs(cards)) points here. Three of a rank is three separate pairs, not one score.")
         case .fifteens:
-            return "Combinations totaling fifteen are worth \(HandScoring.fifteens(cards)) points here. Court cards count 10 and the ace counts 1."
+            return String(localized: "Combinations totaling fifteen are worth \(HandScoring.fifteens(cards)) points here. Court cards count 10 and the ace counts 1.")
         case .nobs:
-            return "The pattern includes a jack. It scores nobs only if kept and matched by the starter's suit."
+            return String(localized: "The pattern includes a jack. It scores nobs only if kept and matched by the starter's suit.")
         }
     }
 }

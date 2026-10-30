@@ -58,20 +58,20 @@ struct OnboardingView: View {
             TabView(selection: $page) {
                 infoPage(
                     icon: "rectangle.portrait.on.rectangle.portrait.angled",
-                    title: "Make it stick between games",
-                    body: "Cribbage fades fast between games. Cribbage Trainer gives you five-minute drills you can run anywhere, whether you are still learning card values or sharpening instincts you already have.",
+                    title: String(localized: "Make it stick between games"),
+                    body: String(localized: "Cribbage fades fast between games. Cribbage Trainer gives you five-minute drills you can run anywhere, whether you are still learning card values or sharpening instincts you already have."),
                     tiles: [.c(2), .d(5), .h(10), .s(13)]
                 ).tag(0).accessibilityHidden(page != 0)
                 infoPage(
                     icon: "rectangle.stack.fill",
-                    title: "Practice, not pressure",
-                    body: "Swipe through flashcards, read scoring shapes, make pegging calls, and choose two-card discards, with the why behind every answer.",
+                    title: String(localized: "Practice, not pressure"),
+                    body: String(localized: "Swipe through flashcards, read scoring shapes, make pegging calls, and choose two-card discards, with the why behind every answer."),
                     tiles: [.c(4), .d(5), .h(6), .s(7)]
                 ).tag(1).accessibilityHidden(page != 1)
                 infoPage(
                     icon: "figure.walk",
-                    title: "Walk in confident",
-                    body: "Know which cards make fifteens, spot scoring patterns fast, and stop dreading the discard. Practice at your own pace, with no opponents.",
+                    title: String(localized: "Walk in confident"),
+                    body: String(localized: "Know which cards make fifteens, spot scoring patterns fast, and stop dreading the discard. Practice at your own pace, with no opponents."),
                     tiles: [.c(5), .d(10), .h(11)]
                 ).tag(2).accessibilityHidden(page != 2)
                 skillLevelPage.tag(3).accessibilityHidden(page != 3)
@@ -206,9 +206,9 @@ struct OnboardingView: View {
     }
 
     private let skillOptions: [SkillOption] = [
-        SkillOption(id: "new", title: "Brand new", detail: "Still learning what the cards even do"),
-        SkillOption(id: "basics", title: "Know the basics", detail: "Know the deal, still slow on the count"),
-        SkillOption(id: "played", title: "Played real games", detail: "Comfortable, want sharper instincts"),
+        SkillOption(id: "new", title: String(localized: "Brand new"), detail: String(localized: "Still learning what the cards even do")),
+        SkillOption(id: "basics", title: String(localized: "Know the basics"), detail: String(localized: "Know the deal, still slow on the count")),
+        SkillOption(id: "played", title: String(localized: "Played real games"), detail: String(localized: "Comfortable, want sharper instincts")),
     ]
 
     /// Full page as shipped before the fit work. On an iPhone SE it overflowed by a card's last
@@ -378,13 +378,15 @@ struct OnboardingView: View {
             .multilineTextAlignment(.center)
     }
 
-    private static let trialBenefitLines = [
-        "Every beginner room is free, forever",
-        "Cribbage Minute and a personalized Game Night Prep",
-        "Endless Practice deals a fresh hand every time",
-        "Fix My Mistakes brings back what you miss",
-        "Extra sets in all four rooms, plus the Master Tables",
-    ]
+    private static var trialBenefitLines: [String] {
+        [
+            String(localized: "Every beginner room is free, forever"),
+            String(localized: "Cribbage Minute and a personalized Game Night Prep"),
+            String(localized: "Endless Practice deals a fresh hand every time"),
+            String(localized: "Fix My Mistakes brings back what you miss"),
+            String(localized: "Extra sets in all four rooms, plus the Master Tables"),
+        ]
+    }
 
     private var trialBenefits: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -405,8 +407,8 @@ struct OnboardingView: View {
     }
 
     private var trialPageTitle: String {
-        if subscriptions.isPro { return "\(Membership.name) is on your account" }
-        return trialEligible ? "Try \(Membership.name) free" : "Get \(Membership.name) today"
+        if subscriptions.isPro { return String(localized: "\(Membership.name) is on your account") }
+        return trialEligible ? String(localized: "Try \(Membership.name) free") : String(localized: "Get \(Membership.name) today")
     }
 
     /// The plan this tap buys: monthly. The price line and disclosure below
@@ -443,8 +445,8 @@ struct OnboardingView: View {
     /// they already hold, which Apple answers with its own confusing
     /// "you're already subscribed" sheet. Recognise them and just let them in.
     private var trialCTATitle: String {
-        if subscriptions.isPro { return "Continue" }
-        return trialEligible ? subscriptions.trialCTA(.onboarding) : "Join \(Membership.name)"
+        if subscriptions.isPro { return String(localized: "Continue") }
+        return trialEligible ? subscriptions.trialCTA(.onboarding) : String(localized: "Join \(Membership.name)")
     }
 
     // MARK: - Footer (identical geometry on every page: zero-shift CTA)
@@ -483,7 +485,7 @@ struct OnboardingView: View {
                     if purchasing || restoring {
                         ProgressView().tint(Theme.onFill)
                     } else {
-                        Text(onTrialPage ? trialCTATitle : "Continue")
+                        Text(onTrialPage ? trialCTATitle : String(localized: "Continue"))
                     }
                 }
                 .primaryCTA()
@@ -597,7 +599,7 @@ struct OnboardingView: View {
             // A reinstalled member whose purchases are still syncing must not
             // reach Apple's sheet as a stranger.
             guard !subscriptions.isRecoveringMembership else {
-                purchaseError = "Still checking what this Apple Account owns. Try again in a moment, or tap Restore."
+                purchaseError = String(localized: "Still checking what this Apple Account owns. Try again in a moment, or tap Restore.")
                 return
             }
             // Monthly by default, and this is deliberate. Two different people
@@ -625,7 +627,7 @@ struct OnboardingView: View {
                     if await subscriptions.confirmEntitlement() {
                         startTour()
                     } else {
-                        purchaseError = "Your purchase went through, but \(Membership.name) hasn't unlocked yet. Give it a moment, then tap Restore."
+                        purchaseError = String(localized: "Your purchase went through, but \(Membership.name) hasn't unlocked yet. Give it a moment, then tap Restore.")
                     }
                 case .cancelled:
                     break // They said no to Apple, not to the app. Stay put.
@@ -646,7 +648,7 @@ struct OnboardingView: View {
                 if subscriptions.isPro {
                     startTour()
                 } else {
-                    purchaseError = "No previous purchase found on this Apple Account."
+                    purchaseError = String(localized: "No previous purchase found on this Apple Account.")
                 }
             } catch {
                 purchaseError = error.localizedDescription

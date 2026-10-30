@@ -6,8 +6,8 @@ enum PaywallPlan: String, CaseIterable {
 
     /// `trialTitle` is the subscription plans' button (`TrialCTA`).
     func ctaTitle(trialTitle: String = TrialCTA.sevenDay.title(.paywall), trialEligible: Bool = true) -> String {
-        if self == .lifetime { return "Unlock \(Membership.name) Forever" }
-        return trialEligible ? trialTitle : "Join \(Membership.name)"
+        if self == .lifetime { return String(localized: "Unlock \(Membership.name) Forever") }
+        return trialEligible ? trialTitle : String(localized: "Join \(Membership.name)")
     }
 
     var packageType: PackageType {
@@ -56,10 +56,10 @@ struct PaywallContent: View {
             // sittings; what they are actually buying now is practice that
             // does not end.
             VStack(alignment: .leading, spacing: 9) {
-                benefit("Endless Practice: a fresh hand dealt every time")
-                benefit("Fix My Mistakes: misses come back until they stick")
-                benefit("Timed Challenge: 90 seconds, chase your best")
-                benefit("Extra practice sets in every room, plus the Master Tables")
+                benefit(String(localized: "Endless Practice: a fresh hand dealt every time"))
+                benefit(String(localized: "Fix My Mistakes: misses come back until they stick"))
+                benefit(String(localized: "Timed Challenge: 90 seconds, chase your best"))
+                benefit(String(localized: "Extra practice sets in every room, plus the Master Tables"))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             planCards
@@ -84,17 +84,20 @@ struct PaywallContent: View {
         // is the next line down. Lifetime is a different decision (own it vs rent
         // it) and belongs after that comparison, not inside it.
         VStack(spacing: 10) {
-            planCard(.yearly, title: "Yearly", price: PaywallPricing.priceText(subscriptions, .yearly),
+            planCard(.yearly, title: String(localized: "Yearly"), price: PaywallPricing.priceText(subscriptions, .yearly),
                      perMonth: PaywallPricing.perMonthEquivalent(subscriptions),
                      anchor: PaywallPricing.monthlyAnchor(subscriptions),
-                     detail: trialEligible ? "7 days free, then billed yearly. Auto-renews." : "Billed yearly. Auto-renews.",
+                     detail: trialEligible ? String(localized: "7 days free, then billed yearly. Auto-renews.")
+                         : String(localized: "Billed yearly. Auto-renews."),
                      badge: PaywallPricing.savingsBadge(subscriptions))
-            planCard(.monthly, title: "Monthly", price: PaywallPricing.priceText(subscriptions, .monthly),
+            planCard(.monthly, title: String(localized: "Monthly"), price: PaywallPricing.priceText(subscriptions, .monthly),
                      perMonth: nil, anchor: nil,
-                     detail: trialEligible ? "7 days free, then billed monthly. Auto-renews." : "Billed monthly. Auto-renews.", badge: nil)
-            planCard(.lifetime, title: "Lifetime", price: PaywallPricing.priceText(subscriptions, .lifetime),
+                     detail: trialEligible ? String(localized: "7 days free, then billed monthly. Auto-renews.")
+                         : String(localized: "Billed monthly. Auto-renews."), badge: nil)
+            planCard(.lifetime, title: String(localized: "Lifetime"), price: PaywallPricing.priceText(subscriptions, .lifetime),
                      perMonth: nil, anchor: nil,
-                     detail: "One payment. No subscription, nothing renews.", badge: "NO SUBSCRIPTION")
+                     detail: String(localized: "One payment. No subscription, nothing renews."),
+                     badge: String(localized: "NO SUBSCRIPTION"))
         }
     }
 
@@ -163,7 +166,7 @@ struct PaywallContent: View {
         // Selection was carried by a border colour and a fill alone, and the
         // two subscription cards share a CTA title, so nothing told a VoiceOver
         // user which plan the button at the bottom would actually buy.
-        .accessibilityLabel([title, badge, price, perMonth.map { "\($0) billed yearly" }, detail]
+        .accessibilityLabel([title, badge, price, perMonth.map { String(localized: "\($0) billed yearly") }, detail]
             .compactMap { $0 }
             .joined(separator: ", "))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
@@ -182,7 +185,7 @@ struct PaywallContent: View {
 @MainActor
 enum PaywallPricing {
     /// Shown in the amount's place until StoreKit answers.
-    static let placeholder = "Loading price…"
+    static var placeholder: String { String(localized: "Loading price…") }
 
     /// The localized billed amount, or nil while the product is still in flight.
     static func price(_ subscriptions: SubscriptionService, _ plan: PaywallPlan) -> String? {
@@ -190,8 +193,8 @@ enum PaywallPricing {
             return nil
         }
         switch plan {
-        case .yearly: return "\(base)/year"
-        case .monthly: return "\(base)/month"
+        case .yearly: return String(localized: "\(base)/year")
+        case .monthly: return String(localized: "\(base)/month")
         case .lifetime: return base
         }
     }
@@ -213,7 +216,7 @@ enum PaywallPricing {
         fmt.numberStyle = .currency
         fmt.locale = product.locale
         guard let text = fmt.string(from: monthly as NSDecimalNumber) else { return nil }
-        return "\(text)/mo"
+        return String(localized: "\(text)/mo")
     }
 
     /// The monthly plan's own price restated as a per-month anchor, e.g.
@@ -221,7 +224,7 @@ enum PaywallPricing {
     /// struck through beside the yearly per-month figure.
     static func monthlyAnchor(_ subscriptions: SubscriptionService) -> String? {
         guard let product = subscriptions.paywallPrice(for: .monthly) else { return nil }
-        return "\(product.localized)/mo"
+        return String(localized: "\(product.localized)/mo")
     }
 
     /// Whole-percent saving of the yearly plan against twelve months of the
@@ -244,8 +247,8 @@ enum PaywallPricing {
     /// otherwise the generic claim. "SAVE 67%" outsells "BEST VALUE" because it
     /// says what the value is.
     static func savingsBadge(_ subscriptions: SubscriptionService) -> String {
-        guard let percent = savingsPercent(subscriptions) else { return "BEST VALUE" }
-        return "SAVE \(percent)%"
+        guard let percent = savingsPercent(subscriptions) else { return String(localized: "BEST VALUE") }
+        return String(localized: "SAVE \(percent)%")
     }
 
     /// One concise point-of-purchase line: price, trial, auto-renew, cancel.
@@ -258,22 +261,22 @@ enum PaywallPricing {
     /// (Apple gives one per subscription group): it is charged on day one.
     static func terms(amount: String?, plan: PaywallPlan, trial: Bool = true) -> String {
         if !trial, plan != .lifetime {
-            guard let amount else { return "Billed today. Auto-renews until canceled." }
-            return "\(amount), billed today. Auto-renews until canceled."
+            guard let amount else { return String(localized: "Billed today. Auto-renews until canceled.") }
+            return String(localized: "\(amount), billed today. Auto-renews until canceled.")
         }
         guard let amount else {
             switch plan {
             case .lifetime:
-                return "One-time purchase. Not a subscription, nothing renews."
+                return String(localized: "One-time purchase. Not a subscription, nothing renews.")
             case .yearly, .monthly:
-                return "Includes 7 days free. Auto-renews until canceled."
+                return String(localized: "Includes 7 days free. Auto-renews until canceled.")
             }
         }
         switch plan {
         case .lifetime:
-            return "\(amount) one-time. Not a subscription, nothing renews."
+            return String(localized: "\(amount) one-time. Not a subscription, nothing renews.")
         case .yearly, .monthly:
-            return "7 days free, then \(amount). Auto-renews until canceled."
+            return String(localized: "7 days free, then \(amount). Auto-renews until canceled.")
         }
     }
 }
@@ -446,7 +449,7 @@ struct PaywallView: View {
                 // A reinstalled member whose purchases are still syncing must
                 // not reach Apple's sheet as a stranger.
                 guard !subscriptions.isRecoveringMembership else {
-                    message = "Still checking what this Apple Account owns. Try again in a moment, or tap Restore."
+                    message = String(localized: "Still checking what this Apple Account owns. Try again in a moment, or tap Restore.")
                     return
                 }
                 // The sheet may have drawn before StoreKit answered. If the
@@ -464,7 +467,7 @@ struct PaywallView: View {
                 // point at Restore, rather than leaving someone who just paid
                 // looking at the paywall that charged them.
                 if await !subscriptions.confirmEntitlement() {
-                    message = "Your purchase went through, but \(Membership.name) hasn't unlocked yet. Give it a moment, then tap Restore. You will not be charged twice."
+                    message = String(localized: "Your purchase went through, but \(Membership.name) hasn't unlocked yet. Give it a moment, then tap Restore. You will not be charged twice.")
                 }
             } catch {
                 // A cancel never lands here (it's an outcome, not a throw), so
@@ -481,7 +484,7 @@ struct PaywallView: View {
             do {
                 try await subscriptions.restore()
                 if !subscriptions.isPro {
-                    message = "No previous purchase found on this Apple Account."
+                    message = String(localized: "No previous purchase found on this Apple Account.")
                 }
             } catch {
                 message = error.localizedDescription

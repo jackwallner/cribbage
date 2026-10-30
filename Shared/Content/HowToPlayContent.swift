@@ -25,47 +25,47 @@ enum HowToPlayContent {
         HowToPlayPage(
             id: "crib-goal",
             icon: "flag.checkered",
-            title: "The goal",
-            body: "Cribbage is a race to 121 points. You score by making combinations in your hand and crib, then by playing cards in order during pegging. The first player to reach the finish wins.",
+            title: String(localized: "The goal"),
+            body: String(localized: "Cribbage is a race to 121 points. You score by making combinations in your hand and crib, then by playing cards in order during pegging. The first player to reach the finish wins."),
             tiles: [.c(5), .d(10)],
-            tip: "A fifteen is any combination of cards totaling 15, worth 2 points."
+            tip: String(localized: "A fifteen is any combination of cards totaling 15, worth 2 points.")
         ),
         HowToPlayPage(
             id: "crib-deck",
             icon: "suit.club.fill",
-            title: "Meet the deck",
-            body: "Use a standard 52-card deck. Aces are low and count as 1. Number cards keep their values, while jacks, queens, and kings count as 10 for fifteens.",
+            title: String(localized: "Meet the deck"),
+            body: String(localized: "Use a standard 52-card deck. Aces are low and count as 1. Number cards keep their values, while jacks, queens, and kings count as 10 for fifteens."),
             tiles: [.c(1), .d(5), .h(10), .s(13)]
         ),
         HowToPlayPage(
             id: "crib-deal",
             icon: "rectangle.stack.fill",
-            title: "Deal and discard",
-            body: "Each player receives six cards and discards two to the dealer's crib. The non-dealer cuts the starter card, which joins both hands and the crib for scoring.",
+            title: String(localized: "Deal and discard"),
+            body: String(localized: "Each player receives six cards and discards two to the dealer's crib. The non-dealer cuts the starter card, which joins both hands and the crib for scoring."),
             tiles: [.c(2), .d(4), .h(6), .s(8), .c(10), .d(12)],
-            tip: "The dealer wants a strong crib. The pone tries to starve it."
+            tip: String(localized: "The dealer wants a strong crib. The pone tries to starve it.")
         ),
         HowToPlayPage(
             id: "crib-score",
             icon: "number.circle.fill",
-            title: "Count the hand",
-            body: "Score every combination of 15, then pairs, runs, and flushes. Add one for his nobs when a jack matches the starter's suit. The same starter card can create several bonuses at once.",
+            title: String(localized: "Count the hand"),
+            body: String(localized: "Score every combination of 15, then pairs, runs, and flushes. Add one for his nobs when a jack matches the starter's suit. The same starter card can create several bonuses at once."),
             tiles: [.c(4), .d(5), .h(6)],
-            tip: "Count in the same order every time so your points do not disappear."
+            tip: String(localized: "Count in the same order every time so your points do not disappear.")
         ),
         HowToPlayPage(
             id: "crib-pegging",
             icon: "arrow.up.right.circle.fill",
-            title: "Peg the cards",
-            body: "After the starter is cut, players alternate playing one card while keeping the running total at or below 31. Score for 15, pairs, runs, 31, go, and the last card.",
+            title: String(localized: "Peg the cards"),
+            body: String(localized: "After the starter is cut, players alternate playing one card while keeping the running total at or below 31. Score for 15, pairs, runs, 31, go, and the last card."),
             tiles: [.c(4), .d(6), .h(10)],
-            tip: "Say the running total out loud. It is the center of every pegging decision."
+            tip: String(localized: "Say the running total out loud. It is the center of every pegging decision.")
         ),
         HowToPlayPage(
             id: "crib-ready",
             icon: "checkmark.seal.fill",
-            title: "You are ready",
-            body: "That is the whole loop: choose a discard, peg carefully, count every combination, and keep an eye on the board. The drills teach each skill one room at a time, five minutes at a stretch."
+            title: String(localized: "You are ready"),
+            body: String(localized: "That is the whole loop: choose a discard, peg carefully, count every combination, and keep an eye on the board. The drills teach each skill one room at a time, five minutes at a stretch.")
         ),
     ]
 

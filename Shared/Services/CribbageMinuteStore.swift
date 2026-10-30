@@ -20,9 +20,14 @@ struct CribbageMinuteResult: Codable, Identifiable, Sendable {
         totalByCategory[category.rawValue, default: 0]
     }
 
+    /// The day in the reader's own short form ("10/30", "30.10."). Derived
+    /// from `dayKey`, since `shortDate` was stored in US order.
+    var displayDate: String { CribbageMinuteContent.displayDate(dayKey: dayKey) }
+
     var shareText: String {
         let grid = answers.map { $0 ? "🟩" : "⬜️" }.joined()
-        return "Cribbage Minute \(shortDate): \(score)/\(total)\n\(grid)\nCan you beat me? \(AppStoreLinks.productURL.absoluteString)"
+        let link = AppStoreLinks.productURL.absoluteString
+        return String(localized: "Cribbage Minute \(displayDate): \(score)/\(total)\n\(grid)\nCan you beat me? \(link)")
     }
 }
 
