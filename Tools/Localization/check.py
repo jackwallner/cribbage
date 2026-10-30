@@ -6,7 +6,8 @@ Run from the repo root: python3 Tools/Localization/check.py
 Fails (exit 1) when
   * a localizable literal in the source has no catalog key,
   * a catalog key is missing a language, or
-  * a translation's format specifiers do not match its key.
+  * a translation's format specifiers do not match its key, or
+  * a translation contains an em dash (player-facing copy never does).
 
 Literals count as localizable when they are the first argument of a SwiftUI
 text API (Text, Button, Label, Section, navigationTitle, alert, ...) or of
@@ -163,6 +164,8 @@ def main():
                 bad = [] if specs(loc['stringUnit']['value'], loc.get('substitutions')) == want else [loc['stringUnit']['value']]
             for v in bad:
                 problems.append(f'"{key}" [{lang}]: format specifiers differ in "{v}"')
+            if '\u2014' in json.dumps(loc, ensure_ascii=False):
+                problems.append(f'"{key}" [{lang}]: em dash in translation')
     for p in problems:
         print(p)
     print(f'{len(catalog)} keys, {len(LANGS)} languages, {len(problems)} problems')

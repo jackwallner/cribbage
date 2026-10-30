@@ -1,0 +1,180 @@
+150	Monatlich
+151	7 Tage gratis, dann monatliche Zahlung. Verlängert sich automatisch.
+152	Monatliche Zahlung. Verlängert sich automatisch.
+153	Lebenslang
+154	Einmalzahlung. Kein Abo, nichts verlängert sich.
+155	KEIN ABO
+156	%@ bei jährlicher Zahlung
+157	Ausgewählter Tarif
+158	Doppeltippen, um diesen Tarif zu wählen
+159	Preis wird geladen…
+160	%@/Jahr
+161	%@/Monat
+162	%@/Monat
+163	BESTER PREIS
+164	%lld %% SPAREN
+165	Zahlung heute. Verlängert sich automatisch bis zur Kündigung.
+166	%@, Zahlung heute. Verlängert sich automatisch bis zur Kündigung.
+167	Einmalkauf. Kein Abo, nichts verlängert sich.
+168	Inklusive 7 Tage gratis. Verlängert sich automatisch bis zur Kündigung.
+169	%@ einmalig. Kein Abo, nichts verlängert sich.
+170	7 Tage gratis, dann %@. Verlängert sich automatisch bis zur Kündigung.
+171	Schließen
+172	Preise sind gerade nicht verfügbar. Prüf deine Verbindung und versuch es erneut.
+173	Preise erneut laden
+174	Warte auf Preise vom App Store
+175	Nutzungsbedingungen
+176	Datenschutzerklärung
+177	Dein Kauf hat geklappt, aber %@ ist noch nicht freigeschaltet. Warte einen Moment und tippe dann auf Wiederherstellen. Dir wird nichts doppelt berechnet.
+178	Was würde Cribbage Trainer für dich besser machen?
+179	Danke. Das ging direkt an den Entwickler.
+180	Danke fürs Sagen. Das hilft mehr, als du denkst.
+181	Hilf uns, besser zu werden
+182	Bevor dein Test endet
+183	Bevor du gehst
+184	Alles, was dir einfällt.
+185	Ein paar Worte, wenn du magst.
+186	Geht direkt an den Entwickler, einen echten Menschen. Kein Account, keine E-Mail nötig.
+187	Senden
+188	Gespeichert. Wird gesendet, wenn du die App das nächste Mal mit Verbindung öffnest.
+189	Das hat nicht geklappt. Versuch es erneut oder kopiere deine Nachricht und schick sie per E-Mail an %@.
+190	Meine Nachricht kopieren
+191	Erneut versuchen
+192	Gesendet. Danke!
+193	Das hat nicht geklappt. Versuch es erneut oder kopiere deine Nachricht.
+194	Dein Test verlängert sich nicht. Was hat dich abgehalten?
+195	Deine Gratiswoche ist vorbei. Was hat dich davon abgehalten, Cribbage+ zu behalten?
+196	Deine Mitgliedschaft verlängert sich nicht. Was hätte dich gehalten?
+197	Deine Mitgliedschaft ist beendet. Was hätte dich gehalten?
+198	Zu teuer
+199	Zu wenig genutzt
+200	Hab bekommen, was ich brauchte
+201	Mir hat etwas gefehlt
+202	Etwas anderes
+203	Übe nicht mehr genug
+204	Hab gelernt, was ich brauchte
+205	Wollte mehr Inhalte
+206	Schau dich um. Jede Übung hier ist mit %@ freigeschaltet.
+207	PL|%lld weitere Übung in diesem Raum|%lld weitere Übungen in diesem Raum
+208	%@ schaltet die Extra-Sets hier und in jedem anderen Raum frei, dazu die Meistertische und Endlos-Training, das sich nie wiederholt. Alles, was du schon hast, bleibt kostenlos.
+209	Gesamten Fortschritt zurücksetzen?
+210	Zurücksetzen
+211	Abbrechen
+212	Deine Serie, abgeschlossene Übungen und dein Übungsverlauf werden gelöscht. Käufe sind nicht betroffen.
+213	Darstellung
+214	Design
+215	Üben
+216	Haptik
+217	Soundeffekte
+218	Tägliche Erinnerung
+219	Uhrzeit
+220	Dein Übungsverlauf
+221	Dein Fortschritt
+222	Fortschritt zurücksetzen
+223	Mitgliedschaft
+224	%@ freigeschaltet
+225	Abo verwalten
+226	%@ wiederhergestellt!
+227	Käufe wiederherstellen
+228	Hilfe
+229	Neuigkeiten
+230	Cribbage Trainer bewerten
+231	Feedback senden
+232	Info
+233	Version
+234	Entwickler
+235	Lokaler Pro-Override
+236	Noch nicht geübt
+237	Beantworte ein paar Fragen, dann siehst du hier deine Trefferquote für jeden Raum.
+238	PL|Diese Woche %lld Frage mehr|Diese Woche %lld Fragen mehr
+239	Größter Sprung in %@. Bleib in dem Tempo, dann sitzt es.
+240	Fragen, die du jetzt zweimal hintereinander richtig hattest.
+241	Trefferquote
+242	beantwortet
+243	Rekord
+244	Üben: %@
+245	PL2|%1$@|%1$@ richtig bei %#@n@, dein bisher schwächster Wert.|n|%lld Frage|%lld Fragen
+246	NACH RAUM
+247	%lld von %lld richtig
+248	DAS SOLLTEST DU ÜBEN
+249	%@ von %lld
+250	Aus dem Endlos-Training. Mach weiter, die Werte passen sich an, während du besser wirst.
+251	PL|%lld-Tage-Serie|%lld-Tage-Serie
+252	PL|%lld Übung abgeschlossen|%lld Übungen abgeschlossen
+253	Version %@
+254	Mit %@ freischalten
+255	Los geht's mit dem Üben
+256	Kostenlos weiterüben
+257	JOKER
+258	%lld von 2 gewählt
+259	Bester Abwurf:
+260	Perfekter Abwurf! 2 von 2
+261	Knapp! 1 von 2 stimmt
+262	Der Coach sieht es anders
+263	Nächster Deal
+264	Fertig
+265	Diese 2 abwerfen
+266	Stapel geschafft!
+267	Perfekte Runde!
+268	Gut gemacht!
+269	Gute Übung!
+270	PL|Alle %lld Karte geschafft. Mit jedem Durchgang sitzt sie ein bisschen besser.|Alle %lld Karten geschafft. Mit jedem Durchgang sitzen sie ein bisschen besser.
+271	Jede Hand, die du hier zählst, liest du am Tisch schneller.
+272	Letzte Antwort rückgängig
+273	%lld von %lld geschafft
+274	Tippen, um die Antwort zu sehen
+275	Tippe auf Weiter
+276	Nach rechts wischen, wenn du es wusstest, nach links, um es nochmal zu sehen
+277	GEWUSST
+278	NOCHMAL
+279	%1$@. %2$@
+280	CRIBBAGE
+281	Tippen zum Aufdecken
+282	DIE ENTSCHEIDUNG
+283	Weiter
+284	Gewusst? Nach rechts · Nochmal? Nach links
+285	Du hast „%@“ gesagt. Richtig!
+286	Du hast „%@“ gesagt. Diesmal nicht.
+287	Triff die Entscheidung
+288	♣
+289	Nächste Hand
+290	Hand %lld von %lld
+291	Nichts fällig
+292	Nichts zu üben
+293	Gegen die Uhr
+294	Fehler üben
+295	%lld s
+296	%lld richtig
+297	%lld von %lld richtig
+298	%lld
+299	%lld von %lld
+300	Frage %lld
+301	%lld in Folge!
+302	Nächste Frage
+303	Frage %lld von %lld
+304	Das Deck
+305	Fang mit dem Aufbau des Spiels an
+306	52 Karten, ein Abheben
+307	Cribbage wird mit einem normalen 52-Karten-Deck gespielt. Jeder Spieler bekommt sechs Karten, legt zwei in die Crib, und dann wird die Startkarte vom Stapel abgehoben.
+308	Vier Farben
+309	Derselbe Rang, vier Farben
+310	Die Farbe zählt nur manchmal
+311	Kreuz, Karo, Herz und Pik haben je dreizehn Ränge. Die Farbe zählt für den Flush und His Nobs. Die meisten Fünfzehnen, Paare und Folgen hängen dagegen von Rang oder Wert ab.
+312	Kartenwerte
+313	Was zählt zur Fünfzehn?
+314	Ass ist 1, Bildkarten sind 10
+315	Asse zählen 1. Zahlenkarten behalten ihre Zahl. Buben, Damen und Könige zählen je 10. Für Paare und Folgen zählt trotzdem der Rang.
+316	Bilde eine Fünfzehn
+317	Das häufigste Punktmuster
+318	Jede Kombination zählt
+319	Jede eigene Kombination mit der Summe 15 bringt 2 Punkte. Eine Hand kann mehrere Fünfzehnen enthalten, und jede wird einzeln gezählt.
+320	Erkenne ein Paar
+321	Gleicher Rang, andere Farbe
+322	Ein Paar bringt 2 Punkte
+323	Zwei Karten mit gleichem Rang bringen 2 Punkte. Ein Drilling enthält drei einzelne Paare, ein Vierling sechs.
+324	Bilde eine Folge
+325	Die Reihenfolge zählt, die Farbe nicht
+326	Drei in Folge bringen 3
+327	Drei aufeinanderfolgende Ränge bringen 3 Punkte, vier bringen 4 und so weiter. Die Farben dürfen gemischt sein. Doppelte Ränge ergeben Doppel-, Doppel-Doppel- oder Dreifachfolgen.
+328	Die Startkarte
+329	Das Abheben verändert die Hand

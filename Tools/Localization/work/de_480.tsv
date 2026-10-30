@@ -1,0 +1,140 @@
+480	Die 7er mit der 3 und der 5 zu behalten ist die beste Hand, die das Paar hält: 6 Punkte vor der Startkarte. Wirfst du die 7er ab, behältst du 3-4-5-10 für 5 Punkte, eine Folge plus die Fünfzehn aus 5 und 10, und legst ein Paar in deine eigene Crib. Dort ist es etwa zwei Punkte mehr wert, als die 4 und die 10 es wären.
+481	Die eigene Crib des Gebers ist ein sicherer Platz für ein Paar, das nicht zur Hand passt.
+482	Du bist Vorhand. Welche zwei Karten hungern die Crib am besten aus?
+483	Behalte 5-6-9-K für zwei Fünfzehnen: 6 mit 9 und 5 mit dem König. Mit der 2 und der 8 bekommt der Geber zwei Karten, die weder ein Paar noch zusammen Fünfzehn ergeben, und die 5 bleibt aus der Crib.
+484	Für die Vorhand gehört die Crib-Verteidigung zu den eigenen Punkten.
+485	Du bist Geber. Halte die Doppelfolge am Leben.
+486	Die zwei 4er mit 5 und 6 ergeben eine doppelte Dreierfolge. Die 9 und die Dame passen nicht zu diesem Muster und bilden miteinander weder ein nützliches Paar noch eine Fünfzehn.
+487	Doppelte Ränge können eine Folge vervielfachen, also sortiere vor dem Abwerfen.
+488	Du bist Geber und hast viele hohe Karten.
+489	Behalte 10-10-J-Q. Durch die zweite 10 entsteht 10-Bube-Dame zweimal, eine doppelte Dreierfolge für 6, plus 2 für das Paar. Der König kann weg, denn 10-Bube-Dame-König wäre nur eine einfache Viererfolge, und die 4 passt hier zu nichts.
+490	Zehnerkarten ergeben wenige Fünfzehnen, bilden aber trotzdem Paare und Folgen nach Rang.
+491	Du bist Geber und es ist knapp auf dem Brett. Wähle zwei.
+492	Der Block 3-4-5 plus eine Zehnerkarte ist hier die am besten verbundene Hand: eine Dreierfolge und die Fünfzehn aus 5 und 10, mit vielen hilfreichen Startkarten. Die 7 und die 8 sind auch kein Verlust, denn sie ergeben in deiner eigenen Crib schon Fünfzehn.
+493	Der Spielstand kann eine sichere, zählbare Hand zur besten Hand machen.
+494	Der Kartenraum
+495	Lerne das Deck und die Begriffe kennen
+496	Die Karten kennenlernen
+497	Lernkarten: Farben, Werte, Startkarte und Brett
+498	Karten-Check
+499	Schnelles Quiz: die Regeln, die Neue zuerst übersehen
+500	Karten-Check: Extra-Runde
+501	Vierzehn weitere: Kartenzahl, Werte, Startkarte und Zählen
+502	Der Punkteraum
+503	Sieh die Punkte, bevor du zählst
+504	Die Wertungen kennen
+505	Lernkarten: Fünfzehnen, Paare, Folgen, Flushes und Nobs
+506	Die Hand lesen
+507	Sieh fünf Karten, nenne das Punktmuster
+508	Die Hand lesen: Extra-Runde
+509	Zwölf weitere Hände mit überlappenden Punktmustern
+510	Der Abwurfraum
+511	Wähle zwei Karten mit Plan
+512	Abwurf-Leitfaden
+513	Lernkarten: Geber, Vorhand, Crib-Verteidigung und nützliche Startkarten
+514	Wähle deinen Abwurf
+515	Sechs Karten: Wähle zwei und vergleich mit dem Coach
+516	Wähle deinen Abwurf: Extra-Runde
+517	Acht weitere Deals: Flushes, Paare, Spielstand und Verteidigung
+518	Der Pegging-Raum
+519	Spiel bis 31, ohne Punkte zu verschenken
+520	Pegging-Gespür
+521	Triff die Entscheidung und dreh um für die Antwort des Coachs
+522	Pegging-Regeln
+523	Fünfzehnen, Paare, Folgen, Go, 31 und letzte Karte
+524	Pegging-Gespür: Extra-Runde
+525	Neun weitere Entscheidungen: sichere Stände, Druck auf dem Brett und Nobs
+526	Die Meistertische
+527	Fortgeschrittenes Spiel, Verteidigung und vollständiges Zählen
+528	Abwurf für Fortgeschrittene
+529	Handwert, Crib-Wert und Spielstand zusammen
+530	Verteidigungsschule
+531	Behalte Brett, Stand und die noch offenen Karten im Blick
+532	Zählen für Experten
+533	Überlappende Folgen, Fünfzehnen, Paare und knifflige Hände
+534	Meisterregeln
+535	Muggins, Crib-Flushes, Doppelfolgen und Zählreihenfolge
+536	Bis 31 zählen
+537	Hand zählen
+538	Pegging-Punkte
+539	Frische Hände aus fünf Karten, unbegrenzt
+540	Übe gültige Züge gegen den Stand
+541	Zähl eine Hand aus vier Karten plus Startkarte
+542	Werte die Karte, die du gerade gespielt hast
+543	Schlag die Uhr
+544	Ausspielen, macht %lld
+545	Go sagen
+546	Stand zurücksetzen
+547	Neue Karte verlangen
+548	Der Stand ist %1$lld, und %2$@ zählt %3$lld, also ist der neue Stand %4$lld. Prüf, ob der Zug auch 15, ein Paar, eine Folge oder 31 ergibt.
+549	Der Stand ist %1$lld, und %2$@ zählt %3$lld, das wäre über 31. Hast du keine spielbare Karte, musst du Go sagen.
+550	Der Stand ist %1$lld. Deine Karte: %2$@. Was ist der gültige Zug?
+551	Zähl diese Hand. Die ersten vier Karten sind deine Hand, die letzte ist die Startkarte.
+552	PL|%lld Punkt|%lld Punkte
+553	Bisher gespielt: %1$@. Der Stand ist %2$lld. Du spielst %3$@. Wie viele Punkte bekommst du?
+554	Fünfzehnen erkennen
+555	Paare erkennen
+556	Folgen erkennen
+557	Flushes erkennen
+558	His Nobs erkennen
+559	Gültige Züge unter 31
+560	Wissen, wann man Go sagt
+561	Züge ohne Punkte
+562	Fünfzehn beim Pegging
+563	Einunddreißig beim Pegging
+564	Paare beim Pegging
+565	Folgen beim Pegging
+566	Züge, die doppelt punkten
+567	Fünfzehnen %lld
+568	Paare %lld
+569	Folgen %lld
+570	Flush %lld
+571	His Nobs %lld
+572	PL2|%1$@|Zähl alles mit der Startkarte: %1$@. Das sind %#@n@ insgesamt. Zähl jede Fünfzehn, jedes Paar und jede Folge einzeln, und denk dran: Ein Flush in der Hand braucht vier Karten derselben Farbe.|n|%lld Punkt|%lld Punkte
+573	Alle fünf Karten haben dieselbe Farbe. Behältst du vier, ergibt das einen Hand-Flush für 4 Punkte. Nur eine passende Startkarte macht daraus 5.
+574	Die vier Karten gleicher Farbe zu behalten ergäbe einen Hand-Flush für 4 Punkte. Eine passende Startkarte machte daraus 5. Ein Crib-Flush braucht immer alle fünf.
+575	Die Ränge bilden eine Folge für %lld Punkte. Für Folgen zählt die Farbe nie, und Asse sind immer niedrig.
+576	Gleiche Ränge bringen hier %lld Punkte. Drei Karten eines Rangs sind drei einzelne Paare, keine eigene Wertung.
+577	Kombinationen mit der Summe Fünfzehn bringen hier %lld Punkte. Bildkarten zählen 10, das Ass zählt 1.
+578	Im Muster steckt ein Bube. Er bringt Nobs nur, wenn du ihn behältst und die Startkarte seine Farbe hat.
+579	Das Ziel
+580	Cribbage ist ein Rennen auf 121 Punkte. Du punktest mit Kombinationen in deiner Hand und der Crib und beim Ausspielen der Karten im Pegging. Wer zuerst ins Ziel kommt, gewinnt.
+581	Eine Fünfzehn ist jede Kombination von Karten mit der Summe 15 und bringt 2 Punkte.
+582	Das Deck
+583	Gespielt wird mit einem normalen 52-Karten-Deck. Asse sind niedrig und zählen 1. Zahlenkarten behalten ihren Wert, Buben, Damen und Könige zählen für Fünfzehnen 10.
+584	Geben und abwerfen
+585	Jeder Spieler bekommt sechs Karten und wirft zwei in die Crib des Gebers. Die Vorhand hebt die Startkarte ab, die beim Zählen zu beiden Händen und zur Crib gehört.
+586	Der Geber will eine starke Crib. Die Vorhand versucht, sie auszuhungern.
+587	Die Hand zählen
+588	Werte jede Kombination aus 15, dann Paare, Folgen und Flushes. Zähl einen Punkt für His Nobs, wenn ein Bube die Farbe der Startkarte hat. Dieselbe Startkarte kann mehrere Boni auf einmal bringen.
+589	Zähl jedes Mal in derselben Reihenfolge, damit dir keine Punkte verloren gehen.
+590	Karten peggen
+591	Nach dem Abheben der Startkarte spielen die Spieler abwechselnd je eine Karte aus, wobei der Stand höchstens 31 sein darf. Punkte gibt es für 15, Paare, Folgen, 31, Go und die letzte Karte.
+592	Sag den Stand laut an. Er ist der Kern jeder Pegging-Entscheidung.
+593	Du bist bereit
+594	Das ist der ganze Ablauf: Abwurf wählen, vorsichtig peggen, jede Kombination zählen und das Brett im Blick behalten. Die Übungen trainieren jede Fertigkeit Raum für Raum, immer fünf Minuten am Stück.
+595	Sechs Karten: Behalte die 5
+596	Welche Karte ist der Anker?
+597	Schütze die 5
+598	Eine 5 ergibt mit jeder Zehnerkarte eine Fünfzehn und gehört zu den wertvollsten Karten. Wirf die Karte ab, die mit dem Rest der Hand die wenigsten Kombinationen bildet.
+599	Die 5 behalten
+600	Die 5 abwerfen
+601	Du bist Geber
+602	Die Crib verändert die Abwägung
+603	Bau deine eigene Crib
+604	Als Geber zählst du deine Hand und die Crib. Sind zwei Varianten gleich viel wert, nimm den Abwurf mit mehr Crib-Potenzial. Die Vorhand bekommt keine Punkte aus deiner Crib.
+605	Hand plus Crib aufbauen
+606	Keine Punkte in die eigene Crib
+607	Du bist Vorhand
+608	Deine Abwürfe gehören dem Geber
+609	Füttere die Crib nicht
+610	Als Vorhand gehört die Crib dem Geber. Ein Abwurf, der für deine Hand gut ist, kann dich trotzdem Punkte kosten, wenn die zwei Karten ein Paar sind, zusammen Fünfzehn ergeben oder eine 5 enthalten.
+611	Hilf der Crib so wenig wie möglich
+612	Nur die eigene Hand maximieren
+613	Ein natürliches Paar
+614	Die offensichtlichen Punkte
+615	Paare sind robust
+616	Ein Paar bringt sichere 2 Punkte vor der Startkarte. Gib es nicht leichtfertig auf, nur um einer spekulativen Folge nachzujagen, außer die gesamte Hand macht den Tausch lohnend.
+617	Behalte das Paar
+618	Paar immer aufgeben
+619	Drei in Folge

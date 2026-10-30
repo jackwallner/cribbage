@@ -127,4 +127,5 @@ These files load automatically when you read a file matching their `paths:`. Age
 | `.claude/rules/feedback-and-retention.md` | Feedback sink, churn question, mastery and the weekly gain ledger, ratings policy, what was not ported | `FeedbackService`, `ReviewPromptSheet`, `Mastery`, `MasteryLedger`, `ReviewRequest` |
 | `.claude/rules/meta-ads.md` | No Meta SDK (removed), remote switches and `TrialCTA` | `RemoteConfig`, adding Meta or tracking |
 | `.claude/rules/membership-and-trial.md` | Trial flow, 3.1.2(c) price line, membership state, fit at every size, What's New mechanics | `SubscriptionService`, onboarding, paywall, primer, tour |
+| `.claude/rules/localization.md` | German in-app localization: the catalog, check.py, key and plural rules, German cribbage terms, proof runs | Any user-facing copy, `Localizable.xcstrings`, `Tools/Localization` |
 | `.claude/rules/android.md` | Android port: identity, products and prices, RevenueCat IDs, build and signing, Pro emulator, Play assets, Play state | Anything under `android/`, Play scripts, `docs/android-*.html` |

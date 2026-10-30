@@ -1,0 +1,150 @@
+620	Eine Folge kann noch wachsen
+621	Behalte verbundene Ränge
+622	Eine Folge 4-5-6 ist schon 3 Punkte wert. Karten, die sie verlängern oder Fünfzehnen bilden, sind wertvoll, während eine einzelne Dame hier weniger Verbindungen bietet.
+623	Behalte das Muster 4-5-6
+624	Behalte die einzelne Dame
+625	Vier Herz
+626	Die Startkarte kann zählen
+627	Ein Flush aus vier Karten ist echter Wert
+628	Vier Karten gleicher Farbe bringen in der Hand 4 Punkte, eine passende Startkarte macht 5 daraus. Behalte den Farbblock, wenn die anderen Karten kein klar stärkeres Muster bieten.
+629	Die Herz behalten
+630	Die Farben ignorieren
+631	Die Verbindung zur Zehnerkarte
+632	Eine kleine Karte, viele Möglichkeiten
+633	Eine 5 ist selten tot
+634	Die 5 ergibt mit der 10 und dem König schon eine Fünfzehn. Sie kann sich auch mit kleinen Rängen zu Folgen verbinden, deshalb behältst du sie bei knappen Entscheidungen meistens.
+635	Behalte die einzelne 2
+636	Du bist kurz vor dem Ziel
+637	Der Spielstand verschiebt deine Prioritäten
+638	Zähl das Brett, nicht nur die Karten
+639	Ist einer der Spieler nah an 121, kann ein vorsichtiger Abwurf mit sicherem Pegging eine theoretisch höhere Hand schlagen. Cribbage ist ein Rennen, nicht nur ein Zählrätsel.
+640	Den sicheren Weg wählen
+641	Immer die größte Hand jagen
+642	Wie viele Karten wirft jeder Spieler in die Crib?
+643	3
+644	Jeder Spieler wirft genau zwei Karten ab. Die Crib des Gebers hat dann vier Karten, bevor die Startkarte abgehoben wird.
+645	Was zählt ein König für die Fünfzehn?
+646	13
+647	Jede Bildkarte zählt für Fünfzehnen 10, auch wenn ihr Rang für Paare und Folgen Bube, Dame oder König bleibt.
+648	Was passiert mit dem, der zuerst 121 erreicht?
+649	Gewinnt
+650	Gibt die nächste Hand
+651	Zählt die Crib doppelt
+652	Normales Cribbage ist ein Rennen auf 121. Wer zuerst ins Ziel kommt, gewinnt sofort.
+653	Wer hebt normalerweise die Startkarte ab?
+654	Wer weniger Punkte hat
+655	Die Vorhand hebt ab, nachdem beide Spieler abgeworfen haben.
+656	Darf ein Ass in einer Folge hoch sein?
+657	Ja, nach einem König
+658	Nein, es ist niedrig
+659	Asse sind beim Cribbage niedrig. A, 2, 3 ist eine Folge, Q, K, A aber nicht.
+660	Wie zählst du eine komplizierte Hand am sichersten?
+661	Nur das beste Muster zählen
+662	Feste Reihenfolge, jede Kombination prüfen
+663	Die Startkarte zuletzt zählen und ignorieren
+664	Eine feste Zählreihenfolge, etwa Fünfzehnen, Paare, Folgen, Flush und Nobs, verhindert Auslassungen und doppeltes Zählen.
+665	2-3-4 ist eine Dreierfolge. Kein Rang wiederholt sich und nur zwei Karten haben dieselbe Farbe, also ist die Folge das Muster auf dem Tisch. Dahinter verstecken sich zwei Fünfzehnen, zusammen 7 Punkte.
+666	Jede 5 ergibt Fünfzehn mit der 10 und noch einmal mit dem Buben. Vier Fünfzehnen sind 8 Punkte, und das Paar 5er bringt noch 2 dazu.
+667	Vier Herz bilden einen Hand-Flush aus vier Karten für 4 Punkte, oder 5, wenn auch die Startkarte Herz ist.
+668	Drei 9er enthalten drei einzelne Paare für 6 Punkte. Es gibt keine Folge, aber jede 9 ergibt mit der 6 eine Fünfzehn.
+669	6-7-8-9 ist eine Viererfolge. Der König gehört nicht dazu, und die zwei Fünfzehnen, 6 mit 9 und 7 mit 8, zählst du separat.
+670	Der Herz-Bube wird zu His Nobs, wenn die Startkarte Herz ist. Es gibt keine Folge aus drei Karten und nur zwei Karten haben dieselbe Farbe, also ist der Bube das Muster, auf das du achten musst.
+671	Du bist Vorhand. Wähle zwei Karten, ohne die Crib zu füttern.
+672	Behalte 3-4-5-10, reich an Folgen und Fünfzehnen. Die 9 und der König sind am wenigsten verbunden und ergeben zusammen nicht 15.
+673	Die Vorhand sollte die Crib schützen und zugleich eine Hand aufbauen.
+674	Du bist Geber mit einem Paar und einer Folge. Wähle zwei.
+675	Behalte das Paar 4er und die Verbindung 5-6. Das Paar ist sicherer Wert, während 10 und Dame die am wenigsten eingebundenen Karten dieses Deals sind.
+676	Als Geber wägst du Hand und Crib gemeinsam ab.
+677	Du bist Vorhand und vier Karten haben dieselbe Farbe. Schütze den Flush.
+678	Die vier Kreuz zu behalten bringt 4 für den Flush plus 2 für die Fünfzehn aus 2-4-9, und eine Kreuz-Startkarte macht den Flush zu 5. Die 7 und der König haben eine andere Farbe, bilden kein Paar und ergeben zusammen nicht Fünfzehn. Sie kosten dich in der Crib des Gebers also kaum etwas.
+679	Ein Flush aus vier Karten ist schon eine echte Punktequelle.
+680	Du bist Vorhand kurz vor dem Ziel. Nimm die Hand, die du sicher zählen kannst.
+681	Behalte 2-3-4 mit der 9: Die Folge bringt 3 und 2-4-9 ergibt Fünfzehn. Die 9 statt der 10 zu halten, zählt beim Abwurf, denn 8 und 10 geben dem Geber nichts, während 8 und 9 ihm den Anfang einer Folge schenken.
+682	Der Spielstand kann einen verlässlichen Punkt wertvoller machen als ein riskantes Maximum.
+683	Was sagst du beim Pegging an, wenn der Stand 15 erreicht?
+684	Fünfzehn für 2
+685	Go
+686	Letzte Karte
+687	Ein Pegging-Stand von genau 15 bringt 2 Punkte.
+688	Was passiert, wenn ein Zug den Stand auf 31 bringt?
+689	Der Spieler bekommt 2, der Stand beginnt neu
+690	Die Hand endet
+691	Nur der Geber punktet
+692	Genau 31 zu erreichen bringt 2 Punkte, danach beginnt der Stand für die restlichen Karten neu.
+693	Was ist ein Go beim Pegging?
+694	Ein Spieler kann nicht spielen, ohne 31 zu überschreiten
+695	Ein Spieler gewinnt die Partie
+696	Eine abgeworfene Karte wird zurückgeholt
+697	Kannst du nicht spielen, ohne über 31 zu kommen, sagst du Go. Der Gegner darf weiterspielen, wenn er kann.
+698	Ein Zug bildet beim Pegging ein Paar. Wie viele Punkte bringt das?
+699	Ein Paar beim Pegging ist 2 Punkte wert, genau wie ein Paar in der Hand.
+700	Wer bekommt den Punkt für die letzte Karte, wenn eine Runde nicht 31 erreicht?
+701	Wer die letzte Karte gespielt hat
+702	Nur der Geber
+703	Niemand
+704	Wer die letzte Karte vor dem Neustart des Stands spielt, bekommt 1 Punkt für die letzte Karte.
+705	Wann solltest du auf den Spielstand achten?
+706	Erst nach dem Zählen
+707	Vor dem Abwurf und während des Peggings
+708	Nie, die höchste Hand gewinnt immer
+709	Cribbage ist ein Rennen. Der Spielstand sollte deine Abwürfe, dein Risiko beim Pegging und die Wahl zwischen Punkten und Sicherheit bestimmen.
+710	Du bist Vorhand mit einer 5
+711	Dem Geber geben?
+712	Meistens behalten
+713	Eine 5 verbindet sich mit jeder Zehnerkarte und ist ein gefährliches Crib-Geschenk. Behalte sie, außer der Abwurf verbessert deine Hand überwältigend.
+714	Behalten
+715	Abwerfen
+716	Ein sicheres Paar
+717	Für eine kleine Chance aufgeben?
+718	Achte sichere Punkte
+719	Ein Paar bringt 2 Punkte vor der Startkarte. Behalte es, außer die Alternative ergibt eine deutlich stärkere, klar zählbare Hand.
+720	Immer aufgeben
+721	Du führst mit einem Loch
+722	Große Hand oder sichere Hand?
+723	Sicherheit wird wichtiger
+724	Ein Punkt Vorsprung allein entscheidet nicht über deine Strategie. Bedenke den echten Spielstand, wer zuerst zählt und das wahrscheinliche Pegging. Wähle den Weg, der dir im Rennen am meisten hilft.
+725	Den sicheren Weg wählen
+726	Immer das Maximum jagen
+727	Pegging-Stand ist 27
+728	Deine restlichen Karten sind 4 und 8
+729	Die 4 spielen
+730	Die 4 ergibt 31 für 2 Punkte. Mit der 8 kämst du über 31, also ist die 4 der gültige, sichere Zug.
+731	Die 8 spielen
+732	Was ist Muggins?
+733	Eine Regel, mit der der Gegner übersehene Punkte beanspruchen darf
+734	Eine besondere Crib
+735	Eine Art Folge
+736	Muggins ist eine optionale Regel, die vor dem Spiel vereinbart wird. Nach den ACC-Regeln darf der Gegner übersehene Punkte aus Pegging, Hand oder Crib beanspruchen, nachdem ein Spieler seinen Pin losgelassen oder auf Punkte verzichtet hat. Ausgenommen sind übersehene Heels (der Bube als Startkarte), Strafpunkte, Muggins-Punkte und Verluste durch Rückwärtsstecken.
+737	Was braucht ein Flush aus fünf Karten in der Crib?
+738	Die vier Crib-Karten passen
+739	Alle vier Crib-Karten und die Startkarte passen
+740	Vier beliebige Karten passen
+741	Ein Crib-Flush verlangt, dass alle vier Crib-Karten und die Startkarte dieselbe Farbe haben.
+742	Was ergibt eine Doppelfolge?
+743	Ein doppelter Rang innerhalb einer Folge
+744	Zwei Flushes
+745	Zwei Fünfzehnen
+746	Ein doppelter Rang lässt die Folge auf zwei Arten entstehen und verdoppelt so ihre Punkte.
+747	Welche Folge ist gültig?
+748	Q-K-A
+749	A-2-3
+750	K-A-2
+751	Asse sind beim Cribbage niedrig, also ist A-2-3 eine Folge. Nach dem König geht es nicht mit dem Ass weiter.
+752	Wer zählt nach dem Pegging zuerst?
+753	Die Vorhand, dann Hand und Crib des Gebers
+754	Die Crib des Gebers, dann die Vorhand
+755	Wer mehr Punkte hat
+756	Die Vorhand zählt zuerst, dann zählt der Geber seine Hand und zuletzt die Crib. Die Reihenfolge entscheidet, wer gewinnen kann, bevor der andere zählt.
+757	Der Stand geht von %1$lld auf %2$lld. Das ist weder 15 noch 31, %3$@ passt nicht zur direkt davor gespielten Karte, und die letzten Karten bilden keine Dreierfolge. Du bekommst also nichts.
+758	Der Stand geht von %1$lld auf %2$lld. Du bekommst %3$@, insgesamt %4$lld. Eine Pegging-Folge zählt die zuletzt gespielten Karten in beliebiger Reihenfolge, und ein Paar zählt nur mit der direkt davor gespielten Karte.
+759	%lld für die Fünfzehn
+760	%lld für die Einunddreißig
+761	%1$lld für eine Folge aus %2$lld Karten
+762	nichts
+763	%1$@ und %2$@
+764	%lld für einen Vierling
+765	%lld für einen Drilling
+766	%lld für ein Paar
+767	Wie viele Karten liegen in der Crib, bevor die Startkarte abgehoben wird?
+768	Jeder Spieler legt zwei Karten hinein, also hat die Crib des Gebers vier Karten, bevor die Startkarte dazukommt.
+769	Womit verbindet sich eine 5 am leichtesten?
