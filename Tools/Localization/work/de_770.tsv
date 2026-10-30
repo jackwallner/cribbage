@@ -1,0 +1,207 @@
+770	Eine Zehnerkarte für 15
+771	Nur eine weitere 5
+772	Nichts bis zum Pegging
+773	Eine 5 plus eine beliebige 10, Bube, Dame oder König ist eine Fünfzehn für 2 Punkte.
+774	Braucht eine Folge gleiche Farben?
+775	Nein
+776	Bei einer Folge geht es um aufeinanderfolgende Ränge. Die Farben dürfen gemischt sein.
+777	Was ergibt einen Crib-Flush?
+778	Drei beliebige Karten gleicher Farbe
+779	Nur die vier Crib-Karten passen
+780	Die Flush-Regel der Crib ist strenger als bei der Hand: Alle fünf Karten, auch die Startkarte, müssen dieselbe Farbe haben.
+781	Welche Karte kann His Nobs sein?
+782	Ein Bube in der Farbe der Startkarte
+783	Jede Dame
+784	Jede Karte mit dem Rang der Startkarte
+785	His Nobs ist ein Punkt für einen Buben, dessen Farbe zur Startkarte passt.
+786	Was ist eine Dreifachfolge?
+787	Drei Fünfzehnen
+788	Drei Wege zur selben Folge
+789	Drei Karten einer Farbe
+790	Drei Karten desselben Rangs in einer Folge ergeben drei verschiedene Wege, diese Folge zu bilden.
+791	Die Vorhand
+792	Wer abgehoben hat
+793	Die Vorhand zählt zuerst, dann zählt der Geber seine Hand und die Crib. Die Reihenfolge kann eine knappe Partie entscheiden.
+794	Welchen Wert hat ein Ass für die Fünfzehn?
+795	11
+796	Ein Ass zählt 1 und ist in Folgen niedrig.
+797	8-9-10-Bube ist eine Viererfolge. Folgen entstehen aus der Rangfolge, also liegt der Bube direkt über der 10, auch wenn beide für eine Fünfzehn 10 zählen.
+798	Drei 7er enthalten drei einzelne Paare für 6 Punkte, keine eigene Wertung für den Drilling. Nichts ergibt hier Fünfzehn und es gibt keinen Buben.
+799	Vier Pik bilden einen Hand-Flush aus vier Karten für 4 Punkte, oder 5, wenn auch die Startkarte Pik ist.
+800	2-3-4-5 ist eine Viererfolge, und die zweite 2 lässt sie zweimal entstehen. Diese doppelte Viererfolge bringt 8 Punkte, bevor das Paar 2er noch 2 dazugibt.
+801	Die 5 ergibt Fünfzehn mit der 10 und noch einmal mit der Dame, und 2-5-8 ist eine dritte. Drei Fünfzehnen sind 6 Punkte, ohne doppelten Rang und ohne Folge.
+802	Vier Karten eines Rangs enthalten sechs einzelne Paare für 12 Punkte. Der König schließt nicht an die 7er an, und nur zwei Karten haben dieselbe Farbe.
+803	Du bist Vorhand. Behalte die vielseitigste Hand.
+804	Behalte 3-4-5-6: eine Viererfolge für 4 plus die Fünfzehn aus 4-5-6 für 2. Die 6 gegen die 10 zu tauschen sieht ähnlich aus, verkürzt die Folge aber auf drei Karten. Die zwei Zehnerkarten bilden weder ein Paar noch zusammen Fünfzehn und sind daher das Sicherste, was du dem Geber geben kannst.
+805	Zähl Kombinationen, nicht nur die schönste Folge.
+806	Du bist Geber. In einer Folge steckt ein Paar.
+807	Behalte 6-6-7-8. Durch die zweite 6 entsteht 6-7-8 zweimal, eine doppelte Dreierfolge für 6, plus 2 für das Paar und 2 für die Fünfzehn aus 7 und 8: 10 Punkte vor der Startkarte. Die 2 und der König haben damit nichts zu tun.
+808	Ein Paar innerhalb einer Folge ist viel mehr wert als ein Paar für sich allein.
+809	Du bist Vorhand mit vier Karo. Wähle zwei Karten.
+810	Die vier Karo halten einen Hand-Flush, und die Startkarte kann ihn auf fünf bringen. Die Karten anderer Farbe sind kein Paar und ergeben zusammen keine Fünfzehn.
+811	Gib als Vorhand kein Paar und keine glatte Fünfzehn ab, wenn du eine andere Möglichkeit hast.
+812	Du bist Vorhand und es ist knapp. Wähle die Hand, die leicht zu zählen ist.
+813	Der Block 2-3-4 hat einen klaren Weg zur Folge, und die 10 hilft einer 5, falls sie als Startkarte kommt. Die 9 und die Dame sind am wenigsten eingebunden.
+814	Verlässliche Punkte sind oft mehr wert als ein wackliges Maximum.
+815	Pegging-Stand ist 26
+816	Welche Karte hält dich unter 31?
+817	Die 5 spielen
+818	Mit der 5 kommst du auf 31 für 2 Punkte. Die Zehnerkarte ginge darüber, also ist die gültige Wahl klar.
+819	Die 10 spielen
+820	Du hast ein Paar
+821	Eine abwerfen, um eine schlechte Crib zu vermeiden?
+822	Behalte das sichere Paar
+823	Ein Paar bringt 2 vor der Startkarte. Es aufzugeben ist ein großer Tausch, kein Standardzug zur Verteidigung.
+824	Beide behalten
+825	Paar aufgeben
+826	Der Geber ist einen Punkt vor 121
+827	Solltest du der Crib eine 5 schenken?
+828	Vermeide das riskante Geschenk
+829	Der Geber steht schon an der Ziellinie. Bleibt deine Hand auch ohne den Abwurf der 5 konkurrenzfähig, schütze die Crib und lass den Gegner für den Sieg arbeiten.
+830	Die 5 abgeben
+831	Du hast beim Pegging 15 gemacht
+832	Was sagst du an?
+833	Sag die Punkte laut an und stecke 2 Punkte, bevor der nächste Spieler dran ist. Den Stand auszusprechen hält die Runde ehrlich.
+834	2 ansagen
+835	Bis zum Zählen der Hand warten
+836	Die Startkarte passt zu deinem Buben
+837	Zählst du den Bonus?
+838	His Nobs dazuzählen
+839	Ein Bube in der Farbe der Startkarte bringt einen Punkt. Mach in deiner Zählroutine einen eigenen Nobs-Check.
+840	1 dazuzählen
+841	Ignorieren
+842	Du bist Vorhand. Die größere Hand ist die falsche. Wähle zwei.
+843	A-A-6-8 zählt 6 und A-A-5-8 zählt 4, die größere Hand ist also zwei Punkte besser. Trotzdem ist sie die falsche Wahl: Sie wirft eine 5 und eine Dame ab, die in der Crib, die dir nicht gehört, schon Fünfzehn ergeben. Wirf stattdessen die 6 und die Dame ab und gib nichts her, was allein punktet.
+844	Als Vorhand ziehst du ab, was die Crib gewinnt, bevor du zwei Hände vergleichst.
+845	Du bist Geber und wählst zwischen einem Paar und einem Flush.
+846	Die vier Herz zählen 6 vor der Startkarte: 4 für den Flush und 2 für 6-9. Das Paar 5er baut zudem deine eigene Crib auf. Diese Wahl hat im Zufallsabwurf-Modell der Übung den besten Schnitt aus Hand und Crib zusammen.
+847	Als Geber kann ein Paar eine Stärke der Crib statt der Hand sein.
+848	Du bist Vorhand mit vier Zehnerkarten. Wähle zwei.
+849	Behalte 5-10-J-Q. Die 5 ergibt mit jeder der drei Zehnerkarten Fünfzehn, und 10-Bube-Dame ist eine Dreierfolge. Die Hand zählt also 9 vor der Startkarte, mit einem Buben, der noch His Nobs bringen kann. König und 4 bilden in der Crib des Gebers weder ein Paar noch zusammen Fünfzehn.
+850	Eine hohe Punktzahl kann schlechter sein als eine niedrigere, wenn die Crib das Rennen kippt.
+851	Du bist Vorhand. Behalte die Hand mit mehr nützlichen Startkarten.
+852	Das Paar 8er aufzugeben kostet sichere 2, aber 3-4-5 mit einer 8 bringt schon 5: Die Folge zählt 3 und 3-4-8 ergibt Fünfzehn. Der niedrige Block wird außerdem durch viel mehr Startkarten besser, und eine 8 mit einem König ist ein harmloses Geschenk an den Geber.
+853	Nützliche Startkarten sind eine Verteilung, nicht eine Lieblingskarte.
+854	Du bist Geber. Wähle den Abwurf, der doppelt wirkt.
+855	Behalte 2-3-10-J: 2-3-10 und 2-3-Bube sind zwei Fünfzehnen, und der Bube kann noch His Nobs bringen. In diesem Deal bringt der Abwurf von 7-8 im Zufallsabwurf-Modell der Übung den besten Gesamtschnitt. Die beiden ergeben in deiner Crib schon Fünfzehn.
+856	Der Abwurf kann die Crib vorbereiten, bevor die Startkarte aufgedeckt wird.
+857	Du bist Vorhand und dein Vorsprung ist sicher. Wähle zwei.
+858	Behalte 4-5-6 mit einer 10: Die Folge zählt 3, 4-5-6 ergibt Fünfzehn, und die 5 mit der 10 eine weitere, zusammen 7 Punkte. Das Paar 10er aufzugeben kostet 2, aber 10 und Dame bilden in der Crib des Gebers weder ein Paar noch eine Fünfzehn, und der Block 4-5-6 wird durch die meisten Startkarten besser.
+859	Wisse, wessen Crib du fütterst, bevor du einen Abwurf bewertest.
+860	Der Gegner steht auf 120 und zählt als Nächster. Was zählt am meisten?
+861	Ob du gewinnen kannst, bevor er zählt
+862	Deine theoretisch höchste Hand
+863	Die Crib des Gebers groß halten
+864	Cribbage ist ein Rennen. Kann der Gegner beim ersten Zählen 121 erreichen, ist der normale Handwert vielleicht egal.
+865	Welche Karte ist beim Pegging aus einer kleinen, verbundenen Hand oft am sichersten zum Anspielen?
+866	Immer eine 5
+867	Eine Karte, die keine sofortige 15 und kein Paar zulässt
+868	Immer die höchste Karte
+869	Die Pegging-Verteidigung hängt vom Stand und den wahrscheinlichen Antworten des Gegners ab. Es gibt keinen allgemein sicheren Rang, aber offensichtliche 15er und Paare zu vermeiden ist ein starker Anfang.
+870	Du kannst jetzt 31 peggen oder eine Karte für den Schluss aufheben. Was sollte entscheiden?
+871	Nur die aktuelle Handwertung
+872	Spielstand, Karten des Gegners und der Neustart
+873	Die Farbe der Karte
+874	Eine 31 bringt 2 Punkte, aber eine aufgehobene Karte kann dem Gegner das Go nehmen oder dir die letzte Karte bringen. Nutze den Spielstand und die ungesehenen Karten, nicht eine einzige Regel.
+875	Warum solltest du dir abgeworfene Ränge merken?
+876	Um abzuschätzen, welche Folgen und Paare noch möglich sind
+877	Weil Abwürfe zurückgeholt werden können
+878	Um die Startkarte zu ändern
+879	Bekannte Abwürfe verringern die noch offenen Karten eines Rangs und helfen dir, das Potenzial der Hand und die Gefahr beim Pegging einzuschätzen.
+880	Was ist der häufigste Zählfehler bei einer Doppelfolge?
+881	Die Folge nur einmal zählen
+882	Ein Paar als Flush zählen
+883	Die Startkarte doppelt zählen
+884	Ein doppelter Rang ergibt mehrere Wege, dieselbe Folge zu bilden. Zähl jede einzelne Folge, dann Fünfzehnen und Paare separat.
+885	Wann solltest du eine Hand mit niedrigerem Erwartungswert wählen?
+886	Wenn Spielstand und Crib sie zur besseren Entscheidung im Rennen machen
+887	Nie
+888	Nur wenn die Farben passen
+889	Die richtige Entscheidung maximiert deine Gewinnchance, nicht die Zahl, die ein Handrechner für sich allein ausgibt.
+890	Durch die zweite 4 entsteht 4-5-6 zweimal, eine doppelte Dreierfolge für 6. Dazu 2 für das Paar und 6 für drei Fünfzehnen, zweimal 4-5-6 und einmal die 5 mit der 10, und die Hand zählt 14.
+891	Jede 5 ergibt Fünfzehn mit der 10 und noch einmal mit dem Buben, und die drei 5er ergeben zusammen ebenfalls Fünfzehn. Sieben Fünfzehnen sind 14 Punkte, dazu kommen noch 6 für die drei Paare.
+892	Vier Herz bilden einen Hand-Flush für 4 Punkte, oder 5, wenn auch die Startkarte Herz ist. Kein Rang wiederholt sich und es gibt keinen Buben, also ist die Farbe das einzige dieser drei Muster auf dem Tisch.
+893	6-7-8-9-10 ist eine Fünferfolge für 5 Punkte, egal wie gemischt die Farben sind. Darin verstecken sich außerdem zwei Fünfzehnen, 6 mit 9 und 7 mit 8, zusammen 9 Punkte.
+894	Vier 2er enthalten sechs einzelne Paare für 12. Die 2er und die 10 ergeben 12, 14, 16 und 18, aber nie Fünfzehn, also ist der doppelte Rang die ganze Zählung.
+895	Die 5 ergibt Fünfzehn mit der 10 und noch einmal mit dem Buben, zusammen 4 Punkte. Kein Rang wiederholt sich, und 4-5 bekommt nie eine dritte Karte in Folge.
+896	Zwei 3er und zwei 4er lassen 3-4-5 auf vier verschiedene Arten entstehen, 12 Punkte aus Folgen. Dazu 4 für die zwei Paare und 4 für die zwei Fünfzehnen, und die Hand zählt 20.
+897	Ass bis 5 ist eine Fünferfolge für 5 Punkte, und die fünf Karten ergeben zusammen genau Fünfzehn für 2 weitere. Asse sind niedrig, also beginnt die Folge beim Ass.
+898	Schnelle Runde
+899	Ein kurzer Mix aus dem, was du als Nächstes brauchst
+900	Die Fragen, die du immer wieder falsch hast
+901	Ein Fünf-Minuten-Mix für deinen nächsten Spieleabend
+902	Welches Punktmuster oder Potenzial erkennst du? Es gibt keine festgelegte Startkarte.
+903	Flush-Potenzial
+904	Nobs-Potenzial
+905	Such jede Kombination von Karten, deren Werte zusammen 15 ergeben. Eine Zehnerkarte passt zu einer Fünf, kleinere Karten können mehrere Kombinationen bilden.
+906	Zwei Karten desselben Rangs ergeben ein Paar. Drei eines Rangs ergeben drei Paare, vier ergeben sechs Paare.
+907	Drei oder mehr aufeinanderfolgende Ränge ergeben eine Folge. Doppelte Ränge können die Folge über Paare vervielfachen.
+908	Vier Karten gleicher Farbe ergeben einen Hand-Flush. Eine passende Startkarte macht fünf daraus. In dieser Musterübung gibt es keine festgelegte Startkarte.
+909	Ein Bube auf der Hand kann zu His Nobs werden, wenn die Startkarte seine Farbe hat. Das übersieht man leicht, weil die Startkarte entscheidet.
+910	Kreuz
+911	Karo
+912	Herz
+913	Pik
+914	Joker
+915	%@-Ass
+916	%@-Bube
+917	%@-Dame
+918	%@-König
+919	%2$@ %1$lld
+920	Hell
+921	Dunkel
+922	Wie Gerät
+923	Sonntag
+924	Montag
+925	Dienstag
+926	Mittwoch
+927	Donnerstag
+928	Freitag
+929	Samstag
+930	Fünf Minuten Übung halten deine Abwürfe ruhig und dein Zählen scharf.
+931	Fünf persönliche Minuten jetzt machen den Spieleabend später entspannter.
+932	Zeit für eine kurze Übung
+933	Deine Spieleabend-Vorbereitung ist bereit
+934	Cribbage Minute %1$@: %2$lld/%3$lld\n%4$@\nSchaffst du mehr? %5$@
+935	Nicht begonnen
+936	Am Lernen
+937	Solide
+938	Sicher
+939	Beantworte hier ein paar Fragen, damit dein Stand erfasst wird.
+940	Beantworte jede Frage zweimal hintereinander richtig, damit sie sitzt.
+941	Mach weiter. „Sicher“ heißt, dass hier fast alles sitzt.
+942	Schau ab und zu vorbei, damit es sicher bleibt.
+943	7 Tage gratis testen
+944	7 Tage gratis testen
+945	Gratis-Test starten
+946	Gratis-Test starten
+947	Starte deinen Gratis-Test
+948	Starte deinen Gratis-Test
+949	Der App Store ist gerade nicht erreichbar. Prüf deine Verbindung und versuch es erneut.
+950	Zählen, peggen, Fehler beheben
+951	Endlos Hände aus vier Karten mit Startkarte. Zähl Fünfzehnen, Paare, Folgen, Flushes und Nobs zusammen und sieh genau, woher jeder Punkt kommt.
+952	Leg eine Karte auf den Stapel und werte sie: Fünfzehn, Einunddreißig, Paare und Folgen in beliebiger Reihenfolge.
+953	Wisse, was du üben musst
+954	Dein Fortschritt nennt jetzt genau die Fertigkeiten, bei denen du danebenliegst, etwa Folgen erkennen, und das Endlos-Training markiert sie.
+955	Deine Woche im Blick
+956	Der Startbildschirm und „Dein Fortschritt“ zeigen, wie viele Fragen du diese Woche gefestigt hast. So siehst du, dass das Üben wirkt.
+957	Ein besserer Rhythmus für den Cribbage-Abend
+958	Mach dieselbe Fünf-Fragen-Challenge wie alle anderen Mitglieder, teile deine Punkte und halte einen nachsichtigen Wochenrhythmus aus fünf Tagen.
+959	Wähle deinen üblichen Cribbage-Abend und bekomm rechtzeitig eine Fünf-Minuten-Runde aus deinen Fehlern und deinem schwächsten Raum.
+960	Gemacht fürs iPad
+961	Üb am Tisch mit einem echten iPad-Layout, hoch oder quer.
+962	Lerne die Hand, eine Wiederholung nach der anderen
+963	Vier kostenlose Übungsräume
+964	Gewinne Sicherheit mit gezielten Übungen zu Karten, Punkten, Abwürfen und Pegging.
+965	Erklärungen, die hängen bleiben
+966	Jede Antwort zeigt die Regel, die Beobachtung und warum die Wahl am Tisch funktioniert.
+967	Übung, die sich erinnert
+968	Serien, verpasste Fragen und eine tägliche Mix-Runde halten das Wichtige griffbereit.
+969	Übung, die nie ausgeht
+970	Jedes Mal frisch gegebene Hände. Lies das Punktmuster oder übe den Stand, so lange du willst, mit einer vollständigen Erklärung nach jeder Antwort.
+971	Die App merkt sich jetzt, was du falsch machst, und bringt es nach Plan zurück. So schließen sich Schwachstellen, statt sich anzuhäufen.
+972	Neunzig Sekunden, so viele richtige Antworten wie möglich und ein persönlicher Rekord zum Jagen.
+973	Dein Fortschritt im Detail
+974	Trefferquote für jeden Raum, dein schwächster Bereich und wie viel du insgesamt geübt hast.
+975	Mehr Übungen in jedem Raum
+976	Neue handgeschriebene Fragen zu Deck, Punkten, Abwürfen, Pegging und den Meistertischen.

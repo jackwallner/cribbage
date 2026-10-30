@@ -1,0 +1,150 @@
+0	Cribbage Minute
+1	Heutige Cribbage Minute
+2	Dieselben fünf Originalfragen für jedes Mitglied: zwei Hände lesen, eine Abwurf-Entscheidung und zwei Pegging-Fragen.
+3	Heute ansehen: %lld/%lld
+4	Heutige Challenge starten
+5	DEINE WOCHE
+6	Wochenziel erreicht
+7	%lld von 5 geübt
+8	Fünf beliebige Tage zählen. Einen verpasst? Hol ihn im Archiv nach und halte die Woche am Leben.
+9	ARCHIV
+10	%lld/%lld
+11	Spielen
+12	Ergebnis teilen
+13	Fertig
+14	richtig
+15	Perfekte Minute!
+16	Minute geschafft
+17	Cribbage Minute %@
+18	NACH FERTIGKEIT
+19	%lld von 5 diese Woche
+20	Fünf beliebige Tage halten den Rhythmus.
+21	Endlos-Training
+22	Jede Hand wird frisch gegeben, sobald du sie siehst. So kannst du üben, so lange du willst, ohne dass sich eine Frage wiederholt.
+23	%1$@ bei %2$lld Antworten
+24	Üben: %1$@, %2$@
+25	Erste Runde starten
+26	Zeig's mir
+27	Überspringen, ab in die App
+28	Tour überspringen
+29	DIE RÄUME
+30	Vier Räume, vier Fertigkeiten
+31	Der Startbildschirm ist die Lobby. Jeder Raum hat eigene Übungen: das Deck kennenlernen, Punkte lesen, abwerfen und bis 31 peggen. Alle vier Anfängerräume sind kostenlos, für immer.
+32	DRANBLEIBEN
+33	Serien helfen beim Merken
+34	Schaff eine Übung pro Tag und deine Serie wächst. Was du falsch hast, kommt leise wieder, bis du es sicher kannst.
+35	JETZT DEINS
+36	%@ ist freigeschaltet
+37	Deine Gratiswoche enthält schon Endlos-Training, Gegen die Uhr, die Extra-Sets in jedem Raum und die Meistertische: Profi-Abwürfe, Verteidigung und Zählen für Experten.
+38	Deine Mitgliedschaft enthält schon Endlos-Training, Gegen die Uhr, die Extra-Sets in jedem Raum und die Meistertische: Profi-Abwürfe, Verteidigung und Zählen für Experten.
+39	HINTER DER GOLDENEN TÜR
+40	%@ bietet noch mehr
+41	Endlos-Training gibt unbegrenzt Hände, jeder Raum hält ein Set Extra-Übungen hinter dem Schloss bereit, und die Meistertische enthalten die Profi-Übungen. Nichts, was du jetzt hast, geht verloren. Freischalten kannst du jederzeit auf dem Startbildschirm oder in den Einstellungen.
+42	DU BIST DRAN
+43	Probieren wir eine echte
+44	„Los geht's“ stellt dir diesen Fünf-Minuten-Mix jederzeit auf dem Startbildschirm zusammen: genau das, was du als Nächstes brauchst, Fehler zuerst. Lass uns jetzt die erste Runde spielen.
+45	Los geht's
+46	Ein Fünf-Minuten-Mix aus dem, was du als Nächstes brauchst
+47	7-Tage-Serie
+48	Endlos-Training, frisch gegebene Hände
+49	Fehler üben spielt deine Fehler erneut
+50	Gegen die Uhr, 90 Sekunden
+51	Meine 5-Minuten-Vorbereitung starten
+52	Spieleabend-Vorbereitung
+53	Mitteilungen sind aus
+54	Einstellungen öffnen
+55	Nicht jetzt
+56	Cribbage Trainer kann dich erst erinnern, wenn Mitteilungen in den iOS-Einstellungen aktiviert sind.
+57	Gut vorbereitet an den Tisch
+58	Leg deinen üblichen Cribbage-Abend fest. Die Erinnerung öffnet eine frische Runde aus deinen Fehlern, deinem schwächsten Raum und Stoff, den du noch nicht gesehen hast.
+59	WÖCHENTLICHE ERINNERUNG
+60	Vorbereitung ist geplant
+61	Wähle deinen Spieleabend
+62	Wöchentliche Spieleabend-Erinnerung
+63	Spieleabend
+64	Erinnerung
+65	Jeden %@ zu dieser Uhrzeit öffnet die Mitteilung direkt deine persönliche Übungsrunde.
+66	Darauf zielt die heutige Vorbereitung
+67	PL2|%2$@|Erst %#@due@, dann Extra-Übungen in %2$@.|due|%lld fälliger Fehler|%lld fällige Fehler
+68	PL|Erst %lld fälliger Fehler, danach Stoff, den du noch nicht gesehen hast.|Erst %lld fällige Fehler, danach Stoff, den du noch nicht gesehen hast.
+69	Extra-Übungen in %@, danach ein ausgewogener Mix aus den anderen Räumen.
+70	Erst einmal ein ausgewogener Mix. Je mehr Fragen du beantwortest, desto genauer zielt diese Runde auf deine echten Schwachstellen.
+71	Einstellungen
+72	Cribbage Trainer
+73	Dein Platz am Tisch.
+74	PL|%lld-Tage-Serie|%lld-Tage-Serie
+75	PL|%lld Übung erledigt|%lld Übungen erledigt
+76	PL|%lld Frage diese Woche gefestigt|%lld Fragen diese Woche gefestigt
+77	Öffnet deine Fortschrittsübersicht
+78	%@%lld
+79	Heutige Runde erledigt
+80	Morgen gibt es einen neuen Mix. Mach in einem der Räume unten weiter.
+81	So wird gespielt
+82	Neu hier? Starte mit der Fünf-Minuten-Einführung
+83	TRAINING
+84	WISCHEN FÜR MEHR
+85	Endlos-\nTraining
+86	Cribbage\nMinute
+87	%lld/%lld heute
+88	Täglich
+89	Spieleabend\nvorbereiten
+90	Wöchentlich
+91	Gegen\ndie Uhr
+92	Rekord %lld
+93	Fehler\nüben
+94	%lld fällig
+95	In %@ enthalten
+96	PL2|%2$@|Gesperrt. %#@drills@, in %2$@ enthalten|drills|%lld Übung|%lld Übungen
+97	PL2|%1$lld|%1$lld von %#@total@ erledigt|total|%lld Übung|%lld Übungen
+98	%@ holen
+99	PL|Endlos-Training, Gegen die Uhr und %lld weitere Übung in allen Räumen|Endlos-Training, Gegen die Uhr und %lld weitere Übungen in allen Räumen
+100	Cribbage Trainer ist eine unabhängige Übungs-App mit eigenen Lehrbeispielen. Hausregeln unterscheiden sich, also spiel nach den Regeln, die an deinem Tisch gelten.
+101	PL|%lld Karte|%lld Karten
+102	PL|%lld Frage|%lld Fragen
+103	PL|%lld Hand|%lld Hände
+104	PL|%lld Deal|%lld Deals
+105	Vorherige Seite
+106	Platz nehmen
+107	Weiter
+108	Vorerst überspringen
+109	Empfohlen: %@
+110	Bleib zwischen den Partien in Form
+111	Cribbage verblasst schnell zwischen zwei Partien. Cribbage Trainer gibt dir Fünf-Minuten-Übungen für überall, ob du noch die Kartenwerte lernst oder schon vorhandenes Gespür schärfst.
+112	Üben ohne Druck
+113	Wische durch Lernkarten, lies Punktmuster, triff Pegging-Entscheidungen und wähle Zwei-Karten-Abwürfe, mit dem Warum hinter jeder Antwort.
+114	Selbstsicher an den Tisch
+115	Wisse, welche Karten Fünfzehn ergeben, erkenne Punktmuster schnell und hab keine Angst mehr vorm Abwerfen. Übe in deinem Tempo, ohne Gegner.
+116	OK
+117	Ganz neu
+118	Lerne noch, was die Karten überhaupt tun
+119	Kenne die Grundlagen
+120	Kenne den Ablauf, zähle noch langsam
+121	Habe schon echte Partien gespielt
+122	Spiele sicher, will schärferes Gespür
+123	Wo stehst du gerade?
+124	Wir zeigen dir die passenden Übungen.
+125	Wähle eine Option, um fortzufahren.
+126	Jeder Anfängerraum ist kostenlos, für immer
+127	Cribbage Minute und eine persönliche Spieleabend-Vorbereitung
+128	Endlos-Training gibt jedes Mal eine frische Hand
+129	Fehler üben bringt zurück, was du falsch hattest
+130	Extra-Sets in allen vier Räumen, dazu die Meistertische
+131	%@ ist auf deinem Account
+132	%@ gratis testen
+133	%@ heute holen
+134	%@ beitreten
+135	AGB
+136	Datenschutz
+137	Wiederherstellen
+138	Wir prüfen noch, was diesem Apple Account gehört. Versuch es gleich noch einmal oder tippe auf Wiederherstellen.
+139	Dein Kauf hat geklappt, aber %@ ist noch nicht freigeschaltet. Warte einen Moment und tippe dann auf Wiederherstellen.
+140	Auf diesem Apple Account wurde kein früherer Kauf gefunden.
+141	%@ für immer freischalten
+142	Alles, was du hast, bleibt kostenlos. %@ bringt Übung, die nie ausgeht.
+143	Endlos-Training: jedes Mal eine frische Hand
+144	Fehler üben: Fehler kommen wieder, bis sie sitzen
+145	Gegen die Uhr: 90 Sekunden, jag deinen Rekord
+146	Extra-Übungssets in jedem Raum, dazu die Meistertische
+147	Jährlich
+148	7 Tage gratis, dann jährliche Zahlung. Verlängert sich automatisch.
+149	Jährliche Zahlung. Verlängert sich automatisch.
