@@ -53,6 +53,39 @@ class StoreTest {
         assertEquals("A gap resets to one", 1, store.streakCount)
     }
 
+    /** Home shows the streak as it stands now: a missed day drops it to zero before the next drill. */
+    @Test
+    fun currentStreakDropsToZeroAfterAMissedDay() {
+        val store = ProgressStore(defaults, clock)
+        assertEquals(0, store.currentStreak())
+        store.recordSession("meet-cards")
+        advanceDays(1)
+        store.recordSession("card-quiz")
+        assertEquals(2, store.currentStreak())
+        advanceDays(1)
+        assertEquals("Yesterday's drill still holds the streak", 2, store.currentStreak())
+        advanceDays(1)
+        assertEquals("A missed day loses it", 0, store.currentStreak())
+        store.recordSession("card-quiz")
+        assertEquals("The next drill starts again at one", 1, store.currentStreak())
+    }
+
+    /** A clock that went backwards (travel, a manual change) must not count the same day twice on the way back. */
+    @Test
+    fun aClockThatWentBackwardsDoesNotCountADayTwice() {
+        val store = ProgressStore(defaults, clock)
+        store.recordSession("meet-cards")
+        advanceDays(1)
+        store.recordSession("card-quiz")
+        assertEquals(2, store.streakCount)
+        advanceDays(-1)
+        store.recordSession("card-quiz")
+        assertEquals(2, store.streakCount)
+        advanceDays(1)
+        store.recordSession("card-quiz")
+        assertEquals("The later day was already counted", 2, store.streakCount)
+    }
+
     @Test
     fun roomProgressCountsFinishedDrills() {
         val store = ProgressStore(defaults, clock)

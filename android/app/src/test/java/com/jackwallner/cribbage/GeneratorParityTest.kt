@@ -9,12 +9,14 @@ import com.jackwallner.cribbage.content.PracticeSkill
 import com.jackwallner.cribbage.content.QuickItem
 import com.jackwallner.cribbage.content.SessionBuilder
 import com.jackwallner.cribbage.model.ChoiceShuffle
+import com.jackwallner.cribbage.model.DrillKind
 import com.jackwallner.cribbage.model.HandCategory
 import com.jackwallner.cribbage.model.HandCategory.FIFTEENS
 import com.jackwallner.cribbage.model.HandCategory.FLUSHES
 import com.jackwallner.cribbage.model.HandCategory.NOBS
 import com.jackwallner.cribbage.model.HandCategory.PAIRS
 import com.jackwallner.cribbage.model.HandCategory.RUNS
+import com.jackwallner.cribbage.model.HandScoring
 import com.jackwallner.cribbage.model.PlayingCard
 import com.jackwallner.cribbage.model.PlayingCard.Companion.c
 import com.jackwallner.cribbage.model.PlayingCard.Companion.d
@@ -217,6 +219,33 @@ class GeneratorParityTest {
             assertFalse(question.item.isReviewable)
             assertEquals(PracticeSkill.HAND_READING.raw, question.item.trackingID)
         }
+    }
+
+    /**
+     * The drill gives an equally good pair full credit (`discardMatches`), so the daily's multiple
+     * choice must never list one as a wrong answer. Two Master Tables deals have such a twin: swap
+     * the spade for the club and the hand and the crib are worth exactly the same.
+     */
+    @Test
+    fun dailyDiscardNeverOffersAnInterchangeablePairAsWrong() {
+        val scenarios = DrillLibrary.rooms.flatMap { it.drills }.flatMap { (it.kind as? DrillKind.Discard)?.scenarios.orEmpty() }
+        val twins = listOf("master-discard-4" to listOf(c(8), d(13)), "master-discard-6" to listOf(c(10), d(12))).map { (id, cards) ->
+            val scenario = scenarios.first { it.id == id }
+            assertEquals("$id lost its twin", 2, HandScoring.discardMatches(cards, scenario))
+            Triple(id, scenario, cards.joinToString(", ") { it.spokenName })
+        }
+        var checked = 0
+        for (offset in 0 until 365) {
+            val challenge = CribbageMinuteContent.challenge(LocalDate.of(2026, 11, 1).plusDays(offset.toLong()))
+            val item = challenge.questions.firstOrNull { it.category == CribbageMinuteCategory.DISCARDING }?.item ?: continue
+            for ((id, scenario, label) in twins) {
+                if (item.tiles != scenario.deal) continue
+                checked += 1
+                assertEquals(challenge.dayKey, 4, item.choices.size)
+                assertFalse("${challenge.dayKey} lists $label as a wrong answer to $id", label in item.choices)
+            }
+        }
+        assertTrue("the sweep should reach both deals many times", checked > 20)
     }
 
     /** A day that fails to deal fails for every player at once, so sweep five years of day keys. */

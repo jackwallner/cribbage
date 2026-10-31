@@ -122,7 +122,7 @@ fun HomeScreen() {
             Modifier.fillMaxSize().verticalScroll(scroll).padding(horizontal = 16.dp).padding(navBarPadding()),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            Header(progress.streakCount, progress.totalSessions) { navigator.push(Route.Stats) }
+            Header(progress.currentStreak(), progress.totalSessions) { navigator.push(Route.Stats) }
             if (progress.quickSessionCompletedToday()) GetStartedDoneCard() else GetStartedCard {
                 val items = SessionBuilder.quickSession(seen = progress.seenItems, missed = progress.missedItems, includePro = isPro)
                 navigator.push(Route.Session(items, SessionPurpose.Quick(isDaily = true)))
