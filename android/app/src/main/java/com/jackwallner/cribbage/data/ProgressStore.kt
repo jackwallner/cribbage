@@ -55,7 +55,8 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
      * screens would show a streak the player has already lost.
      */
     fun currentStreak(): Int {
-        val last = defaults.getString(Keys.LAST_ACTIVE_DAY)?.let(LocalDate::parse) ?: return streakCount
+        // Read on every Home draw, so an unreadable stored day must not throw.
+        val last = defaults.getString(Keys.LAST_ACTIVE_DAY)?.let { runCatching { LocalDate.parse(it) }.getOrNull() } ?: return streakCount
         return if (ChronoUnit.DAYS.between(last, clock.today()) > 1L) 0 else streakCount
     }
 
