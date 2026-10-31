@@ -68,6 +68,39 @@ final class CribbageMinuteContentTests: XCTestCase {
         }
     }
 
+    /// The drill gives an equally good pair full credit (`discardMatches`), so
+    /// the daily's multiple choice must never list one as a wrong answer. Two
+    /// Master Tables deals have such a twin: swap the spade for the club and
+    /// the hand and the crib are worth exactly the same.
+    func testDailyDiscardNeverOffersAnInterchangeablePairAsWrong() throws {
+        struct Twin {
+            let scenario: DiscardScenario
+            let label: String
+        }
+        let twins = try [("master-discard-4", [PlayingCard.c(8), .d(13)]), ("master-discard-6", [.c(10), .d(12)])]
+            .map { id, cards -> Twin in
+                let scenario = try XCTUnwrap(ProContent.advancedDiscard.first { $0.id == id })
+                XCTAssertEqual(HandScoring.discardMatches(cards, scenario: scenario), 2, "\(id) lost its twin")
+                return Twin(scenario: scenario, label: cards.map(\.spokenName).joined(separator: ", "))
+            }
+
+        var checked = 0
+        for offset in 0..<365 {
+            let day = calendar.date(byAdding: .day, value: offset, to: date(2026, 11, 1))!
+            let challenge = CribbageMinuteContent.challenge(for: day, calendar: calendar)
+            guard let item = challenge.questions.first(where: { $0.category == .discarding })?.item else { continue }
+            for twin in twins where item.tiles == twin.scenario.deal {
+                checked += 1
+                XCTAssertEqual(item.choices.count, 4, challenge.dayKey)
+                XCTAssertFalse(
+                    item.choices.contains(twin.label),
+                    "\(challenge.dayKey) lists \(twin.label) as a wrong answer to \(twin.scenario.id)"
+                )
+            }
+        }
+        XCTAssertGreaterThan(checked, 20, "the sweep should reach both deals many times")
+    }
+
     /// Generated daily prompts are one-offs with a unique id per question. If
     /// they entered the review queue it would grow without bound with items
     /// that can never be shown again.
