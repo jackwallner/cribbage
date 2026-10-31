@@ -128,5 +128,56 @@ final class ProgressStoreTests: XCTestCase {
         XCTAssertTrue(store.hasOnboarded, "Reset must not re-trigger onboarding")
     }
 
+    // MARK: - Daylight saving that starts at midnight
+
+    /// Chile, Cuba, Egypt, Lebanon and the Azores move the clocks at midnight,
+    /// so the local day that begins then starts at 01:00 and lasts 23 hours.
+    /// Run `body` with the app reading `identifier` as the device time zone and
+    /// `dstDay` as that day (00:00 on the calendar, 01:00 on the clock).
+    private func withMidnightDaylightSaving(
+        _ identifier: String, dstDay: DateComponents, _ body: (_ evening: (Int) -> Date) -> Void
+    ) throws {
+        let zone = try XCTUnwrap(TimeZone(identifier: identifier))
+        let saved = NSTimeZone.default
+        NSTimeZone.default = zone
+        defer { NSTimeZone.default = saved }
+        XCTAssertEqual(Calendar.current.timeZone.identifier, identifier, "the app must read this zone")
+
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = zone
+        let day = try XCTUnwrap(calendar.date(from: dstDay))
+        XCTAssertEqual(
+            calendar.component(.hour, from: calendar.startOfDay(for: day)), 1,
+            "\(identifier) was expected to start this day at 01:00"
+        )
+        body { offset in
+            let date = calendar.date(byAdding: .day, value: offset, to: day)!
+            return calendar.date(bySettingHour: 21, minute: 30, second: 0, of: date)!
+        }
+    }
+
+    private let santiagoDay = DateComponents(year: 2026, month: 9, day: 6)   // clocks 00:00 -> 01:00
+
+    /// Measured between two start-of-day instants, the 23 hour day read as no
+    /// gap before the day after it, so that practice did not extend the streak.
+    func testStreakGrowsOnTheDayAfterAMidnightDaylightSavingChange() throws {
+        try withMidnightDaylightSaving("America/Santiago", dstDay: santiagoDay) { evening in
+            for offset in -2...1 { store.recordSession(drillID: "a", now: evening(offset)) }
+            XCTAssertEqual(store.streakCount, 4, "four days in a row, the third of them the short day")
+        }
+    }
+
+    /// ...and two days after it the gap read as one, so a missed day was
+    /// forgiven and Home kept showing a streak the player had lost.
+    func testMissedDayAfterAMidnightDaylightSavingChangeBreaksTheStreak() throws {
+        try withMidnightDaylightSaving("America/Santiago", dstDay: santiagoDay) { evening in
+            for offset in -2...0 { store.recordSession(drillID: "a", now: evening(offset)) }
+            XCTAssertEqual(store.currentStreak(now: evening(1)), 3, "the next day is still open")
+            XCTAssertEqual(store.currentStreak(now: evening(2)), 0, "that day was missed")
+            store.recordSession(drillID: "a", now: evening(2))
+            XCTAssertEqual(store.streakCount, 1, "practising after a missed day starts the streak over")
+        }
+    }
+
     // Rating-ask rules live in ReviewPromptTracker; see ReviewPromptTrackerTests.
 }
