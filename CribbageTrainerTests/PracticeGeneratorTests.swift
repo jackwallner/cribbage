@@ -121,9 +121,26 @@ final class PracticeGeneratorTests: XCTestCase {
             // The explanation's parts must add to the answer it teaches.
             let total = q.explanation
                 .components(separatedBy: " That is ").last?
-                .components(separatedBy: " points").first.flatMap(Int.init)
+                .components(separatedBy: " point").first.flatMap(Int.init)
             XCTAssertEqual(total, q.score, q.explanation)
         }
+    }
+
+    /// A hand worth only his nobs is one point. The choices ("1 points") and the
+    /// explanation ("That is 1 points in all") both said otherwise; the Pegging
+    /// Points question already wrote "1 point".
+    func testCountHandSaysOnePointNotOnePoints() {
+        let hand: [PlayingCard] = [.d(11), .h(6), .d(7), .s(12)]
+        XCTAssertEqual(HandScoring.score(hand: hand, starter: .d(3)), 1)
+        let explanation = HandCountGenerator.explain(hand: hand, starter: .d(3))
+        XCTAssertTrue(explanation.contains("That is 1 point in all."), explanation)
+
+        // A wrong answer within four of the real total puts a 1 among the choices
+        // for any hand worth 2 to 5, which is about three questions in ten.
+        var labels = Set<String>()
+        for item in EndlessPractice.items(for: .countHand, count: 400) { labels.formUnion(item.choices) }
+        XCTAssertFalse(labels.contains("1 points"))
+        XCTAssertTrue(labels.contains("1 point"), "a total of one is still offered, worded correctly")
     }
 
     func testTopTotalsStillGetFourReachableChoices() {
