@@ -5,6 +5,7 @@ import com.jackwallner.cribbage.model.ChoiceShuffle
 import com.jackwallner.cribbage.model.DiscardScenario
 import com.jackwallner.cribbage.model.Drill
 import com.jackwallner.cribbage.model.DrillKind
+import com.jackwallner.cribbage.model.HandScoring
 import com.jackwallner.cribbage.model.PlayingCard
 import com.jackwallner.cribbage.model.StableSeededGenerator
 import java.time.LocalDate
@@ -99,18 +100,36 @@ object CribbageMinuteContent {
         return CribbageMinuteQuestion(CribbageMinuteCategory.DISCARDING, SessionBuilder.prepared(item))
     }
 
-    /** Every other pair from the same deal, so a wrong answer is a real alternative. */
+    /**
+     * Every other pair from the same deal, so a wrong answer is a real alternative.
+     *
+     * A pair the drill grades as full credit (`discardMatches`: the club in place of the spade when
+     * nothing about suits changes the count) is no wrong answer, so it is skipped and the next pair
+     * in the day's order takes its place. Every other day keeps the pairs it always dealt.
+     *
+     * Only a pair with the answer's ranks can be worth the same, and the grader is slow (it
+     * averages over every cut), so it is asked about those alone.
+     */
     private fun distractorLabels(scenario: DiscardScenario, dayKey: String, answer: String): List<String> {
-        val labels = mutableSetOf<String>()
+        val pairs = mutableMapOf<String, List<PlayingCard>>()
         for (first in 0 until maxOf(0, scenario.deal.size - 1)) {
             for (second in first + 1 until scenario.deal.size) {
-                labels += label(listOf(scenario.deal[first], scenario.deal[second]))
+                val pair = listOf(scenario.deal[first], scenario.deal[second])
+                pairs[label(pair)] = pair
             }
         }
-        labels -= answer
-        val sorted = labels.sorted()
+        pairs -= answer
+        val sorted = pairs.entries.sortedBy { it.key }
         val order = ChoiceShuffle.permutation(sorted.size, "cribbage-minute-$dayKey-discard-choices")
-        return order.take(3).map { sorted[it] }
+        val answerRanks = scenario.recommendedDiscard.map { it.rankValue }.sorted()
+        val picked = mutableListOf<String>()
+        for (index in order) {
+            val (name, pair) = sorted[index]
+            if (pair.map { it.rankValue }.sorted() == answerRanks && HandScoring.discardMatches(pair, scenario) == 2) continue
+            picked += name
+            if (picked.size == 3) break
+        }
+        return picked
     }
 
     private fun label(cards: List<PlayingCard>): String = cards.joinToString(", ") { it.spokenName }
