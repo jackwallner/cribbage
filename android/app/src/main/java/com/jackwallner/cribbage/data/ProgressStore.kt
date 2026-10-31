@@ -49,8 +49,15 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
         defaults.putInt(Keys.TOTAL_SESSIONS, totalSessions)
     }
 
-    /** The streak the screens show. */
-    fun currentStreak(): Int = streakCount
+    /**
+     * The streak as it stands right now. `streakCount` only changes when a drill
+     * is finished, so after a missed day it still holds the old number and the
+     * screens would show a streak the player has already lost.
+     */
+    fun currentStreak(): Int {
+        val last = defaults.getString(Keys.LAST_ACTIVE_DAY)?.let(LocalDate::parse) ?: return streakCount
+        return if (ChronoUnit.DAYS.between(last, clock.today()) > 1L) 0 else streakCount
+    }
 
     /** Consecutive calendar days with at least one finished drill. */
     private fun bumpStreak() {
