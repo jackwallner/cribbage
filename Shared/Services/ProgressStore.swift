@@ -74,22 +74,39 @@ final class ProgressStore: ObservableObject {
     /// and Home showed a streak the player had already lost.
     func currentStreak(now: Date = Date()) -> Int {
         guard let last = defaults.object(forKey: Keys.lastActiveDay) as? Date else { return streakCount }
-        let calendar = Calendar.current
-        let gap = calendar.dateComponents(
-            [.day], from: calendar.startOfDay(for: last), to: calendar.startOfDay(for: now)
-        ).day ?? 0
-        return gap > 1 ? 0 : streakCount
+        return Self.calendarDays(from: last, to: now) > 1 ? 0 : streakCount
+    }
+
+    /// Whole calendar days from `earlier` to `later` in the player's time zone.
+    ///
+    /// Compares calendar dates, not the distance between two start-of-day
+    /// instants. Where daylight saving starts at midnight (Chile, Cuba, Egypt,
+    /// Lebanon, the Azores) that day begins at 01:00 and lasts 23 hours, so the
+    /// next day was 0 days from it and the one after only 1, and the streak
+    /// neither grew nor broke on the day it should.
+    private static func calendarDays(from earlier: Date, to later: Date) -> Int {
+        // Gregorian dates in the zone `Calendar.current.startOfDay` uses (how
+        // `lastActiveDay` is stored), each read back as noon UTC, which has no
+        // daylight saving to lose an hour to.
+        var local = Calendar(identifier: .gregorian)
+        local.timeZone = Calendar.current.timeZone
+        var utc = Calendar(identifier: .gregorian)
+        utc.timeZone = TimeZone(secondsFromGMT: 0) ?? .gmt
+        func dayNumber(_ date: Date) -> Int {
+            let parts = local.dateComponents([.year, .month, .day], from: date)
+            let noon = utc.date(from: DateComponents(year: parts.year, month: parts.month, day: parts.day, hour: 12)) ?? date
+            return Int((noon.timeIntervalSince1970 / 86_400).rounded(.down))
+        }
+        return dayNumber(later) - dayNumber(earlier)
     }
 
     /// Streak counts consecutive calendar days with at least one finished drill.
     private func bumpStreak(now: Date) {
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: now)
+        let today = Calendar.current.startOfDay(for: now)
         let last = defaults.object(forKey: Keys.lastActiveDay) as? Date
 
         if let last {
-            let lastDay = calendar.startOfDay(for: last)
-            let gap = calendar.dateComponents([.day], from: lastDay, to: today).day ?? 0
+            let gap = Self.calendarDays(from: last, to: now)
             if gap == 1 {
                 streakCount += 1
             } else if gap > 1 {
