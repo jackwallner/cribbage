@@ -74,15 +74,18 @@ object EndlessPractice {
             } else {
                 "The running total is $total, and ${card.spokenName} is worth $value, which would pass 31. You must say go if you have no legal card."
             }
-            items += QuickItem(
-                id = newID(PracticeSkill.PEGGING),
-                prompt = "The running total is $total. You hold the ${card.spokenName}. What is the legal play?",
-                tiles = listOf(card),
-                choices = choices,
-                answerIndex = if (canPlay) 0 else 1,
-                explanation = explanation,
-                sourceLabel = "Endless Practice",
-                roomID = PracticeSkill.PEGGING.roomID,
+            // Shuffled by id, as on iOS, so the answer is not in a fixed slot.
+            items += SessionBuilder.prepared(
+                QuickItem(
+                    id = newID(PracticeSkill.PEGGING),
+                    prompt = "The running total is $total. You hold the ${card.spokenName}. What is the legal play?",
+                    tiles = listOf(card),
+                    choices = choices,
+                    answerIndex = if (canPlay) 0 else 1,
+                    explanation = explanation,
+                    sourceLabel = "Endless Practice",
+                    roomID = PracticeSkill.PEGGING.roomID,
+                ),
             )
         }
         return items
