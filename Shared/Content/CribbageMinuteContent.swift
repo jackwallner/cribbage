@@ -139,21 +139,41 @@ enum CribbageMinuteContent {
 
     /// Every other pair from the same deal, so a wrong answer is always a real
     /// alternative the player could have chosen rather than an obvious dud.
+    ///
+    /// A pair the drill grades as full credit (`discardMatches`: the club in
+    /// place of the spade when nothing about suits changes the count) is no
+    /// wrong answer, so it is skipped and the next pair in the day's order
+    /// takes its place. Every other day keeps the pairs it always dealt.
+    ///
+    /// Only a pair with the answer's ranks can be worth the same, and the
+    /// grader is slow (it averages over every cut), so it is asked about
+    /// those alone.
     private static func distractorLabels(
         for scenario: DiscardScenario,
         dayKey: String,
         answer: String
     ) -> [String] {
-        var labels: Set<String> = []
+        var pairs: [String: [PlayingCard]] = [:]
         for first in 0..<max(0, scenario.deal.count - 1) {
             for second in (first + 1)..<scenario.deal.count {
-                labels.insert(label([scenario.deal[first], scenario.deal[second]]))
+                let pair = [scenario.deal[first], scenario.deal[second]]
+                pairs[label(pair)] = pair
             }
         }
-        labels.remove(answer)
-        let sorted = labels.sorted()
+        pairs[answer] = nil
+        let sorted = pairs.sorted { $0.key < $1.key }
         let order = ChoiceShuffle.permutation(count: sorted.count, seed: "cribbage-minute-\(dayKey)-discard-choices")
-        return order.prefix(3).map { sorted[$0] }
+        let answerRanks = scenario.recommendedDiscard.map(\.rankValue).sorted()
+        var picked: [String] = []
+        for index in order {
+            let (name, pair) = sorted[index]
+            if pair.map(\.rankValue).sorted() == answerRanks, HandScoring.discardMatches(pair, scenario: scenario) == 2 {
+                continue
+            }
+            picked.append(name)
+            if picked.count == 3 { break }
+        }
+        return picked
     }
 
     private static func label(_ cards: [PlayingCard]) -> String {

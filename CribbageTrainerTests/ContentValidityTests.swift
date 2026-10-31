@@ -96,6 +96,17 @@ final class ContentValidityTests: XCTestCase {
                 + "worth \(String(format: "%.2f", recommended)), but "
                 + "\(best.discard.map(\.shortLabel)) is worth \(String(format: "%.2f", best.value))"
             )
+
+            // The daily discard question only asks whether a wrong-answer pair
+            // ties the coach for pairs with the coach's ranks, because the
+            // grader is slow. That holds while no pair of other ranks ties.
+            let coachRanks = scenario.recommendedDiscard.map(\.rankValue).sorted()
+            for option in ranked where abs(option.value - best.value) < 1e-9 {
+                XCTAssertEqual(
+                    option.discard.map(\.rankValue).sorted(), coachRanks,
+                    "\(scenario.id) has a tie with other ranks; CribbageMinuteContent must check every pair"
+                )
+            }
         }
     }
 
