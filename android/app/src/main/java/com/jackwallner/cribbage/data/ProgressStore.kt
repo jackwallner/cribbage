@@ -49,6 +49,9 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
         defaults.putInt(Keys.TOTAL_SESSIONS, totalSessions)
     }
 
+    /** The streak the screens show. */
+    fun currentStreak(): Int = streakCount
+
     /** Consecutive calendar days with at least one finished drill. */
     private fun bumpStreak() {
         val today = clock.today()
