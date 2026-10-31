@@ -32,6 +32,14 @@ The discard question is built straight from the authored scenarios, NOT through
 those drills, so drawing the daily from it silently produced a four-question
 challenge with that skill missing entirely.
 
+Its three wrong answers skip any pair the Pick Your Discard drill grades as full
+credit (`HandScoring.discardMatches`, e.g. the club in place of the spade in
+`master-discard-4` and `-6`), taking the next pair in the day's order. Only pairs
+with the coach's ranks are asked of that slow grader, which holds while no pair
+of other ranks ties the coach (`ContentValidityTests` asserts it). Kotlin
+`CribbageMinuteContent.distractorLabels` does the same, so both platforms deal the
+same question on every day.
+
 `HandGenerator` deals the daily hands from a caller-supplied generator all the
 way down: `deal`, `fill`, and `randomHand` are all generic over
 `RandomNumberGenerator`. One `.shuffled()` or `.randomElement()` left calling
