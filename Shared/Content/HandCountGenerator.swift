@@ -58,6 +58,7 @@ enum HandCountGenerator {
         ].filter { $0.1 > 0 }
         let detail = parts.map { "\($0.0) \($0.1)" }.joined(separator: ", ")
         let total = parts.reduce(0) { $0 + $1.1 }
-        return "Count everything with the starter: \(detail). That is \(total) points in all. Count each fifteen, pair and run separately, and remember a flush in the hand needs four matching cards."
+        let unit = total == 1 ? "point" : "points"
+        return "Count everything with the starter: \(detail). That is \(total) \(unit) in all. Count each fifteen, pair and run separately, and remember a flush in the hand needs four matching cards."
     }
 }

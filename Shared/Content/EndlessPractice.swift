@@ -141,7 +141,7 @@ enum EndlessPractice {
                 id: id,
                 prompt: "Count this hand. The first four cards are your hand and the last card is the starter.",
                 tiles: question.hand.racked + [question.starter],
-                choices: question.choices.map { "\($0) points" },
+                choices: question.choices.map { $0 == 1 ? "1 point" : "\($0) points" },
                 answerIndex: question.choices.firstIndex(of: question.score) ?? 0,
                 explanation: question.explanation,
                 sourceLabel: "Endless Practice",
