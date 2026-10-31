@@ -184,8 +184,16 @@ class GeneratorParityTest {
             assertTrue(card.rank in 1..13)
             assertTrue("running total" in item.prompt)
             val total = Regex("running total is (\\d+)").find(item.prompt)!!.groupValues[1].toInt()
-            assertEquals(if (total + card.cribbageValue <= 31) 0 else 1, item.answerIndex)
+            val next = total + card.cribbageValue
+            assertEquals(if (next <= 31) "Play it, making $next" else "Say go", item.choices[item.answerIndex])
         }
+    }
+
+    /** The right answer must not sit in a fixed slot, or "first unless over 31" solves the question (iOS shuffles it by id). */
+    @Test
+    fun peggingLegalPlayAnswerPositionVariesAcrossEverySlot() {
+        val positions = EndlessPractice.items(PracticeSkill.PEGGING, 90).map { it.answerIndex }.toSet()
+        assertEquals("the answer only ever sat in slots $positions", setOf(0, 1, 2), positions)
     }
 
     @Test
