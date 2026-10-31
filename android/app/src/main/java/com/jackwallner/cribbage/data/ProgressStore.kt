@@ -63,6 +63,9 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
     private fun bumpStreak() {
         val today = clock.today()
         val last = defaults.getString(Keys.LAST_ACTIVE_DAY)?.let(LocalDate::parse)
+        // The clock went backwards (travel, a manual change). Keep the later day
+        // so it is not counted twice on the way back.
+        if (last != null && today.isBefore(last)) return
         streakCount = when {
             last == null -> 1
             ChronoUnit.DAYS.between(last, today) == 1L -> streakCount + 1
