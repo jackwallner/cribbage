@@ -1,1 +1,1 @@
-새로운 무한 연습 2가지: Count the Hand와 Pegging Points, 모든 점수를 설명합니다. Your Progress에서 자주 놓치는 기술을 알려 주며, Send Feedback, 동작 줄이기 지원, 더 명확한 멤버십 약관도 추가되었습니다.
+Cribbage Trainer를 원활하게 사용할 수 있도록 내부 개선과 버그를 수정했습니다. 함께해 주셔서 감사합니다.

@@ -1,1 +1,1 @@
-Dues habilitats noves sense fi: Count the Hand i Pegging Points, amb cada punt explicat. Your Progress indica les habilitats que falles, a més de Send Feedback, compatibilitat amb Reduir el moviment i condicions de subscripció més clares.
+Millores internes i correccions d'errors perquè Cribbage Trainer funcioni bé. Gràcies per ser aquí.

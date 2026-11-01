@@ -1,1 +1,1 @@
-兩項全新無限練習：Count the Hand 和 Pegging Points，每一分都有講解。Your Progress 會指出你容易出錯的技能，另有 Send Feedback、支援「減少動態效果」，以及更清楚的會員條款。
+進行了背景優化與錯誤修復，讓 Cribbage Trainer 運行更順暢。感謝一路有你。

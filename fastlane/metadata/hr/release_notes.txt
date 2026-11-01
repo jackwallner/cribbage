@@ -1,1 +1,1 @@
-Dvije nove beskrajne vještine: Count the Hand i Pegging Points, sa svakim bodom objašnjenim. Your Progress navodi vještine u kojima griješite, uz Send Feedback, podršku za Smanjenje pokreta i jasnije uvjete članstva.
+Poboljšanja u pozadini i ispravci grešaka kako bi Cribbage Trainer radio glatko. Hvala što ste tu.

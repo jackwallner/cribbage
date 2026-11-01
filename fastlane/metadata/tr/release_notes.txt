@@ -1,1 +1,1 @@
-İki yeni sonsuz beceri: Count the Hand ve Pegging Points, her puan açıklamalı. Your Progress kaçırdığın becerileri gösterir; ayrıca Send Feedback, Hareketi Azalt desteği ve daha net üyelik koşulları.
+Cribbage Trainer'ın sorunsuz çalışması için arka planda iyileştirmeler ve hata düzeltmeleri. Burada olduğun için teşekkürler.

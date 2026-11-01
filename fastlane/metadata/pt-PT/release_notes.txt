@@ -1,1 +1,1 @@
-Duas novas competências sem fim: Count the Hand e Pegging Points, com cada ponto explicado. Your Progress indica as competências em que falha, além de Send Feedback, suporte para Reduzir movimento e condições de subscrição mais claras.
+Melhorias nos bastidores e correções de erros para o Cribbage Trainer funcionar melhor. Obrigado por estar aqui.

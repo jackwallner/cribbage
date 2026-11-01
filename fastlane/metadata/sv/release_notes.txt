@@ -1,1 +1,1 @@
-Två nya oändliga färdigheter: Count the Hand och Pegging Points, med varje poäng förklarad. Your Progress visar färdigheterna du missar, plus Send Feedback, stöd för Minska rörelse och tydligare medlemsvillkor.
+Förbättringar bakom kulisserna och buggfixar så att Cribbage Trainer fungerar smidigt. Tack för att du är här.

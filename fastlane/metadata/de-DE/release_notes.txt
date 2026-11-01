@@ -1,7 +1,1 @@
-Zählen, peggen, verbessern.
-
-Count the Hand teilt endlos Blätter mit Starter aus. Zähle Fünfzehner, Paare, Sequenzen, Flushes und Nobs und sieh, woher jeder Punkt kommt.
-
-Bei Pegging Points legst du eine Karte auf den Stapel und wertest sie: fünfzehn, einunddreißig, Paare und Sequenzen.
-
-Your Progress nennt jetzt die Fähigkeiten, die dir fehlen, und die Startseite zählt die Fragen, die du diese Woche gefestigt hast. Außerdem neu: Send Feedback in den Einstellungen, Unterstützung für „Bewegung reduzieren“ und klarere Angaben zur Mitgliedschaft.
+Verbesserungen und Fehlerbehebungen im Hintergrund, damit Cribbage Trainer reibungslos läuft. Danke, dass du dabei bist.

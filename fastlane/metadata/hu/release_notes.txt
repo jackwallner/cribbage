@@ -1,1 +1,1 @@
-Két új, végtelen készség: Count the Hand és Pegging Points, minden pont magyarázatával. A Your Progress megnevezi a hibázott készségeket, továbbá Send Feedback, a Mozgás csökkentése támogatása és világosabb tagsági feltételek.
+Háttérbeli fejlesztések és hibajavítások, hogy a Cribbage Trainer gördülékenyen működjön. Köszönjük, hogy itt vagy.

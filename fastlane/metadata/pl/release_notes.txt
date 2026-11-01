@@ -1,1 +1,1 @@
-Dwie nowe nieskończone umiejętności: Count the Hand i Pegging Points, z wyjaśnieniem każdego punktu. Your Progress wskazuje umiejętności, w których się mylisz, a do tego Send Feedback, obsługa Ograniczania ruchu i jaśniejsze warunki subskrypcji.
+Ulepszenia w tle i poprawki błędów, aby Cribbage Trainer działał płynnie. Dziękujemy, że jesteś.
