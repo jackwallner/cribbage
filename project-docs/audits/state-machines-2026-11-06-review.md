@@ -1,0 +1,48 @@
+# Review of the state machine audit (2026-11-06)
+
+Independent review of `state-machines-2026-11-06.md` and its repro suite. Every claim was re-read against the code at `39bc841` (app code unchanged since the audit commit `dd3bc02`; the audit's stated commit `7951326` does not exist in this history). Nothing was fixed.
+
+**Summary: 4 claims. 1 CONFIRMED (S1, impact understated), 1 CONFIRMED-MINOR (U1), 0 NOT A BUG, 2 UNVERIFIED (R1, R2). Outright false positives: 0 of 4. Claims whose stated route, impact or "proved" status was wrong: 4 of 4.**
+
+Test run: `gh-sim test --only CribbageTrainerTests/StateMachineAuditRepro --only CribbageTrainerTests/StateMachineAuditReviewChecks`, GitHub Actions run 42295524673 (gh-sim id `cribbage@20261106-130938-1b59-claude-mbpro9c01-1106-131740-4890`, Xcode 27.1, iPhone 17, iOS 27.2): 6 passed, 8 failed. All 4 audit controls and both reviewer controls passed; the 5 audit `testBUG_*` cases failed with the same values the audit recorded, and the 3 reviewer checks failed as predicted. The repro suite was rerun unchanged; the reviewer's checks (temporary, not committed) add a westward consecutive-day streak test, a Get Started test after a westward move, and an R2 re-enable test with a fake center that captures the trigger.
+
+## Claims
+
+| id | verdict | user route | impact | evidence |
+|---|---|---|---|---|
+| S1 | CONFIRMED, raise to rank 1 | Any device. Finish a drill on day D, move to a zone with a smaller UTC offset (New York to Los Angeles, or even Chicago to Denver), open the app on D+1: Home's streak chip reads 0, and finishing a drill sets the streak to 1. The audit's route (practice twice on one day across Tokyo and LA) is real but is the mild side of the same bug. | The audit called it "frequent travelers only, rare; streak inflated by one". The bigger effect is a lost streak on the most ordinary trip, a westward flight with practice the day before and the day after. Streak loss is the costliest outcome for a retention chip. Also Get Started re-opens on the same evening after a westward move (`quickSessionCompletedToday`). Eastward moves are fine. | `ProgressStore.swift:105,122` stores `startOfDay` as an instant; `:87-101` reads it back in the current zone, so after a westward move the stored day becomes the previous date. `currentStreak` `:75-78` returns 0 when that gap reaches 2, read by `HomeView.swift:351`, `StatsView.swift:231`, `DrillCompleteView.swift:55`. Same shape at `:145-152` read by `HomeView.swift:193`. Tests: the audit's `testBUG_S1` reproduced (`("2") is not equal to ("1")`). Reviewer `testFAIL_S1_westwardConsecutiveDaysKeepStreak` (Mon 20:00 New York, Tue 20:00 Los Angeles): `currentStreak` `("0") is not equal to ("1")` and after the drill `("1") is not equal to ("2")`. `testFAIL_S1_quickSessionStaysDoneAfterWestwardMove`: Get Started reads not done 4 hours later on the same Monday. Control `testOK_S1_eastwardConsecutiveDaysKeepStreak` passed. |
+| U1 | CONFIRMED-MINOR | Any device. Home > The Pegging Room (free, `DrillLibrary.swift:89-101`) > Pegging Judgment. Pick a choice (graded and recorded at once), tap Next, tap Undo (top right), pick again. Plain cards: tap to flip, swipe left (AGAIN), Undo, flip, swipe right. The audit's route says choice cards are flipped by tapping and swiped; in fact the pick flips the card and swiping is blocked until Next (`FlashcardDrillView.swift:245-247,293-298,481-484`). | Undo is mostly used after a mis-swipe, so the common case is AGAIN, Undo, KNEW IT: the item keeps one miss, stays in the review queue for one extra day and accuracy drops. Right, Undo, right marks the item known after one real pass. `ProgressStore` sets end in the right state; only `PracticeRecordStore` is wrong. Low cost, a few percent of deck sessions at most. | `undo()` `FlashcardDrillView.swift:362-374` touches only view state; `choose()` `:235-236` and `commit()` `:347-348` record before it. `PracticeRecordStore.record` `:86-114` always adds an attempt. Review queue `:188` uses `needsReview` `:31`; known needs `streak >= 2` (`Mastery.swift:93-94`). The audit's U1 tests call the store twice and prove only the store arithmetic; the view part rests on the code, which leaves no doubt (no store call in `undo()`). Rerun: `testBUG_U1a` failed (`an undone answer should not count toward known`), `testBUG_U1b` failed (`attempts=2`), control passed. |
+| R1 | UNVERIFIED | No route established. The flag-ON, nothing-pending state needs iOS to drop pending local notifications while keeping UserDefaults (backup restore or Quick Start). Whether it does was not tested by the audit and cannot be tested headless. The audit's other route, permission revoked in iOS Settings, is not a bug: the user turned notifications off themselves, pending requests are kept, and the toggle keeping the player's choice is standard. The audit's "later regrants" loss assumes pending requests are dropped on revoke, also unverified. | If restore does drop them: every reminder user who moves to a new phone silently loses the reminder, with the toggle ON. Plausible but unproven. | Code fact is right: `AppSettings.init` `:132-149` schedules nothing, scheduling happens only at `:166,201` (toggle) and `:99,117,126` (edits). The cited promise is misread: `AppSettings.swift:89-91` explains why the alert exists when a toggle request is denied; it does not promise the toggle mirrors iOS state. `testBUG_R1` asserts the auditor's proposed fix (reschedule at launch), not a user-visible failure. Rerun: `added=[]` for both reminders, as recorded. Settles it: on a device, enable the reminder, back up, restore to a second device, open the app, read `getPendingNotificationRequests` (or wait for 9:00). The game night toggle is in Game Night Prep (`GameNightPrepView.swift:83`), not Settings. |
+| R2 | UNVERIFIED (likely real, minor) | Any device. Daily Reminder ON, app suspended (not terminated), device time zone changes, open Settings (gear on Home) > Practice: the Reminder Time picker shows a different time. Toggling the reminder off and on, or for game night changing the day, then schedules the shifted time while the stored hour keeps the old one; the next relaunch shows the old time but fires at the new one. | Travelers with a reminder, a live process across the change, and a visit to Settings or Game Night Prep. Rare. Display only unless they re-toggle. | `AppSettings.swift:140,146-148` builds a year-1 `Date` from the stored hour in the launch zone; `:96,123,184,220` read it back through `Calendar.current`. `SettingsView.swift:103` and `GameNightPrepView.swift:92-96` render that instant in the view's zone. The test changes `NSTimeZone.default`; it does not prove that a live process and SwiftUI's DatePicker pick up a system zone change (Apple documents `systemTimeZone` as cached until `resetSystemTimeZone`). So the display claim needs a device. The audit's `testBUG_R2` reproduced (`("15") is not equal to ("9")`). Reviewer `testFAIL_R2_reenableAfterZoneChangeSchedulesStoredHour` (Tokyo to Los Angeles, toggle off and on): the new trigger is 15:48, not 9:00, with the stored hour still 9; control in one zone schedules 9. That proves the consequence given a zone change the process sees. Settles it: on a device or simulator, enable the reminder, background the app, change Date & Time zone, foreground, read the picker. |
+
+## What survived, ranked
+
+1. **S1** (CONFIRMED). Westward moves lose a streak a day early and can reopen Get Started. Fix 3 in the audit (persist a zone-free day) covers both.
+2. **U1** (CONFIRMED-MINOR). Flashcard Undo keeps the undone answer in `PracticeRecordStore`.
+3. **R2** (UNVERIFIED, likely). Picker and re-scheduling drift after a live zone change.
+4. **R1** (UNVERIFIED). Reminders not reconciled at launch; only matters if iOS drops pending requests on restore.
+
+The audit ranked R1 first because "the UI affirms it is on". That ranking rests on an unverified iOS behaviour, while S1's worse case (a broken streak after a domestic flight) is certain and was missed.
+
+## Product calls
+
+Agree with all six as product calls, not bugs. Notes:
+- Fix My Mistakes Close after partial answers (`PracticeRunView.swift:160,322-334`): agree, the zero-attempt guard is the only documented rule.
+- `loadOfferings` (`SubscriptionService.swift:252-255`): agree it is not counted; it needs a RevenueCat fixture to show a user-visible effect.
+- Today computed in `body`: agree, not reproduced.
+
+## Missed state bugs in scope
+
+- S1's streak-loss direction (above) and the same zone shift in `quickSessionCompletedToday` re-opening Get Started on the same evening (the audit named the shape but not the user effect).
+- R2 also applies to the game night reminder (`GameNightPrepView.swift:92-96`, `AppSettings.swift:146-148,220`); changing the game night day after a live zone change reschedules at the shifted hour.
+
+No serious missed bug found.
+
+## Method changes
+
+- Test both directions of a time zone change. The audit tested the westward same-day case and called it inflation only; the westward next-day case breaks the streak.
+- Do not mark a claim "proved by test" when the test sets up a state (flag ON, nothing pending) whose real-world cause is unverified. Label it "code fact proved, route unverified".
+- Quote a doc comment only for what it says. `AppSettings.swift:89-91` explains the denial alert, not a sync promise.
+- Walk the route against the controls that show in that state (choice cards advance with Next, not a swipe; the game night toggle is not in Settings).
+- When a test fakes the platform (`NSTimeZone.default`), state which platform behaviour it assumes and whether the real UI follows it.
+- Record the commit actually reviewed.
