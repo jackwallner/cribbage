@@ -8,3 +8,4 @@ Developer notes and historical audits for this repository. The published site re
 - [audit823.md](audits/audit823.md): Cribbity / Cribbage Trainer audit
 - [ios27CribbageTrainer.md](audits/ios27CribbageTrainer.md): iOS 27 compatibility audit: Cribbage Trainer
 - [mahj-parity-audit-2026-10.md](audits/mahj-parity-audit-2026-10.md): Practice-loop feature audit against the Mahj reference, with fixes
+- [state-machines-2026-11-06.md](audits/state-machines-2026-11-06.md): State machine audit: reminders, streak time zones and flashcard undo bugs, with repro tests (state-machines-2026-11-06-repro.swift)
