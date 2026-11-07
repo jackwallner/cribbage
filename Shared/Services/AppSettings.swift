@@ -91,14 +91,23 @@ final class AppSettings: ObservableObject {
     /// looks like the app is broken.
     @Published var reminderPermissionDenied = false
 
-    @Published var reminderTime: Date {
-        didSet {
-            let parts = Calendar.current.dateComponents([.hour, .minute], from: reminderTime)
+    /// The picker's value, built from the stored hour and minute each time it
+    /// is read. A `Date` kept from launch was an instant in the launch zone, so
+    /// after a time zone change the picker showed another hour, and toggling
+    /// the reminder off and on scheduled that hour.
+    var reminderTime: Date {
+        get { Self.time(hour: reminderHour, minute: reminderMinute) }
+        set {
+            objectWillChange.send()
+            let parts = Calendar.current.dateComponents([.hour, .minute], from: newValue)
             defaults.set(parts.hour ?? 9, forKey: Keys.reminderHour)
             defaults.set(parts.minute ?? 0, forKey: Keys.reminderMinute)
             if reminderEnabled { scheduleReminder() }
         }
     }
+
+    private var reminderHour: Int { defaults.object(forKey: Keys.reminderHour) as? Int ?? 9 }
+    private var reminderMinute: Int { defaults.object(forKey: Keys.reminderMinute) as? Int ?? 0 }
 
     @Published var gameNightReminderEnabled: Bool {
         didSet {
@@ -118,13 +127,23 @@ final class AppSettings: ObservableObject {
         }
     }
 
-    @Published var gameNightReminderTime: Date {
-        didSet {
-            let parts = Calendar.current.dateComponents([.hour, .minute], from: gameNightReminderTime)
+    /// Built from the stored hour and minute on every read, like `reminderTime`.
+    var gameNightReminderTime: Date {
+        get { Self.time(hour: gameNightHour, minute: gameNightMinute) }
+        set {
+            objectWillChange.send()
+            let parts = Calendar.current.dateComponents([.hour, .minute], from: newValue)
             defaults.set(parts.hour ?? 17, forKey: Keys.gameNightHour)
             defaults.set(parts.minute ?? 0, forKey: Keys.gameNightMinute)
             if gameNightReminderEnabled { scheduleGameNightReminder() }
         }
+    }
+
+    private var gameNightHour: Int { defaults.object(forKey: Keys.gameNightHour) as? Int ?? 17 }
+    private var gameNightMinute: Int { defaults.object(forKey: Keys.gameNightMinute) as? Int ?? 0 }
+
+    private static func time(hour: Int, minute: Int) -> Date {
+        Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) ?? Date()
     }
 
     private let defaults: UserDefaults
@@ -135,17 +154,9 @@ final class AppSettings: ObservableObject {
         hapticsEnabled = defaults.object(forKey: Keys.haptics) as? Bool ?? true
         soundEnabled = defaults.object(forKey: Keys.sound) as? Bool ?? true
         reminderEnabled = defaults.bool(forKey: Keys.reminderEnabled)
-        let hour = defaults.object(forKey: Keys.reminderHour) as? Int ?? 9
-        let minute = defaults.object(forKey: Keys.reminderMinute) as? Int ?? 0
-        reminderTime = Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) ?? Date()
         gameNightReminderEnabled = defaults.bool(forKey: Keys.gameNightReminderEnabled)
         let savedDay = defaults.integer(forKey: Keys.gameNightDay)
         gameNightDay = GameNightDay(rawValue: savedDay) ?? .thursday
-        let gameHour = defaults.object(forKey: Keys.gameNightHour) as? Int ?? 17
-        let gameMinute = defaults.object(forKey: Keys.gameNightMinute) as? Int ?? 0
-        gameNightReminderTime = Calendar.current.date(
-            from: DateComponents(hour: gameHour, minute: gameMinute)
-        ) ?? Date()
     }
 
     // MARK: - Reminder copy
@@ -181,8 +192,7 @@ final class AppSettings: ObservableObject {
         content.body = Self.dailyReminderBody
         content.sound = .default
 
-        var parts = Calendar.current.dateComponents([.hour, .minute], from: reminderTime)
-        parts.second = 0
+        let parts = DateComponents(hour: reminderHour, minute: reminderMinute, second: 0)
         let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: true)
         center.add(UNNotificationRequest(identifier: Self.reminderID, content: content, trigger: trigger))
     }
@@ -217,12 +227,9 @@ final class AppSettings: ObservableObject {
         content.sound = .default
         content.userInfo = [AppNotification.routeKey: AppNotification.gameNightPrepValue]
 
-        let time = Calendar.current.dateComponents([.hour, .minute], from: gameNightReminderTime)
-        var parts = DateComponents()
-        parts.weekday = gameNightDay.rawValue
-        parts.hour = time.hour
-        parts.minute = time.minute
-        parts.second = 0
+        let parts = DateComponents(
+            hour: gameNightHour, minute: gameNightMinute, second: 0, weekday: gameNightDay.rawValue
+        )
         let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: true)
         center.add(UNNotificationRequest(identifier: Self.gameNightReminderID, content: content, trigger: trigger))
     }
