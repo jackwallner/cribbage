@@ -179,5 +179,75 @@ final class ProgressStoreTests: XCTestCase {
         }
     }
 
+    // MARK: - Time zone changes
+
+    private func inZone(_ identifier: String) {
+        NSTimeZone.default = TimeZone(identifier: identifier)!
+    }
+
+    private func utc(_ iso: String) -> Date {
+        ISO8601DateFormatter().date(from: iso)!
+    }
+
+    /// A day stored as a start-of-day instant read back after a flight west
+    /// named the previous date: practice Monday evening in New York and
+    /// Tuesday evening in Los Angeles read as a missed day.
+    func testWestwardTravelOnConsecutiveDaysKeepsTheStreak() {
+        let saved = NSTimeZone.default
+        defer { NSTimeZone.default = saved }
+        inZone("America/New_York")
+        store.recordSession(drillID: "a", now: utc("2026-11-03T01:00:00Z"))  // Mon 20:00 New York
+        inZone("America/Los_Angeles")
+        let tuesday = utc("2026-11-04T04:00:00Z")  // Tue 20:00 Los Angeles
+        XCTAssertEqual(store.currentStreak(now: tuesday), 1, "Tuesday is still open")
+        store.recordSession(drillID: "a", now: tuesday)
+        XCTAssertEqual(store.streakCount, 2)
+    }
+
+    /// Monday in Tokyo, then Monday again in Los Angeles: one calendar day.
+    func testOneCalendarDayAcrossAWestwardMoveCountsOnce() {
+        let saved = NSTimeZone.default
+        defer { NSTimeZone.default = saved }
+        inZone("Asia/Tokyo")
+        store.recordSession(drillID: "a", now: utc("2026-11-02T14:00:00Z"))  // Mon 23:00 Tokyo
+        inZone("America/Los_Angeles")
+        store.recordSession(drillID: "a", now: utc("2026-11-03T02:00:00Z"))  // Mon 18:00 Los Angeles
+        XCTAssertEqual(store.streakCount, 1)
+    }
+
+    /// Get Started done Monday evening in New York stays done for the rest of
+    /// Monday in Los Angeles.
+    func testQuickSessionStaysDoneAfterAWestwardMove() {
+        let saved = NSTimeZone.default
+        defer { NSTimeZone.default = saved }
+        inZone("America/New_York")
+        store.markQuickSessionCompleted(now: utc("2026-11-03T02:00:00Z"))  // Mon 21:00 New York
+        inZone("America/Los_Angeles")
+        XCTAssertTrue(store.quickSessionCompletedToday(now: utc("2026-11-03T06:00:00Z")))  // Mon 22:00 Los Angeles
+        XCTAssertFalse(store.quickSessionCompletedToday(now: utc("2026-11-03T18:00:00Z")), "Tuesday is a new day")
+    }
+
+    /// Builds before this stored each day as a start-of-day `Date`. Upgraders
+    /// keep their streak and today's Get Started.
+    func testUpgradeFromStartOfDayInstantsKeepsStreakAndQuickSession() {
+        let saved = NSTimeZone.default
+        defer { NSTimeZone.default = saved }
+        inZone("America/Chicago")
+        let monday = utc("2026-11-02T20:00:00Z")  // Mon 14:00 Chicago
+        defaults.set(5, forKey: "progress.streakCount")
+        defaults.set(Calendar.current.startOfDay(for: monday), forKey: "progress.lastActiveDay")
+        defaults.set(Calendar.current.startOfDay(for: monday), forKey: "progress.lastQuickSessionDay")
+        let upgraded = ProgressStore(defaults: defaults)
+
+        XCTAssertTrue(upgraded.quickSessionCompletedToday(now: monday.addingTimeInterval(3600)))
+        let tuesday = monday.addingTimeInterval(86_400)
+        XCTAssertFalse(upgraded.quickSessionCompletedToday(now: tuesday))
+        XCTAssertEqual(upgraded.currentStreak(now: tuesday), 5)
+        XCTAssertEqual(upgraded.currentStreak(now: tuesday.addingTimeInterval(86_400)), 0)
+        upgraded.recordSession(drillID: "a", now: tuesday)
+        XCTAssertEqual(upgraded.streakCount, 6)
+        XCTAssertEqual(ProgressStore(defaults: defaults).currentStreak(now: tuesday), 6, "the new day survives a relaunch")
+    }
+
     // Rating-ask rules live in ReviewPromptTracker; see ReviewPromptTrackerTests.
 }
