@@ -21,6 +21,8 @@ struct FlashcardDrillView: View {
     @State private var lastSwipe: SwipeRecord?
     @State private var finished = false
     @State private var choicePick: Int?
+    /// The top card's choice answer, recorded at the pick and not yet swiped.
+    @State private var pickedAnswer: RecordedAnswer?
     @State private var confettiTrigger = 0
     /// Fades the departing card (and the KNEW IT / AGAIN stamp riding on it)
     /// out with the throw. Without it the card is simply yanked from the queue
@@ -34,6 +36,7 @@ struct FlashcardDrillView: View {
     private struct SwipeRecord {
         let card: Flashcard
         let gotIt: Bool
+        let answer: RecordedAnswer?
     }
 
     var body: some View {
@@ -232,8 +235,7 @@ struct FlashcardDrillView: View {
         guard let choice = card.choice, choicePick == nil, !isFlipped, !isFlinging else { return }
         choicePick = index
         let correct = index == choice.answerIndex
-        progress.recordItem(id: card.id, correct: correct)
-        PracticeRecordStore.shared.record(itemID: card.id, roomID: DrillLibrary.roomID(forDrillID: drill.id), correct: correct)
+        pickedAnswer = recordAnswer(card, correct: correct)
         if correct {
             confettiTrigger += 1
             Haptics.correctAnswer()
@@ -340,15 +342,17 @@ struct FlashcardDrillView: View {
         // the graded answer (not the swipe direction) decides whether the
         // card comes back. Plain cards grade by swipe.
         let knewIt: Bool
+        let answer: RecordedAnswer?
         if let choice = card.choice, let pick = choicePick {
             knewIt = pick == choice.answerIndex
+            answer = pickedAnswer
         } else {
             knewIt = gotIt
-            progress.recordItem(id: card.id, correct: gotIt)
-            PracticeRecordStore.shared.record(itemID: card.id, roomID: DrillLibrary.roomID(forDrillID: drill.id), correct: gotIt)
+            answer = recordAnswer(card, correct: gotIt)
         }
-        lastSwipe = SwipeRecord(card: card, gotIt: knewIt)
+        lastSwipe = SwipeRecord(card: card, gotIt: knewIt, answer: answer)
         choicePick = nil
+        pickedAnswer = nil
         queue.removeFirst()
         if !knewIt {
             queue.append(card)
@@ -362,8 +366,13 @@ struct FlashcardDrillView: View {
     private func undo() {
         guard let record = lastSwipe, !isFlinging else { return }
         Haptics.impact(.light)
+        // Undo takes the answers back too: a pick on the card now on top
+        // (it is cleared below and can be picked again), then the swipe's.
+        pickedAnswer?.undo(progress: progress, records: PracticeRecordStore.shared)
+        record.answer?.undo(progress: progress, records: PracticeRecordStore.shared)
         lastSwipe = nil
         choicePick = nil
+        pickedAnswer = nil
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             if !record.gotIt, queue.last?.id == record.card.id {
                 queue.removeLast()
@@ -371,6 +380,16 @@ struct FlashcardDrillView: View {
             queue.insert(record.card, at: 0)
             isFlipped = false
         }
+    }
+
+    private func recordAnswer(_ card: Flashcard, correct: Bool) -> RecordedAnswer {
+        RecordedAnswer.record(
+            itemID: card.id,
+            roomID: DrillLibrary.roomID(forDrillID: drill.id),
+            correct: correct,
+            progress: progress,
+            records: PracticeRecordStore.shared
+        )
     }
 
     /// One-time teaching beat: after the first-ever flip the card eases toward
