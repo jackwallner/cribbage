@@ -113,6 +113,21 @@ final class PracticeRecordStore: ObservableObject {
         persist()
     }
 
+    /// The stored row an answer to `itemID` lands on.
+    func record(forItemID itemID: String) -> PracticeRecord? {
+        records[Self.key(forItemID: itemID)]
+    }
+
+    /// Puts an item's row back as it was (nil removes it). Used by Undo.
+    func restore(itemID: String, to record: PracticeRecord?) {
+        records[Self.key(forItemID: itemID)] = record
+        persist()
+    }
+
+    private static func key(forItemID itemID: String) -> String {
+        PracticeSkill.skill(forItemID: itemID).map(\.rawValue) ?? itemID
+    }
+
     /// SM-2, trimmed to what a drill app needs: a miss resets the interval and
     /// costs ease, a hit multiplies the interval by the current ease.
     private func schedule(_ record: inout PracticeRecord, correct: Bool, now: Date) {
