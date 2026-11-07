@@ -98,4 +98,59 @@ final class ReminderSchedulingTests: XCTestCase {
         XCTAssertEqual(fake.lastTrigger(dailyID)?.minute, 30)
         XCTAssertEqual(AppSettings(defaults: defaults).reminderTime, settings.reminderTime, "survives a relaunch")
     }
+
+    // MARK: - Reconciling at launch
+
+    private func storeBothRemindersOn() {
+        defaults.set(true, forKey: "settings.reminderEnabled")
+        defaults.set(8, forKey: "settings.reminderHour")
+        defaults.set(15, forKey: "settings.reminderMinute")
+        defaults.set(true, forKey: "settings.gameNightReminderEnabled")
+        defaults.set(5, forKey: "settings.gameNightDay")
+        defaults.set(19, forKey: "settings.gameNightHour")
+    }
+
+    private func withNotifications(allowed: Bool, _ body: () async -> Void) async {
+        let saved = AppSettings.notificationsAllowed
+        AppSettings.notificationsAllowed = { allowed }
+        await body()
+        AppSettings.notificationsAllowed = saved
+    }
+
+    /// A launch with the toggles ON and nothing pending (a restore to a new
+    /// phone) used to schedule nothing while Settings read ON.
+    func testLaunchSchedulesRemindersThatAreOn() async {
+        storeBothRemindersOn()
+        await withNotifications(allowed: true) {
+            let settings = AppSettings(defaults: defaults)
+            XCTAssertEqual(fake.added, [], "precondition: init schedules nothing")
+            await settings.reconcileReminders()
+        }
+        XCTAssertEqual(fake.lastTrigger(dailyID)?.hour, 8)
+        XCTAssertEqual(fake.lastTrigger(dailyID)?.minute, 15)
+        XCTAssertEqual(fake.lastTrigger(gameNightID)?.weekday, 5)
+        XCTAssertEqual(fake.lastTrigger(gameNightID)?.hour, 19)
+    }
+
+    /// With notifications off in iOS Settings nothing is scheduled and the
+    /// player's choice is left alone.
+    func testLaunchWithNotificationsOffChangesNothing() async {
+        storeBothRemindersOn()
+        let settings = AppSettings(defaults: defaults)
+        await withNotifications(allowed: false) {
+            await settings.reconcileReminders()
+        }
+        XCTAssertEqual(fake.added, [])
+        XCTAssertTrue(settings.reminderEnabled)
+        XCTAssertTrue(settings.gameNightReminderEnabled)
+        XCTAssertFalse(settings.reminderPermissionDenied)
+    }
+
+    func testLaunchWithRemindersOffSchedulesNothing() async {
+        let settings = AppSettings(defaults: defaults)
+        await withNotifications(allowed: true) {
+            await settings.reconcileReminders()
+        }
+        XCTAssertEqual(fake.added, [])
+    }
 }

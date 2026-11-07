@@ -168,6 +168,30 @@ final class AppSettings: ObservableObject {
     static let dailyReminderBody = "Five minutes of practice keeps your discards calm and your count sharp."
     static let gameNightReminderBody = "Five personalized minutes now can make the table feel calmer later."
 
+    // MARK: - Launch
+
+    /// Whether iOS will deliver the app's notifications. Tests replace it.
+    static var notificationsAllowed: () async -> Bool = {
+        let status = await withCheckedContinuation { continuation in
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                continuation.resume(returning: settings.authorizationStatus)
+            }
+        }
+        return [.authorized, .provisional, .ephemeral].contains(status)
+    }
+
+    /// Schedules the reminders that are on, at launch and each return to the
+    /// app. The toggles live in UserDefaults, which can outlast iOS's pending
+    /// requests (a restore to a new phone), and then they read ON while
+    /// nothing fires. Requests are replaced by id, so this is a no-op when
+    /// they are already pending. The player's choice is never changed here.
+    func reconcileReminders() async {
+        guard reminderEnabled || gameNightReminderEnabled else { return }
+        guard await Self.notificationsAllowed() else { return }
+        if reminderEnabled { scheduleReminder() }
+        if gameNightReminderEnabled { scheduleGameNightReminder() }
+    }
+
     // MARK: - Daily reminder
 
     private func requestPermissionAndSchedule() {
