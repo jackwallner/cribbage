@@ -1,0 +1,17 @@
+{
+  "project": "CribbageTrainerUITests.xcodeproj",
+  "scheme": "CribbageTrainerUITests",
+  "uitests_dir": "CribbageTrainerUITests",
+  "journeys": [
+    "CribbageTrainerUITests/ReleaseJourneysUITests"
+  ],
+  "personas": [
+    "newcomer",
+    "accessibility",
+    "reduce-motion",
+    "german",
+    "duo"
+  ],
+  "persona_overrides": {},
+  "slot": null
+}
