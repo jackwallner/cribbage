@@ -19,6 +19,8 @@ enum Theme {
     /// cream and on a gold-tinted pill.
     static let goldText = Color(light: (0.52, 0.37, 0.08), dark: (0.88, 0.72, 0.38))
     /// Plum , Discard room identity.
+    /// Coral for small TEXT: the fill coral is about 3.4:1 on the tinted card.
+    static let coralText = Color(light: (0.68, 0.29, 0.19), dark: (0.94, 0.56, 0.45))
     static let plum = Color(light: (0.48, 0.28, 0.52), dark: (0.72, 0.53, 0.76))
 
     // MARK: Surfaces

@@ -544,6 +544,7 @@ struct HomeView: View {
             title: "Cribbage\nMinute",
             icon: "calendar.badge.clock",
             color: Theme.coral,
+            badgeColor: Theme.coralText,
             badge: minuteStore.result(for: Date()).map { "\($0.score)/\($0.total) today" } ?? "Daily"
         ) {
             CribbageMinuteView()
@@ -591,25 +592,26 @@ struct HomeView: View {
         title: String,
         icon: String,
         color: Color,
+        badgeColor: Color? = nil,
         badge: String?,
         @ViewBuilder destination: @escaping () -> Destination
     ) -> some View {
         let locked = !subscriptions.isPro
         if locked {
             Button { showPaywall = true } label: {
-                trainingTileLabel(title: title, icon: icon, color: color, badge: badge, locked: true)
+                trainingTileLabel(title: title, icon: icon, color: color, badgeColor: badgeColor ?? color, badge: badge, locked: true)
             }
             .buttonStyle(PressableCardStyle())
             .accessibilityHint("Included with \(Membership.name)")
         } else {
             NavigationLink { destination() } label: {
-                trainingTileLabel(title: title, icon: icon, color: color, badge: badge, locked: false)
+                trainingTileLabel(title: title, icon: icon, color: color, badgeColor: badgeColor ?? color, badge: badge, locked: false)
             }
             .buttonStyle(PressableCardStyle())
         }
     }
 
-    private func trainingTileLabel(title: String, icon: String, color: Color, badge: String?, locked: Bool) -> some View {
+    private func trainingTileLabel(title: String, icon: String, color: Color, badgeColor: Color, badge: String?, locked: Bool) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 4) {
                 Image(systemName: icon)
@@ -631,7 +633,7 @@ struct HomeView: View {
             if let badge {
                 Text(badge)
                     .font(.caption2.weight(.semibold))
-                    .foregroundStyle(color)
+                    .foregroundStyle(badgeColor)
             } else {
                 Text(locked ? Membership.name : " ")
                     .font(.caption2.weight(.semibold))
