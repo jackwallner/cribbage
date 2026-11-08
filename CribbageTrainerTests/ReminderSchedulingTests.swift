@@ -146,6 +146,15 @@ final class ReminderSchedulingTests: XCTestCase {
         XCTAssertFalse(settings.reminderPermissionDenied)
     }
 
+    /// The shipped authorization check, not the stand-in the other tests use.
+    /// iOS answers `getNotificationSettings` on a background queue; a callback
+    /// that inherited the main actor would trap there on every launch.
+    func testRealNotificationCheckAnswersOffTheMainQueue() async {
+        let allowed = await AppSettings.notificationsAllowed()
+        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        XCTAssertEqual(allowed, [.authorized, .provisional, .ephemeral].contains(status))
+    }
+
     func testLaunchWithRemindersOffSchedulesNothing() async {
         let settings = AppSettings(defaults: defaults)
         await withNotifications(allowed: true) {
