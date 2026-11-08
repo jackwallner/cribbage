@@ -98,7 +98,9 @@ final class ReleaseJourneysUITests: XCTestCase {
     }
 
     func testInterruptedSessionKeepsItsAnswer() {
-        QA.launch(app, arguments: onboarded)
+        // The core-loop journey spends today's session on the shared install;
+        // the launch argument shadows the stored day so Get Started is offered.
+        QA.launch(app, arguments: onboarded + ["-progress.lastQuickSessionDayNumber", "0"])
         startSession()
         QA.checkpoint(app, "session-question")
 
