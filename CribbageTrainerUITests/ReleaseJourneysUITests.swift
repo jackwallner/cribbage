@@ -1,0 +1,224 @@
+import XCTest
+
+/// Release-gate journeys (qa-gate). They prove screens are reachable and the
+/// core loop survives a relaunch; FleetQA's oracles judge what is on screen.
+///
+/// RevenueCat is never configured on a simulator, so the paywalls draw without
+/// live prices here. Nothing in this file reaches the production `appl_` key.
+@MainActor
+final class ReleaseJourneysUITests: XCTestCase {
+    private var app: XCUIApplication!
+
+    /// Past onboarding, the primer and What's New, so a journey starts on Home.
+    private let onboarded = [
+        "-progress.hasOnboarded", "YES",
+        "-cribbage.hasReadPrimer", "YES",
+        "-cribbage.skillLevel", "some",
+        "-cribbage.suppressWhatsNew",
+    ]
+
+    override func setUp() {
+        continueAfterFailure = false
+        // By bundle id: the target name differs from PRODUCT_NAME.
+        app = XCUIApplication(bundleIdentifier: "com.jackwallner.cribbage")
+    }
+
+    // MARK: - Journeys
+
+    func testFirstRunToFirstQuestion() {
+        QA.launch(app, arguments: ["-cribbage.suppressWhatsNew"])
+        XCTAssertTrue(app.buttons["Continue"].waitForExistence(timeout: 20), "onboarding did not appear")
+        QA.checkpoint(app, "onboarding-welcome")
+
+        for page in 2...3 {
+            tap("Continue")
+            QA.checkpoint(app, "onboarding-page-\(page)")
+        }
+        tap("Continue")
+        XCTAssertTrue(label("Where are you starting from?").waitForExistence(timeout: 10))
+        QA.checkpoint(app, "onboarding-skill-level")
+
+        tap("Brand new", prefix: true)
+        tap("Continue")
+        XCTAssertTrue(app.buttons["Get Started"].waitForExistence(timeout: 10), "trial page did not appear")
+        QA.checkpoint(app, "onboarding-trial-pitch")
+
+        tap("Get Started")
+        for step in 1...8 {
+            if app.buttons["Take your seat"].exists { break }
+            tap("Continue")
+            QA.checkpoint(app, "primer-\(step)")
+        }
+        tap("Take your seat")
+        QA.checkpoint(app, "tour-first-page")
+
+        for step in 1...8 {
+            if app.buttons["Start my first session"].exists { break }
+            tap("Show me")
+            QA.checkpoint(app, "tour-\(step)")
+        }
+        tap("Start my first session")
+        XCTAssertTrue(counter().waitForExistence(timeout: 15), "the first question did not appear")
+        QA.checkpoint(app, "first-question")
+
+        tap("Close")
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 15), "Home did not appear")
+        QA.checkpoint(app, "home-after-first-run")
+    }
+
+    func testPaywallShownAndDismissed() {
+        QA.launch(app, arguments: onboarded)
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 20))
+        QA.checkpoint(app, "home")
+
+        let upgrade = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Get Cribbage+")).firstMatch
+        reveal(upgrade)
+        upgrade.tap()
+        XCTAssertTrue(app.buttons["Close"].waitForExistence(timeout: 10), "the paywall did not appear")
+        QA.checkpoint(app, "paywall")
+
+        app.buttons["Close"].tap()
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 10), "Home did not return")
+        QA.checkpoint(app, "paywall-dismissed")
+    }
+
+    func testReturnVisitOpensARoom() {
+        QA.launch(app, arguments: onboarded)
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 20))
+        QA.relaunch(app)
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 20), "Home did not return on a second launch")
+        QA.checkpoint(app, "home-return-visit")
+
+        let room = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "The Scoring Room")).firstMatch
+        reveal(room)
+        room.tap()
+        XCTAssertTrue(app.navigationBars.firstMatch.waitForExistence(timeout: 10), "the room did not open")
+        XCTAssertFalse(app.staticTexts["THE ROOMS"].exists, "still on Home after opening a room")
+        QA.checkpoint(app, "room")
+    }
+
+    func testInterruptedSessionKeepsItsAnswer() {
+        QA.launch(app, arguments: onboarded)
+        startSession()
+        QA.checkpoint(app, "session-question")
+
+        answerCurrentQuestion()
+        XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 10))
+        QA.checkpoint(app, "session-answered")
+
+        QA.interrupt(app)
+        XCTAssertEqual(app.state, .runningForeground)
+        XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 10), "the graded question was lost after backgrounding")
+        QA.checkpoint(app, "session-after-interrupt")
+
+        app.buttons["Next"].tap()
+        XCTAssertTrue(counter().waitForExistence(timeout: 10), "the session did not continue")
+        QA.checkpoint(app, "session-second-question")
+    }
+
+    /// The app's main job: finish a Get Started session and have it count.
+    func testCoreLoopSessionCountsAndSurvivesRelaunch() {
+        QA.launch(app, arguments: onboarded)
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 20))
+        XCTAssertFalse(home("Today's session is done").exists, "a fresh install already has a finished session")
+        XCTAssertTrue(home("0 drills done").exists, "a fresh install should start at zero drills")
+
+        startSession()
+        QA.checkpoint(app, "session-first-question")
+
+        var answered = 0
+        while true {
+            let (index, total) = progress()
+            answerCurrentQuestion()
+            answered += 1
+            if answered == 1 { QA.checkpoint(app, "session-first-answered") }
+            let last = index == total
+            let advance = app.buttons[last ? "Finish" : "Next"]
+            XCTAssertTrue(advance.waitForExistence(timeout: 10), "no \(last ? "Finish" : "Next") after question \(index)")
+            if last { QA.checkpoint(app, "session-last-answered") }
+            advance.tap()
+            if last { break }
+            XCTAssertTrue(counter().waitForExistence(timeout: 10), "question \(index + 1) did not appear")
+        }
+        XCTAssertGreaterThan(answered, 1, "the session had a single question")
+
+        let score = app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "\\d+/\\d+")).firstMatch
+        XCTAssertTrue(score.waitForExistence(timeout: 10), "the finished session showed no score")
+        XCTAssertTrue(score.label.hasSuffix("/\(answered)"), "the score \(score.label) does not match \(answered) questions")
+        XCTAssertTrue(app.staticTexts["1-day streak"].exists, "the completion screen did not show the streak")
+        QA.checkpoint(app, "session-complete")
+
+        app.buttons["Done"].tap()
+        XCTAssertTrue(home("Today's session is done").waitForExistence(timeout: 15), "Home still offers today's session")
+        XCTAssertTrue(home("1 drills done").exists, "the finished session was not counted")
+        XCTAssertTrue(home("1 day streak").exists, "the streak did not start")
+        QA.checkpoint(app, "home-after-session")
+
+        QA.relaunch(app)
+        XCTAssertTrue(app.staticTexts["THE ROOMS"].waitForExistence(timeout: 20))
+        XCTAssertTrue(home("Today's session is done").waitForExistence(timeout: 10), "today's session reset after relaunch")
+        XCTAssertTrue(home("1 drills done").exists, "the drill count did not survive relaunch")
+        XCTAssertTrue(home("1 day streak").exists, "the streak did not survive relaunch")
+        QA.checkpoint(app, "home-after-relaunch")
+    }
+
+    // MARK: - Helpers
+
+    private func label(_ text: String) -> XCUIElement {
+        app.staticTexts[text]
+    }
+
+    /// Any element on Home carrying this exact label (the stat chips merge into one link).
+    private func home(_ text: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", text)).firstMatch
+    }
+
+    private func tap(_ text: String, prefix: Bool = false, timeout: TimeInterval = 10) {
+        let button = prefix
+            ? app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", text)).firstMatch
+            : app.buttons[text]
+        XCTAssertTrue(button.waitForExistence(timeout: timeout), "no button \(text)")
+        button.tap()
+    }
+
+    /// Scrolls Home until the element is on screen.
+    private func reveal(_ element: XCUIElement) {
+        XCTAssertTrue(element.waitForExistence(timeout: 10), "element not found")
+        for _ in 0..<6 where !element.isHittable {
+            QA.swipe(app.scrollViews.firstMatch, .up)
+        }
+        XCTAssertTrue(element.isHittable, "element could not be scrolled into view")
+    }
+
+    private func startSession() {
+        let card = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Get Started")).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 20), "Home has no Get Started card")
+        card.tap()
+        XCTAssertTrue(counter().waitForExistence(timeout: 15), "the session did not start")
+    }
+
+    /// The "3 of 10" label under the open question.
+    private func counter() -> XCUIElement {
+        app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "\\d+ of \\d+")).firstMatch
+    }
+
+    private func progress() -> (index: Int, total: Int) {
+        let parts = counter().label.components(separatedBy: " of ").compactMap { Int($0) }
+        XCTAssertEqual(parts.count, 2, "unreadable progress label \(counter().label)")
+        return (parts.first ?? 0, parts.last ?? 0)
+    }
+
+    /// Taps the first answer row: the buttons between the navigation bar and the counter.
+    private func answerCurrentQuestion() {
+        let top = app.navigationBars.firstMatch.frame.maxY
+        let bottom = counter().frame.minY
+        let rows = app.buttons.allElementsBoundByIndex.filter {
+            !$0.label.isEmpty && $0.frame.minY >= top && $0.frame.maxY <= bottom
+        }
+        guard let row = rows.first else {
+            XCTFail("no answer row on screen")
+            return
+        }
+        row.tap()
+    }
+}

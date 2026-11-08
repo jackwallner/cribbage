@@ -1,5 +1,5 @@
 {
-  "project": "CribbageTrainerUITests.xcodeproj",
+  "project": "CribbageTrainer.xcodeproj",
   "scheme": "CribbageTrainerUITests",
   "uitests_dir": "CribbageTrainerUITests",
   "journeys": [
