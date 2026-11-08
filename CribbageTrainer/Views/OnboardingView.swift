@@ -541,11 +541,16 @@ struct OnboardingView: View {
             ? AnyLayout(VStackLayout(spacing: 8))
             : AnyLayout(HStackLayout(spacing: 14))
         return layout {
+            // 44pt hit areas that keep the 20pt slot: the frozen CTA geometry
+            // must not move, so the extra height is cancelled with padding.
             Link("Terms", destination: PaywallLinks.terms)
+                .legalHitArea()
             Link("Privacy", destination: PaywallLinks.privacy)
+                .legalHitArea()
             Button("Restore") {
                 restorePurchases()
             }
+            .legalHitArea()
         }
         .font(.caption2)
         .foregroundStyle(Theme.inkTertiary)
@@ -707,5 +712,14 @@ private struct ContentFit: Layout {
         let centre = CGPoint(x: bounds.midX, y: bounds.midY)
         subviews[0].place(at: centre, anchor: .center, proposal: ProposedViewSize(width: bounds.width, height: nil))
         subviews[1].place(at: centre, anchor: .center, proposal: ProposedViewSize(bounds.size))
+    }
+}
+
+private extension View {
+    func legalHitArea() -> some View {
+        self
+            .frame(minWidth: 44, minHeight: 44)
+            .contentShape(Rectangle())
+            .padding(.vertical, -12)
     }
 }
