@@ -8,7 +8,7 @@
 
 ## Guides
 
-- [Best Cribbage App for iPhone (2026): 5 Compared](https://jackwallner.com/ios/cribbage/best-cribbage-app.html.md): The best cribbage apps for iPhone and iPad compared in October 2026: full games, discard analyzers, hand scorers and drills, with each one's trade-offs.
+- [Best Cribbage App for iPhone (2026): 5 Compared](https://jackwallner.com/ios/cribbage/best-cribbage-app.html.md): The best cribbage apps for iPhone and iPad compared in November 2026: full games, discard analyzers, hand scorers and drills, with each one's trade-offs.
 - [How to Count a Cribbage Hand | Cribbage Trainer](https://jackwallner.com/ios/cribbage/how-to-count-a-cribbage-hand.html.md): How to count a cribbage hand step by step: fifteens, pairs, runs, flush and nobs, five worked examples, the 29 hand, and the scores that cannot happen.
 
 ## Optional

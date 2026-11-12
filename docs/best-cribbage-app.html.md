@@ -6,7 +6,7 @@ Web page: https://jackwallner.com/ios/cribbage/best-cribbage-app.html
 
 ## Best Cribbage App
 
-By Jack Wallner · Last updated November 11, 2026
+By Jack Wallner · Last updated November 12, 2026
 
 **Best for full games, online play and friends:** Cribbage Pro. **Best for learning discards:** Cribbage Classic, whose Discard Analyzer shows the minimum, maximum and average score of every keep-and-discard split. **Best for a fast, large-card game:** Cribbage JD. **Best for checking a hand's score:** Cribbage Score. **Best for short drills with the reason on every answer:** Cribbage Trainer, the app I make.
 
@@ -22,15 +22,15 @@ Ratings and counts are the US App Store figures as of November 2026. Last update
 
 | App | Best for | Price model | Apple Watch | iPad | Account | Rating (count) | Last updated |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Cribbage Pro** | Full games, online play, friends | Free with ads + one-time ad removal | No | Yes | Not checked | 4.71 (60,430) | 2026-11-09 |
-| **Cribbage Classic** | Learning discards | Free with ads, no purchases | No | Yes | None | 4.62 (31,509) | 2023-10-31 |
-| **Cribbage JD** | A fast game with big cards | Free with ads + one-time ad removal and coin packs | No | Yes | Guest login offered | 4.73 (19,080) | 2025-10-14 |
-| **Cribbage Score** | Scoring a hand and ranking discards | Free, optional tips | No | Yes | None | 4.69 (533) | 2026-09-26 |
+| **Cribbage Pro** | Full games, online play, friends | Free with ads + one-time ad removal | No | Yes | Not checked | 4.71 (60,429) | 2026-11-09 |
+| **Cribbage Classic** | Learning discards | Free with ads, no purchases | No | Yes | None | 4.62 (31,513) | 2023-10-31 |
+| **Cribbage JD** | A fast game with big cards | Free with ads + one-time ad removal and coin packs | No | Yes | Guest login offered | 4.73 (19,087) | 2025-10-14 |
+| **Cribbage Score** | Scoring a hand and ranking discards | Free, no in-app purchases | No | Yes | None | 4.69 (533) | 2026-09-26 |
 | **Cribbage Trainer** | Short drills with the why on every answer | Free + subscription or lifetime purchase | No | Yes | None | No ratings yet | 2026-11-04 |
 
 ## Cribbage Pro
 
-Cribbage Pro is the most-rated app here and the only one with cross-platform online multiplayer, including an online tournament sanctioned by the American Cribbage Congress, per its listing. Alone, you get three difficulty levels, a daily Scrimmage challenge you can share, friend leaderboards, 80+ achievements, VoiceOver support, hints, and a manual counting option with muggins that teaches counting by making you do it. The trade-off is the free version's ads. In the recent reviews I read, the common complaints were ads after games and deals that felt unlucky.
+Cribbage Pro is the most-rated app here and the only one with cross-platform online multiplayer, including an online tournament sanctioned by the American Cribbage Congress, per its listing. Alone, you get three difficulty levels, a daily Scrimmage challenge you can share, friend leaderboards, 80+ achievements, VoiceOver support and a manual counting option with muggins that teaches counting by making you do it. The trade-off is the free version's ads. In the recent reviews I read, the common complaints were ads after games and deals that felt unlucky.
 
 ## Cribbage Classic
 
@@ -50,11 +50,11 @@ Cribbage Trainer has four free practice rooms: Card, Scoring, Discard and Peggin
 
 ## What other cribbage apps will you see?
 
-Two more listings come up when you search for a cribbage app. I did not run either; the notes below come from their App Store listings as of November 11, 2026.
+Two more listings come up when you search for a cribbage app. I did not run either; the notes below come from their App Store listings as of November 12, 2026.
 
 ### Ultimate Cribbage: Classic
 
-Ultimate Cribbage is a full game against the computer with several difficulty levels, automatic scorekeeping for beginners or manual counting for experienced players, a crib, hand and play score breakdown every round, and a daily challenge, per its listing. It suits players who want a polished single-player game with a progression system. The free version shows ads, and the Muggins and Shotgun variants are part of its Cribbage Club subscription. It has a 4.59 rating from 30,801 ratings and was last updated October 26, 2026.
+Ultimate Cribbage is a full game against the computer with several difficulty levels, automatic scorekeeping for beginners or manual counting for experienced players, a crib, hand and play score breakdown every round, and a daily challenge, per its listing. It suits players who want a polished single-player game with a progression system. The free version shows ads, and the Muggins and Shotgun variants are part of its Cribbage Club subscription. It has a 4.59 rating from 30,800 ratings and was last updated October 26, 2026.
 
 ### Cribbage Pro Classic
 
