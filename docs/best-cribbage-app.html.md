@@ -1,32 +1,32 @@
 # Best Cribbage App for iPhone (2026): 5 Compared
 
-> The best cribbage apps for iPhone and iPad compared in October 2026: full games, discard analyzers, hand scorers and drills, with each one's trade-offs.
+> The best cribbage apps for iPhone and iPad compared in November 2026: full games, discard analyzers, hand scorers and drills, with each one's trade-offs.
 
 Web page: https://jackwallner.com/ios/cribbage/best-cribbage-app.html
 
 ## Best Cribbage App
 
-By Jack Wallner · Last updated October 28, 2026
+By Jack Wallner · Last updated November 11, 2026
 
 **Best for full games, online play and friends:** Cribbage Pro. **Best for learning discards:** Cribbage Classic, whose Discard Analyzer shows the minimum, maximum and average score of every keep-and-discard split. **Best for a fast, large-card game:** Cribbage JD. **Best for checking a hand's score:** Cribbage Score. **Best for short drills with the reason on every answer:** Cribbage Trainer, the app I make.
 
 Most cribbage apps are games against a computer. Three of the five below are games, one is a scorer and analyzer, and one is a practice app with no opponent, so the right pick depends on whether you want to play, check or practice.
 
-**How we compared (October 2026):** I ran Cribbage Classic, Cribbage JD and Cribbage Score on a Mac and read the App Store listing and a sample of recent reviews for Cribbage Pro, which I did not run. For all five I checked ratings, update dates, devices and purchase types from Apple's lookup data. Prices are left out on purpose, because they vary by region and change.
+**How we compared (November 2026):** I ran Cribbage Classic, Cribbage JD and Cribbage Score on a Mac and read the App Store listing and a sample of recent reviews for Cribbage Pro, which I did not run. For all five I checked ratings, update dates, devices and purchase types from Apple's lookup data. Prices are left out on purpose, because they vary by region and change.
 
 **Disclosure:** Jack Wallner makes Cribbage Trainer, one of the apps below. I tried to start every description with what the app does well.
 
 ## How do the best cribbage apps compare?
 
-Ratings and counts are the US App Store figures as of October 2026. Last updated is the date of the current version.
+Ratings and counts are the US App Store figures as of November 2026. Last updated is the date of the current version.
 
 | App | Best for | Price model | Apple Watch | iPad | Account | Rating (count) | Last updated |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Cribbage Pro** | Full games, online play, friends | Free with ads + one-time ad removal | No | Yes | Not checked | 4.71 (60,311) | 2026-09-09 |
-| **Cribbage Classic** | Learning discards | Free with ads, no purchases | No | Yes | None | 4.62 (31,333) | 2023-10-31 |
-| **Cribbage JD** | A fast game with big cards | Free with ads + one-time ad removal and coin packs | No | Yes | Guest login offered | 4.73 (18,875) | 2025-10-14 |
-| **Cribbage Score** | Scoring a hand and ranking discards | Free, optional tips | No | Yes | None | 4.70 (526) | 2026-09-26 |
-| **Cribbage Trainer** | Short drills with the why on every answer | Free + subscription or lifetime purchase | No | Yes | None | No ratings yet | 2026-10-10 |
+| **Cribbage Pro** | Full games, online play, friends | Free with ads + one-time ad removal | No | Yes | Not checked | 4.71 (60,430) | 2026-11-09 |
+| **Cribbage Classic** | Learning discards | Free with ads, no purchases | No | Yes | None | 4.62 (31,509) | 2023-10-31 |
+| **Cribbage JD** | A fast game with big cards | Free with ads + one-time ad removal and coin packs | No | Yes | Guest login offered | 4.73 (19,080) | 2025-10-14 |
+| **Cribbage Score** | Scoring a hand and ranking discards | Free, optional tips | No | Yes | None | 4.69 (533) | 2026-09-26 |
+| **Cribbage Trainer** | Short drills with the why on every answer | Free + subscription or lifetime purchase | No | Yes | None | No ratings yet | 2026-11-04 |
 
 ## Cribbage Pro
 
@@ -50,11 +50,11 @@ Cribbage Trainer has four free practice rooms: Card, Scoring, Discard and Peggin
 
 ## What other cribbage apps will you see?
 
-Two more listings come up when you search for a cribbage app. I did not run either; the notes below come from their App Store listings as of October 13, 2026.
+Two more listings come up when you search for a cribbage app. I did not run either; the notes below come from their App Store listings as of November 11, 2026.
 
 ### Ultimate Cribbage: Classic
 
-Ultimate Cribbage is a full game against the computer with several difficulty levels, automatic scorekeeping for beginners or manual counting for experienced players, a crib, hand and play score breakdown every round, and a daily challenge, per its listing. It suits players who want a polished single-player game with a progression system. The free version shows ads, and the Muggins and Shotgun variants are part of its Cribbage Club subscription. It has a 4.59 rating from 30,736 ratings and was last updated September 17, 2026.
+Ultimate Cribbage is a full game against the computer with several difficulty levels, automatic scorekeeping for beginners or manual counting for experienced players, a crib, hand and play score breakdown every round, and a daily challenge, per its listing. It suits players who want a polished single-player game with a progression system. The free version shows ads, and the Muggins and Shotgun variants are part of its Cribbage Club subscription. It has a 4.59 rating from 30,801 ratings and was last updated October 26, 2026.
 
 ### Cribbage Pro Classic
 
@@ -114,4 +114,4 @@ For two people on their own phones, Cribbage Pro is the strongest pick: its list
 - [Cribbage Pro Classic](https://apps.apple.com/us/app/cribbage-pro-classic-cribbage/id1560420967) (Mac App Store)
 - [American Cribbage Congress](https://www.cribbage.org/)
 
-Cribbage Trainer is an independent app and is not affiliated with the American Cribbage Congress or with any app compared here. App details were checked in October 2026 and may change.
+Cribbage Trainer is an independent app and is not affiliated with the American Cribbage Congress or with any app compared here. App details were checked in November 2026 and may change.
