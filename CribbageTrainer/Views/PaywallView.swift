@@ -39,6 +39,7 @@ struct PaywallContent: View {
     /// False once StoreKit says this Apple Account already had its free week:
     /// the cards then state the billing and promise no trial.
     var trialEligible = true
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         VStack(spacing: 16) {
@@ -101,13 +102,23 @@ struct PaywallContent: View {
     private func planCard(_ plan: PaywallPlan, title: String, price: String, perMonth: String?,
                           anchor: String?, detail: String, badge: String?) -> some View {
         let isSelected = selectedPlan == plan
+        // At accessibility sizes one row left the plan name a few letters
+        // wide ("Yea / rly") and stacked the badge letter by letter, so there
+        // the name, badge, terms and price each take a full-width line.
+        let stacked = dynamicTypeSize.isAccessibilitySize
+        let cardLayout = stacked
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 6))
+            : AnyLayout(HStackLayout())
+        let titleLayout = stacked
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4))
+            : AnyLayout(HStackLayout(spacing: 8))
         return Button {
             selectedPlan = plan
             Haptics.impact(.light, intensity: 0.6)
         } label: {
-            HStack {
+            cardLayout {
                 VStack(alignment: .leading, spacing: 3) {
-                    HStack(spacing: 8) {
+                    titleLayout {
                         Text(title)
                             .font(.headline)
                             .foregroundStyle(Theme.ink)
@@ -125,8 +136,8 @@ struct PaywallContent: View {
                         .foregroundStyle(Theme.inkSecondary)
                         .multilineTextAlignment(.leading)
                 }
-                Spacer(minLength: 8)
-                VStack(alignment: .trailing, spacing: 1) {
+                if !stacked { Spacer(minLength: 8) }
+                VStack(alignment: stacked ? .leading : .trailing, spacing: 1) {
                     Text(price)
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(Theme.ink)
@@ -135,20 +146,20 @@ struct PaywallContent: View {
                         // per-month figure is the discount, stated. Without it
                         // the two cards are just two numbers and the bigger one
                         // looks like the worse deal.
-                        HStack(spacing: 5) {
-                            if let anchor {
-                                Text(anchor)
-                                    .font(.caption2)
-                                    .foregroundStyle(Theme.inkTertiary)
-                                    .strikethrough(true, color: Theme.inkTertiary)
+                        if stacked {
+                            // Side by side while they fit, else one above the
+                            // other rather than broken mid-price.
+                            ViewThatFits(in: .horizontal) {
+                                HStack(spacing: 5) { monthlyFigures(anchor: anchor, perMonth: perMonth) }
+                                VStack(alignment: .leading, spacing: 1) { monthlyFigures(anchor: anchor, perMonth: perMonth) }
                             }
-                            Text(perMonth)
-                                .font(.caption2)
-                                .foregroundStyle(Theme.inkSecondary)
+                        } else {
+                            HStack(spacing: 5) { monthlyFigures(anchor: anchor, perMonth: perMonth) }
                         }
                     }
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(14)
             .background(
                 isSelected ? Theme.jade.opacity(0.08) : Theme.card,
@@ -168,6 +179,19 @@ struct PaywallContent: View {
             .joined(separator: ", "))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
         .accessibilityHint(isSelected ? "Selected plan" : "Double tap to choose this plan")
+    }
+
+    @ViewBuilder
+    private func monthlyFigures(anchor: String?, perMonth: String) -> some View {
+        if let anchor {
+            Text(anchor)
+                .font(.caption2)
+                .foregroundStyle(Theme.inkTertiary)
+                .strikethrough(true, color: Theme.inkTertiary)
+        }
+        Text(perMonth)
+            .font(.caption2)
+            .foregroundStyle(Theme.inkSecondary)
     }
 }
 
