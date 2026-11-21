@@ -135,7 +135,7 @@ enum WhatsNew {
                 ),
                 WhatsNewItem(
                     id: "review",
-                    icon: "arrow.trianglehead.counterclockwise",
+                    icon: "arrow.counterclockwise",
                     title: "Fix My Mistakes",
                     body: "The app now remembers what you get wrong and brings it back on a schedule, so the weak spots actually close instead of piling up.",
                     isPlus: true

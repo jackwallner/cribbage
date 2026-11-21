@@ -570,7 +570,7 @@ struct HomeView: View {
                 if records.dueCount > 0 {
                     trainingTile(
                         title: "Fix My\nMistakes",
-                        icon: "arrow.trianglehead.counterclockwise",
+                        icon: "arrow.counterclockwise",
                         color: Theme.plum,
                         badge: "\(records.dueCount) due"
                     ) {
