@@ -213,7 +213,7 @@ struct CribbageMinuteResultView: View {
             Text(result.score == result.total ? "Perfect minute!" : "Minute complete")
                 .font(Theme.display(28))
                 .foregroundStyle(Theme.ink)
-            Text("Cribbage Minute \(result.shortDate)")
+            Text("Cribbage Minute \(result.dateLabel())")
                 .font(.subheadline)
                 .foregroundStyle(Theme.inkSecondary)
         }

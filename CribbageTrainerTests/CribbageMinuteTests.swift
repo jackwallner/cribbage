@@ -132,6 +132,34 @@ final class CribbageMinuteContentTests: XCTestCase {
         store.resetAll()
     }
 
+    private func makeResult(dayKey: String, shortDate: String) -> CribbageMinuteResult {
+        CribbageMinuteResult(
+            dayKey: dayKey,
+            shortDate: shortDate,
+            completedAt: Date(),
+            answers: [true, true, true, true, false],
+            correctByCategory: [:],
+            totalByCategory: [:]
+        )
+    }
+
+    /// The label was stored month first ("11/20") for every locale, and the
+    /// shared message carried it.
+    func testShareTextDateFollowsTheLocale() {
+        let result = makeResult(dayKey: "2026-11-20", shortDate: "11/20")
+        let day = Calendar.gregorianLocal.date(from: DateComponents(year: 2026, month: 11, day: 20, hour: 12))!
+        let label = day.formatted(.dateTime.month(.abbreviated).day())
+        XCTAssertTrue(result.shareText.hasPrefix("Cribbage Minute \(label): 4/5"), result.shareText)
+        XCTAssertFalse(result.shareText.contains("11/20"), result.shareText)
+    }
+
+    func testDateLabelReadsDayFirstWhereTheLocaleDoes() {
+        let result = makeResult(dayKey: "2026-06-05", shortDate: "06/05")
+        XCTAssertEqual(result.dateLabel(locale: Locale(identifier: "en_US")), "Jun 5")
+        XCTAssertEqual(result.dateLabel(locale: Locale(identifier: "en_GB")), "5 Jun")
+        XCTAssertTrue(result.dateLabel(locale: Locale(identifier: "de_DE")).hasPrefix("5."))
+    }
+
     /// Started late on Saturday and finished after midnight, the Minute counts
     /// toward the week it was played in. The views pass the start time.
     @MainActor

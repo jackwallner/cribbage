@@ -20,9 +20,23 @@ struct CribbageMinuteResult: Codable, Identifiable, Sendable {
         totalByCategory[category.rawValue, default: 0]
     }
 
+    /// The challenge's date in the reader's own order ("Nov 20", "20 Nov").
+    /// Built from the day key, not `shortDate`, which was stored month first
+    /// for every locale.
+    func dateLabel(locale: Locale = .autoupdatingCurrent) -> String {
+        let parts = dayKey.split(separator: "-").compactMap { Int($0) }
+        let calendar = Calendar.gregorianLocal
+        guard parts.count == 3,
+              let day = calendar.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12))
+        else { return shortDate }
+        var style = Date.FormatStyle(locale: locale, calendar: calendar, timeZone: calendar.timeZone)
+        style = style.month(.abbreviated).day()
+        return day.formatted(style)
+    }
+
     var shareText: String {
         let grid = answers.map { $0 ? "🟩" : "⬜️" }.joined()
-        return "Cribbage Minute \(shortDate): \(score)/\(total)\n\(grid)\nCan you beat me? \(AppStoreLinks.productURL.absoluteString)"
+        return "Cribbage Minute \(dateLabel()): \(score)/\(total)\n\(grid)\nCan you beat me? \(AppStoreLinks.productURL.absoluteString)"
     }
 }
 
