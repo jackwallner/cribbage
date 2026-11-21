@@ -110,18 +110,18 @@ final class ReminderSchedulingTests: XCTestCase {
         defaults.set(19, forKey: "settings.gameNightHour")
     }
 
-    private func withNotifications(allowed: Bool, _ body: () async -> Void) async {
-        let saved = AppSettings.notificationsAllowed
-        AppSettings.notificationsAllowed = { allowed }
+    private func withNotifications(_ status: UNAuthorizationStatus, _ body: () async -> Void) async {
+        let saved = AppSettings.notificationStatus
+        AppSettings.notificationStatus = { status }
         await body()
-        AppSettings.notificationsAllowed = saved
+        AppSettings.notificationStatus = saved
     }
 
     /// A launch with the toggles ON and nothing pending (a restore to a new
     /// phone) used to schedule nothing while Settings read ON.
     func testLaunchSchedulesRemindersThatAreOn() async {
         storeBothRemindersOn()
-        await withNotifications(allowed: true) {
+        await withNotifications(.authorized) {
             let settings = AppSettings(defaults: defaults)
             XCTAssertEqual(fake.added, [], "precondition: init schedules nothing")
             await settings.reconcileReminders()
@@ -133,16 +133,65 @@ final class ReminderSchedulingTests: XCTestCase {
     }
 
     /// With notifications off in iOS Settings nothing is scheduled and the
-    /// player's choice is left alone.
-    func testLaunchWithNotificationsOffChangesNothing() async {
+    /// player's choice is left alone, but they are told: the toggles used to
+    /// read ON with nothing firing and no word why.
+    func testLaunchWithNotificationsOffSaysSoAndKeepsTheChoice() async {
         storeBothRemindersOn()
         let settings = AppSettings(defaults: defaults)
-        await withNotifications(allowed: false) {
+        await withNotifications(.denied) {
             await settings.reconcileReminders()
         }
         XCTAssertEqual(fake.added, [])
         XCTAssertTrue(settings.reminderEnabled)
         XCTAssertTrue(settings.gameNightReminderEnabled)
+        XCTAssertTrue(settings.reminderPermissionDenied, "Settings shows the Open Settings alert")
+    }
+
+    /// Only the game night reminder on counts too.
+    func testGameNightReminderAloneRaisesTheDeniedAlert() async {
+        defaults.set(true, forKey: "settings.gameNightReminderEnabled")
+        let settings = AppSettings(defaults: defaults)
+        await withNotifications(.denied) {
+            await settings.reconcileReminders()
+        }
+        XCTAssertTrue(settings.reminderPermissionDenied)
+    }
+
+    /// Turned back on in iOS Settings before the alert was seen: the alert
+    /// would now be false, and the reminders are scheduled again.
+    func testNotificationsBackOnClearsTheAlert() async {
+        storeBothRemindersOn()
+        let settings = AppSettings(defaults: defaults)
+        await withNotifications(.denied) {
+            await settings.reconcileReminders()
+        }
+        XCTAssertTrue(settings.reminderPermissionDenied, "precondition")
+        await withNotifications(.authorized) {
+            await settings.reconcileReminders()
+        }
+        XCTAssertFalse(settings.reminderPermissionDenied)
+        XCTAssertEqual(fake.lastTrigger(dailyID)?.hour, 8)
+    }
+
+    /// Never asked (a restore that reset the permission) is a different,
+    /// held case: nothing changes and no alert shows.
+    func testLaunchWithPermissionNotAskedChangesNothing() async {
+        storeBothRemindersOn()
+        let settings = AppSettings(defaults: defaults)
+        await withNotifications(.notDetermined) {
+            await settings.reconcileReminders()
+        }
+        XCTAssertEqual(fake.added, [])
+        XCTAssertTrue(settings.reminderEnabled)
+        XCTAssertFalse(settings.reminderPermissionDenied)
+    }
+
+    /// Notifications off with every reminder off is nobody's problem.
+    func testNotificationsOffWithRemindersOffSaysNothing() async {
+        let settings = AppSettings(defaults: defaults)
+        await withNotifications(.denied) {
+            await settings.reconcileReminders()
+        }
         XCTAssertFalse(settings.reminderPermissionDenied)
     }
 
@@ -157,7 +206,7 @@ final class ReminderSchedulingTests: XCTestCase {
 
     func testLaunchWithRemindersOffSchedulesNothing() async {
         let settings = AppSettings(defaults: defaults)
-        await withNotifications(allowed: true) {
+        await withNotifications(.authorized) {
             await settings.reconcileReminders()
         }
         XCTAssertEqual(fake.added, [])

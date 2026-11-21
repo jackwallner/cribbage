@@ -170,14 +170,18 @@ final class AppSettings: ObservableObject {
 
     // MARK: - Launch
 
-    /// Whether iOS will deliver the app's notifications. Tests replace it.
-    static var notificationsAllowed: () async -> Bool = {
-        let status = await withCheckedContinuation { continuation in
+    /// The app's notification permission in iOS Settings. Tests replace it.
+    static var notificationStatus: () async -> UNAuthorizationStatus = {
+        await withCheckedContinuation { continuation in
             UNUserNotificationCenter.current().getNotificationSettings { settings in
                 continuation.resume(returning: settings.authorizationStatus)
             }
         }
-        return [.authorized, .provisional, .ephemeral].contains(status)
+    }
+
+    /// Whether iOS will deliver the app's notifications.
+    static func notificationsAllowed() async -> Bool {
+        [.authorized, .provisional, .ephemeral].contains(await notificationStatus())
     }
 
     /// Schedules the reminders that are on, at launch and each return to the
@@ -185,9 +189,19 @@ final class AppSettings: ObservableObject {
     /// requests (a restore to a new phone), and then they read ON while
     /// nothing fires. Requests are replaced by id, so this is a no-op when
     /// they are already pending. The player's choice is never changed here.
+    ///
+    /// Notifications turned off in iOS Settings left a reminder reading ON
+    /// with nothing firing and nothing saying why, so a denied permission
+    /// raises the same Open Settings alert the toggle shows.
     func reconcileReminders() async {
         guard reminderEnabled || gameNightReminderEnabled else { return }
-        guard await Self.notificationsAllowed() else { return }
+        let status = await Self.notificationStatus()
+        guard [.authorized, .provisional, .ephemeral].contains(status) else {
+            if status == .denied { reminderPermissionDenied = true }
+            return
+        }
+        // Turned back on in iOS Settings: an alert still waiting would be false.
+        if reminderPermissionDenied { reminderPermissionDenied = false }
         if reminderEnabled { scheduleReminder() }
         if gameNightReminderEnabled { scheduleGameNightReminder() }
     }
