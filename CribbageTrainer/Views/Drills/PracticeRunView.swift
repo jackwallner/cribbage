@@ -42,6 +42,10 @@ struct PracticeRunView: View {
     @State private var selection: Int?
 
     @State private var secondsRemaining = Self.challengeSeconds
+    /// When the timed run ends, fixed when its clock starts. Counting down a
+    /// second per loop ran slow while the app was suspended (a phone call), so
+    /// the run came back with the seconds it left with.
+    @State private var deadline: Date?
     @State private var confettiTrigger = 0
     @State private var confettiParticleCount = 30
     @State private var flashOpacity: Double = 0
@@ -163,6 +167,11 @@ struct PracticeRunView: View {
             }
         }
         .task { await runClock() }
+        // A timed run has no Finish button, so a back swipe is how most of
+        // them end. The best score counted only when the clock ran out.
+        .onDisappear {
+            if mode == .timed, !finished { records.recordChallengeScore(score) }
+        }
     }
 
     @ViewBuilder
@@ -236,14 +245,23 @@ struct PracticeRunView: View {
 
     private func runClock() async {
         guard mode == .timed else { return }
+        let deadline = deadline ?? Date().addingTimeInterval(TimeInterval(Self.challengeSeconds))
+        self.deadline = deadline
+        secondsRemaining = Self.secondsRemaining(until: deadline, now: Date())
         while secondsRemaining > 0 && !finished {
             try? await Task.sleep(nanoseconds: 1_000_000_000)
             guard !Task.isCancelled else { return }
-            secondsRemaining -= 1
+            secondsRemaining = Self.secondsRemaining(until: deadline, now: Date())
         }
         guard !finished else { return }
         Haptics.impact(.rigid)
         finish()
+    }
+
+    /// Whole seconds left on the clock, read from the deadline so time spent
+    /// suspended counts.
+    static func secondsRemaining(until deadline: Date, now: Date) -> Int {
+        max(0, Int(deadline.timeIntervalSince(now).rounded(.up)))
     }
 
     // MARK: - Grading
