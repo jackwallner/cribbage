@@ -3,7 +3,9 @@ import SwiftUI
 struct CribbageMinuteView: View {
     @StateObject private var store = CribbageMinuteStore.shared
 
-    private var today: Date { Date() }
+    /// Kept current by `refreshesDay`: left open overnight, the screen
+    /// offered yesterday's challenge as today's.
+    @State private var today = Date()
     private var challenge: CribbageMinuteChallenge { CribbageMinuteContent.challenge(for: today) }
     private var todayResult: CribbageMinuteResult? { store.result(for: today) }
 
@@ -21,6 +23,7 @@ struct CribbageMinuteView: View {
         .background(Theme.background)
         .navigationTitle("Cribbage Minute")
         .navigationBarTitleDisplayMode(.inline)
+        .refreshesDay($today)
     }
 
     private var hero: some View {
@@ -59,7 +62,7 @@ struct CribbageMinuteView: View {
     }
 
     private var weeklyRhythm: some View {
-        let completed = min(store.completedThisWeek(), 5)
+        let completed = min(store.completedThisWeek(now: today), 5)
         return VStack(alignment: .leading, spacing: 12) {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
@@ -98,7 +101,7 @@ struct CribbageMinuteView: View {
     }
 
     private var archive: some View {
-        let dates = store.archiveDates()
+        let dates = store.archiveDates(before: today)
         return VStack(alignment: .leading, spacing: 10) {
             Text("ARCHIVE")
                 .font(.caption.weight(.heavy))

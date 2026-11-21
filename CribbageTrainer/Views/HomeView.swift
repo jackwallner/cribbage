@@ -30,6 +30,10 @@ struct HomeView: View {
     @State private var homeOnScreen = false
     @State private var pendingAfterUpgrade: AppDestination?
     @State private var highlightedRoomID: String?
+    /// Today, for everything Home shows about the day. Kept current by
+    /// `refreshesDay`, so the morning after, Home is not still showing last
+    /// night's finished session.
+    @State private var now = Date()
     @AppStorage("cribbage.skillLevel") private var skillLevel = ""
     /// Set once the primer has been read all the way through. After that it
     /// lives in Settings only; a permanent "How to Play" card on Home is a
@@ -58,6 +62,7 @@ struct HomeView: View {
                     homeIsBareAgain()
                 }
                 .onDisappear { homeOnScreen = false }
+                .refreshesDay($now)
                 .onChange(of: showSettings) { _, isShowing in
                     if !isShowing { consumeRecommendedRoomHint(proxy: proxy) }
                 }
@@ -190,7 +195,7 @@ struct HomeView: View {
 
     @ViewBuilder
     private var todaySession: some View {
-        if progress.quickSessionCompletedToday() {
+        if progress.quickSessionCompletedToday(now: now) {
             getStartedDoneCard
         } else {
             getStartedCard
@@ -348,13 +353,13 @@ struct HomeView: View {
             StatsView()
         } label: {
             HStack(spacing: 8) {
-                statChip(value: progress.currentStreak(), icon: "flame.fill", color: Theme.coral,
-                         label: "\(progress.currentStreak()) day streak")
+                statChip(value: progress.currentStreak(now: now), icon: "flame.fill", color: Theme.coral,
+                         label: "\(progress.currentStreak(now: now)) day streak")
                 statChip(value: progress.totalSessions, icon: "checkmark.seal.fill", color: Theme.jade,
                          label: "\(progress.totalSessions) drills done")
                 // Only ever positive. A week that went backwards is not news
                 // worth a chip; the ring already says where things stand.
-                if let gain = ledger.weeklyGain() {
+                if let gain = ledger.weeklyGain(now: now) {
                     statChip(value: gain, icon: "arrow.up.right", color: Theme.plum,
                              label: "\(gain) \(gain == 1 ? "question" : "questions") locked in this week", prefix: "+")
                 }
@@ -545,7 +550,7 @@ struct HomeView: View {
             icon: "calendar.badge.clock",
             color: Theme.coral,
             badgeColor: Theme.coralText,
-            badge: minuteStore.result(for: Date()).map { "\($0.score)/\($0.total) today" } ?? "Daily"
+            badge: minuteStore.result(for: now).map { "\($0.score)/\($0.total) today" } ?? "Daily"
         ) {
             CribbageMinuteView()
         }
