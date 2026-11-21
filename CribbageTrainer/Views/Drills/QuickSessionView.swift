@@ -65,6 +65,9 @@ struct QuickSessionView: View {
     @State private var index = 0
     @State private var score = 0
     @State private var finished = false
+    /// The day this run counts for: the day it was started, not the day it
+    /// ended, so a run that crosses midnight keeps the streak it was built for.
+    @State private var startedAt = Date()
     @State private var selection: Int?
     @State private var answers: [Bool] = []
     @State private var minuteResult: CribbageMinuteResult?
@@ -93,9 +96,9 @@ struct QuickSessionView: View {
     @ViewBuilder
     private var completion: some View {
         if case .dailyMinute = purpose, let minuteResult {
-            CribbageMinuteResultView(result: minuteResult, recordsCompletion: true, onDone: onClose)
+            CribbageMinuteResultView(result: minuteResult, recordsCompletion: true, startedAt: startedAt, onDone: onClose)
         } else {
-            DrillCompleteView(drill: purpose.drill, score: score, total: items.count, onDone: onClose)
+            DrillCompleteView(drill: purpose.drill, score: score, total: items.count, startedAt: startedAt, onDone: onClose)
         }
     }
 
@@ -248,9 +251,9 @@ struct QuickSessionView: View {
     private func finishSession() {
         switch purpose {
         case .quickSession(let isDaily):
-            if isDaily { progress.markQuickSessionCompleted() }
+            if isDaily { progress.markQuickSessionCompleted(now: startedAt) }
         case .dailyMinute(let challenge):
-            minuteResult = minuteStore.record(challenge: challenge, answers: answers)
+            minuteResult = minuteStore.record(challenge: challenge, answers: answers, now: startedAt)
         case .gameNightPrep:
             break
         }

@@ -39,6 +39,9 @@ struct PracticeRunView: View {
     /// generated so far).
     @State private var attempted = 0
     @State private var finished = false
+    /// The day this run counts for: the day it was started, not the day it
+    /// ended, so a run that crosses midnight keeps the streak it was built for.
+    @State private var startedAt = Date()
     @State private var selection: Int?
 
     @State private var secondsRemaining = Self.challengeSeconds
@@ -88,7 +91,7 @@ struct PracticeRunView: View {
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
         } else if finished {
-            DrillCompleteView(drill: completedDrill, score: score, total: gradedTotal)
+            DrillCompleteView(drill: completedDrill, score: score, total: gradedTotal, startedAt: startedAt)
         } else {
             runBody
         }

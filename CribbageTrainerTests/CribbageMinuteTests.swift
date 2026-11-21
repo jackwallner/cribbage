@@ -131,4 +131,24 @@ final class CribbageMinuteContentTests: XCTestCase {
         XCTAssertEqual(store.record(challenge: challenge, answers: [true, true, true, true, true]).score, 3)
         store.resetAll()
     }
+
+    /// Started late on Saturday and finished after midnight, the Minute counts
+    /// toward the week it was played in. The views pass the start time.
+    @MainActor
+    func testMinuteStartedSaturdayNightCountsInThatWeek() {
+        let defaults = UserDefaults(suiteName: "cribbage.minute.week.tests")!
+        defaults.removePersistentDomain(forName: "cribbage.minute.week.tests")
+        let store = CribbageMinuteStore(defaults: defaults)
+        var week = Calendar(identifier: .gregorian)
+        week.firstWeekday = 1
+        let saturdayNight = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 7, hour: 23, minute: 58))!
+        let sundayMorning = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 8, hour: 0, minute: 4))!
+        let challenge = CribbageMinuteContent.challenge(for: saturdayNight)
+
+        store.record(challenge: challenge, answers: [true, true, true, true, true], now: saturdayNight)
+
+        XCTAssertEqual(store.completedThisWeek(now: saturdayNight, calendar: week), 1)
+        XCTAssertEqual(store.completedThisWeek(now: sundayMorning, calendar: week), 0)
+        defaults.removePersistentDomain(forName: "cribbage.minute.week.tests")
+    }
 }

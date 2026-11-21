@@ -20,6 +20,9 @@ struct FlashcardDrillView: View {
     @State private var crossedThreshold = false
     @State private var lastSwipe: SwipeRecord?
     @State private var finished = false
+    /// The day this run counts for: the day it was started, not the day it
+    /// ended, so a run that crosses midnight keeps the streak it was built for.
+    @State private var startedAt = Date()
     @State private var choicePick: Int?
     /// The top card's choice answer, recorded at the pick and not yet swiped.
     @State private var pickedAnswer: RecordedAnswer?
@@ -41,7 +44,7 @@ struct FlashcardDrillView: View {
 
     var body: some View {
         if finished {
-            DrillCompleteView(drill: drill, score: nil, total: cards.count)
+            DrillCompleteView(drill: drill, score: nil, total: cards.count, startedAt: startedAt)
         } else {
             drillBody
                 .onAppear {

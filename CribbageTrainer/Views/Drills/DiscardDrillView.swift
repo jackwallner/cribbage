@@ -7,6 +7,9 @@ struct DiscardDrillView: View {
     @EnvironmentObject private var progress: ProgressStore
 
     @State private var index = 0
+    /// The day this run counts for: the day it was started, not the day it
+    /// ended, so a run that crosses midnight keeps the streak it was built for.
+    @State private var startedAt = Date()
     @State private var selected: Set<Int> = []
     @State private var submitted = false
     @State private var gradedMatches: Int?
@@ -17,7 +20,7 @@ struct DiscardDrillView: View {
 
     var body: some View {
         if finished {
-            DrillCompleteView(drill: drill, score: score, total: scenarios.count * 2)
+            DrillCompleteView(drill: drill, score: score, total: scenarios.count * 2, startedAt: startedAt)
         } else {
             drillBody
         }

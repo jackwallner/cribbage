@@ -249,5 +249,30 @@ final class ProgressStoreTests: XCTestCase {
         XCTAssertEqual(ProgressStore(defaults: defaults).currentStreak(now: tuesday), 6, "the new day survives a relaunch")
     }
 
+    // MARK: - A run that crosses midnight
+
+    private func local(_ month: Int, _ day: Int, _ hour: Int, _ minute: Int) -> Date {
+        Calendar.current.date(from: DateComponents(year: 2026, month: month, day: day, hour: hour, minute: minute))!
+    }
+
+    /// The drill screens now pass the moment the run started. Started at 23:55
+    /// on the fourth day and finished after midnight, it extends the streak
+    /// instead of breaking it, as the finish time did (3 became 1).
+    func testRunStartedBeforeMidnightKeepsTheStreak() {
+        for day in 1...3 { store.recordSession(drillID: "a", now: local(3, day, 20, 0)) }
+        XCTAssertEqual(store.streakCount, 3, "precondition")
+
+        store.recordSession(drillID: "a", now: local(3, 4, 23, 55))
+        XCTAssertEqual(store.currentStreak(now: local(3, 5, 0, 3)), 4)
+    }
+
+    /// Get Started stamped with its start day leaves the next day's session
+    /// open; stamped at 00:03 it read done until the day after.
+    func testGetStartedStartedBeforeMidnightLeavesTomorrowOpen() {
+        store.markQuickSessionCompleted(now: local(3, 4, 23, 55))
+        XCTAssertFalse(store.quickSessionCompletedToday(now: local(3, 5, 0, 3)))
+        XCTAssertTrue(store.quickSessionCompletedToday(now: local(3, 4, 23, 59)))
+    }
+
     // Rating-ask rules live in ReviewPromptTracker; see ReviewPromptTrackerTests.
 }

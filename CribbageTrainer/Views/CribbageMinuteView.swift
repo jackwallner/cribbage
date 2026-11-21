@@ -153,6 +153,8 @@ struct CribbageMinuteView: View {
 struct CribbageMinuteResultView: View {
     let result: CribbageMinuteResult
     var recordsCompletion = false
+    /// When the challenge was started; the streak credit goes to that day.
+    var startedAt = Date()
     var onDone: (() -> Void)?
 
     @EnvironmentObject private var progress: ProgressStore
@@ -281,7 +283,7 @@ struct CribbageMinuteResultView: View {
         confettiTrigger += 1
         Haptics.success()
         SoundPlayer.play(.complete)
-        progress.recordSession(drillID: CribbageMinuteContent.drill.id)
+        progress.recordSession(drillID: CribbageMinuteContent.drill.id, now: startedAt)
         // The ask is for a good moment, as in drills: half right or better.
         if result.score * 2 >= result.total { reviewMoment += 1 }
     }

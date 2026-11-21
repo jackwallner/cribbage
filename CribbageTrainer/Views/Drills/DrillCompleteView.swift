@@ -4,6 +4,8 @@ struct DrillCompleteView: View {
     let drill: Drill
     let score: Int?
     let total: Int
+    /// When the drill was started. The session is credited to that day.
+    let startedAt: Date
     /// Supplied when there is no navigation stack to pop (the onboarding
     /// tour's cover); otherwise Done just dismisses.
     var onDone: (() -> Void)?
@@ -79,7 +81,7 @@ struct DrillCompleteView: View {
             recorded = true
             Haptics.success()
             SoundPlayer.play(.complete)
-            progress.recordSession(drillID: drill.id)
+            progress.recordSession(drillID: drill.id, now: startedAt)
             // The ask is for a good moment: half right or better (a deck has
             // no score and always counts).
             if score.map({ Double($0) / Double(max(total, 1)) >= 0.5 }) ?? true {
