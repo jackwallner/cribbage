@@ -636,7 +636,12 @@ struct OnboardingView: View {
                     break // They said no to Apple, not to the app. Stay put.
                 }
             } catch {
-                purchaseError = error.localizedDescription
+                // A pending or charged-but-unposted purchase is not a failure.
+                if let message = await subscriptions.purchaseFailureMessage(for: error) {
+                    purchaseError = message
+                } else {
+                    startTour()
+                }
             }
         }
     }

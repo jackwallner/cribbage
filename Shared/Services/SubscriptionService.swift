@@ -335,6 +335,59 @@ final class SubscriptionService: NSObject, ObservableObject {
         return .purchased
     }
 
+    /// What to tell the player when `purchase(_:)` threw, or nil when there is
+    /// nothing to tell: the membership arrived after all.
+    ///
+    /// Two throws are not failures. Ask to Buy throws `paymentPendingError`
+    /// while the request waits for the organizer; the delegate unlocks on
+    /// approval. And RevenueCat throws when it cannot post a purchase Apple
+    /// already charged (the connection drops right after Face ID); it leaves
+    /// that transaction unfinished and posts it later. Showing the SDK's own
+    /// text for either told a paying customer nothing.
+    func purchaseFailureMessage(for error: Error) async -> String? {
+        if Self.isPaymentPending(error) {
+            return Self.purchaseFailureMessage(for: error, isMember: false, storeKitHoldsPurchase: false)
+        }
+        let isMember = await confirmEntitlement(attempts: 1)
+        let holdsPurchase = isMember ? false : await Self.storeKitHoldsPurchase()
+        return Self.purchaseFailureMessage(for: error, isMember: isMember, storeKitHoldsPurchase: holdsPurchase)
+    }
+
+    nonisolated static func purchaseFailureMessage(
+        for error: Error,
+        isMember: Bool,
+        storeKitHoldsPurchase: Bool
+    ) -> String? {
+        if isPaymentPending(error) {
+            return "Waiting for approval. \(Membership.name) unlocks when it is approved."
+        }
+        if isMember { return nil }
+        if storeKitHoldsPurchase { return purchaseNotUnlockedMessage }
+        return error.localizedDescription
+    }
+
+    nonisolated static let purchaseNotUnlockedMessage =
+        "Your purchase went through, but \(Membership.name) hasn't unlocked yet. Give it a moment, then tap Restore. You will not be charged twice."
+
+    nonisolated static func isPaymentPending(_ error: Error) -> Bool {
+        if let code = error as? RevenueCat.ErrorCode { return code == .paymentPendingError }
+        let error = error as NSError
+        return error.domain == RevenueCat.ErrorCode.errorDomain
+            && error.code == RevenueCat.ErrorCode.paymentPendingError.rawValue
+    }
+
+    /// Apple holds a paid transaction for this account that RevenueCat has
+    /// not unlocked: one not yet finished, or a current entitlement.
+    nonisolated static func storeKitHoldsPurchase() async -> Bool {
+        for await result in Transaction.unfinished {
+            if case .verified = result { return true }
+        }
+        for await result in Transaction.currentEntitlements {
+            if case .verified = result { return true }
+        }
+        return false
+    }
+
     /// StoreKit says the money moved; RevenueCat's entitlement can take a beat
     /// to catch up. Poll briefly rather than leave someone who just paid
     /// staring at the paywall that took their money.
