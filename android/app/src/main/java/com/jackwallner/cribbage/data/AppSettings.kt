@@ -110,6 +110,19 @@ class AppSettings(private val defaults: KeyValueStore, private val scheduler: Re
         if (gameNightReminderEnabled) scheduleGameNight()
     }
 
+    /**
+     * Called at launch and on each return to the app. Android can turn
+     * notifications off behind the app while the switches keep reading on with
+     * nothing firing. A reminder that cannot post raises the Notifications are
+     * off message and keeps the choice; allowed again, the message is dropped
+     * and the alarms are laid again.
+     */
+    fun reconcileReminders(canNotify: Boolean) {
+        if (!reminderEnabled && !gameNightReminderEnabled) return
+        reminderPermissionDenied = !canNotify
+        if (canNotify) rescheduleAll()
+    }
+
     /** After a reboot the alarms are gone; put back whatever is switched on. */
     fun rescheduleAll() {
         if (reminderEnabled) scheduler?.scheduleDaily(reminderHour, reminderMinute)

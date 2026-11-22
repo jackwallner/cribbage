@@ -18,6 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.jackwallner.cribbage.AppGraph
 import com.jackwallner.cribbage.data.AlarmReminderScheduler
@@ -76,6 +78,12 @@ fun RootScreen(graph: AppGraph, pendingRoute: String?, onRouteConsumed: () -> Un
             pendingGrant = onGranted
             permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
+    }
+
+    // At launch and on each return to the app: say so when a reminder is on
+    // but notifications are off, and lay the alarms again when they are allowed.
+    LifecycleEventEffect(Lifecycle.Event.ON_START) {
+        if (pendingGrant == null) graph.settings.reconcileReminders(AlarmReminderScheduler.canNotify(context))
     }
 
     val actions = remember(graph) {
@@ -194,8 +202,9 @@ fun RootScreen(graph: AppGraph, pendingRoute: String?, onRouteConsumed: () -> Un
             FeedbackSheet(onClose = { showFeedback = false })
         }
         // Raised wherever the request was made (Settings or Game Night Prep),
-        // so a denied switch never just silently stays off.
-        if (graph.settings.reminderPermissionDenied) {
+        // so a denied switch never just silently stays off. A reminder found
+        // blocked at launch waits for one of those two screens to open.
+        if (graph.settings.reminderPermissionDenied && (navigator.top == Route.Settings || navigator.top == Route.GameNightPrep)) {
             CribbageAlert(
                 "Notifications are off",
                 "Cribbage Trainer cannot send reminders until notifications are turned on in Android settings.",
