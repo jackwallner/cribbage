@@ -200,7 +200,7 @@ fun CribbageMinuteResultScreen(result: CribbageMinuteResult, recordsCompletion: 
                             }
                         }
                         Text(if (result.score == result.total) "Perfect minute!" else "Minute complete", style = CribbageType.display(28.sp), color = colors.ink)
-                        Text("Cribbage Minute ${result.shortDate}", style = CribbageType.subheadline, color = colors.inkSecondary)
+                        Text("Cribbage Minute ${result.dateLabel()}", style = CribbageType.subheadline, color = colors.inkSecondary)
                     }
                     Column(Modifier.fillMaxWidth().themedCard(16.dp).padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
                         Eyebrow("BY SKILL")
@@ -232,7 +232,7 @@ fun CribbageMinuteResultScreen(result: CribbageMinuteResult, recordsCompletion: 
                             Text("Any five days keep the rhythm going.", style = CribbageType.caption, color = colors.inkSecondary)
                         }
                     }
-                    PrimaryCTA("Share Result", color = colors.coral, icon = symbol("square.and.arrow.up")) { context.shareText(result.shareText) }
+                    PrimaryCTA("Share Result", color = colors.coral, icon = symbol("square.and.arrow.up")) { context.shareText(result.shareText()) }
                     QuietButton("Done", Modifier.fillMaxWidth().testTag("minute-done"), onClick = done)
                     Spacer(Modifier.height(4.dp))
                 }

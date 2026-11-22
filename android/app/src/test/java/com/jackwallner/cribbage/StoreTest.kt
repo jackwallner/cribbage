@@ -242,10 +242,23 @@ class StoreTest {
         assertEquals(3, store.record(challenge, List(5) { true }).score)
         assertEquals(3, CribbageMinuteStore(defaults, clock).result(LocalDate.of(2026, 10, 16))!!.score)
         assertEquals("10/16", first.shortDate)
-        assertTrue(first.shareText.startsWith("Cribbage Minute 10/16: 3/5"))
-        assertTrue(first.shareText.endsWith("https://play.google.com/store/apps/details?id=com.jackwallner.cribbage"))
+        assertTrue(first.shareText(Locale.US).startsWith("Cribbage Minute Oct 16: 3/5"))
+        assertTrue(first.shareText(Locale.US).endsWith("https://play.google.com/store/apps/details?id=com.jackwallner.cribbage"))
         assertEquals(1, store.completedThisWeek())
         assertEquals(30, store.archiveDates().size)
+    }
+
+    /** iOS B7: the Minute's date reads day first where the reader's locale does. */
+    @Test
+    fun minuteDateLabelFollowsTheLocale() {
+        val store = CribbageMinuteStore(defaults, clock)
+        val result = store.record(CribbageMinuteContent.challenge(LocalDate.of(2026, 6, 5)), List(5) { true })
+        assertEquals("Jun 5", result.dateLabel(Locale.US))
+        assertEquals("5 Jun", result.dateLabel(Locale.UK))
+        assertTrue(result.dateLabel(Locale.GERMANY), result.dateLabel(Locale.GERMANY).startsWith("5."))
+        assertEquals("6月5日", result.dateLabel(Locale.JAPAN))
+        assertTrue(result.shareText(Locale.UK).startsWith("Cribbage Minute 5 Jun: 5/5"))
+        assertEquals("the stored form is unchanged", "06/05", result.shortDate)
     }
 
     // MARK: - ReviewPromptTrackerTests

@@ -10,10 +10,37 @@ import com.jackwallner.cribbage.content.CribbageMinuteContent
 import com.jackwallner.cribbage.content.WhatsNewRelease
 import java.time.Instant
 import java.time.LocalDate
+import java.time.chrono.IsoChronology
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.format.FormatStyle
 import java.time.temporal.WeekFields
 import java.util.Locale
 import org.json.JSONArray
 import org.json.JSONObject
+
+/** Month and day, no year, in a locale's own order. */
+object DayLabel {
+    private val segment = Regex("'[^']*'|[A-Za-z]+|[^A-Za-z']+")
+
+    fun pattern(locale: Locale): String = runCatching {
+        val long = DateTimeFormatterBuilder.getLocalizedDateTimePattern(FormatStyle.LONG, null, IsoChronology.INSTANCE, locale)
+        val parts = segment.findAll(long).map { it.value }.toMutableList()
+        fun isField(part: String) = part[0].isLetter() && part[0].code < 128
+        val year = parts.indexOfFirst { isField(it) && it[0] in "yuUG" }
+        if (year >= 0) {
+            val fieldAfter = (year + 1 until parts.size).any { isField(parts[it]) }
+            parts.removeAt(year)
+            // Drop the separator that tied the year to its neighbour.
+            if (fieldAfter) {
+                while (year < parts.size && !isField(parts[year])) parts.removeAt(year)
+            } else {
+                while (parts.isNotEmpty() && !isField(parts.last())) parts.removeAt(parts.lastIndex)
+            }
+        }
+        parts.joinToString("") { if (it == "MMMM" || it == "LLLL") it.take(3) else it }.trim().also { DateTimeFormatter.ofPattern(it, locale) }
+    }.getOrDefault("MMM d")
+}
 
 data class CribbageMinuteResult(
     val dayKey: String,
@@ -29,11 +56,20 @@ data class CribbageMinuteResult(
     fun correct(category: CribbageMinuteCategory) = correctByCategory[category.raw] ?: 0
     fun total(category: CribbageMinuteCategory) = totalByCategory[category.raw] ?: 0
 
-    val shareText: String
-        get() {
-            val grid = answers.joinToString("") { if (it) "🟩" else "⬜️" }
-            return "Cribbage Minute $shortDate: $score/$total\n$grid\nCan you beat me? ${StoreLinks.PLAY_LISTING_URL}"
-        }
+    /**
+     * The day in the reader's own order ("Jun 5", "5 Jun", "5. Juni"). The
+     * stored `shortDate` is month first for everyone and stays only so saved
+     * results keep decoding.
+     */
+    fun dateLabel(locale: Locale = Locale.getDefault()): String {
+        val day = runCatching { LocalDate.parse(dayKey) }.getOrNull() ?: return shortDate
+        return DateTimeFormatter.ofPattern(DayLabel.pattern(locale), locale).format(day)
+    }
+
+    fun shareText(locale: Locale = Locale.getDefault()): String {
+        val grid = answers.joinToString("") { if (it) "🟩" else "⬜️" }
+        return "Cribbage Minute ${dateLabel(locale)}: $score/$total\n$grid\nCan you beat me? ${StoreLinks.PLAY_LISTING_URL}"
+    }
 
     fun toJson(): JSONObject = JSONObject().apply {
         put("dayKey", dayKey)
