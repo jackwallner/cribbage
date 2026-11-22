@@ -54,6 +54,32 @@ data class PaywallPrice(val amount: BigDecimal, val localized: String, val curre
 
 enum class PurchaseOutcome { PURCHASED, PENDING, CANCELLED }
 
+/**
+ * What to say after a purchase threw. Google Play can take the money and the
+ * failure can come afterwards, so a bare "try again" invites a second attempt
+ * at something already paid for.
+ */
+object PurchaseFailure {
+    const val GENERIC = "Couldn't complete the purchase. Please try again."
+    const val CHARGED = "Your purchase went through, but ${Membership.NAME} hasn't unlocked yet. Give it a moment, then tap Restore. You will not be charged twice."
+
+    /** Errors that only come once Google Play holds the purchase. */
+    private val afterPlaySold = setOf(
+        PurchasesErrorCode.ProductAlreadyPurchasedError,
+        PurchasesErrorCode.ReceiptAlreadyInUseError,
+        PurchasesErrorCode.InvalidReceiptError,
+        PurchasesErrorCode.UnknownBackendError,
+        PurchasesErrorCode.UnexpectedBackendResponseError,
+    )
+
+    /** Null when membership arrived after all: nothing to say, the screen moves on. */
+    fun message(code: PurchasesErrorCode, isMember: Boolean): String? = when {
+        isMember -> null
+        code in afterPlaySold -> CHARGED
+        else -> GENERIC
+    }
+}
+
 class PurchaseException(message: String) : Exception(message)
 
 /** Google Play reviewers reach Cribbage+ with a code; only its SHA-256 ships in the build. */
@@ -230,7 +256,12 @@ class SubscriptionService(
             when {
                 error.userCancelled -> PurchaseOutcome.CANCELLED
                 error.code == PurchasesErrorCode.PaymentPendingError -> PurchaseOutcome.PENDING
-                else -> throw PurchaseException("Couldn't complete the purchase. Please try again.")
+                else -> {
+                    // One fresh look before saying anything: the charge may have landed.
+                    refreshCustomerInfo(fetchCurrent = true)
+                    PurchaseFailure.message(error.code, isPro)?.let { throw PurchaseException(it) }
+                    PurchaseOutcome.PURCHASED
+                }
             }
         }
     }
