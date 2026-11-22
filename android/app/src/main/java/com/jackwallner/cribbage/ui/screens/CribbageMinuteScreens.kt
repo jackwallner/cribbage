@@ -174,13 +174,14 @@ fun CribbageMinuteResultScreen(result: CribbageMinuteResult, recordsCompletion: 
     val done = onDone ?: { navigator.pop(); Unit }
     var recorded by rememberSaveable { mutableStateOf(false) }
     var confetti by remember { mutableIntStateOf(0) }
+    val startDay = runStartDay()
     LaunchedEffect(Unit) {
         if (!recordsCompletion || recorded) return@LaunchedEffect
         recorded = true
         confetti += 1
         Haptics.success()
         SoundPlayer.play(SoundPlayer.Effect.COMPLETE)
-        graph.progress.recordSession(CribbageMinuteContent.drill.id)
+        graph.progress.recordSession(CribbageMinuteContent.drill.id, startDay)
         actions.positiveMoment()
     }
     CribbageScreen("Cribbage Minute", onBack = if (recordsCompletion) null else done) {

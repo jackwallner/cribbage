@@ -51,6 +51,7 @@ import com.jackwallner.cribbage.ui.components.DrillProgress
 import com.jackwallner.cribbage.ui.components.DrillStage
 import com.jackwallner.cribbage.ui.components.symbol
 import com.jackwallner.cribbage.ui.nav.LocalNavigator
+import com.jackwallner.cribbage.ui.nav.LocalRunStart
 import com.jackwallner.cribbage.ui.nav.PracticeMode
 import com.jackwallner.cribbage.ui.nav.SessionPurpose
 import com.jackwallner.cribbage.ui.theme.BarTextButton
@@ -99,6 +100,8 @@ fun SessionScreen(items: List<QuickItem>, purpose: SessionPurpose, onClose: (() 
     val colors = Crib.colors
     val scope = rememberCoroutineScope()
     val close = onClose ?: { navigator.pop(); Unit }
+    val runStart = LocalRunStart.current
+    val startDay = runStartDay()
     var index by rememberSaveable { mutableIntStateOf(0) }
     var score by rememberSaveable { mutableIntStateOf(0) }
     var selection by rememberSaveable { mutableStateOf<Int?>(null) }
@@ -178,8 +181,8 @@ fun SessionScreen(items: List<QuickItem>, purpose: SessionPurpose, onClose: (() 
                         index += 1
                     } else {
                         when (purpose) {
-                            is SessionPurpose.Quick -> if (purpose.isDaily) graph.progress.markQuickSessionCompleted()
-                            is SessionPurpose.Minute -> minuteResult = graph.minutes.record(purpose.challenge, answers)
+                            is SessionPurpose.Quick -> if (purpose.isDaily) graph.progress.markQuickSessionCompleted(startDay)
+                            is SessionPurpose.Minute -> minuteResult = graph.minutes.record(purpose.challenge, answers, runStart ?: graph.clock.millis())
                             SessionPurpose.GameNightPrep -> Unit
                         }
                         finished = true

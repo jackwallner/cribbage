@@ -20,6 +20,7 @@ import java.time.Clock
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneOffset
+import java.util.Locale
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -330,5 +331,52 @@ class StoreTest {
         assertTrue(access.activate("  $code "))
         assertTrue(ReviewAccess(defaults, digest).isGranted)
         assertFalse("No digest in the build means no unlock", ReviewAccess(InMemoryStore(), "").activate(code))
+    }
+
+    // B2: a run that crosses midnight counts for the day it began
+
+    @Test
+    fun runStartedBeforeMidnightKeepsTheStreak() {
+        val store = ProgressStore(defaults, clock)
+        for (day in 1..3) store.recordSession("a", LocalDate.of(2026, 3, day))
+        assertEquals("precondition", 3, store.streakCount)
+
+        // Begun at 23:55 on the 4th, finished at 00:03 on the 5th.
+        clock.clock = Clock.fixed(Instant.parse("2026-03-05T00:03:00Z"), ZoneOffset.UTC)
+        store.recordSession("a", LocalDate.of(2026, 3, 4))
+        assertEquals(4, store.currentStreak())
+        store.recordSession("a")
+        assertEquals("the 5th is still open for its own run", 5, store.currentStreak())
+    }
+
+    /** Get Started stamped with its start day leaves the next day's session open. */
+    @Test
+    fun getStartedStartedBeforeMidnightLeavesTomorrowOpen() {
+        val store = ProgressStore(defaults, clock)
+        clock.clock = Clock.fixed(Instant.parse("2026-03-05T00:03:00Z"), ZoneOffset.UTC)
+        store.markQuickSessionCompleted(LocalDate.of(2026, 3, 4))
+        assertFalse(store.quickSessionCompletedToday())
+        clock.clock = Clock.fixed(Instant.parse("2026-03-04T23:59:00Z"), ZoneOffset.UTC)
+        assertTrue(store.quickSessionCompletedToday())
+    }
+
+    @Test
+    fun minuteStartedSaturdayNightCountsInThatWeek() {
+        val previous = Locale.getDefault()
+        Locale.setDefault(Locale.US)
+        try {
+            val saturdayNight = Instant.parse("2026-03-07T23:58:00Z")
+            val sundayMorning = Instant.parse("2026-03-08T00:04:00Z")
+            clock.clock = Clock.fixed(sundayMorning, ZoneOffset.UTC)
+            val store = CribbageMinuteStore(defaults, clock)
+            val challenge = CribbageMinuteContent.challenge(LocalDate.of(2026, 3, 7))
+            store.record(challenge, List(challenge.questions.size) { true }, at = saturdayNight.toEpochMilli())
+
+            assertEquals("the new week starts empty", 0, store.completedThisWeek())
+            clock.clock = Clock.fixed(saturdayNight, ZoneOffset.UTC)
+            assertEquals(1, store.completedThisWeek())
+        } finally {
+            Locale.setDefault(previous)
+        }
     }
 }

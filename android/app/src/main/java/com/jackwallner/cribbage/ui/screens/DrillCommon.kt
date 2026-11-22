@@ -36,6 +36,7 @@ import com.jackwallner.cribbage.AppGraph
 import com.jackwallner.cribbage.model.Drill
 import com.jackwallner.cribbage.ui.LocalAppActions
 import com.jackwallner.cribbage.ui.LocalGraph
+import com.jackwallner.cribbage.ui.nav.LocalRunStart
 import com.jackwallner.cribbage.ui.components.ConfettiBurst
 import com.jackwallner.cribbage.ui.components.symbol
 import com.jackwallner.cribbage.ui.theme.Haptics
@@ -45,6 +46,8 @@ import com.jackwallner.cribbage.ui.theme.PrimaryCTA
 import com.jackwallner.cribbage.ui.theme.SoundPlayer
 import com.jackwallner.cribbage.ui.theme.screenPadding
 import com.jackwallner.cribbage.ui.theme.themedCard
+import java.time.Instant
+import java.time.LocalDate
 
 /** One graded answer, feeding both the daily mix and the review schedule. */
 fun AppGraph.recordAnswer(itemID: String, roomID: String, correct: Boolean, isReviewable: Boolean = true) {
@@ -62,6 +65,13 @@ fun consoleMiss() {
     SoundPlayer.play(SoundPlayer.Effect.MISS)
 }
 
+/** The day the run on show began: a run that crosses midnight counts for that day. */
+@Composable
+fun runStartDay(): LocalDate {
+    val clock = LocalGraph.current.clock
+    return LocalRunStart.current?.let { Instant.ofEpochMilli(it).atZone(clock.zone).toLocalDate() } ?: clock.today()
+}
+
 /**
  * The end of every drill: score, streak, confetti. Recording happens once, on
  * first appearance, and a finished drill is the review funnel's positive moment.
@@ -74,6 +84,7 @@ fun DrillCompleteScreen(drill: Drill, score: Int?, total: Int, onDone: () -> Uni
     var recorded by rememberSaveable { mutableStateOf(false) }
     var celebrate by rememberSaveable { mutableStateOf(false) }
     var confetti by rememberSaveable { mutableIntStateOf(0) }
+    val startDay = runStartDay()
     LaunchedEffect(Unit) {
         celebrate = true
         confetti += 1
@@ -81,7 +92,7 @@ fun DrillCompleteScreen(drill: Drill, score: Int?, total: Int, onDone: () -> Uni
         recorded = true
         Haptics.success()
         SoundPlayer.play(SoundPlayer.Effect.COMPLETE)
-        graph.progress.recordSession(drill.id)
+        graph.progress.recordSession(drill.id, startDay)
         actions.positiveMoment()
     }
     val ring by animateFloatAsState(if (celebrate) 1f else 0.6f, spring(dampingRatio = 0.6f, stiffness = 300f), label = "ring")

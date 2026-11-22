@@ -41,10 +41,15 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
         return room.drills.count { completions(it.id) > 0 }.toDouble() / room.drills.size
     }
 
-    fun recordSession(drillID: String) {
+    /**
+     * `day` is the day the run began. A run that crosses midnight counts for
+     * the day it started, so it neither skips a streak day nor uses up the
+     * next one.
+     */
+    fun recordSession(drillID: String, day: LocalDate = clock.today()) {
         completions = completions + (drillID to completions(drillID) + 1)
         totalSessions += 1
-        bumpStreak()
+        bumpStreak(day)
         defaults.putString(Keys.COMPLETIONS, JSONObject(completions as Map<*, *>).toString())
         defaults.putInt(Keys.TOTAL_SESSIONS, totalSessions)
     }
@@ -61,8 +66,7 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
     }
 
     /** Consecutive calendar days with at least one finished drill. */
-    private fun bumpStreak() {
-        val today = clock.today()
+    private fun bumpStreak(today: LocalDate) {
         val last = defaults.getString(Keys.LAST_ACTIVE_DAY)?.let(LocalDate::parse)
         // The clock went backwards (travel, a manual change). Keep the later day
         // so it is not counted twice on the way back.
@@ -102,8 +106,8 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
     /** Get Started is once a day: a fresh mix each day, resting once today's is done. */
     fun quickSessionCompletedToday(): Boolean = quickSessionDay == clock.today().toString()
 
-    fun markQuickSessionCompleted() {
-        quickSessionDay = clock.today().toString()
+    fun markQuickSessionCompleted(day: LocalDate = clock.today()) {
+        quickSessionDay = day.toString()
         defaults.putString(Keys.LAST_QUICK_SESSION_DAY, quickSessionDay!!)
     }
 

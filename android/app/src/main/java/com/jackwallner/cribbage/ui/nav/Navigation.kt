@@ -59,7 +59,7 @@ sealed interface Route {
     data object Settings : Route
 }
 
-internal data class Entry(val id: Int, val route: Route)
+internal data class Entry(val id: Int, val route: Route, val pushedAt: Long = System.currentTimeMillis())
 
 /** One navigation stack, the Compose counterpart of a `NavigationStack`. */
 @Stable
@@ -107,6 +107,12 @@ class Navigator {
 private val LocalEntryId = staticCompositionLocalOf { -1 }
 
 /**
+ * When the screen on show was pushed, which is when its run began. Null
+ * outside a stack (onboarding), where a run counts for the moment it ends.
+ */
+val LocalRunStart = staticCompositionLocalOf<Long?> { null }
+
+/**
  * Like `remember`, but survives the screen being covered by a pushed screen,
  * and is released when the screen itself is popped.
  */
@@ -147,7 +153,7 @@ fun NavStack(navigator: Navigator, enabled: Boolean = true, content: @Composable
         label = "nav",
     ) { entry ->
         holder.SaveableStateProvider(entry.id) {
-            CompositionLocalProvider(LocalNavigator provides navigator, LocalEntryId provides entry.id) {
+            CompositionLocalProvider(LocalNavigator provides navigator, LocalEntryId provides entry.id, LocalRunStart provides entry.pushedAt) {
                 Box(Modifier.fillMaxSize()) { content(entry.route) }
             }
         }

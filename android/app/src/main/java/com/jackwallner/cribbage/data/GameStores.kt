@@ -69,8 +69,8 @@ class CribbageMinuteStore(private val defaults: KeyValueStore, private val clock
 
     fun result(day: LocalDate): CribbageMinuteResult? = results[CribbageMinuteContent.key(day)]
 
-    /** Only the first attempt on a day counts. */
-    fun record(challenge: CribbageMinuteChallenge, answers: List<Boolean>): CribbageMinuteResult {
+    /** Only the first attempt on a day counts. `at` is when the run began, which decides its week. */
+    fun record(challenge: CribbageMinuteChallenge, answers: List<Boolean>, at: Long = clock.millis()): CribbageMinuteResult {
         results[challenge.dayKey]?.let { return it }
         val correct = mutableMapOf<String, Int>()
         val total = mutableMapOf<String, Int>()
@@ -78,7 +78,7 @@ class CribbageMinuteStore(private val defaults: KeyValueStore, private val clock
             total[question.category.raw] = (total[question.category.raw] ?: 0) + 1
             if (right) correct[question.category.raw] = (correct[question.category.raw] ?: 0) + 1
         }
-        val result = CribbageMinuteResult(challenge.dayKey, challenge.shortDate, clock.millis(), answers, correct, total)
+        val result = CribbageMinuteResult(challenge.dayKey, challenge.shortDate, at, answers, correct, total)
         results = results + (challenge.dayKey to result)
         persist()
         return result
