@@ -6,6 +6,7 @@ import SwiftUI
 /// the Auction Room has a reason to care about the drills that would fix it.
 struct StatsView: View {
     @EnvironmentObject private var progress: ProgressStore
+    @EnvironmentObject private var subscriptions: SubscriptionService
     @StateObject private var records = PracticeRecordStore.shared
     @StateObject private var ledger = MasteryLedger.shared
 
@@ -21,7 +22,9 @@ struct StatsView: View {
                     if let gain = ledger.weeklyGain() {
                         weekCard(gain)
                     }
-                    if let weakest = records.weakestRoom(), roomStats.count > 1 {
+                    if let focus = records.roomToWorkOn(isMember: subscriptions.isPro) {
+                        workOnCard(focus)
+                    } else if let weakest = records.weakestRoom(), roomStats.count > 1 {
                         weakSpotCard(weakest)
                     }
                     roomBreakdown
@@ -125,6 +128,45 @@ struct StatsView: View {
         Rectangle()
             .fill(Theme.rule)
             .frame(width: 1, height: 34)
+    }
+
+    /// The room to practise next, one tap from here: a recommendation that
+    /// left the player on this screen had no destination.
+    @ViewBuilder
+    private func workOnCard(_ mastery: RoomMastery) -> some View {
+        if let room = DrillLibrary.room(id: mastery.roomID) {
+            NavigationLink {
+                RoomView(room: room)
+            } label: {
+                HStack(spacing: 12) {
+                    Image(systemName: "target")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(Theme.coral)
+                        .frame(width: 38, height: 38)
+                        .background(Theme.coral.opacity(0.13), in: Circle())
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Work on \(room.name)")
+                            .font(.headline)
+                            .foregroundStyle(Theme.ink)
+                            .multilineTextAlignment(.leading)
+                        Text("\(mastery.known) of \(mastery.total) questions are holding. \(mastery.level.nextStep)")
+                            .font(.caption)
+                            .foregroundStyle(Theme.inkSecondary)
+                            .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    Spacer(minLength: 4)
+                    Image(systemName: "chevron.right")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(Theme.inkTertiary)
+                        .accessibilityHidden(true)
+                }
+                .padding(14)
+                .themedCard(corner: 16)
+            }
+            .buttonStyle(PressableCardStyle())
+            .accessibilityHint("Opens the room")
+        }
     }
 
     private func weakSpotCard(_ stat: PracticeRecordStore.RoomStat) -> some View {
