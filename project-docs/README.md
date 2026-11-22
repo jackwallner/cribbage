@@ -14,3 +14,4 @@ Developer notes and historical audits for this repository. The published site re
 - [state-machines-2026-11-06-verify.md](audits/state-machines-2026-11-06-verify.md): Independent verification of the state machine fixes: PASS, all 4 fixes work, 214 tests pass, the top three fail without their fix
 - [presubmit-review-2026-11-07.md](audits/presubmit-review-2026-11-07.md): Pre-submit review of 1.3.3 against live 1.3.2: no P0 or P1, 3 P2 (one covered by a new test), unit run queued and not finished
 - [2026-11-20-bug-ux.html](audits/2026-11-20-bug-ux.html): Bug and UX catalog, 2026-11-20: 9 bugs (9 low; 6 confirmed), 15 UX items, October audit items rechecked. Catalog only, nothing fixed.
+- [2026-11-20-bug-fixes.md](audits/2026-11-20-bug-fixes.md): Bug fix status after independent review: all 9 catalog bugs fixed and verified, 2 reviewer commits, unit 233 and UI 11 green at 8dbd896
