@@ -39,23 +39,27 @@ struct QuickSessionView: View {
     /// Home's daily session spends the day's Get Started; the onboarding tour's
     /// demo run does not, so a brand-new player still finds a fresh Get Started
     /// waiting the first time they reach Home.
-    private let purpose: QuickSessionPurpose
+    ///
+    /// Snapshotted like `items`: the Cribbage Minute screen now moves to the
+    /// new day on return to the app, and re-reading its challenge here would
+    /// file yesterday's answers under today's Minute.
+    @State private var purpose: QuickSessionPurpose
 
     init(items: [QuickItem], isDaily: Bool = true, onClose: (() -> Void)? = nil) {
         _items = State(initialValue: items)
-        purpose = .quickSession(isDaily: isDaily)
+        _purpose = State(initialValue: .quickSession(isDaily: isDaily))
         self.onClose = onClose
     }
 
     init(cribbageMinute challenge: CribbageMinuteChallenge, onClose: (() -> Void)? = nil) {
         _items = State(initialValue: challenge.items)
-        purpose = .dailyMinute(challenge)
+        _purpose = State(initialValue: .dailyMinute(challenge))
         self.onClose = onClose
     }
 
     init(gameNightPrep items: [QuickItem], onClose: (() -> Void)? = nil) {
         _items = State(initialValue: items)
-        purpose = .gameNightPrep
+        _purpose = State(initialValue: .gameNightPrep)
         self.onClose = onClose
     }
 
