@@ -15,6 +15,9 @@ final class ReleaseJourneysUITests: XCTestCase {
         "-cribbage.hasReadPrimer", "YES",
         "-cribbage.skillLevel", "some",
         "-cribbage.suppressWhatsNew",
+        // Any earlier UI test class launches the app, so by here it is past
+        // the second launch and Apple's rating prompt can cover Done.
+        "-cribbage.rc.rating_prompt", "off",
     ]
 
     override func setUp() {
