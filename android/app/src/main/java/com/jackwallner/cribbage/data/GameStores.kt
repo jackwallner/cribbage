@@ -120,9 +120,8 @@ class CribbageMinuteStore(private val defaults: KeyValueStore, private val clock
         return result
     }
 
-    fun completedThisWeek(): Int {
+    fun completedThisWeek(today: LocalDate = clock.today()): Int {
         val fields = WeekFields.of(Locale.getDefault())
-        val today = clock.today()
         val start = today.with(fields.dayOfWeek(), 1)
         val end = start.plusDays(7)
         return results.values.count {
@@ -131,7 +130,7 @@ class CribbageMinuteStore(private val defaults: KeyValueStore, private val clock
         }
     }
 
-    fun archiveDates(count: Int = 30): List<LocalDate> = (1..count).map { clock.today().minusDays(it.toLong()) }
+    fun archiveDates(count: Int = 30, today: LocalDate = clock.today()): List<LocalDate> = (1..count).map { today.minusDays(it.toLong()) }
 
     fun resetAll() {
         results = emptyMap()

@@ -53,6 +53,7 @@ import com.jackwallner.cribbage.model.Room
 import com.jackwallner.cribbage.ui.LocalAppActions
 import com.jackwallner.cribbage.ui.LocalGraph
 import com.jackwallner.cribbage.ui.components.symbol
+import com.jackwallner.cribbage.ui.rememberToday
 import com.jackwallner.cribbage.ui.nav.LocalNavigator
 import com.jackwallner.cribbage.ui.nav.PracticeMode
 import com.jackwallner.cribbage.ui.nav.Route
@@ -71,6 +72,7 @@ import com.jackwallner.cribbage.ui.theme.pressable
 import com.jackwallner.cribbage.ui.theme.rounded
 import com.jackwallner.cribbage.ui.theme.themedCard
 import kotlinx.coroutines.delay
+import java.time.LocalDate
 
 /** Room identity: each room keeps its own accent so the doors feel like places. */
 fun Room.accent(colors: CribbageColors): Color = when (id) {
@@ -92,6 +94,7 @@ fun HomeScreen() {
     val actions = LocalAppActions.current
     val colors = Crib.colors
     val progress = graph.progress
+    val today = rememberToday()
     val isPro = graph.subscriptions.isPro
     val scroll = rememberScrollState()
     var highlightedRoom by remember { mutableStateOf<String?>(null) }
@@ -122,8 +125,8 @@ fun HomeScreen() {
             Modifier.fillMaxSize().verticalScroll(scroll).padding(horizontal = 16.dp).padding(navBarPadding()),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            Header(progress.currentStreak(), progress.totalSessions) { navigator.push(Route.Stats) }
-            if (progress.quickSessionCompletedToday()) GetStartedDoneCard() else GetStartedCard {
+            Header(progress.currentStreak(today), progress.totalSessions) { navigator.push(Route.Stats) }
+            if (progress.quickSessionCompletedToday(today)) GetStartedDoneCard() else GetStartedCard {
                 val items = SessionBuilder.quickSession(seen = progress.seenItems, missed = progress.missedItems, includePro = isPro)
                 navigator.push(Route.Session(items, SessionPurpose.Quick(isDaily = true)))
             }
@@ -131,7 +134,7 @@ fun HomeScreen() {
             if (skillLevel == "new" && !graph.defaults.getBoolean(HAS_READ_PRIMER)) {
                 HowToPlayCard { navigator.push(Route.HowToPlay) }
             }
-            TrainingSection(isPro, onLocked = { actions.openPaywall("cribbage_home_sheet") })
+            TrainingSection(isPro, today, onLocked = { actions.openPaywall("cribbage_home_sheet") })
             Row(Modifier.padding(top = 6.dp, start = 4.dp)) { Eyebrow("THE ROOMS") }
             DrillLibrary.rooms.forEach { room ->
                 // Count only the drills this player can open, so a free player's ring can close.
@@ -253,7 +256,7 @@ private fun HowToPlayCard(onClick: () -> Unit) {
 
 /** The cross-cutting practice modes in one scrolling row of compact tiles. */
 @Composable
-private fun TrainingSection(isPro: Boolean, onLocked: () -> Unit) {
+private fun TrainingSection(isPro: Boolean, today: LocalDate, onLocked: () -> Unit) {
     val graph = LocalGraph.current
     val navigator = LocalNavigator.current
     val colors = Crib.colors
@@ -267,7 +270,7 @@ private fun TrainingSection(isPro: Boolean, onLocked: () -> Unit) {
             TrainingTile("Endless\nPractice", "infinity", colors.jade, null, locked = !isPro, tag = "tile-endless") {
                 if (isPro) navigator.push(Route.EndlessPicker) else onLocked()
             }
-            val minute = graph.minutes.result(graph.clock.today())
+            val minute = graph.minutes.result(today)
             TrainingTile(
                 "Cribbage\nMinute", "calendar.badge.clock", colors.coral,
                 minute?.let { "${it.score}/${it.total} today" } ?: "Daily", locked = !isPro, tag = "tile-minute",

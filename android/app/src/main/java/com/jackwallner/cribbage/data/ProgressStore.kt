@@ -59,10 +59,10 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
      * is finished, so after a missed day it still holds the old number and the
      * screens would show a streak the player has already lost.
      */
-    fun currentStreak(): Int {
+    fun currentStreak(today: LocalDate = clock.today()): Int {
         // Read on every Home draw, so an unreadable stored day must not throw.
         val last = defaults.getString(Keys.LAST_ACTIVE_DAY)?.let { runCatching { LocalDate.parse(it) }.getOrNull() } ?: return streakCount
-        return if (ChronoUnit.DAYS.between(last, clock.today()) > 1L) 0 else streakCount
+        return if (ChronoUnit.DAYS.between(last, today) > 1L) 0 else streakCount
     }
 
     /** Consecutive calendar days with at least one finished drill. */
@@ -104,7 +104,7 @@ class ProgressStore(private val defaults: KeyValueStore, private val clock: AppC
     }
 
     /** Get Started is once a day: a fresh mix each day, resting once today's is done. */
-    fun quickSessionCompletedToday(): Boolean = quickSessionDay == clock.today().toString()
+    fun quickSessionCompletedToday(today: LocalDate = clock.today()): Boolean = quickSessionDay == today.toString()
 
     fun markQuickSessionCompleted(day: LocalDate = clock.today()) {
         quickSessionDay = day.toString()

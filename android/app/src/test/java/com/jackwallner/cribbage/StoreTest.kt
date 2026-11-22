@@ -261,6 +261,33 @@ class StoreTest {
         assertEquals("the stored form is unchanged", "06/05", result.shortDate)
     }
 
+    /** iOS B9: a screen left open past midnight reads the new day, not the one it was drawn on. */
+    @Test
+    fun aDayPassedInReadsAsTheNewDay() {
+        val progress = ProgressStore(defaults, clock)
+        val minutes = CribbageMinuteStore(defaults, clock)
+        val drawn = clock.today()
+        progress.recordSession("meet-cards")
+        progress.markQuickSessionCompleted()
+        minutes.record(CribbageMinuteContent.challenge(drawn), List(5) { true })
+        assertTrue(progress.quickSessionCompletedToday(drawn))
+        assertFalse("Get Started opens again the next morning", progress.quickSessionCompletedToday(drawn.plusDays(1)))
+        assertEquals(1, progress.currentStreak(drawn.plusDays(1)))
+        assertEquals("a missed day shows as lost", 0, progress.currentStreak(drawn.plusDays(2)))
+        assertEquals(drawn, minutes.archiveDates(today = drawn.plusDays(1)).first())
+        assertEquals(0, minutes.completedThisWeek(drawn.plusDays(7)))
+    }
+
+    @Test
+    fun theDayTurnsOverJustPastLocalMidnight() {
+        val zone = java.time.ZoneId.of("America/Los_Angeles")
+        val lateEvening = java.time.ZonedDateTime.of(2026, 10, 16, 23, 59, 30, 0, zone)
+        assertEquals(31_000L, com.jackwallner.cribbage.ui.DayRefresh.millisUntilNextDay(lateEvening))
+        // The night the clocks go back holds 25 hours.
+        val fallBack = java.time.ZonedDateTime.of(2026, 11, 1, 0, 0, 0, 0, zone)
+        assertEquals(25 * 3_600_000L + 1_000L, com.jackwallner.cribbage.ui.DayRefresh.millisUntilNextDay(fallBack))
+    }
+
     // MARK: - ReviewPromptTrackerTests
 
     @Test

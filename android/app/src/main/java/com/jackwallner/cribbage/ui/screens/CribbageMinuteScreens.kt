@@ -40,6 +40,7 @@ import com.jackwallner.cribbage.content.CribbageMinuteContent
 import com.jackwallner.cribbage.data.CribbageMinuteResult
 import com.jackwallner.cribbage.ui.LocalAppActions
 import com.jackwallner.cribbage.ui.LocalGraph
+import com.jackwallner.cribbage.ui.rememberToday
 import com.jackwallner.cribbage.ui.components.ConfettiBurst
 import com.jackwallner.cribbage.ui.components.symbol
 import com.jackwallner.cribbage.ui.nav.LocalNavigator
@@ -68,7 +69,7 @@ fun CribbageMinuteScreen() {
     val graph = LocalGraph.current
     val navigator = LocalNavigator.current
     val colors = Crib.colors
-    val today = LocalDate.now()
+    val today = rememberToday()
     val todayResult = graph.minutes.result(today)
     CribbageScreen("Cribbage Minute", onBack = { navigator.pop() }) {
         Readable(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
@@ -96,9 +97,9 @@ fun CribbageMinuteScreen() {
                         }
                     }
                 }
-                WeeklyRhythm(minOf(graph.minutes.completedThisWeek(), 5))
+                WeeklyRhythm(minOf(graph.minutes.completedThisWeek(today), 5))
                 Eyebrow("ARCHIVE", modifier = Modifier.padding(horizontal = 4.dp))
-                val dates = graph.minutes.archiveDates()
+                val dates = graph.minutes.archiveDates(today = today)
                 Column(Modifier.fillMaxWidth().themedCard(16.dp)) {
                     dates.forEachIndexed { index, date ->
                         ArchiveRow(date, graph.minutes.result(date))
