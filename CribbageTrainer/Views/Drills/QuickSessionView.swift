@@ -144,7 +144,8 @@ struct QuickSessionView: View {
                 trigger: confettiTrigger,
                 origin: .init(x: 0.5, y: 0.35),
                 particleCount: confettiParticleCount,
-                sourceRect: answerRect
+                sourceRect: answerRect,
+                scope: index
             )
         }
         .overlay(alignment: .top) {
