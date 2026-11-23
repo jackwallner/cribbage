@@ -174,7 +174,7 @@ struct PaywallContent: View {
         // Selection was carried by a border colour and a fill alone, and the
         // two subscription cards share a CTA title, so nothing told a VoiceOver
         // user which plan the button at the bottom would actually buy.
-        .accessibilityLabel([title, badge, price, perMonth.map { "\($0) billed yearly" }, detail]
+        .accessibilityLabel([title, badge, PaywallPricing.spoken(price), perMonth.map { "\($0) billed yearly" }, detail]
             .compactMap { $0 }
             .joined(separator: ", "))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
@@ -218,6 +218,12 @@ enum PaywallPricing {
         case .monthly: return "\(base)/month"
         case .lifetime: return base
         }
+    }
+
+    /// The amount as VoiceOver should say it: "$6.99 per month", not "slash month".
+    static func spoken(_ text: String) -> String {
+        text.replacingOccurrences(of: "/month", with: " per month")
+            .replacingOccurrences(of: "/year", with: " per year")
     }
 
     /// The same, ready to render: the amount or the placeholder.
@@ -392,6 +398,7 @@ struct PaywallView: View {
                 Text(PaywallPricing.priceText(subscriptions, selectedPlan))
                     .font(Theme.display(22))
                     .foregroundStyle(Theme.ink)
+                    .accessibilityLabel(PaywallPricing.spoken(PaywallPricing.priceText(subscriptions, selectedPlan)))
             }
             Text(PaywallPricing.terms(subscriptions, selectedPlan, trial: trialEligible))
                 .font(.caption)
