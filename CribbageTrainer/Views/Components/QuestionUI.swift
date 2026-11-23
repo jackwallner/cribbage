@@ -214,8 +214,10 @@ struct ChoiceList: View {
                             .font(.body.weight(.bold))
                             .foregroundStyle(Theme.gradeCorrect)
                             .scaleEffect(landed ? 1.2 : 1)
+                            .accessibilityHidden(true)
                     } else if isMiss {
                         Image(systemName: "xmark.circle.fill").foregroundStyle(Theme.gradeWrong)
+                            .accessibilityHidden(true)
                     }
                 }
             }
@@ -257,6 +259,8 @@ struct ChoiceList: View {
         }
         .buttonStyle(.plain)
         .allowsHitTesting(!answered)
+        .accessibilityLabel(labels[index])
+        .accessibilityValue(answered ? (isAnswer ? "Correct" : (isMiss ? "Incorrect" : "")) : "")
     }
 
     private func background(_ index: Int) -> Color {
