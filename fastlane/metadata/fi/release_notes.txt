@@ -1,1 +1,5 @@
-Taustaparannuksia ja virhekorjauksia, jotta Cribbage Trainer toimii sujuvasti. Kiitos, että olet mukana.
+Uusi Glossary: 29 cribbage-termiä, his nobsista muggins-termiin, yhden napautuksen päässä Home-näkymästä.
+
+Jos vastaat väärin Name the Pattern -tehtävässä, pegging-siirrossa tai Count the Hand -tehtävässä, lyhyt "Why not?" -huomautus näyttää nyt, mikä valinnassasi menee pieleen.
+
+Kortit mahtuvat nyt kapeille näytöille, ja pitkät vastaukset rivittyvät katkeamisen sijaan.

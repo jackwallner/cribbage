@@ -1,1 +1,5 @@
-Melhorias nos bastidores e correções de erros para o Cribbage Trainer funcionar melhor. Obrigado por estar aqui.
+Novo Glossary: 29 termos de cribbage, de his nobs a muggins, a um toque de Home.
+
+Se errar uma pergunta em Name the Pattern, uma jogada de pegging ou Count the Hand, uma breve nota "Why not?" mostra agora o que está errado na sua escolha.
+
+As cartas passam a caber em ecrãs estreitos, e as respostas longas mudam de linha em vez de ficarem cortadas.

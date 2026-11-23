@@ -1,1 +1,5 @@
-Cribbage Trainer를 원활하게 사용할 수 있도록 내부 개선과 버그를 수정했습니다. 함께해 주셔서 감사합니다.
+새로운 Glossary: his nobs부터 muggins까지 크리비지 용어 29개를 Home에서 한 번의 탭으로 볼 수 있어요.
+
+Name the Pattern, 페깅 플레이, Count the Hand에서 문제를 틀리면 이제 선택한 답이 무엇이 잘못됐는지 알려 주는 짧은 "Why not?" 메모가 표시돼요.
+
+카드가 좁은 화면에도 맞게 표시되고, 긴 답변은 잘리지 않고 줄바꿈돼요.

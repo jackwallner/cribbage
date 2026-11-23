@@ -1,1 +1,5 @@
-Millores internes i correccions d'errors perquè Cribbage Trainer funcioni bé. Gràcies per ser aquí.
+Nou Glossary: 29 termes del cribbage, de his nobs a muggins, a un toc de Home.
+
+Si falles una pregunta a Name the Pattern, una jugada de pegging o Count the Hand, ara una breu nota «Why not?» t'explica què té de malament la teva resposta.
+
+Les cartes ara caben a les pantalles estretes i les respostes llargues se serveixen en diverses línies en lloc de quedar tallades.

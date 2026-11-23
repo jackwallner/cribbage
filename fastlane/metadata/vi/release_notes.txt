@@ -1,1 +1,5 @@
-Cải tiến phía sau và sửa lỗi để Cribbage Trainer chạy mượt mà. Cảm ơn bạn đã đồng hành.
+Glossary mới: 29 thuật ngữ cribbage, từ his nobs đến muggins, chỉ cách Home một lần chạm.
+
+Nếu trả lời sai trong Name the Pattern, một nước đi pegging hoặc Count the Hand, một ghi chú ngắn "Why not?" giờ sẽ cho bạn thấy lựa chọn của mình sai ở đâu.
+
+Các lá bài giờ vừa với màn hình hẹp, và câu trả lời dài được xuống dòng thay vì bị cắt mất.

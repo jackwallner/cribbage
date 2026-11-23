@@ -1,1 +1,5 @@
-Háttérbeli fejlesztések és hibajavítások, hogy a Cribbage Trainer gördülékenyen működjön. Köszönjük, hogy itt vagy.
+Új Glossary: 29 cribbage-kifejezés, a his nobstól a muggins-ig, egyetlen koppintásra a Home képernyőtől.
+
+Ha hibázol egy kérdésnél a Name the Pattern, egy pegging lépésnél vagy a Count the Hand gyakorlatban, egy rövid „Why not?” jegyzet mostantól megmutatja, mi nem stimmel a választásoddal.
+
+A kártyák mostantól elférnek a keskeny képernyőkön is, a hosszú válaszok pedig tördelődnek, nem vágódnak le.

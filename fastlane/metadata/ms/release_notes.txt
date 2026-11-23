@@ -1,1 +1,5 @@
-Penambahbaikan di sebalik tabir dan pembaikan pepijat supaya Cribbage Trainer berjalan lancar. Terima kasih kerana berada di sini.
+Glossary baharu: 29 istilah cribbage, dari his nobs hingga muggins, hanya satu ketukan dari Home.
+
+Jika anda tersilap dalam soalan Name the Pattern, langkah pegging atau Count the Hand, nota ringkas "Why not?" kini menunjukkan apa yang salah pada pilihan anda.
+
+Kad kini muat pada skrin sempit, dan jawapan panjang dibalut ke baris seterusnya dan bukannya terpotong.

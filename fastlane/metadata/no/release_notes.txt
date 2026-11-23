@@ -1,1 +1,5 @@
-Forbedringer bak kulissene og feilrettinger så Cribbage Trainer fungerer problemfritt. Takk for at du er her.
+Ny Glossary: 29 cribbage-begreper, fra his nobs til muggins, bare ett trykk fra Home.
+
+Svarer du feil i Name the Pattern, på et pegging-trekk eller i Count the Hand, viser et kort «Why not?»-notat nå hva som er galt med valget ditt.
+
+Kort passer nå på smale skjermer, og lange svar brytes over flere linjer i stedet for å bli kuttet.

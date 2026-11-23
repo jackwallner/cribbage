@@ -1,1 +1,5 @@
-Îmbunătățiri și remedieri pentru ca Cribbage Trainer să funcționeze mai bine. Mulțumim că ești aici.
+Glossary nou: 29 de termeni de cribbage, de la his nobs la muggins, la o atingere de Home.
+
+Dacă greșești o întrebare în Name the Pattern, într-o mutare de pegging sau în Count the Hand, o scurtă notă „Why not?” îți arată acum ce nu e în regulă la alegerea ta.
+
+Cărțile încap acum pe ecrane înguste, iar răspunsurile lungi trec pe rândul următor în loc să fie tăiate.

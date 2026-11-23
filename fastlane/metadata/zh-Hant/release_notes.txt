@@ -1,1 +1,5 @@
-進行了背景優化與錯誤修復，讓 Cribbage Trainer 運行更順暢。感謝一路有你。
+全新 Glossary：從 his nobs 到 muggins，收錄 29 個克里比奇術語，在 Home 一點即達。
+
+在 Name the Pattern、計分走步或 Count the Hand 中答錯時，現在會出現簡短的「Why not?」說明，告訴你所選答案哪裡不對。
+
+卡片現在可以適配窄螢幕，較長的答案會自動換行，不再被截斷。

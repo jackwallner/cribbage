@@ -1,1 +1,5 @@
-Cribbage Trainer'ın sorunsuz çalışması için arka planda iyileştirmeler ve hata düzeltmeleri. Burada olduğun için teşekkürler.
+Yeni Glossary: his nobs'tan muggins'e 29 cribbage terimi, Home'dan yalnızca bir dokunuş uzakta.
+
+Name the Pattern, bir pegging hamlesi veya Count the Hand içinde bir soruyu kaçırırsan, kısa bir "Why not?" notu artık seçiminin neyinin yanlış olduğunu gösteriyor.
+
+Kartlar artık dar ekranlara sığıyor ve uzun cevaplar kesilmek yerine alt satıra geçiyor.

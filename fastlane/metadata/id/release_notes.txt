@@ -1,1 +1,5 @@
-Peningkatan di balik layar dan perbaikan bug agar Cribbage Trainer berjalan lancar. Terima kasih telah hadir.
+Glossary baru: 29 istilah cribbage, dari his nobs sampai muggins, cukup satu ketukan dari Home.
+
+Jika salah menjawab di Name the Pattern, langkah pegging, atau Count the Hand, catatan singkat "Why not?" kini menunjukkan apa yang keliru dari pilihanmu.
+
+Kartu kini muat di layar sempit, dan jawaban panjang dibungkus ke baris berikutnya, bukan terpotong.

@@ -1,1 +1,5 @@
-Verbeteringen achter de schermen en bugfixes zodat Cribbage Trainer soepel werkt. Bedankt dat je er bent.
+Nieuw Glossary: 29 cribbage-termen, van his nobs tot muggins, één tik vanaf Home.
+
+Heb je een vraag fout in Name the Pattern, een peggingzet of Count the Hand? Dan laat een korte "Why not?"-notitie nu zien wat er niet klopt aan je keuze.
+
+Kaarten passen nu op smalle schermen en lange antwoorden lopen door op de volgende regel in plaats van afgekapt te worden.

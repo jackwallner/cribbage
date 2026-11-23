@@ -1,1 +1,5 @@
-Poboljšanja u pozadini i ispravci grešaka kako bi Cribbage Trainer radio glatko. Hvala što ste tu.
+Novi Glossary: 29 pojmova iz cribbagea, od his nobs do muggins, samo jedan dodir od Home.
+
+Ako pogriješite u pitanju u Name the Pattern, u potezu pegginga ili u Count the Hand, kratka bilješka „Why not?“ sada pokazuje što nije u redu s vašim izborom.
+
+Karte sada stanu i na uske zaslone, a dugi odgovori prelaze u novi red umjesto da budu odrezani.
