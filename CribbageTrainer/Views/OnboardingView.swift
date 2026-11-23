@@ -319,9 +319,11 @@ struct OnboardingView: View {
         if dynamicTypeSize.isAccessibilitySize {
             fittedPage(spacing: 22) {
                 trialHeader
+                // The billed amount sits right under the title so it is on
+                // screen before any scrolling (3.1.2(c)).
+                if !subscriptions.isPro { priceSlot }
                 trialBenefits
                 if !subscriptions.isPro {
-                    priceSlot
                     softExit
                     legalRow
                 }
@@ -517,8 +519,10 @@ struct OnboardingView: View {
         }
         // 30pt, as shipped before: the trial page's geometry is the proven
         // one. Only the accessibility-size layout, where it scrolls, grows it.
-        .frame(minHeight: dynamicTypeSize.isAccessibilitySize ? 44 : 30)
-        .frame(height: dynamicTypeSize.isAccessibilitySize ? nil : 30)
+        .frame(minWidth: 44, minHeight: 44)
+        .contentShape(Rectangle())
+        // Tap target is 44pt; the negative padding keeps the 30pt layout slot.
+        .padding(.vertical, dynamicTypeSize.isAccessibilitySize ? 0 : -7)
         .disabled(!onTrialPageNow || subscriptions.isPro || purchasing || restoring)
     }
 
@@ -527,6 +531,7 @@ struct OnboardingView: View {
             Text(trialPrice)
                 .font(Theme.display(22))
                 .foregroundStyle(Theme.ink)
+                .accessibilityLabel(PaywallPricing.spoken(trialPrice))
             Text(trialDisclosure)
                 .font(.caption2)
                 .foregroundStyle(Theme.inkTertiary)
