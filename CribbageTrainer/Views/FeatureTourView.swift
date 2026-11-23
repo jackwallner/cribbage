@@ -60,7 +60,9 @@ struct FeatureTourView: View {
             }
             buttons(isLast: isLast, pageCount: pages.count)
         }
-        .padding()
+        .padding(.horizontal, 24)
+        .padding(.top, 16)
+        .padding(.bottom, 10)
         .frame(maxWidth: Theme.readableContentWidth)
         .frame(maxWidth: .infinity)
         .background(Theme.background)

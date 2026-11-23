@@ -33,7 +33,10 @@ struct HowToPlayView: View {
 
     var body: some View {
         VStack(spacing: 18) {
-            progressDots
+            ZStack {
+                progressDots
+                HStack { backButton; Spacer() }
+            }
             if dynamicTypeSize.isAccessibilitySize {
                 // At the largest sizes a page outgrows the screen and pushed
                 // Continue and Skip below it with no way to reach them. The
@@ -58,7 +61,9 @@ struct HowToPlayView: View {
             }
             footer
         }
-        .padding()
+        .padding(.horizontal, 24)
+        .padding(.top, 16)
+        .padding(.bottom, 10)
         .frame(maxWidth: Theme.readableContentWidth)
         .frame(maxWidth: .infinity)
         .background(Theme.background)
@@ -101,32 +106,30 @@ struct HowToPlayView: View {
         .padding(.top, 6)
     }
 
-    /// Back rides beside Continue, so paging in either direction is one thumb,
-    /// one place. Skip only exists during onboarding, where it's a real exit.
+    /// Back sits top-left so Continue keeps the full-width slot every other
+    /// onboarding screen uses (the CTA never changes size between screens).
+    /// Skip only exists during onboarding, where it's a real exit.
+    private var backButton: some View {
+        Button {
+            goBack()
+        } label: {
+            Image(systemName: "chevron.left")
+                .font(.headline)
+                .foregroundStyle(Theme.jade)
+                .frame(width: 44, height: 44)
+        }
+        .opacity(isFirst ? 0 : 1)
+        .disabled(isFirst)
+        .accessibilityHidden(isFirst)
+        .accessibilityLabel("Previous page")
+    }
+
     private var footer: some View {
         VStack(spacing: 10) {
-            HStack(spacing: 10) {
-                Button {
-                    goBack()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.headline)
-                        .foregroundStyle(isFirst ? Theme.inkTertiary : Theme.jade)
-                        .frame(width: 56, height: 56)
-                        .background(Theme.card, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                                .strokeBorder(Theme.rule, lineWidth: 1)
-                        )
-                }
-                .disabled(isFirst)
-                .opacity(isFirst ? 0.45 : 1)
-                .accessibilityLabel("Previous page")
-                Button {
-                    advance()
-                } label: {
-                    Text(isLast ? "Take your seat" : "Continue").primaryCTA()
-                }
+            Button {
+                advance()
+            } label: {
+                Text(isLast ? "Take your seat" : "Continue").primaryCTA()
             }
             if let onSkip {
                 Button {
