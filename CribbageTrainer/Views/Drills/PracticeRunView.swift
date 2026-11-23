@@ -189,7 +189,8 @@ struct PracticeRunView: View {
                     tiles: item.tiles,
                     explanation: item.explanation,
                     answered: answered,
-                    eyebrow: item.sourceLabel.uppercased()
+                    eyebrow: item.sourceLabel.uppercased(),
+                    missNote: selection.flatMap { item.note(forPick: $0) }
                 ) {
                     ChoiceList(labels: item.choices, selection: selection, answerIndex: item.answerIndex) { pick in
                         grade(pick)

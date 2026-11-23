@@ -46,6 +46,19 @@ enum HandCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     /// True when this shape is actually present in the cards on screen. Nobs is
     /// potential rather than guaranteed, because the cut decides it, so a jack
     /// in the layout counts as present.
+    /// Why this pattern is the wrong pick for these cards: it is absent. Nil
+    /// when it is present, since a present pattern is never a wrong pick.
+    func missNote(in cards: [PlayingCard]) -> String? {
+        guard !isPresent(in: cards) else { return nil }
+        switch self {
+        case .fifteens: return "No group of these cards adds to 15. Face cards count 10 and aces 1."
+        case .pairs: return "No two of these cards share a rank."
+        case .runs: return "No three of these cards are in rank order. Aces are low, so Q-K-A is not a run."
+        case .flushes: return "No suit shows four cards here, and a hand flush needs four of one suit."
+        case .nobs: return "There is no jack here. Nobs needs a jack in hand to match the starter's suit."
+        }
+    }
+
     func isPresent(in cards: [PlayingCard]) -> Bool {
         switch self {
         case .fifteens: return HandScoring.fifteens(cards) > 0

@@ -92,7 +92,8 @@ enum EndlessPractice {
                 explanation: hand.explanation,
                 sourceLabel: "Endless Practice",
                 roomID: PracticeSkill.handReading.roomID,
-                topic: PracticeTopic.id(.handReading, hand.answer.rawValue)
+                topic: PracticeTopic.id(.handReading, hand.answer.rawValue),
+                choiceNotes: hand.choices.map { $0.missNote(in: hand.tiles) }
             )
         }
     }
@@ -109,11 +110,15 @@ enum EndlessPractice {
             let choices = canPlay
                 ? ["Play it, making \(nextTotal)", "Say go", "Reset the count"]
                 : ["Play it, making \(nextTotal)", "Say go", "Ask for a new card"]
+            let notes: [String?] = canPlay
+                ? [nil, "Go is only for when no card you hold fits. The \(card.spokenName) keeps the count at \(nextTotal), which is 31 or less.", "The count starts again only after 31 or a go."]
+                : ["That would make \(nextTotal), and the count can never pass 31.", nil, "There is no drawing in pegging. You play only from the cards you hold."]
             let explanation = canPlay
                 ? "The running total is \(total), and \(card.spokenName) is worth \(value), so the legal total is \(nextTotal). Check whether the play also creates 15, a pair, a run, or 31."
                 : "The running total is \(total), and \(card.spokenName) is worth \(value), which would pass 31. You must say go if you have no legal card."
             let id = PracticeSkill.pegging.itemPrefix + UUID().uuidString
             let shuffled = ChoiceShuffle.shuffledChoices(labels: choices, answerIndex: canPlay ? 0 : 1, seed: id)
+            let perm = ChoiceShuffle.permutation(count: choices.count, seed: id)
             items.append(QuickItem(
                 id: id,
                 prompt: "The running total is \(total). You hold the \(card.spokenName). What is the legal play?",
@@ -123,7 +128,8 @@ enum EndlessPractice {
                 explanation: explanation,
                 sourceLabel: "Endless Practice",
                 roomID: PracticeSkill.pegging.roomID,
-                topic: PracticeTopic.id(.pegging, canPlay ? "play" : "go")
+                topic: PracticeTopic.id(.pegging, canPlay ? "play" : "go"),
+                choiceNotes: perm.map { notes[$0] }
             ))
         }
         return items
@@ -145,7 +151,10 @@ enum EndlessPractice {
                 answerIndex: question.choices.firstIndex(of: question.score) ?? 0,
                 explanation: question.explanation,
                 sourceLabel: "Endless Practice",
-                roomID: PracticeSkill.countHand.roomID
+                roomID: PracticeSkill.countHand.roomID,
+                choiceNotes: question.choices.map {
+                    HandCountGenerator.missNote(picked: $0, hand: question.hand, starter: question.starter)
+                }
             )
         }
     }
