@@ -195,6 +195,7 @@ struct FeatureTourView: View {
                     Text("A five-minute mix of what you need next")
                         .font(.caption)
                         .foregroundStyle(Theme.onFill.opacity(0.9))
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 4)
                 Image(systemName: "play.circle.fill")
@@ -225,7 +226,11 @@ struct FeatureTourView: View {
         Image(systemName: icon)
             .font(.body.weight(.semibold))
             .foregroundStyle(color)
-            .frame(width: 54, height: 54)
+            // Up to 54pt square, narrower when four of them would overflow
+            // the card: at 320pt (Display Zoom) the fixed 54s widened the
+            // page and the Show me button with it.
+            .frame(minWidth: 40, maxWidth: 54)
+            .frame(height: 54)
             .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 

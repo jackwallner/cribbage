@@ -415,6 +415,7 @@ struct HomeView: View {
                     Text("A five-minute mix of what you need next")
                         .font(.subheadline)
                         .foregroundStyle(Theme.onFill.opacity(0.9))
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 4)
                 Image(systemName: "play.circle.fill")
