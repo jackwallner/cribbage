@@ -178,6 +178,11 @@ struct SettingsView: View {
             } label: {
                 Label("How to Play", systemImage: "book.fill")
             }
+            NavigationLink {
+                ReferenceView()
+            } label: {
+                Label("Glossary", systemImage: "book.closed.fill")
+            }
             if WhatsNew.currentRelease != nil {
                 Button {
                     showWhatsNew = true

@@ -95,7 +95,8 @@ enum CribbageMinuteContent {
                 sourceLabel: "Cribbage Minute: Hand Read",
                 roomID: PracticeSkill.handReading.roomID,
                 trackingID: PracticeSkill.handReading.rawValue,
-                isReviewable: false
+                isReviewable: false,
+                choiceNotes: hand.choices.map { $0.missNote(in: hand.tiles) }
             )
             return CribbageMinuteQuestion(category: .handReading, item: SessionBuilder.prepared(item))
         }

@@ -24,6 +24,9 @@ struct QuickItem: Identifiable, Sendable {
     let isReviewable: Bool
     /// The narrow skill this generated question exercises, for mastery stats.
     let topic: String?
+    /// Parallel to `choices`: why each wrong pick is wrong, nil where there
+    /// is no note. Padded to the choices.
+    let choiceNotes: [String?]
 
     init(
         id: String,
@@ -36,7 +39,8 @@ struct QuickItem: Identifiable, Sendable {
         roomID: String,
         trackingID: String? = nil,
         isReviewable: Bool = true,
-        topic: String? = nil
+        topic: String? = nil,
+        choiceNotes: [String?] = []
     ) {
         self.id = id
         self.prompt = prompt
@@ -49,6 +53,13 @@ struct QuickItem: Identifiable, Sendable {
         self.trackingID = trackingID ?? id
         self.isReviewable = isReviewable
         self.topic = topic
+        self.choiceNotes = choices.indices.map { $0 < choiceNotes.count ? choiceNotes[$0] : nil }
+    }
+
+    func note(forPick pick: Int) -> MissNote? {
+        guard pick != answerIndex, choiceNotes.indices.contains(pick) else { return nil }
+        guard let reason = choiceNotes[pick], !reason.isEmpty else { return nil }
+        return MissNote(pickedLabel: choices[pick], reason: reason)
     }
 }
 
@@ -153,6 +164,7 @@ enum SessionBuilder {
 
     static func prepared(_ item: QuickItem) -> QuickItem {
         let shuffled = ChoiceShuffle.shuffledChoices(labels: item.choices, answerIndex: item.answerIndex, seed: item.id)
+        let perm = ChoiceShuffle.permutation(count: item.choices.count, seed: item.id)
         return QuickItem(
             id: item.id,
             prompt: item.prompt,
@@ -164,7 +176,8 @@ enum SessionBuilder {
             roomID: item.roomID,
             trackingID: item.trackingID,
             isReviewable: item.isReviewable,
-            topic: item.topic
+            topic: item.topic,
+            choiceNotes: perm.map { item.choiceNotes[$0] }
         )
     }
 
@@ -200,7 +213,8 @@ enum SessionBuilder {
                             answerIndex: answerIndex,
                             explanation: question.explanation,
                             sourceLabel: room.name,
-                            roomID: room.id
+                            roomID: room.id,
+                            choiceNotes: question.choices.map { $0.missNote(in: question.tiles) }
                         )
                     }
                 case .flashcards(let cards):

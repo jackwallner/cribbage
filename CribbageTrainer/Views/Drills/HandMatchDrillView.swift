@@ -27,6 +27,11 @@ struct HandMatchDrillView: View {
 
     private var question: HandMatchQuestion { questions[index] }
     private var answered: Bool { selection != nil }
+    private var missNote: MissNote? {
+        guard let selection, selection != question.answer,
+              let reason = selection.missNote(in: question.tiles) else { return nil }
+        return MissNote(pickedLabel: selection.displayName, reason: reason)
+    }
 
     /// Deterministic per-question shuffle so the correct section isn't always
     /// in the authored slot; stable across re-render since it's seeded by id.
@@ -47,7 +52,8 @@ struct HandMatchDrillView: View {
                     prompt: HandCategory.patternPrompt,
                     tiles: question.tiles.racked,
                     explanation: question.explanation,
-                    answered: answered
+                    answered: answered,
+                    missNote: missNote
                 ) {
                     ChoiceList(
                         labels: shuffled.categories.map(\.displayName),
