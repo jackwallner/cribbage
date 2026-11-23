@@ -519,8 +519,10 @@ struct OnboardingView: View {
         }
         // 30pt, as shipped before: the trial page's geometry is the proven
         // one. Only the accessibility-size layout, where it scrolls, grows it.
-        .frame(minHeight: dynamicTypeSize.isAccessibilitySize ? 44 : 30)
-        .frame(height: dynamicTypeSize.isAccessibilitySize ? nil : 30)
+        .frame(minWidth: 44, minHeight: 44)
+        .contentShape(Rectangle())
+        // Tap target is 44pt; the negative padding keeps the 30pt layout slot.
+        .padding(.vertical, dynamicTypeSize.isAccessibilitySize ? 0 : -7)
         .disabled(!onTrialPageNow || subscriptions.isPro || purchasing || restoring)
     }
 
