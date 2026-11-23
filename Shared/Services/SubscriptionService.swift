@@ -49,6 +49,9 @@ final class SubscriptionService: NSObject, ObservableObject {
     @Published private(set) var pendingChurnMoment: ChurnMoment?
 
     private var isConfigured = false
+    /// Simulator runs never configure RevenueCat, so prices come straight from
+    /// the local StoreKit file (the scheme attaches it). Real devices never use it.
+    @Published private(set) var storeKitPrices: [PaywallPlan: PaywallPrice] = [:]
     #if DEBUG
     private let localOverrideKey = "subscription.localProOverride"
     #endif
@@ -86,6 +89,7 @@ final class SubscriptionService: NSObject, ObservableObject {
             // No store at all (simulator, screenshots): nothing will ever
             // load, so what we have is the answer.
             membershipResolved = true
+            Task { await loadStoreKitPrices() }
             return
         }
         // The last record RevenueCat saw, from the first frame: a member is a
@@ -249,8 +253,23 @@ final class SubscriptionService: NSObject, ObservableObject {
         }
     }
 
+    private func loadStoreKitPrices() async {
+        #if targetEnvironment(simulator) && DEBUG
+        guard !isConfigured, storeKitPrices.isEmpty else { return }
+        let ids = ["yearly": PaywallPlan.yearly, "monthly": .monthly, "lifetime": .lifetime]
+        let products = (try? await Product.products(for: ids.keys.map { "com.jackwallner.cribbage.\($0)" })) ?? []
+        for product in products {
+            guard let key = product.id.split(separator: ".").last, let plan = ids[String(key)] else { continue }
+            storeKitPrices[plan] = PaywallPrice(amount: product.price, localized: product.displayPrice, locale: product.priceFormatStyle.locale)
+        }
+        #endif
+    }
+
     func loadOfferings() async {
-        guard isConfigured else { return }
+        guard isConfigured else {
+            await loadStoreKitPrices()
+            return
+        }
         offerings = try? await Purchases.shared.offerings()
     }
 
@@ -282,7 +301,7 @@ final class SubscriptionService: NSObject, ObservableObject {
     }
 
     func paywallPrice(for plan: PaywallPlan) -> PaywallPrice? {
-        guard let product = package(for: plan)?.storeProduct else { return nil }
+        guard let product = package(for: plan)?.storeProduct else { return storeKitPrices[plan] }
         return PaywallPrice(
             amount: product.price,
             localized: product.localizedPriceString,
@@ -299,7 +318,10 @@ final class SubscriptionService: NSObject, ObservableObject {
     /// ready and then throw productsUnavailable at the purchase call.
     @discardableResult
     func ensureOfferings() async -> Bool {
-        guard isConfigured else { return false }
+        guard isConfigured else {
+            await loadStoreKitPrices()
+            return false
+        }
         await recoverReinstalledMembershipIfNeeded()
         if hasPurchasablePackages { return true }
         await loadOfferings()

@@ -212,43 +212,36 @@ struct HowToPlayView: View {
         .shine(trigger: shineTrigger, corner: 22)
     }
 
-    /// The primer's real next action: a tappable card recommending a room
-    /// based on the onboarding skill level. Tapping it drives the same
-    /// `advance()` as the primary button below (dismiss standalone / finish
-    /// onboarding), and both routes set the one-shot hint `HomeView` consumes
-    /// to highlight that room.
+    /// The recommended room, shown above the primary button. It is not a button
+    /// of its own: it used to repeat the primary action and, being the larger
+    /// target, read as the screen's main button. "Take your seat" below drives
+    /// `advance()`, which sets the one-shot hint `HomeView` consumes to
+    /// highlight this room.
     private var recommendationCard: some View {
-        Button {
-            advance()
-        } label: {
-            HStack(spacing: 12) {
-                Image(systemName: recommendedRoom.icon)
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(recommendedRoom.accent)
-                    .frame(width: 40, height: 40)
-                    .background(recommendedRoom.accent.opacity(0.14), in: Circle())
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Recommended: \(recommendedRoom.name)")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(Theme.ink)
-                    Text(recommendedRoom.tagline)
-                        .font(.caption)
-                        .foregroundStyle(Theme.inkSecondary)
-                }
-                Spacer(minLength: 4)
-                Image(systemName: "chevron.right")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Theme.inkTertiary)
+        HStack(spacing: 12) {
+            Image(systemName: recommendedRoom.icon)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(recommendedRoom.accent)
+                .frame(width: 40, height: 40)
+                .background(recommendedRoom.accent.opacity(0.14), in: Circle())
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Recommended: \(recommendedRoom.name)")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Theme.ink)
+                Text(recommendedRoom.tagline)
+                    .font(.caption)
+                    .foregroundStyle(Theme.inkSecondary)
             }
-            .padding(12)
-            .frame(maxWidth: .infinity)
-            .background(recommendedRoom.accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .strokeBorder(recommendedRoom.accent.opacity(0.35), lineWidth: 1.2)
-            )
+            Spacer(minLength: 4)
         }
-        .buttonStyle(.plain)
+        .padding(12)
+        .frame(maxWidth: .infinity)
+        .background(recommendedRoom.accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(recommendedRoom.accent.opacity(0.35), lineWidth: 1.2)
+        )
+        .accessibilityElement(children: .combine)
     }
 
     private func goBack() {
@@ -286,7 +279,7 @@ struct HowToPlayView: View {
 
     private func fireShine() {
         Task { @MainActor in
-            try? await Task.sleep(nanoseconds: 350_000_000)
+            try? await Task.sleep(nanoseconds: 150_000_000)
             shineTrigger += 1
         }
     }

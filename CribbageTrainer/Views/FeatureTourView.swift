@@ -310,7 +310,7 @@ struct FeatureTourView: View {
 
     private func fireShine() {
         Task { @MainActor in
-            try? await Task.sleep(nanoseconds: 350_000_000)
+            try? await Task.sleep(nanoseconds: 150_000_000)
             shineTrigger += 1
         }
     }
