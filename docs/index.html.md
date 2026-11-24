@@ -46,6 +46,11 @@ the running count climbs.
 
 Swipeable cards that explain the rule instead of just testing it.
 
+### Look it up
+
+A glossary of cribbage terms, from his nobs to muggins, one tap
+from Home.
+
 ### More reps per room
 
 An additional practice set in all four rooms, with fresh questions,
@@ -99,6 +104,11 @@ you buy and vary by region.
 **Extra practice sets.** A second set of questions,
 hands, deals, and calls in every room, using drills you already
 know.
+
+**Practice modes.** Endless Practice deals new
+hands for counting and pegging, Fix My Mistakes brings your
+misses back on a spaced schedule, and Timed Challenge gives you
+ninety seconds and a personal best to chase.
 
 **The Master Tables.** Advanced discard strategy,
 pegging defense, endgame decisions, and expert counting for
