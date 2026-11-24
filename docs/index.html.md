@@ -9,7 +9,7 @@ Web page: https://jackwallner.com/ios/cribbage/
 Cribbage Trainer is a cribbage practice app for iPhone and iPad. Count the hand, choose the
 discard, and peg to 31 in five-minute drills. No opponents and no account.
 
-iPhone · Four practice rooms · Works offline
+iPhone · Android · Four practice rooms · Works offline
 
 [Download for free](https://apps.apple.com/us/app/cribbage-trainer-count-peg/id6796911073?pt=128748779&ct=jw-cribbage-home&mt=8)
 
@@ -174,7 +174,7 @@ vary, so use the rules agreed at your table.
 
 ## Practice before you play
 
-Free on the App Store. Four practice rooms, no account. Cribbage+
+Free on the App Store and Google Play. Four practice rooms, no account. Cribbage+
 optional.
 
 [Download for free](https://apps.apple.com/us/app/cribbage-trainer-count-peg/id6796911073?pt=128748779&ct=jw-cribbage-home&mt=8)
